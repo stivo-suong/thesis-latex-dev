@@ -1,0 +1,459 @@
+\appendix
+
+\chapter{Log-Chi-Square Distribution}
+\label{chap:appendix_a}
+
+This appendix provides the mathematical proofs for the log-transformed version of chi-squared random variables.
+
+Chi-squared random variables $\chi\ \sim\ \chi^2(k)\ $ follows the pdf:
+\begin{equation}
+pdf(\chi;\,k) =
+  \frac{\chi^{(k/2)-1} e^{-\chi/2}}{2^{k/2} \Gamma\left(\frac{k}{2}\right)}  
+\label{eqn:chi_squared_dist_pdf:appdixA}
+\end{equation}
+
+Setting L=k/2 into Eqn. \ref{eqn:chi_squared_dist_pdf:appdixA}
+\begin{equation}
+pdf(\chi) = \frac{\chi^{L-1}e^{-\chi/2}}{2^L\Gamma(L)}
+\end{equation}
+
+Applying the variable change theorem, which states that: if $y=\phi(x)$ with $\phi(c)=a$ and $\phi(d)=b$, then:
+\begin{equation}
+ \int_a^b \! f(y) \, dy = \int_c^d \! f[\phi(x)] \frac{d\phi}{dx} dx
+\end{equation}
+into the log-transformation, which changes the random variables $\Lambda=ln(\chi)$, we have:
+\begin{eqnarray*}
+  d\chi &=& e^\Lambda d\Lambda \\
+  \frac{\chi^{L-1}e^{-\chi/2}}{2^L\Gamma(L)} d\chi &=&  \frac{(e^\Lambda)^{L-1}e^{-e^\Lambda/2}}{2^L\Gamma(L)} e^\Lambda d\Lambda
+\end{eqnarray*}
+In other words, we have:
+\begin{equation}
+pdf(\Lambda;L) = \frac{e^{L \Lambda -e^\Lambda/2}}{2^L\Gamma(L)}
+\label{eqn:log_chi_square_dist_pdf}
+\end{equation}
+
+From the PDF given in Eqn. \ref{eqn:log_chi_square_dist_pdf}, characteristics function can be computed.
+By definition, the characteristic function (CF) $\varphi_X(t)$ for a random variable $X$ is computed as:
+\begin{eqnarray*}
+\varphi_X(t) = \operatorname{E}\big[e^{itX}\big] 
+      &=& \int_{-\infty}^\infty e^{itx}\,dF_X(x) \\ 
+      &=& \int_{-\infty}^\infty e^{itx} f_X(x)\,dx 
+\end{eqnarray*}
+with $\varphi_x(t)$ is the characteristic function,
+     $F_X(x)$ is the CDF function of X and
+     $f_X(x)$ is the PDF function of X.
+Thus the characteristic function for log-chi-squared distribution is defined as: 
+\begin{equation}
+\varphi_\Lambda(t)=\int_0^\infty e^{itx} \frac{e^{Lx-e^x/2}}{2^L \Gamma(L)}\,dx 
+\end{equation}
+
+Gamma function is defined over complex domain as:
+$\Gamma(z) = \int_0^\infty  e^{-x} x^{z-1} dx .$
+Thus $\Gamma(L+it) = \int_0^\infty  e^{-x} x^{L+it-1} dx .$
+Set $x=e^z/2$ then $dx=e^z/2dz$, we have $\Gamma(L+it)= \int_0^\infty  e^{itz} \frac{e^{Lz-e^z/2}}{2^{L+it}} dz$
+%  \begin{eqnarray*}
+%\Gamma(L+it)&=&\int_0^\infty  e^{-e^z/2} (e^z/2)^{L+it-1} e^z/2 dz \\
+%  &=& \int_0^\infty  e^{-e^z/2} \frac{e^{z(L+it-1)}}{2^{L+it-1}} e^z/2 dz \\
+%  &=& \int_0^\infty  e^{itz} \frac{e^{Lz-e^z/2}}{2^{L+it}} dz
+%  \end{eqnarray*}
+
+%Thus the characteristic function becomes
+That is:
+\begin{equation}
+\varphi_\Lambda(t) = 2^{it} \frac{\Gamma(L+it)}{\Gamma(L)}  
+\end{equation}
+
+Consequently, the first and second derivative of log-chi-squared distribution can be computed.
+The first derivative is given as:
+\begin{equation}
+  \frac{\partial \varphi_\Lambda(t)}{\partial t} = \frac{i 2^{it} \Gamma(L+it)}{\Gamma(L)} \left[ \ln{2} + \psi^0(L+it) \right]
+\end{equation}
+due to
+\begin{eqnarray*}
+  \frac{\partial \Gamma(x)}{\partial x} &=& \Gamma(x)\psi^0(x), \\
+  \frac{\partial \Gamma(L+it)}{\partial t} &=& i\Gamma(L+it)\psi^0(L+it), \\
+  \frac{\partial 2^{it}}{\partial t} &=& i2^{it}\ln(2), \\
+  \partial (u \cdot v) / \partial t &=& u \cdot \partial v /\partial t + v \cdot \partial u/\partial t, 
+\end{eqnarray*}
+where $\psi^0()$ denotes di-gamma function.
+
+Meanwhile, the second derivative can be written as:
+\begin{equation}
+  \frac{\partial ^2 \varphi_\Lambda(t)}{\partial t^2} = \frac{i^2 2^{it} \Gamma(L+it)}{\Gamma(L)} \left( \left[ \ln{2} + \psi^0(L+it) \right] ^ 2 + \psi^1(L+it) \right)
+\end{equation}
+due to:
+\begin{eqnarray*}
+  \frac{d 2^{it} \Gamma(L+it)}{dt} &=& i 2^{it} \Gamma(L+it) \left[ \ln{2} + \psi^0(L+it) \right], \\
+  \frac{d \psi^0(t)}{dt} &=& \psi^1(t), \\
+  \frac{d \psi^0(L+it)}{dt} &=& i \psi^1(L+it), \\
+  \partial (u \cdot v) / \partial t &=& u \cdot \partial v /\partial t + v \cdot \partial u/\partial t,
+\end{eqnarray*}
+with $\psi^1()$ denotes tri-gamma function.
+
+The $n^{th}$ moments of random variable $X$ can be computed from the derivatives of its characteristic function as:
+\begin{equation}
+\operatorname{E}\left(\Lambda^n\right) = i^{-n}\, \varphi_\Lambda^{(n)}(0)
+  = i^{-n}\, \left[\frac{d^n}{dt^n} \varphi_\Lambda(t)\right]_{t=0} \,\!
+\end{equation}
+
+Thus
+\begin{eqnarray*}
+ \operatorname{E}\left(\Lambda\right) &=& i^{-1}\, \left[\frac{d\varphi_\Lambda(t)}{dt} \right]_{t=0} \,\! \\
+  &=& i^{-1} \left[ \frac{i 2^{it} \Gamma(L+it)}{\Gamma(L)} \left[ \ln{2} + \psi^0(L+it) \right] \right]_{t=0}
+% &=& 1/i \left[ \frac{d2^{it} \frac{\Gamma(L+it)}{\Gamma(L)} }{dt} \right]_{t=0} \\
+% &=& \frac{1}{\Gamma(L)i} \left[ \Gamma(L+it) \frac{d 2^{it}}{dt} + 2^{it}\frac{d\Gamma(L+it)}{dt} \right]_{t=0} \\
+% &=& \left[ \frac{\Gamma(L+it)}{\Gamma(L)i}i2^{it}\ln(2) \right]_{t=0} + \left[ \frac{2^{it}}{\Gamma(L)i}i\Gamma(L+it)\psi^0(L+it) \right]_{t=0} 
+\end{eqnarray*}
+That is
+\begin{equation}
+  avg(\Lambda) = \psi^0(L) + ln(2)
+\end{equation}
+
+Similarly,
+\begin{eqnarray*}
+ \operatorname{E}\left(\Lambda^2\right) &=& i^{-2}\, \left[\frac{d^2\varphi_\Lambda(t)}{dt^2} \right]_{t=0} \,\! \\
+  &=& \left[ \frac{2^{it} \Gamma(L+it)}{\Gamma(L)} \left( \left[ \ln{2} + \psi^0(L+it) \right] ^ 2 + \psi^1(L+it) \right) \right]_{t=0}  
+% &=& -1i \left[ \frac{d \left( \frac{2^{it}\Gamma(L+it)}{\Gamma(L)} (ln2 + \psi^0(L+it)) \right) }{dt}  \right]_{t=0} \\
+% &=& \frac{-1i}{\Gamma(L)} \left[ \ln(2) \frac{d 2^{it}\Gamma(L+it)}{dt} + \frac{d 2^{it}\Gamma(L+it)\psi^0(L+it)}{dt}  \right]_{t=0} \\
+% &=& + \ln(2) (\psi^0(L)+\ln(2)) - \frac{i}{\Gamma(L)} \left[ \frac{d 2^{it}\Gamma(L+it)}{dt} \psi^0(L+it) + 2^{it}\Gamma(L+it) \frac{d \psi^0(L+it)}{dt} \right]_{t=0}
+\end{eqnarray*}
+That is:
+\begin{equation}
+  E(\Lambda^2) = \left[ \psi^0(L)+\ln(2) \right]^2 + \psi^1(L)
+\end{equation}
+%since $\frac{d\psi^0(x)}{dx}=\psi^1(x)$ then
+%$E(X^2) = (\psi^0(L)+\ln(2))(\psi^0(L)+\ln(2)) + \psi^1(L)$.
+
+Thus
+\begin{equation}
+var(\Lambda)=E(\Lambda^2)-E^2(\Lambda)=\psi^1(L)
+\end{equation}
+
+\section{Averages and Variances of POLSAR Covariance Matrix Determinant and Log-Determinant}
+
+In this section, the expected value and variance value of these mixture of random variables is derived
+\begin{eqnarray}
+\chi^d_L &\sim& \prod_{i=0}^{d-1} \chi (2L-2i) \\
+\Lambda^d_L &\sim& \sum_{i=0}^{d-1} \Lambda (2L-2i)
+\end{eqnarray}
+given the averages and variances of individual components.
+\begin{eqnarray}
+avg \left[ \chi(2L) \right]&=&2L \\
+var \left[ \chi(2L) \right]&=&4L \\
+avg \left[ \Lambda(2L) \right] &=& \psi^0(L) + \ln2 \\
+var \left[ \Lambda(2L) \right] &=& \psi^1(L)
+\end{eqnarray}
+
+Making use of the mutual indepent property of each component $X_i$,
+  the variance and expectation of the sumation and product of random variables can be written as:
+\begin{eqnarray*}
+avg \left( \sum^n_{i=1} X_i \right) &=& \sum^n_{i=1} avg(X_i), \\
+var \left( \sum^n_{i=1} X_i \right) &=& \sum^n_{i=1} var(X_i), \\
+avg \left( \prod^n_{i=1} X_i \right) &=& \prod^n_{i=1} avg(X_i), \\ 
+var \left( \prod^n_{i=1} X_i \right) &=& \prod^n_{i=1} \left[ avg^2(X_i) + var(X_i) \right] - \prod^n_{i=1} avg^2(X_i).    
+\end{eqnarray*}
+
+Thus they can be computed as:
+\begin{eqnarray*}
+  avg \left[ \chi^d_L \right] &=& 2^d \cdot \prod^{d-1}_{i=0} (L-i), \\
+  var \left[ \chi^d_L \right] &=& \prod^{d-1}_{i=0} 4(L-i)(L-i+1) - \prod^{d-1}_{i=0} 4(L-i)^2, \\
+  avg \left[ \Lambda^d_L \right] &=& d \cdot \ln{2} + \sum^{d-1}_{i=0} \psi^0(L-i), \\
+  var \left[ \Lambda^d_L \right] &=& \sum^{d-1}_{i=0} \psi^1(L-i)
+\end{eqnarray*}
+
+\section{Deriving the Characteristic Functions for the Consistent Measures of Distance}
+
+Given characteristic function (CF) of the elementary log-chi square distributions can be written as:
+\begin{eqnarray}
+ CF_{\Lambda(2L)}(t) &=& 2^{it}\Gamma(L+it)/\Gamma(L) \nonumber
+\end{eqnarray}
+  the CF for the following random variables,
+  which are combinations of the above elementary random variables, can be derived
+\begin{eqnarray*}
+   \Lambda^d_L &\sim&  \sum^{d-1}_{i=0} \Lambda(2L-2i) \\
+  \mathbb{L} &\sim&  \Lambda^d_L -d \cdot \ln(2L) \\
+  \mathbb{D} &\sim& \mathbb{L} - d \cdot \ln{L} + \sum^{d-1}_{i=0} \psi^0(L-i) \\
+  \mathbb{C} &\sim&  \sum^{d-1}_{i=0} \left[ \Lambda(2L-2i) - \Lambda(2L-2i) \right]
+\end{eqnarray*}
+
+Since
+\begin{eqnarray*}
+ CF_{\sum X_i}(t)   &=& \prod CF_{X_i}(t) \\
+ CF_{x+k}(t) &=& e^{itk}CF_x(t)
+\end{eqnarray*}
+we have:
+\begin{eqnarray}
+  CF_{\chi^d_L}(t) &=& \frac{2^{idt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
+   CF_{\mathbb{L}} &=& \frac{1}{L^{idt} \Gamma(L)^d}  \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
+   CF_{\mathbb{D}} &=& \frac{ 1 }{\Gamma(L)^d} \prod^{d-1}_{j=0} e^{idt \psi^0(L-j)} \Gamma(L-j+it)  
+\end{eqnarray}
+
+%The CF for the contrast random variable can also be written as
+Also due to
+\begin{eqnarray*}
+  CF_{-\Lambda(2L)}(t) &=& 2^{-it}\frac{\Gamma(L-it)}{\Gamma(L)} \\ 
+  \Delta(2L) &\sim& \Lambda(2L) - \Lambda(2L) \\
+  \Gamma(L-it) \Gamm(L+it) &=&  \Gamma(2L)B(L-it,L+it) \\
+   CF_{\Delta(2L)}(t) &=& \frac{\Gamma(2L)B(L-it,L+it)}{\Gamma^2(L)} 
+\end{eqnarray*}
+we arrive at:
+\begin{eqnarray}
+  CF_{\mathbb{C}} &=&  \prod^{d-1}_{j=0} \frac{\Gamma(2L-2j)B(L-j-it,L-j+it)}{\Gamma^2(L-j)} 
+\end{eqnarray}
+with $\Gamma()$ and $B()$ denotes Gamma and Beta functions respectively.
+
+\section{SAR intensity as the special case of POLSAR covariance matrix determinant}
+\label{sec:appendix_sar_special_case_of_polsar}
+
+In this appendix, the following results for SAR intensity $I$ is shown to be special cases of the results given in this paper for the determinant of POLSAR's covariance matrix $det|C_v|$.
+Specifically, not only the following results from the our previous works on single-look SAR (TODO:CITE), i.e. $d=L=1$, is reviewed:
+\begin{eqnarray}
+  I &\sim& \bar{I} \cdot pdf \left[ e^{-R} \right] \\
+  \log_2{I} &\sim& \log_2{\bar{I}} + pdf \left[ 2^{D-2^D} \right] \\
+  \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ e^{-R} \right]  \\
+  \log_2{I} - \log_2{\bar{I}} = \mathbb{D} &\sim& pdf \left[ 2^De^{-2^D}\ln2 \right]\\
+  \log_2{I_1} - \log_2{I_2} = \mathbb{C} &\sim& pdf \left[ \frac{2^c}{(1+2^c)^2} \ln2 \right] \\
+  avg(\mathbb{D}) &=& -\gamma / \ln{2} \\
+  var(\mathbb{D}) &=& \frac{\pi^2}{6} \frac{1}{ \ln^2{2}} \\
+  mse(\mathbb{D}) &=& \frac{1}{\ln^2{2}}( \gamma^2 + \pi^2/6 ) = 4.1161 
+\end{eqnarray}
+but also the following well-known results for multi-look SAR, i.e. $d=1,L>1$ is also considered:
+  \begin{eqnarray}
+I &\sim& pdf \left[ \frac{L^L I^{L-1} e^{-LI/\bar{I}}}{\Gamma(L) \bar{I}^L} \right] \\
+N = \ln{I} &\sim& pdf \left[ \frac{L^L}{\Gamma(L)} e^{L(N-\bar{N})-Le^{N-\bar{N}}} \right]
+  \end{eqnarray}
+It will be shown that all of these results are special cases of the result derived previously and rewritten below:
+\begin{eqnarray}
+  |C_v| &\sim& \frac{|\Sigma_v|}{(2L)^d} \prod^{d-1}_{i=0} \chi^2(2L-2i)  \label{eqn:polsar_det_cov_dist} \\
+  \ln{|C_v|} &\sim& \ln{|\Sigma_v|} + \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \label{eqn:polsar_log_det_cov_dist} 
+\end{eqnarray}
+\begin{eqnarray}
+  \frac{|C_v|}{|\Sigma_v|} = \mathbb{R} &\sim& \frac{1}{(2L)^d} \prod^{d-1}_{i=0} \chi^2(2L-2i) \label{eqn:polsar_ratio_det_cov_dist} \\
+  \ln{|C_v|} - \ln{|\Sigma_v|} = \mathbb{D} &\sim& \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \label{eqn:polsar_dispersion_log_det_cov_dist} \\ 
+  \ln{|C_{1v}|} - \ln{|C_{2v}|} = \mathbb{C} &\sim& \sum^{d-1}_{i=0} \Delta(2L-2i)
+\end{eqnarray}
+\begin{eqnarray}
+  avg(\mathbb{D}) &=& \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \label{eqn:polsar_dispersion_averages} \\
+  var(\mathbb{D}) &=& \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:polsar_dispersion_variance} \\
+  mse(\mathbb{D}) &=& \left[ \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \right]^2 +  \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:polsar_dispersion_mse}
+\end{eqnarray}
+
+This appendix also derives new results for multi-look SAR data,
+  which can be thought of 
+    either as extensions of the corresponding single-look SAR results
+    or as simple cases of the POLSAR results presented above.
+They are:
+  \begin{eqnarray}
+    \frac{I}{\bar{I}} = \mathbb{R} &\sim& \frac{1}{2L} \chi^2(2L) \\
+    \ln{I} - \ln{\bar{I}} = \mathbb{D} &\sim& \Lambda(2L) - \ln{2L} \\
+    \ln{I_1} - \ln{I_2} = \mathbb{C} &\sim& \Delta(2L) \\
+    avg(\mathbb{D}) &=& \psi^0(L) - \ln{L} \\
+    var(\mathbb{D}) &=& \psi^1(L) \\
+    mse(\mathbb{D}) &=& \left[ \psi^0(L) - \ln{L} \right]^2 + \psi^1(L)
+  \end{eqnarray}
+
+The derivation process detailed below consists of two-phases.
+The first phase collapse the generic multi-dimensional POLSAR results into the classical one-dimensional SAR domain.
+Mathematically this means setting the dimensional number in POLSAR to  $d=1$
+  and collapsing the POLSAR covariance matrix into the variance measure in SAR, which also equals the SAR intensity i.e. $|C_v|=I,|\Sigma_v|=\bar{I}$.
+
+The output of the first phase, in the general case is applicable to multi-look SAR data, where $d=1$ but $L>1$.
+The second phase simplify the multi-look results into single-look results, presented in our previous work (TODO:CITE).
+Mathematically, that means setting $L=1$ in the multi-look result
+  and converting from natural logarithmic domain used in this paper to the base-2 logarithm used in (TODO:CITE).
+
+\section{Original Domain: SAR Intensity and its ratio}
+
+Setting $d=1$, $|C_v|=I$ and $|\Sigma_v|=\bar{I}$ into Eqns. \ref{eqn:polsar_det_cov_dist} and \ref{eqn:polsar_ratio_det_cov_dist}
+we have:
+\begin{eqnarray*}
+  I &\sim& \frac{\bar{I}}{2L} \chi^2(2L)  \\
+  \frac{I}{\bar{I}} = \mathbb{R} &\sim& \frac{1}{2L}  \chi^2(2L)   
+\end{eqnarray*}
+Or in PDF forms, and applying variable change theorem we have:
+\begin{eqnarray*}
+    \frac{2L I}{\bar{I}} &\sim& pdf \left[ \frac{x^{L-1}e^{-x/2}}{2^L \Gamma(L)} \right] \\
+  \frac{I}{\bar{I}} &\sim& pdf \left[ \frac{x^{L-1}e^{-x/2}}{2^L \Gamma(L)} \cdot dx/dt \right]_{x=2L \cdot t} \\
+%    &\sim& pdf \left[ \frac{(2L)^{L-1} t^{L-1} e^{-Lt}}{2^L \Gamma(L)}  \cdot 2L \right] \\
+    &\sim& pdf \left[ \frac{ L^{L} t^{L-1} e^{-Lt}}{ \Gamma(L)} \right] \\
+  I &\sim& pdf \left[ \frac{ L^{L} t^{L-1} e^{-Lt}}{ \Gamma(L)} \cdot dt/dx \right]_{t=x/\bar{I}}  \\
+%    &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{I}}}{ \bar{I}^{L-1}\Gamma(L)} \cdot \frac{1}{\bar{I}} \right] \\
+    &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{I}}}{ \bar{I}^{L}\Gamma(L)} \right]
+\end{eqnarray*}
+
+Thus we have the following results for multi-look SAR
+\begin{eqnarray}
+    I &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{x}}}{ \bar{I}^{L}\Gamma(L)} \right] \label{eqn:multi_look_SAR_intensity_dist} \\
+    \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \label{eqn:multi_look_SAR_ratio_dist} \right] 
+\end{eqnarray}
+
+Now setting $L=1$, these results become:
+\begin{eqnarray}
+    I &\sim& pdf \left[ \frac{ e^{x/\bar{I}}}{ \bar{I}} \right] \\
+    \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ e^{-x} \right] 
+\end{eqnarray}
+which is the same as in (TODO:CITE).
+
+\section{Log-transformed domain: SAR log-intensity and the log-distance}
+
+The result for multi-look SAR data written in log-transformed domain can be derived from two different approaches.
+The first is to follow the simplification method, where the results for log-transformed POLSAR data is simplified into log-transformed multi-look SAR result.
+
+The second approach is to apply log-transformation into the results derived in the previous section.
+In this section, it is shown that both approaches would results into identical results.
+
+Setting $d=1$, $|C_v|=I$ and $|\Sigma_v|=\bar{I}$ into Eqns. \ref{eqn:polsar_log_det_cov_dist} and \ref{eqn:polsar_dispersion_log_det_cov_dist}
+we have
+\begin{eqnarray*}
+  \ln{I} &\sim& \ln{\bar{I}} + \Lambda(2L) - \ln{2L}  \\
+  \ln{I} - \ln{\bar{I}} = \mathbb{L} &\sim& \Lambda(2L) - \ln{2L} 
+\end{eqnarray*}
+
+Or in PDF form, and applying variable change theorem we have:
+\begin{eqnarray*}
+  \ln{I} - \ln{\bar{I}} + \ln{2L} &\sim& pdf \left[ \frac{e^{Lx-e^x/2}}{2^L \Gamma(L)} \right] \\
+  \ln{I} - \ln{\bar{I}} &\sim& pdf \left[ \frac{e^{Lx-e^x/2}}{2^L \Gamma(L)} \cdot dx/dt \right]_{x=t+\ln{2L}} \\
+%   &\sim& pdf \left[ \frac{e^{L(t+\ln{2L})-e^{t+\ln{2L}}/2}}{2^L \Gamma(L)}  \right] \\ 
+   &\sim& pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right] \\
+  \ln{I} &\sim&  pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)} \cdot dt/dx \right]_{t=x-\ln{\bar{I}}} \\
+ &\sim&  pdf \left[ \frac{L^Le^{L(x-\bar{N})-Le^{x-\bar{N}}}}{ \Gamma(L)} \right] 
+\end{eqnarray*}
+with $\bar{N} = \ln{\bar{I}}$.
+
+Thus the first approach arrives at
+\begin{eqnarray}
+   \ln{I} = \mathbb{N} &\sim&  pdf \left[ \frac{L^Le^{L(x-\bar{N})-Le^{x-\bar{N}}}}{ \Gamma(L)} \right] \\
+   \ln{I} - \ln{\bar{I}} = \mathbb{L} &\sim& pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right]  
+\end{eqnarray}
+
+In the second approach, log-transformation is applied on previous result for multi-look SAR intensity and its ratio in the original domain (Eqns. \ref{eqn:multi_look_SAR_ratio_dist} and \ref{eqn:multi_look_SAR_intensity_dist}).
+The also arrives at the same results as above, the details working however is omitted here for brevity.
+
+%\begin{eqnarray*}
+%    I &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{x}}}{ \bar{I}^{L}\Gamma(L)} \right] \\
+%    \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \right] 
+%\end{eqnarray*}
+%Thus
+%\begin{eqnarray*}
+%  \ln{I} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{I}}}{ \bar{I}^{L}\Gamma(L)} \right]_{x=e^t} \\
+%      &\sim& pdf \left[ \frac{ L^{L} e^{t(L-1)} e^{-Le^t/\bar{I}}}{ \bar{I}^{L}\Gamma(L)} \cdot e^t \right]_{\bar{I}=e^{\bar{N}}} \\
+%      &\sim& pdf \left[ \frac{ L^{L} e^{L(t-\bar{N})} e^{-Le^{t-\bar{N}}}}{ \Gamma(L)}  \right] \\
+%  \ln{I} - \ln{\bar{I}} = \mathbb{D} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \cdot dx/dt \right]_{x=e^t} \\
+%      &\sim& pdf \left[ \frac{ L^{L} e^{t(L-1)} e^{-Le^t}}{ \Gamma(L)} \cdot e^t \right] \\ 
+%      &\sim& pdf \left[ \frac{ L^{L} e^{tL-Le^t} }{ \Gamma(L)}  \right] 
+%\end{eqnarray*}
+%
+%Thus the second approach also arrives at
+%\begin{eqnarray}
+%   \ln{I} = \mathbb{N} &\sim&  pdf \left[ \frac{L^Le^{L(x-\bar{N})-Le^{x-\bar{N}}}}{ \Gamma(L)} \right] \\
+%   \ln{I} - \ln{\bar{I}} = \mathbb{D} &\sim& pdf \left[ \frac{L^Le^{Lx-Le^x}}{ \Gamma(L)}  \right]  
+%\end{eqnarray}
+
+To compute summary statistics for the multi-look SAR dispersion,
+  set $d=1$ into the Eqns. \ref{eqn:polsar_dispersion_mse}, \ref{eqn:polsar_dispersion_averages} and \ref{eqn:polsar_dispersion_variance}
+we have:
+  \begin{eqnarray*}
+    avg(\mathbb{L}) &=& \psi^0(L) - \ln{L} \\
+    var(\mathbb{L}) &=& \psi^1(L) \\
+    mse(\mathbb{L}) &=& \left[ \psi^0(L) - \ln{L} \right]^2 + \psi^1(L)
+\end{eqnarray*}
+
+This completes the first phase of the derivation process.
+The second phase of simplification involves setting $L=1$ into the above results for multi-look SAR data,
+  and converting natural logarithm into base-2 logarithm.
+First, setting $L=1$ makes the above results become
+\begin{eqnarray*}
+   \ln{I} = \mathbb{N} &\sim&  pdf \left[ e^{(x-\bar{N})-e^{x-\bar{N}}} \right] \\
+   \ln{I} - \ln{\bar{I}} = \mathbb{L} &\sim& pdf \left[ e^{x-e^x}  \right] \\ 
+    avg(\mathbb{L}) &=& \psi^0(1) = -\gamma \\
+    var(\mathbb{L}) &=& \psi^1(1) = \pi^2 / 6 \\  
+    mse(\mathbb{L}) &=& \left[ \psi^0(1) \right]^2 + \psi^1(1) = \gamma^2 + \pi^2 / 6
+\end{eqnarray*}
+with $\gamma$ denotes the Euler-Mascharoni constant.
+Then to convert to base-2 logarithm from natural logarithmic transformation,
+  variable change theorem is invoked.
+  That is:
+  \begin{eqnarray*}
+   \log_2{I}  = \mathbb{N}_2    &\sim&  pdf \left[ e^{(x-\bar{N})-e^{x-\bar{N}}} \cdot dx/dt \right]_{x=t\cdot \ln{2}} \\
+   \mathbb{N} / \ln{2} = \mathbb{N}_2 &\sim&  pdf \left[ e^{(t\cdot \ln{2}-\bar{N})-e^{t\cdot \ln{2}-\bar{N}}} \ln{2} \right]_{\bar{N}_2 = \bar{N} \cdot \ln{2}} \\
+       &\sim&  pdf \left[ 2^{t-\bar{N}_2}e^{2^{t-\bar{N}_2}} \ln{2} \right] 
+  \end{eqnarray*}
+\begin{eqnarray*}
+   \log_2{I} - \log_2{\bar{I}} = \mathbb{L} / \ln{2} = \mathbb{L}_2 &\sim& pdf \left[ e^{x-e^x}  \right]_{x=t \cdot \ln{2}} \\  
+%       &\sim& pdf \left[ e^{t \cdot \ln{2}-e^{t \cdot \ln{2}}} \ln{2}  \right] \\
+       &\sim& pdf \left[ 2^t e^{2^t} \ln{2}  \right] 
+\end{eqnarray*}
+\begin{eqnarray*}
+  avg(\mathbb{L}_2) &=& avg(\mathbb{L})/ \ln{2} = -\gamma / \ln{2} \\
+  var(\mathbb{L}_2) &=& var(\mathbb{L})/ \ln^2{2} = \frac{\pi^2}{6} \frac{1}{ \ln^2{2}} \\
+  mse(\mathbb{L}_2) &=& mse(\mathbb{L})/ \ln^2{2} = \frac{1}{\ln^2{2}}( \gamma^2 + \pi^2/6 ) = 4.1161 
+\end{eqnarray*}
+
+\section{Deriving the PDF for SAR dispersion and contrast}
+
+The PDF for SAR dispersion can be easily derived from
+  the PDF for the Log-distance given above as:
+  \begin{equation}
+   \ln{I} - avg(\ln{I}) =  \mathbb{D} \sim pdf \left[ \frac{e^{L[x+\psi^0(L)]-Le^{x+\psi^0(L)-\ln{L}}}}{\Gamma(L)} \right]
+  \end{equation}
+due to $d=1$ and
+\begin{eqnarray*}
+  \mathbb{D} &\sim& \mathbb{L} - avg(\mathbb{L}) \\
+  avg(\mathbb{L}) &=& \psi^0(L) - \ln{L} \\
+  \mathbb{L} &\sim& pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right]
+\end{eqnarray*}.
+
+Setting $L=1$ for Single-Look SAR we have
+\begin{equation}
+  \mathbb{D} \sim pdf \left[ e^{x-\gamma-e^{x-\gamma}} \right]
+\end{equation}
+due to: $\psi^0(1)=-\gamma$ and $\Gamma(1)=1$
+with $\gamma$ being the Euler Mascheroni Constant which equals $0.5772$. 
+In base-2 logarithm, variable change theorem is invoked
+\begin{eqnarray*}
+  \mathbb{D}_2 &=& \log_2{I} - avg(\log_2{I}) = \mathbb{D}/\ln{2} \\
+  \mathbb{D}_2 &\sim& pdf \left[ e^{x-\gamma-e^{x-\gamma}} \cdot \frac{dx}{dt} \right]_{x=t \cdot \ln2}
+\end{eqnarray*}
+Thus we have
+\begin{equation}
+  \mathbb{D}_2 \sim pdf \left[ e^{-(2^xe^{-\gamma})} (2^xe^{-\gamma}) \ln2 \right]
+\end{equation}
+which is consistent to the result in our previous work (TODO:CITE).
+
+Setting $d=1$ into Eqn. for contrast result in
+\begin{equation}
+  \ln{I_1} - \ln{I_2} = \mathbb{C} \sim \Delta(2L)
+\end{equation}
+The characteristic function would then be
+\begin{equation}
+  CF_\mathbb{C} =  \frac{\Gamma(2L) B(L-it,L+it)}{\Gamma(L)^2} 
+\end{equation}
+Thus PDF can be written as
+\begin{equation}
+  \mathbb{C} \sim pdf \left[ \frac{\Gamma(2L) }{\Gamma(L)^2} \frac{e^{Lx}}{(1+e^x)^{2L}} \right] \label{eqn:multi_look_SAR_contrast_pdf}
+\end{equation}
+due to
+\begin{eqnarray*}
+  CF_{\mathbb{C}}(x) &=& \frac{\Gamma(2L) }{\Gamma(L)^2} B(1/(1+e^x),L-it,L+it)  \\
+       &=& \frac{\Gamma(2L) }{\Gamma(L)^2} \int^{1/(1+e^x)}_0 z^{L-it-1}(1-z)^{L+it-1} dz \\
+  \frac{\partial }{\partial x} CF_{\mathbb{C}}(x) &=&  \frac{\partial CF_{\mathbb{C}}(x) }{\partial 1/(1+e^x)} \cdot \frac{\partial 1/(1+e^x)}{\partial x} \\
+%       &=& \frac{\Gamma(2L) }{\Gamma(L)^2} \frac{1}{(1+e^x)^{L-it-1}} \left( \frac{e^x}{1+e^x} \right)^{L+it-1} \frac{1}{(1+e^x)^2} e^x \\
+        &=&  e^{itx} \frac{\Gamma(2L) }{\Gamma(L)^2} \frac{e^{Lx}}{(1+e^x)^{2L}}   
+\end{eqnarray*}
+
+Setting $L=1$ into Eqn. \ref{eqn:multi_look_SAR_contrast_pdf} 
+we have the PDF for contrast of single-look SAR:
+\begin{equation}
+  \mathbb{C} \sim pdf \left[ \frac{e^{x}}{(1+e^x)^{2}} \right]
+\end{equation}
+
+Converting to base-2 logarithm we have
+\begin{eqnarray*}
+  \mathbb{C} / \ln{2} = \mathbb{C}_2 &\sim& pdf \left[ \frac{e^{x}}{(1+e^x)^{2}} \cdot dx/dt \right]_{x=t \cdot \ln{2}} \\
+%     &\sim& pdf \left[ \ln{2} \frac{e^{t \cdot \ln{2}}}{(1+e^{t \cdot \ln{2}})^{2}}  \right] \\
+     &\sim& pdf \left[ \ln{2} \frac{2^t}{(1+2^t)^{2}}  \right] 
+\end{eqnarray*}
+which is also consistent to the result in our previous work (TODO:CITE).
+
+
+

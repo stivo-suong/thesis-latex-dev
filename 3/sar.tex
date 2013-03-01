@@ -1,0 +1,562 @@
+\chapter{Consistent Measures of Distance for Univariate SAR Data} %chapter 3
+\label{chap:sar}
+
+%\section{SAR speckle statistic model}
+%\label{sec:heteroskdastic_model}
+
+Useful and robust statistical estimators require un-assuming models. 
+In this chapter a homoskedastic model for the usually heteroskedastic SAR is proposed. %speckle filtering.
+In the first section the heteroskedastic nature of original amplitude and intensity SAR data will be explained. 
+Relying solely on statistical principles,
+  log-transformed SAR data is shown to be homoskedastic.
+Together with the consistent sense of variance, a few consistent measures of distance are proposed for the traditional SAR data.  
+
+\section{Original Heteroskedastic Model of SAR data}
+
+SAR speckle phenomena are explained as the interference of many coherent but dephased back-scaterring components;
+  each reflecting from different and distributed elementary scaterers \citep{Oliver_ProcIEEE_1963, Leith_ProcIEEE_1971}. 
+The random nature of the SAR data arises
+  due to the unknown and varying location, height and thus distance of each elementary scaterer;
+  which, in turn, generates random phases in their back-scattering responses.
+Assuming the number of these elementary back scatterers is sufficiently large,
+  then the Central Limit Theorem is applicable \citep{Goodman_Springer_1975}.
+Consequently the interference of these randomly phased responses can be considered as
+  a random walk on the 2D complex plane \citep{Goodman_JOptSocAm_76}.  
+Specifically the real part $A_r$ as well as the imaginary part $A_i$ of the observed SAR signal $A$ can be considered as
+  random variables from uncorrelated Gaussian distributed stochastic processes with zero means and indentical variances $\sigma^2/2$  \citep{Lee_CRCPress_2009}. 
+Their probability density functions (PDF) are given as:
+
+\begin{equation}
+\label{eqn:SAR Real and Imaginary Components PDF}
+\caption{eqn:SAR Real and Imaginary Components PDF}
+pdf(A_x)=\frac{1}{\sqrt{\pi} \sigma} e^{\left( \frac{A_x^2}{\sigma^2} \right) }
+\end{equation}
+
+It can then be proved that the measurable amplitude $A=\sqrt{A_r^2+A_i^2}$ is a random variable of Rayleigh distribution
+  and subsequently the SAR intensity $I=A^2=(A_r^2+A_i^2)$ is a random variable of a negative exponentially distributed random process.
+That is:
+
+\begin{eqnarray}
+pdf(A) &=& \frac{2A}{\sigma^2}e^{ \left( -\frac{A^2}{\sigma^2} \right) }\\
+pdf(I) &=& \frac{1}{\sigma^2}e^{\left( -\frac{I}{\sigma^2} \right) }
+\end{eqnarray}
+
+From a statistical viewpoint, the multiplicative nature of amplitude and intensity data can be explained as follows. 
+Let us consider two fixed, independent to $\sigma$ unit distributions given below:
+
+\begin{eqnarray}
+pdf(A_1) &=& 2A_1 e^{ \left( A_1^2 \right) }\\
+pdf(I_1) &=& e^{ \left( -I_1 \right) }
+\end{eqnarray}
+
+Using the variable change theorem,
+%  it is then trivial to show that:
+    it can be shown that:
+    the SAR amplitude and intensity are equal to %are simply
+    a scaled version of these unit variables,
+    specifically $A= \sigma A_1 $ and $I= \sigma^2 I_1 $. 
+These relationships evidently manifest a mutiplicative nature. 
+In fact, the condition has long been noted,
+  but from different perspectives,
+  in various proposed SAR models (e.g. \cite{Jakeman_1980_JPhysAMathGen}).
+
+Let us now consder the population expected mean and variance of the four distributions.
+They are given in Table \ref{tbl:orginal_sar_avg_var}. 
+If spatial homogeneity is defined as an imaging areas having the same back-scattering coefficient $\sigma$,
+  then over a homogeneous scene, the measured values can then be considered as samples coming from a single stochastic process.
+However, over heterogeneous areas where $\sigma$ varies significantly,
+  it is then evidently clear that: the amplitude ($A$) as well as the intensity ($I$) of SAR data suffer from hetoroskedastic phenomena,
+  which is defined as the dependence of conditional expected variance of SAR data on the conditional expectation of mean. 
+In the context of speckle filtering which aims to estimate the unknown parameter $\sigma$,
+  Table \ref{tbl:orginal_sar_avg_var} also clearly indicates the ambiguous circle.
+That is, in the original domain, estimating variance is equal to estimating the mean
+  and is as hard as the main problem itself.
+  %, i.e. estimating the unknown parameter $\sigma$
+
+\begin{table}[!h]
+\normalsize
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Mean & Variance \\
+\hline
+$avg(A_1) = \frac{ \sqrt{\pi}}{2}$ & $var(A_1) = \frac{(4-\pi)}{4}$ \\
+$avg(I_1) = 1$ & $var(I_1) = 1$ \\
+$avg(A) = \frac{\sqrt{\pi}}{2} \cdot \sigma $ & $var(A) = \frac{(4-\pi)}{4} \cdot \sigma^2 $ \\
+$avg(I) = \sigma^2 $ & $ var(I) = \sigma^4$ \\
+\hline
+\end{tabular}
+\caption{ Mean and Variance of Original SAR data }
+\label{tbl:orginal_sar_avg_var}
+\end{table}
+
+The formulas above have long been noted in this research field. 
+In fact while pioneering the estimation of the equivalent number of look (ENL) index, 
+ it has been noted that the ratio of expected standard deviation to mean is a constant in both cases (i.e. $snr(A)=\sqrt{\frac{4}{\pi}-1}$ and $snr(I)=1$) \cite{Lee_1992_IMA_298}.
+Here we just offer a different perspective,
+  one that avoids the negative effects of heteroskedasticity in SAR data processing.
+%Here, we just offer a different interpretation, which sets the stage for the discussion of logarithmic transformation. 
+
+\section{The Effects of Heteroskedasticity in SAR Data Processing}
+
+%\subsection{Statistical Heteroskedasticity of SAR data}
+
+The nature of SAR speckle is stochastic over homogeneous areas and heteroskedastic heterogeneously. 
+Statistical models are used to describe how the underlying back-scattering coefficient ($\sigma$) affects the distribution of the observable SAR data. 
+%For about 30 years, speckle filtering has been an active research area, with new methods being introduced steadily \cite{Lee_TGRS_2009}. 
+%That is because
+And while the statistical model within individual resolution cells is well established,
+  the applicability of these models, however, are restricted to homogeneous areas. 
+Practical images, nevertheless, are heterogeneous. 
+Crucially it is this spatial variation that is of high interest. 
+This fact gives rise to the question that seemed obvious:
+  %how to call an analysis area heterogeneous and subsequently
+  what to do in the case of heterogeneity.
+
+Various statistical models for heterogeneous areas have been proposed (see \cite{Touzi_2002_TGRS} for a detailed review). 
+Unfortunately, while most of the models highlight the multiplicative nature of sub-pixel or homogeneous original SAR data, in extending the model to heterogeneous images, virtually none has noted that spatial variation also gives rise to heteroskedasticity phenomena. 
+Heteroskedasticity, as explained later, is defined as the dependence of conditional expected variance of original SAR data on the conditional expectation of its mean or equivalently its underlying back-scattering coefficient $(\sigma)$. 
+
+Speckle filtering, by and large, are estimators attempting to estimate the unknown coefficient $\sigma$ from the observable SAR signal $(A)$. 
+Thus, SAR speckle-filtering can be and has been positioned within the context of estimation theory \cite{Touzi_2002_TGRS}. 
+The statistical framework attempts to estimate unknown statistical parameters from the observable data. 
+The stages consist of statistical modelling, estimator development and evaluating the performance of the statistical estimators. 
+%In this section, the negative effects of heteroskedasticity on speckle filtering is analysed.
+It is believed that heteroskedasticity, in its turn, give rise to serious negative impacts on various stages of speckle-filtering. 
+
+In modelling, heteroskedasticity has direct consequences in the central question of homogeneity or heterogeneity. 
+In optical images, the contrast or variance among neighboring pixels have been used to measure homogeneity. 
+Unfortunately such techniques do not appear to be effective under the heteroskedastic condition of original SAR data. 
+In SAR images, both of these measures are dependent on the underlying signal $(\sigma)$. 
+This make the problem of estimating variance equal to the problem of estimating the mean and is the same as the main problem: estimating $\sigma$. 
+The fact give rise to the ambiguity circle in SAR speckle filtering.
+
+A case in point can be found in the recently published improved sigma filter\cite{Lee_TGRS_2009}. 
+The technique determines outlying points as being too far away from the standard deviation. 
+However, as is done in \cite{Lee_TGRS_2009}, to estimate standard deviation, an estimator of the mean is required and used. 
+It is interesting to note that the MMSE estimator used to estimate the mean in \cite{Lee_TGRS_2009}, itself alone, is a rather successful speckle-filter \cite{Lee_PAMI_1980}.
+
+Heteroskedasticity also poses numerous challenges in designing an efficient estimator. Heteroskedasticity directly violates Gauss-Markov theorem's homoskedastic assumption. 
+Thus it renders the efficiency of any naive Ordinary Least Square estimator in serious doubt. 
+If the variance is known \textit{a priori}, it has been proven \cite{Aitken_1934_ProcsRoyalSocEdinburg}, that a weighted mean estimator is the best linear unbiased estimator. 
+Interestingly, as noted by Lopes \cite{Lopes_TGRS_1990}, most known common successful adaptive filters \cite{Lee_PAMI_1980, Kuan_1985_PAMI, Frost_PAMI_1982} do make use of weighted mean estimations. 
+The caveat however is that in SAR speckle filtering, variance is not known \textit{a priori}. 
+And even though variance can be estimated from observable values, as the ambiguity circle goes, estimating the variance is as hard as estimating the underlying coefficient $\sigma$ itself.
+
+Heteroskedasticity also affects the performance evaluation stage of such a framework.
+Statistical estimators are routinely evaluated using their bias and variance performance,
+  which when combined normally results in MSE evaluation.
+Unfortunately, under heteroskedastic conditions, Least Squared Error estimation may not be optimal.   
+In other words, Minimal Squared Error can no longer serves as a reliable evaluation metric.
+A number of different evaluation metrics have been proposed for SAR speckle filters,
+  however, none have appeared capable of taking on the MSE's previous role.
+
+%Heteroskedasticity also decrease the effectiveness of estimators by increasing the variance of even the best possible estimations. 
+%This fact makes it tricky to evaluate the performance of different estimators, even if quantitative experimental results are reported.
+%In fact several quantitative simulated experiments has been carried out to compare the performance of different estimators\cite{Lee_TGRS_2009}. 
+%However only results of single experiments were reported. 
+%Due to the stochastic nature of the simulated experiment process, more experiments should be done to report the effectiveness, i.e. variance, of each estimators' results.
+
+Last but certainly not least, is the bad impact of heteroskedasticity on SAR image interpretation. 
+Most of the task to be carried out in interpreting SAR images almost invariably involve target detection, target segmentation and/or target classification. 
+All of these tasks require good discriminant functions. 
+Foundational to all of these is the need for a consistence sense of distance. 
+Unfortunately, by definition, heteroskedasticity provides inconsistent measures of distance. 
+This inconsistent sense of distance coupled with the failure of the ordinary least square regression methods are believed to have caused a large class of artificial neural networks as well as a number of other computational intelligence methods to under-perform on SAR data.
+
+%In our work, we aim to neutralize these various negative impacts. 
+%The paper is organized as follows. 
+%Section \ref{sec:heteroskdastic_model} will be devoted to discussion of the heteroskedastic phenomena in the original per-pixel SAR amplitude and intensity model. 
+%Logarithmic transformation is extended to the model and the homoskedastic property of it is asserted. 
+%Section \ref{sec:variance_in_log_domain} will discuss how sampling distribution of variance in the log-transformed domain can be used to model various degrees of homogeneity. 
+%Section \ref{sec:k_mle} will presents a novel speckle filtering algorithm developed from heterogenous inference made possible by statistical testing of sample variances.
+%Section \ref{sec:k_mle_result} will present evaluation of our estimator both quantitatively through simulated experiments and qualitatively on real-life images.
+
+\section{The Homoskedastic Effect of Logarithmic Transformation}
+
+%\subsection{Homoskedastic effect of Logarithmic Transformation }
+
+In this chapter, a base-2 logarithmic transformtion is proposed for SAR data. 
+The choice of base-2 is due to implementation reasons
+  since base-2 logarithm can be computed faster on digital computer than either natural or decimal logarithms,
+  and yet the ability to transform heterskedactic speckle into a homoskedastic relationship is still maintained.
+Under base-2 log-transformation, the original variables become:
+
+\begin{eqnarray}
+L_{1}^{A} &=& \log_2(A_1) = L_{1}^{I} / 2 \\
+L_A &=& \log_2(A) 	= L_{1}^{A} + \log_2\sigma \\
+L_{1}^{I} &=& \log_2(I_1) = 2 L_{1}^{A} \\
+L_I &=& \log_2(I) 	= L_{1}^{I} + 2 \log_2\sigma
+\end{eqnarray}
+
+The equations above highlight the relationships among random variables in the log-transformed domain. 
+Two conclusions become evident from these formulae. 
+Firstly, in the log-transformed domain, working on either amplitude or intensity will tend to give identical results. 
+Secondly, the effects of converting the multiplicative nature to an additive nature through logarithmic transformation
+is clearly manifested. 
+Now, bearing the relationship among the random variables in mind, it is then trivial to 
+show that the probability distribution of these log-transformed variables are related as follows:
+
+\begin{eqnarray}
+pdf(L_{1}^{A}) &=& 2 \cdot 2^{\left( 2 L_{1}^{A} \right)}e^{-2^{\left( 2 L_{1}^{A} \right) }} \\
+pdf(L_A) &=& 2 \cdot 2^{\left( 2 L_A - 2 \log_2 \sigma \right)}e^{-2^{\left( 2 L_A - 2 \log_2 \sigma \right)}} \\ 
+pdf(L_{1}^{I}) &=& 2^{L_1^I} e^{-2^{L_1^I}}  \\
+pdf(L_I) &=& 2^{\left( L_I - 2 \log_2 \sigma \right)} e^{-2^{\left( L_I - 2 \log_2 \sigma \right)} }  
+%pdf(L_{1}^{A}) &=& 2 \cdot 2^{\left[ 2 L_{1}^{A} - 2^{2 L_{1}^{A}} \right]} \\
+%pdf(L_A) &=& 2 \cdot 2^{\left[ \left( 2 L_A - 2 \log_2 \sigma \right) - 2^{\left( 2 L_A - 2 \log_2 \sigma \right)} \right]} \\ 
+%pdf(L_{1}^{I}) &=& 2^{\left[ L_{1}^{I} - 2^{L_{1}^{I}} \right]} \\
+%pdf(L_I) &=& 2^{\left[ \left( L_I - 2 \log_2 \sigma \right) - 2^{\left( L_I - 2 \log_2 \sigma \right)} \right]} \label{eqn:log_intensity_base_2_dist}
+\end{eqnarray}
+
+Noting that these distributions belong to the Fisher-Tippet family, the population expected mean and variances 
+are obtained and presented in Table \ref{tbl:sar_log_domain_avg_var}, with $\gamma \approx 0.577$ being the Euler-Mascheroni constant. 
+Most importantly, it can be seen that the means are biased and the variances are no longer related to $\sigma$ 
+
+\begin{table}[h]
+\normalsize
+\centering
+%\begin{center}
+
+\begin{tabular}{|l|l|}
+\hline
+Mean & Variance \\
+\hline
+$avg(L_{1^A}) = \frac{ - \gamma }{2} \cdot \frac{1}{\ln2}$ & $var(L_{1^A}) = \frac{ \pi ^2}{24} \cdot \frac{1}{(\ln2)^2}$ \\
+$avg(L_{1^I}) = - \gamma \cdot \frac{1}{\ln2} $ & $var(L_{1^I}) = \frac{ \pi ^2}{6} \cdot \frac{1}{(\ln2)^2} $ \\
+$avg(L_A) = \frac{ - \gamma }{2} \cdot \frac{1}{\ln2} + \log_2{\sigma}$ & $var(L_A) = \frac{ \pi ^2}{24} \cdot \frac{1}{(\ln2)^2}$ \\
+$avg(L_I) = - \gamma \cdot \frac{1}{\ln2} + 2 \log_2{\sigma}  $ & $ var(L_I) = \frac{ \pi ^2}{6} \cdot \frac{1}{(\ln2)^2}$ \\
+\hline
+\end{tabular}
+
+\caption{ Mean and Variance of Log Transformed values: here the variance is no longer dependent on $\sigma$ }
+\label{tbl:sar_log_domain_avg_var}
+%\end{center}
+\end{table}
+
+Table \ref{tbl:sar_log_domain_avg_var} confirms the condition of homoskedasticity,  
+defined as the independence of the conditional expected variance on the conditional expectation of the mean. 
+This result is consistent with findings in \cite{Arsenault_JOptSocAm_1976}. 
+The main difference would be the use of base-2 logarithm which is preferred here for more efficient computation. 
+
+Table \ref{tbl:sar_variables_properties} summarizes the discussion so far. 
+It can be seen that while the original data, especially intensity values, should be preferred for 
+multi-look processing, the log-transformed domain with its homoskedastic distribution offers consistent sense of variance. 
+
+\begin{table*}[t]
+%\normalsize
+%\footnotesize -2
+\scriptsize
+\centering
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+ RV & Relationships  & Variance (skedasticity) & Mean (biasness) \\
+\hline
+$A$ 
+	& $A=\sigma A_1 $ 
+	& Heteroskedastic $var(A) = \frac{(4-\pi)}{4} \cdot \sigma^2 $ 
+	& Unbiased $avg(A) = \frac{\sqrt{\pi}}{2} \cdot \sigma $ \\
+$I$ 
+	& $I=A^2=\sigma^2 I_1 $ 
+	& Heteroskedastic $ var(I) = \sigma^4$ 
+	& Unbiased $avg(I) = \sigma^2 $\\
+$L_A$ 
+	& $L_A=\ln(A)=L_{1^A} + \log_2{\sigma}$ 
+	& Homoskedastic $var(L_A) = \frac{ \pi ^2}{24} \cdot \frac{1}{(\ln2)^2}$ 
+	& Biased $avg(L_A) = \frac{ - \gamma }{2} \cdot \frac{1}{\ln2} + \log_2{\sigma}$ \\
+$L_I$ 
+	& $L_I=\ln(I)=L_{1^I} + 2 \log_2{\sigma}$  
+	& Homoskedastic $var(L_I) = \frac{ \pi ^2}{6} \cdot \frac{1}{(\ln2)^2}$ 
+	& Biased $avg(L_I) = - \gamma \cdot \frac{1}{\ln2} + 2 \log_2{\sigma}  $ \\
+\hline
+\end{tabular}
+
+\caption{ The properties of observable SAR random variables }
+\label{tbl:sar_variables_properties}
+
+\end{table*}
+
+To experimentally validate this theoretical discussion, Fig. \ref{fig:modelled_response} plots the histogram of observable data within a 
+known homogenous area (from a RADARSAT2 image) against modelled PDF response. 
+An excellent agreement is observable in the graph which validate the log-transformed model. 
+%In fact, this modelling has been used successful in explaining speckle phenomena, also verified 
+%through scientific experiments \cite{Ulaby_TGRS_1988}.
+
+\begin{figure}[!h]
+\centering
+%\centerline{
+\begin{tabular}{c}
+	\subfloat[amplitude]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/amplitude_histogram.eps} 	
+		 \label{amplitude}
+	} 
+	\hfill	
+	\subfloat[intensity]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/intensity_histogram.eps} 	
+		 \label{intensity}
+	} \\
+	\subfloat[log amplitude]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/log_amplitude_histogram.eps} 	
+		 \label{amplitude}
+	} 
+	\hfill	
+	\subfloat[log intensity]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/log_intensity_histogram.eps} 	
+		 \label{intensity}
+	} 
+\end{tabular}
+%}
+\caption{Observed histogram in homogenous area and modelled pdf response}
+\label{fig:modelled_response}
+\end{figure}
+
+\section{Consistent Measures of Distance in the Log-Transformed Domain}
+        
+%\subsection{Consistent measures of distance in Log-Transformed domain}
+
+The consistent feature is explored and illustrated in this section from two different perspectives. 
+First, the back-scattering coefficient $\sigma$ is assumed to be \textit{known a priori}.
+With that, let us consider the dispersion random 
+variable defined as the distance between an observable sample and its expected value:
+
+\begin{eqnarray}
+D_A &=& A - avg(A) \\
+D_I &=& I - avg(I) \\
+D_{L^A} &=& L_A - avg(L_A) \\
+D_{L^I} &=& L_I - avg(L_I) 
+\end{eqnarray}
+
+Noting the results from the previous section, the PDF for these variable can be derived as follows:
+
+\begin{eqnarray}
+pdf(D_A) &=& 2 \cdot \frac{\left( D_A + \sigma \sqrt{\pi}/2 \right)}{\sigma^2}e^{ \left[ - \frac{\left( D_A + \sigma \sqrt{\pi}/2 \right)^2}{\sigma^2}   \right] } \\
+pdf(D_I) &=& \frac{1}{\sigma^2}e^{\left[ -\left( D_I + \sigma^2 \right) / \sigma^2 \right] } \\
+pdf(D_{L^A}) &=& 2 \cdot 2^{\left( 2 D_{L^A} + 2 \frac{\gamma}{2 \ln2} \right)} e^{-2^{\left( 2 D_{L^A} + 2 \frac{\gamma}{2 \ln2} \right)}}\\
+pdf(D_{L^I}) &=& 2^{\left( D_{L^I} + \frac{\gamma}{\ln2} \right)} e^{-2^{\left( D_{L^I} + \frac{\gamma}{\ln2} \right)}}
+%pdf(D_{L^A}) &=& 2 \cdot 2^{\left[ \left( 2 D_{L^A} + 2 \frac{\gamma}{2 \ln2} \right) - 2^{\left( 2 D_{L^A} + 2 \frac{\gamma}{2 \ln2} \right)} \right]} \\
+%pdf(D_{L^I}) &=& 2^{\left[ \left( D_{L^I} + \frac{\gamma}{\ln2} \right) - 2^{\left( D_{L^I} + \frac{\gamma}{\ln2} \right)} \right]}
+\end{eqnarray}
+
+From these equations, it is clear that these distributions, which are dependent on $\sigma$ in the original domain, 
+are now independent of it when processed in the log-domain.
+
+Let us investigate SAR data from the second perspective,
+  where two adjacent resolution cells are known to have \textit{an identical but unknown} back-scattering coefficient $\sigma$.
+Now, the contrast random variable is defined, also in the log-transformed domain, as the distance between two measured samples.
+
+%From a second perspective, given two adjacent resolution cells that are known to have \textit{identical but unknown} back-scattering coefficient $\sigma$,
+%  consider the contrast random variable defined, also in the log-transformed domain, as the distance between two 
+%measured samples: 
+
+\begin{eqnarray}
+C_A &=& A_1^\sigma - A_2^\sigma \\
+C_I &=& I_1^\sigma - I_2^\sigma \\
+C_{L^A} &=& L_1^{A_\sigma} - L_2^{A_\sigma} = log_2 { \left( {A_1}/{A_2} \right) }\\
+C_{L^I} &=& L_1^{I_\sigma} - L_2^{I_\sigma} = log_2 { \left( {I_1}/{I_2} \right) }
+\end{eqnarray}
+
+Noting that $C_x = D_1^x - D_2^x$, it should come as no suprise that the measure of contrast is also consistent in the 
+log-domain but inconsistent in the original domain. The PDF of the log-transformed variables can be expressed as:
+
+\begin{eqnarray}
+pdf(C_{L^A}) &=& 2 \frac{2^{\left(2 C_{L^A} \right)}}{\left[ 1+2^{\left( 2 C_{L^A} \right)} \right]^2} \ln2  \\
+pdf(C_{L^I}) &=& \frac{2^{\left( C_{L^I} \right)}}{\left[ 1+2^{\left( C_{L^I} \right)} \right]^2} \ln2 
+%pdf(C_{L^A}) &=& 2 \frac{2^{\left(2 C_{L^A} \right)}}{1+2^{\left( 2 C_{L^A} \right)}} \ln2  \\
+%pdf(C_{L^I}) &=& \frac{2^{\left( C_{L^I} \right)}}{1+2^{\left( C_{L^I} \right)}} \ln2 
+\end{eqnarray}
+
+Evidently these distributions are also consistent, i.e. they are independent of $\sigma$.
+To illustrate this property, Fig. \ref{fig:residual_as_noise} is generated using the data extracted from a homogeneous area in a RADARSAT-2 image.
+As can be seen, it shows excellent agreement between the analytical PDF and the observable histogram of dispersion and contrast computed from an homogeneous area in the image. 
+%To illustrate this property, Fig. \ref{fig:residual_as_noise} is generated by using data from the RADARSAT-2 
+%image. As can be seen, it shows excellent agreement between the analytical pdf and the observable histogram of dispersion
+%and contrast of an homogeneous area in the image. 
+%Distance is calculated as the difference between each value point and the average value of that region, 
+%while contrast is calculated as the difference between two horizontally adjacent values in the log-transformed domain.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{c}
+	\subfloat[dispersion]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/log_intensity_dispersion_histogram.eps} 	
+		 \label{amplitude}
+	} 
+	\hfill
+	\subfloat[contrast]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/log_intensity_contrast_histogram.eps} 	
+		 \label{intensity}
+	}
+\end{tabular}
+\caption{Observed and modelled pdf of dispersion 
+and contrast in homogenous log-transformed intensity images.}
+\label{fig:residual_as_noise}
+\end{figure}
+
+Given that real SAR images are heterogenous and the back-scattering coefficient is unknown, it is evident that 
+the measure of observable contrast in original SAR data differs, i.e. is inconsistent, across different homogenous 
+areas. On the other hand, the observable contrast in the log-transformed domain is consistently the same across 
+different homogenous areas. As such, one possible benefit is that should the sigma filter \cite{Lee_TGRS_2009} be 
+designed against the $pdf(C_{L^I})$, then the scale estimator would probably no longer be required. 
+
+\subsection{Sampling distribution of Variance in Log-Transformed domain}
+
+From the previous section result, two sample variance distribution ($V_x = C_x^2$) can be given analytically as
+
+\begin{eqnarray}
+pdf(V_{L^I}) &=& 
+	\frac{\ln2}{2} \frac{1}{\sqrt{V_{L^I}}} \left( \frac{2^{\sqrt{V_{L^I}}}}{\left( 1+2^{\sqrt{V_{L^I}}} \right)^2} + \frac{2^{-\sqrt{V_{L^I}}}}{\left( 1+2^{-\sqrt{V_{L^I}}} \right)^2} \right)\\
+pdf(V_{L^A}) &=&
+	\frac{\ln2}{4} \frac{1}{\sqrt{V_{L^A}}} \left( \frac{2^{\sqrt{4 V_{L^A}}}}{\left( 1+2^{\sqrt{4 V_{L^A}}} \right)^2} + \frac{2^{-\sqrt{4 V_{L^A}}}}{\left( 1+2^{-2\sqrt{V_{L^A}}} \right)^2} \right)
+\end{eqnarray}
+
+It could be seen that, in the log-transformed domain, not only the expected value (mean) of the observable variance is constant, its distribution is also independent of $\sigma$. 
+%We have seen this analytically
+The above analysis is applicable for two sample variances. 
+For larger number of samples $n > 2$, Monte-Carlo simulation is used to visualise the distribution of sample variances. 
+The simulation is described as follows:
+
+\begin{enumerate}
+\item A large number of input samples are generated ($n \cdot 10^6$ in the figure \ref{fig:variance}) from the PDF given in Eqn. \ref{eqn:log_intensity_base_2_dist}.
+\item The input samples are the divided into $10^6$ independent sets, each set consists of $n$ samples.
+\item For each input set, the sample variance is calculated.
+\item For all input sets, a histogram of the calculated values is then plotted.
+\item The consistent variance property is observable when the same plots are obtained, regardless of the value $\sigma$ used in simulations.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tabular}{c}
+	\subfloat[simulation match analysis]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/log_intensity_variance_hist_model_cdf_scene1.eps} 	
+		 \label{amplitude}
+	} 
+	\hfill
+	\subfloat[simulation for different number of samples]{
+		 \epsfxsize=2.5in
+		 \epsfysize=2.5in
+		 \epsffile{images/log_intensity_variance_no_of_samples_cdf.eps} 	
+		 \label{intensity}
+	}
+\end{tabular}
+\caption{ Sample Variance: Observable and Modelled CDF Response }
+\label{fig:variance}
+\end{figure}
+
+Fig. \ref{fig:variance} not only provides evidence for the validity of the simulation process,
+  it also visualizes the shapes of the CDF for sample variance distribution of different look numbers. 
+
+\subsection{Sample variance as a statistical measure of homogenity}
+
+The discussion in the previous sub-section is based on the assumption of single stochastic processes, and thus homogeneity.  
+In a real given analysis area in SAR images, such condition is unknown. 
+The principle of SAR speckle filtering however is to group pixels into homogeneous areas, allowing stochastic components to be removed. 
+In order to do that, a methodology is required to assert a partitioned area as being homogeneous. 
+Fortunately the sampling distribution of log-variance provides a consistent method for testing this homo/hetero-geneity condition.
+
+Under the null hypothesis that the given analysis area is homogeneous,
+  the theoretical distribution of sample variance has been given earlier. 
+The PDF, and equivalently the CDF, of this distribution can be visualized from Monte-Carlo simulations, as shown in Fig. \ref{fig:variance}. 
+Thus, given a computed value of the sample variance in the log-transformed domain,
+  the notion that a given analysis area is heterogeneous or homogeneous can be put to test. 
+%This forms the basis of the statistical homogeneity hypothesis testing. 
+%The test statistic to be used is the sample variance. 
+%Figure \ref{fig:variance} shows the simulated CDF for sampling distribution of variance. 
+%It is clear that,
+Specifically given a pre-determined threshold-value and number of samples,
+  if the observable sample variance is higher than a cut-off value, the null hypothesis can be rejected. 
+%The collection of cut-off values for a certain threshold-value (a column in table \ref{tab:var_cut_off_values}) form a threshold-vector.
+
+The steps for finding these cut-off values are given below:
+
+\begin{enumerate}
+\item For each number of samples, a CDF plot is derived using the Monte-Carlo simulation described earlier.
+  \item Intrapolating from the CDF plot, a corresponding cut-off value is derived for each threshold-level.
+  \item The combined results form a table, similar in structure to Table \ref{tab:var_cut_off_values}.
+  \item The first 3 steps are repeated a few times,
+     and the summary statistics (i.e. mean and variance) of the cut-off values for each combination of threshold-value and look-number is reported.  
+\end{enumerate}
+
+Table \ref{tab:var_cut_off_values} gives the result of one such such experiment for an arbitrarily chosen set of threshold values.
+The table is useful in cases when an area is to be tested for homogeneity,
+  for example in the kMLE speckle filter \cite{Le_2010_ACRS}
+
+\begin{table}
+\centering
+
+%awk -F"&" '{print $4}' tmp.0.txt | awk -F"(" '{print $1}'
+\begin{tabular}{c|c|c|c|c|c}
+No  & 70\%            &75\%             &80\%             &85\%             &90\%\\
+\hline
+2   &2.9024 (0.0252)  &3.7088 (0.0261)  &4.7960 (0.0327)  &6.3488 (0.0242)  &8.7974 (0.0370)\\
+3   &3.4698 (0.0141)  &4.1308 (0.0177)  &4.9585 (0.0245)  &6.1176 (0.0136)  &7.9207 (0.0316)\\
+4   &3.6505 (0.0225)  &4.2096 (0.0386)  &4.9392 (0.0347)  &5.9195 (0.0341)  &7.4209 (0.0162)\\
+5   &3.7421 (0.0134)  &4.2513 (0.0165)  &4.8967 (0.0297)  &5.7729 (0.0170)  &7.0725 (0.0250)\\
+6   &3.7850 (0.0149)  &4.2588 (0.0242)  &4.8611 (0.0160)  &5.6449 (0.0162)  &6.8062 (0.0282)\\
+7   &3.8274 (0.0119)  &4.2686 (0.0102)  &4.8179 (0.0117)  &5.5447 (0.0114)  &6.6049 (0.0158)\\
+8   &3.8468 (0.0110)  &4.2591 (0.0124)  &4.7747 (0.0176)  &5.4519 (0.0087)  &6.4370 (0.0085)\\
+9   &3.8610 (0.0081)  &4.2503 (0.0125)  &4.7430 (0.0120)  &5.3688 (0.0085)  &6.2829 (0.0112)\\
+10  &3.8663 (0.0089)  &4.2423 (0.0126)  &4.6967 (0.0102)  &5.3015 (0.0103)  &6.1574 (0.0116)\\
+11  &3.8707 (0.0089)  &4.2284 (0.0109)  &4.6693 (0.0078)  &5.2387 (0.0111)  &6.0473 (0.0122)\\
+12  &3.8763 (0.0063)  &4.2228 (0.0072)  &4.6370 (0.0139)  &5.1805 (0.0050)  &5.9502 (0.0044)\\
+13  &3.8808 (0.0048)  &4.2089 (0.0083)  &4.6096 (0.0055)  &5.1315 (0.0092)  &5.8654 (0.0070)\\
+14  &3.8761 (0.0048)  &4.1920 (0.0112)  &4.5816 (0.0069)  &5.0845 (0.0058)  &5.7870 (0.0106)\\
+15  &3.8806 (0.0048)  &4.1901 (0.0063)  &4.5592 (0.0088)  &5.0372 (0.0076)  &5.7158 (0.0119)\\
+16  &3.8774 (0.0032)  &4.1778 (0.0060)  &4.5397 (0.0049)  &4.9985 (0.0087)  &5.6483 (0.0083)\\
+17  &3.8760 (0.0043)  &4.1682 (0.0035)  &4.5149 (0.0060)  &4.9652 (0.0051)  &5.5919 (0.0078)\\
+18  &3.8708 (0.0083)  &4.1584 (0.0026)  &4.4951 (0.0030)  &4.9273 (0.0043)  &5.5319 (0.0083)\\
+19  &3.8694 (0.0055)  &4.1464 (0.0037)  &4.4755 (0.0039)  &4.8961 (0.0027)  &5.4838 (0.0031)\\
+20  &3.8687 (0.0051)  &4.1364 (0.0041)  &4.4555 (0.0072)  &4.8673 (0.0042)  &5.4371 (0.0076)\\
+21  &3.8672 (0.0064)  &4.1268 (0.0049)  &4.4401 (0.0052)  &4.8360 (0.0045)  &5.3927 (0.0027)\\
+22  &3.8637 (0.0046)  &4.1215 (0.0037)  &4.4253 (0.0050)  &4.8136 (0.0043)  &5.3499 (0.0060)\\
+23  &3.8610 (0.0032)  &4.1110 (0.0039)  &4.4093 (0.0057)  &4.7870 (0.0059)  &5.3118 (0.0056)\\
+24  &3.8571 (0.0033)  &4.1015 (0.0051)  &4.3942 (0.0060)  &4.7650 (0.0026)  &5.2732 (0.0054)\\
+25  &3.8541 (0.0054)  &4.0931 (0.0052)  &4.3803 (0.0032)  &4.7416 (0.0024)  &5.2453 (0.0045)
+\end{tabular}
+
+\caption{Cut off values}
+\label{tab:var_cut_off_values}
+\end{table}
+
+%\section{Chapter Conclusion}
+
+%It could be seen that, in the log-transformed domain, not only is the expected mean of the observable variance 
+%constant, the sampling distribution of this random variable is also independent of $\sigma$. 
+%While we have observed this analytically for variances based on two samples, for a larger number of samples, 
+%Monte-Carlo simulation can be used to visualise the PDF of samples' variances. 
+
+\textbf{In summary}, a few measurements of distance, being dispersion and contrast, are shown to agree with the consistent sense of variance and homoskedasticity.
+The dispersion measurement can be used to test 
+if a pixel belongs to a ``known'' class of physical scatterer \cite{Le_2010_ACRS}.
+The consistent sense of contrast can be used to test if any pair of measured data points belong to  the same homogeneous class.
+An example application of this is described in our fMLE speckle filter \cite{Le_2011_ACRS}.
+%It may also explain why, in the original SAR domain, the ratio based 
+%  detector / classifier is preferred to differential measures, which are not consistent. 
+The consistent sense 
+of contrast also gives rise to consistent measures of sample variances, which for example, can be used to test 
+if a group of pixels can form a homogenous area.
+This was applied in a clustering algorithm described in  \cite{Le_2010_ACRS}.
+
+%\section{Original Heteroskedastic Model}
+
+%\section{The effects of Heteroskedasticity}
+
+%\section{The Homoskedastic effect of Logarithmic Transformation}
+
+%\section{Consistent Measures of Distance in Log-transformed domain}
+
+%\section{Consistent Measures of Variance in Log-Transformed Domain}
+

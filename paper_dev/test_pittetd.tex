@@ -1,0 +1,596 @@
+% \iffalse meta-comment
+%<*driver>
+% \fi
+\ProvidesFile{test_pittetd.tex}
+% \iffalse
+\documentclass[11pt]{ltxdoc}
+
+\usepackage{array}
+\usepackage{xspace}
+\usepackage{latexsym}
+\usepackage[hyperindex=false,colorlinks,bookmarks,dvipdfm,%
+    citecolor=blue,urlcolor=blue,bookmarksnumbered,bookmarksopen]{hyperref}
+
+ %this is for math typing (eg: cases)
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{indentfirst} %to handle indenting after each section
+\usepackage{mdwlist} %to handle list vertical spacing without this list will be double spaced
+
+\usepackage{moreverb} %this is for code segments
+\usepackage{float} %this is for code listing
+	\floatstyle{ruled}
+	\newfloat{listing}{!h}{lop}
+	\floatname{listing}{Listing}
+
+\GetFileInfo{test_pittetd.tex}
+\EnableCrossrefs
+
+\title{SAR Image Segmentation using Possibilistics Segmentation}
+%\date{2004/08/17}
+\author{Thanh-Hai Le}
+
+\setcounter{IndexColumns}{2}
+\CodelineIndex
+
+\begin{document}
+\maketitle
+\DocInput{\filename}
+\end{document}
+
+</driver>
+\fi
+
+%\newcommand\pittetd{\textsf{pittetd}\xspace}
+%{\catcode`\|=12\gdef\options#1#2{\index{options to \pittetd:>\texttt{#1}|#2}\index{pittetd=\pittetd>options}\index{#1=\texttt{#1} option|#2}}}
+
+\tableofcontents
+
+\section{Intro}
+
+A stochastic process\index{stochastic process}\DescribeMacro{stochastic process}, or sometimes random process, is the counterpart to a deterministic process (or deterministic system): in the sense that instead of having only one (deterministic) output of the process for all time, stochastics process has some indeterminacy in its future outputs. To illustrate: consider a coin-tossing process, its output (head or tails) for a given observation, even though constrained, is non-deterministic.
+
+\subsection{Statistical Distributions}
+
+Given a random variable X which belongs to a distribution d, then
+\begin{enumerate*}
+ \item $f_d(u)$ is probability density function (pdf) of X iff $P [a  \leq X \leq b] = \displaystyle \int_a^b{f(u)du}$
+ \item $F_d(x)$ is cumulative distribution function (cdf) of X iff $P (X \leq x) = F_d(x) = \displaystyle \int_{-\infty}^x{f(u)du}$
+ \item since $F_d(x) = \displaystyle \int_{-\infty}^x{f(u)du}$ it follows that $f_d(x) =\frac{\partial{F_d(x)}}{\partial{x}}$
+\end{enumerate*}
+
+It is also taken for granted that,
+\begin{enumerate*}
+ \item if random variable $X_e$ follows exponential distribution then
+\begin{enumerate*}
+\item $P(X_e \leq x) = F_e(x) = 
+				\begin{cases} 
+					1 - e^{-\lambda x} & \text{if } x \geq 0 \\
+					0 & \text{if } x < 0 \\
+                                \end{cases}
+	$
+\item $f_e(x) = \frac{\partial{F_e(x)}}{\partial{x}} = 
+				\begin{cases} 
+					\lambda e^{-\lambda x} & \text{if } x \geq 0 \\
+					0 & \text{if } x < 0 \\
+				\end{cases}
+	$
+\end{enumerate*}
+ \item  if random variable $X_r$ follows Rayleigh distribution then
+\begin{enumerate*}
+\item $P(X_r \leq x) = F_r(x) = 
+				\begin{cases} 
+					1 - \displaystyle e^{\frac{-x^2}{2\sigma^2}} & \text{if } x \geq 0 \\
+					0 & \text{if } x < 0 \\
+                                \end{cases}
+	$
+\item $f_r(x) = \frac{\partial{F_r(x)}}{\partial{x}} = 
+				\begin{cases} 
+					\displaystyle \frac{xe^{\frac{-x^2}{2\sigma^2}}}{\sigma^2} & \text{if } x \geq 0 \\
+					0 & \text{if } x < 0 \\
+				\end{cases}
+	$
+\end{enumerate*}
+\end{enumerate*}
+
+Next it is going to be shown a well-known result that given a random variable $X_e$ follows exponential distribution then the random variable $X_1 = \sqrt{X_e}$ will follows Rayleigh distribution. The methodology here will be used to derive the distribution of log-transformed variable $X_2 = \ln(X)$
+
+\begin{enumerate*}
+ \item CDF of $X_1$ is $P(X_1 \leq x) = F_1(x)$
+ \item Since $X_1=\sqrt{X_e}$, thus with $a=\sqrt{b}$ whenever $X_e \leq b$ it holds that $X_1=\sqrt{X_e} \leq \sqrt{b} = a$ or we have $P(X_1 \leq a) = P(X_e \leq a^2) $
+\item  Recall that $P(X_e \leq a^2) = 1 - e^{-\lambda a^2}$, we conclude that $P(X_1 \leq a^2) = F_1(a)=1-e^{-\lambda a^2}$
+\item  PDF of $X_1$ follows $f_1(x) = \frac{\partial{F_1(x)}}{\partial{x}} = \frac{\partial{(1-e^{-\lambda x^2})}}{\partial{x}} = \frac{\partial{(-e^{-\lambda x^2})}}{\partial{(-\lambda x^2)}} \frac{\partial{(-\lambda x^2)}}{\partial{x}} = e^{-\lambda x^2} \cdot 2\lambda x$
+\item Setting $\lambda = 2 \sigma^2$ it is easy to see that these results conform with standard Rayleigh distribution formula above
+\end{enumerate*}
+
+Next we are going to investigate the distribution of log-transformed variable $X_2=\ln{(X_e)}$
+\begin{enumerate*}
+\item CDF of $X_2$ is $P(X_2 \leq x) = F_2(x)$
+\item Since $X_2=\ln{(X_e)}$, thus with $a=\ln{(b)}$ or alternatively $e^a=b$ whenever $X_e \leq b$ it holds that $X_2=\ln{(X_e)} \leq \ln{(b)} = a$ or we have $P(X_2 \leq a) = P(X_e \leq e^a) $
+\item Recall that $P(X_e \leq e^a) = 1 - e^{-\lambda e^a}$, we conclude that $P(X_2 \leq a) = F_2(a)=1-e^{-\lambda e^a}$
+\item PDF of $X_2$ follows $f_2(x)=\frac{\partial{F_2(x)}}{\partial{x}} = \frac{\partial{(1 - e^{-\lambda e^x})}}{\partial{x}} = \frac{\partial{(- e^{-\lambda e^x})}}{\partial{(-\lambda e^x)}} \frac{\partial{(-\lambda e^x)}}{\partial{x}} = e^{-\lambda e^x} \cdot \lambda e^x = \lambda e^{x-\lambda e^x}$
+\end{enumerate*}
+
+Next we are going to show that exponential distribution is 'multiplicative' while log-transformed version is 'addtive'. Consider random variable $X_3=\lambda X_e$
+\begin{enumerate*}
+\item CDF of $X_3$ is $P(X_3 \leq x) = F_3(x)$
+\item Since $X_3=\lambda X_e$, thus with $a=\lambda b$ whenever $X_e \leq b$ it holds that $X_3=\lambda X_e \leq \lambda b = a$ or we have $P(X_3 \leq a) = P(X_e \leq a / \lambda) $
+\item Recall that $P(X_e \leq a / \lambda) = 1 - e^{-\lambda a / \lambda} = 1-e^{-a}$, we conclude that $P(X_3 \leq a) = F_3(a)=1-e^{-a}$
+\item PDF of $X_3$ follows $f_3(x)=\frac{\partial{F_3(x)}}{\partial{x}} = \frac{\partial{(1-e^{-x})}}{\partial{x}} = e^{-x} $
+\end{enumerate*}
+
+Or looking at the above result from another angle: Let's call $f^1_e(x)=e^{-x}$ as the PDF function that describe the 'unit exponential random process' $X^1_e$. Then every other exponential random process $X^{\lambda}_e$, without loss of generality being characterized as $f^{\lambda}_e(x)=\lambda e^{-\lambda x}$, can be considered as a multiplicative version of $X^1_e$ (ie. $X^{\lambda}_e=X^1_e / \lambda$)
+
+Next we are going to show that the log-transformed distribution is additive
+\begin{enumerate*}
+ \item  Let’s the “unit” log-transformed random variable $X^1_l$ which have PDF $f^1_l(x)=e^{x-e^x}$
+\item  Consider a additively “shifted” variable $X^{\mu_0}_l=X^1_l - \mu_0$ which has its PDF $f^{\mu_0}_l(x-\mu_0) = e^{x-\mu_0 - e^{x-\mu_0}} = e^{-\mu_0}e^{x-e^{-\mu_0}e^x}$ with $\mu_0$ is the known shifted position of the new distribution. Let $e^{-\mu_0}=\lambda$, then the shifted distribution becomes $f_s(x-\mu_0) = \lambda e^{x-\lambda e^x}$
+\end{enumerate*}
+
+To sum up what we have thus far, with an eye for application to SAR problem:
+\begin{enumerate*}
+ \item{Let the 'unit exponential random process' $X^1_e$ have its PDF described as $f^1_e(x)=e^{-x}$ we has 2 corraly
+	\begin{enumerate*}
+	\item Every other exponential random process $X^{\lambda}_e$ having PDF $f^{\lambda}_e(x)=\lambda e^{-\lambda x}$ can be can be considered as a multiplicatively scaled version of the unit-exponential process $X^1_e$ (ie. $X^{\lambda}_e=X^1_e / \lambda$)
+ 	\item Also the “unit” log-transformed random variable $X^1_l = \ln(X^1_e)$ will have PDF $f^1_l(x)=e^{x-e^x}$ 
+	\end{enumerate*} 
+ }
+ \item {Log-transformation convert multiplicatively-scaling nature of exponential random process to additively-shifting of distributions
+	\begin{enumerate*}
+	\item Log transformation of any exponential random process $X^{\mu}_l=\ln(X^{\lambda}_e)$ will have distribution $f^{\mu}_l(x)=\lambda e^{x-\lambda e^x}$. Setting $e^{-\mu}=\lambda$ then $f^{\mu}_l(x)= e^{x-\mu - e^{x-\mu}}$
+	\item The additively “shifted” variable $X^{\mu_0}_l=X^1_l - \mu_0$ will have PDF $f^{\mu_0}_l(x-\mu_0) = e^{x-\mu_0 - e^{x-\mu_0}}$
+	\end{enumerate*}
+ }
+ \item Thus it has been shown that for any exponential distribution (any $\lambda$), its log-transformed random variable has exactly the same distribution shape function (PDF: $f(x)=e^{x-e^x}$) shifted by $\mu_0=-\ln{(\lambda)}$
+ \item Or equivalently to estimate $\lambda$ (or radar-cross-section in the case of SAR) in multiplicative domain, one can instead estimate $\mu_0$ in log-transformed additive domain and set $\lambda=e^{-\mu}$
+\end{enumerate*}
+
+The extra nice thing about log-transformation is that as the shape of the distribution is unchanged, regardless of $\mu_0$ the behavior of the samples variance is the same (follows the same distribution). This allow one to form statistically test the hypothesis of a given sample data-set comes from a single or multiple exponential random processes.
+
+\subsection{Maximum likelihood Estimation}
+
+Given a data set $X^e=\{x^e_1,...,x^e_n\}$ which follows exponential distribution $f^e(x)=\lambda e^{-\lambda x} $. We have already proven that the derivative data set $X^l=ln(X^e)$ follows Fisher Tippet distribution $f^l(x) = e^{d-e^d}$ with $d=x^l_i-\mu_0$. Next we are going to show analytically that, in the case of single-cluster, MLE of $\lambda$ from $X^e$ will equals MLE estimate of $\mu_0$ from $X^l$
+
+Assume that the parameter of the distributions (ie. $\lambda$ or $\mu_0$ denoted as $\rho$) is known. MLE strategy maximize the conditional (likelyhood) probability $P(X^e \| \rho )$. Product rule indicate that $P(X^e \| \rho )=\displaystyle{\prod^n_{i=1}{P(x^e_i \| \rho ) }}$. Maximize $P(X^e \| \rho )$ also maximizes $\ln(P(X^e \| \rho )) = \displaystyle{\sum^n_{i=1}{ \ln(P(x^e_i \| \rho )) }}$. The parameter $\rho_0$ which maximizes likelyhood is found by setting 
+
+\begin{equation}
+   \displaystyle{ \frac{ \partial{ \ln[P( X^e \| \rho )] }  }{\partial{ \rho }} 
+= \displaystyle{\sum^n_{i=1}{ \frac{ \partial{ \ln(P(x^e_i \| \rho )) } }{ \partial{ \rho } } }} 
+= 0 }   
+\end{equation}
+
+Applying to exponential distribution $X^e$ we have
+\begin{enumerate*}
+ \item $P(x^e_i \| \lambda) = \lambda e^{-\lambda x^e_i}$ thus $ \ln( P(x^e_i \| \lambda) ) = \ln( \lambda ) - \lambda x^e_i$
+ \item thus $ \displaystyle{ \frac{ \partial{ \ln( P(x^e_i \| \lambda) ) } }{ \partial{ \lambda } } =  \frac{1}{\lambda} - x^e_i } $
+ \item thus $ \displaystyle{\sum^n_{i=1}{ \frac{ \partial{ \ln(P(x^e_i \| \lambda )) } }{ \partial{ \lambda } } } =  \frac{n}{\lambda} - \sum^n_{i=1}{x^e_i} } $
+ \item MLE estimate $\lambda_0$ of $\lambda$ is found by setting $ \displaystyle{ \frac{n}{\lambda_0} - \sum^n_{i=1}{x^e_i} = 0 } $
+ \item or $ \displaystyle { \lambda_0 =  \frac{n}{ \displaystyle{ \sum^n_{i=1}{x^e_i} } } } $
+\end{enumerate*}
+
+Applying to log-transformed exponential distribution $X^l = \ln( X^e )$ we have
+\begin{enumerate*}
+ \item $P(x^l_i \| \mu) = e^{d - e^d}$ with $d=x^l-\mu $ thus $ \ln( P(x^l_i \| \mu) ) = d - e^d$
+ \item thus $ \displaystyle{ \frac{ \partial{ \ln( P(x^l_i \| \mu) ) } }{ \partial{ \mu } } =  \frac{ \partial{ (d - e^d) } }{ \partial{ d } } \frac{ \partial{d} }{ \partial{\mu} } = - (1 - e^d)  = e^{ (x^l_i - \mu) } - 1}$
+ \item thus $ \displaystyle{\sum^n_{i=1}{ \frac{ \partial{ \ln(P(x^l_i \| \mu )) } }{ \partial{ \mu } } } = \sum^n_{i=1}{[ e^{ (x^l_i - \mu) } - 1 ]} } =  \sum^n_{i=1}{ \frac{ e^{ x^l_i } }{ e^{ \mu }} } - n $
+ \item MLE estimate $\mu_0$ of $\mu$ is found by setting $\displaystyle{ \sum^n_{i=1}{ \frac{ e^{ x^l_i } }{ e^{ \mu_0 }}  } - n = 0}$ Noting that $ e^{ \mu_0 }$ can be moved out of the sum, that gives us $\displaystyle{ \sum^n_{i=1}{ e^{ x^l_i } } = e^{\mu_0} n }$
+ \item Note that $ e^{ x^l_i } = x^e_i $ thus $\displaystyle{ \sum^n_{i=1}{ e^{ x^l_i } } = \sum^n_{i=1}{x^e_i} }$ or $\displaystyle{ e^{\mu_0} = \frac{ \displaystyle{ \sum^n_{i=1}{x^e_i} }}{n} }$
+ \item This result consistent with the relation $\lambda_0 = e^{-\mu_0}$ (QED)
+\end{enumerate*}
+
+MLE estimation in the case of samples coming from multiple random processes however is not easy to be found analytically, instead a gradient descent learning algorithm is proposed. But before coming to this issue we need to establish enough evidence that the given samples did not come from a single random process in other word they did came from multiple random process.
+
+\subsection{The Distribution of Log-transformed Sample Variance: the case of two samples}
+
+Consider two samples $x_1$, $x_2$ from a random process having exponential distribution $f_e(x) =  \lambda e^{- \lambda x} $. Then the values $y_1=\frac{x_1}{x_2}$ is a random variable that follows some distribution. We are going to look at joint distribution $f(x_1,x_2)$ and work through change of variable theorem. We have $f(x_1,x_2) = \lambda^2 e^{- \lambda (x_1 + x_2)}$. We will choose $y_1=\frac{x_1}{x_2}$ and $y_2=x_1+x_2$ as two new variables to change to, then appling the variable change theorem gives us $f(y_1,y_2) = f(x_1,x_2) / J_{det}$ where $J_{det}=\begin{vmatrix} \frac{\partial y_1}{\partial x_1} & \frac{\partial y_1}{\partial x_2} \\ \frac{\partial y_2}{\partial x_1} & \frac{\partial y_2}{\partial x_2} \end{vmatrix}$. 
+
+Since $y_1=\frac{x_1}{x_2}$, we have $\frac{\partial y_1}{\partial x_1} = 1/x_2$, $\frac{\partial y_1}{\partial x_2} = - \frac{x_1}{x_2^2}$. Similarly $y_2=x_1+x_2$, thus $\frac{\partial y_2}{\partial x_1}=\frac{\partial y_2}{\partial x_2}=1$. Then $J_{det}=\begin{vmatrix} \frac{\partial y_1}{\partial x_1} & \frac{\partial y_1}{\partial x_2} \\ \frac{\partial y_2}{\partial x_1} & \frac{\partial y_2}{\partial x_2} \end{vmatrix} = \begin{vmatrix} \frac{1}{x_2} & - \frac{x_1}{x_2^2} \\ 1 & 1 \end{vmatrix} = \frac{x_1 + x_2}{x_2^2}$. 
+
+Also as $y_1=\frac{x_1}{x_2}, y_2=x_1+x_2$ then $x_1 = y_1*x_2, x_1=y_2-x_2$, then $y_1*x_2=y_2-x_2$ or $x_2=\frac{y_2}{(y_1+1)},x_1=\frac{y_2*y_1}{(y_1+1)}$
+
+Plug these results into variable change theorem $f(y_1,y_2) = \frac{f(x_1,x_2)}{J_{det}} = \frac{\lambda^2 e^{- \lambda (x_1 + x_2)}}{\frac{x_1 + x_2}{x_2^2}} = \frac{\lambda^2 e^{- \lambda (x_1 + x_2)} x^2_2}{x_1 + x_2} = \frac{\lambda^2 e^{- \lambda y_2} \frac{y_2^2}{(1 + y_1)^2}}{y_2}=\frac{y_2 \lambda^2 e^{- \lambda y_2}}{(1 + y_1)^2}$. Then $f(y_1)=\displaystyle{ \int_0^\infty {\frac{y_2 \lambda^2 e^{- \lambda y_2}}{(1 + y_1)^2}dy_2} }= \frac{1}{(1 + y_1)^2}\int_0^\infty {y_2 \lambda^2 e^{- \lambda y_2}dy_2}$. 
+
+Note that the PDF of Gamma distribution is $f(x \| k,\theta) = x^{k-1} \frac{e^{-x/\theta}}{\theta^k \Gamma(k)}$ where $\Gamma(k)=(k-1)!$ thus $f(x \| 2,1/ \lambda) = x \lambda^2 e^{-x \lambda}$. In other words, $f(x)=x \lambda^2 e^{-x \lambda}$ is the probability distribution function of $1 / \lambda$ scaled two-shaped Gamma distribution thus $F(x) = \displaystyle{ \int{x \lambda^2 e^{-x \lambda} dx } }$ is the cummulative distribution function of said distribution. Since Gamma distribution space is $(0,\infty)$ then $F(\infty)-F(0)=1$ or alternatively $\displaystyle{ \int_0^\infty{x \lambda^2 e^{-x \lambda} dx } }=1$
+
+Thus we have proved the random variable $y_1=x_1/x_2$ follows PDF $f(y_1)=\frac{1}{(1 + y_1)^2} \displaystyle{ \int_0^\infty {y_2 \lambda^2 e^{- \lambda y_2}dy_2} } = \frac{1}{(1+y_1)^2}$ or CDF $F(y_1)=\displaystyle{ \frac{y_1}{1+y_1} }$
+
+Now consider the log-transformed domain, $x^l_1=\ln(x_1),x^l_2=\ln(x_2)$ then $y^l=x^l_1-x^l_2=\ln(x_1)-\ln(x_2)=\ln(x_1/x_2)=\ln(y_1)$. That is in log-transformed domain, the distance between two sample is the log-transformed of the ratio between the corresponding samples and we can calculate the distribution of such random variable. Since $y^l=\ln(y_1)$ then $P(y^l<a)=P(y_1<e^a)$ thus the PDF $f_l(a)=\frac{\partial{P(y^l<a)}}{\partial{a}}=\frac{\partial{P(y_1<e^a)}}{\partial{e^a}}\frac{\partial{e^a}}{\partial{a}}$. Since $y_1$ follows a distribution with PDF $f(x)=\frac{\partial{P(y_1<x)}}{\partial{x}}=\frac{1}{(1+x)^2}$, then PDF $f_l(a)=\frac{e^a}{(1+e^a)^2}$ or CDF $F_l(a)=\displaystyle{ \frac{e^a}{1+e^a} }$
+
+The variance of 2 sample in log-transformed domain is $v_l=(x_1 - x_2)^2=y_l^2$ then $P(v_l<a)=P(y_l<\sqrt{a})-P(y_l<-\sqrt{a})$. Then the variance follows the PDF $f(x)=\frac{\partial{P(v_l<x)}}{\partial{x}}=\frac{\partial{P(y_l<\sqrt{x})-P(y_l<-\sqrt{x})}}{\partial{\sqrt{x}}} \frac{\partial{\sqrt{x}}}{\partial{x}}=\frac{1}{2\sqrt{x}} ( \frac{e^{\sqrt{x}}}{(1+e^{\sqrt{x}})^2} + \frac{e^{-\sqrt{x}}}{(1+e^{-\sqrt{x}})^2} )$
+
+Since the variance of 2 sample is bounded, the variance of 3 samples should be even tighter bounded
+
+\subsection{The Distribution of Log-transformed Sample Variance: the case of three samples}
+
+Consider three samples $x_1$, $x_2$, $x_3$ from a random process having exponential distribution $f_e(x) =  \lambda e^{- \lambda x} $. In log-transformed domain $l_i=\ln(x_i)$ we has proven that $y_i=l_i - l_{i+1}$ follows the distribution having CDF $F_l(y)=\displaystyle{ \frac{e^y}{1+e^y} }$ and PDF $f_l(y)=\displaystyle{ \frac{e^y}{(1+e^y)^2} }$
+
+Consider samples $l_i$ the sample mean will be $\bar{l_i}=\displaystyle{ \frac{l_1+l_2+l_3}{3} } $ and the variance
+
+\begin{eqnarray*}
+var(l_i) 
+	&=& \displaystyle{ \frac{(l_1- \bar{l_i})^2 + (l_2- \bar{l_i})^2 + (l_3- \bar{l_i})^2}{3} } \\
+	&=& \displaystyle{  \frac{ ( \frac{2l_1-l_2-l_3}{3}) ^2 + ( \frac{2l_2-l_1-l_3}{3}) ^2 + ( \frac{2l_3-l_2-l_1}{3}) ^2}{3} } \\
+	&=& \displaystyle{ \frac{6(l_1^2+l_2^2+l_3^2-l_1l_2-l_1l_3-l_2l_3)}{27} }
+\end{eqnarray*}
+
+Choose $t=\frac{(l_1-l_2)}{2}$, $u=\frac{(l_1+l_2)}{2}$, $v=\frac{(l_1^2+l_2^2+l_3^2-l_1l_2-l_1l_3-l_2l_3)}{3}$. Then Jacobian is 
+
+\begin{eqnarray*}
+J_{det}
+	&=& \begin{vmatrix} 
+			\frac{\partial t}{\partial l_1} & \frac{\partial t}{\partial l_2} & \frac{\partial t}{\partial l_3}\\ 
+			\frac{\partial u}{\partial l_1} & \frac{\partial u}{\partial l_2} & \frac{\partial u}{\partial l_3} \\
+			\frac{\partial v}{\partial l_1} & \frac{\partial v}{\partial l_2} & \frac{\partial v}{\partial l_3} 
+		\end{vmatrix} \\
+	&=& \begin{vmatrix} 
+			1/2 & -1/2 & 0 \\ 
+			1/2 &  1/2 & 0 \\
+			(2l_1-l_2-l_3)/3 & (2l_2-l_1-l_3)/3 & (2l_3-l_2-l_1)/3 
+		\end{vmatrix} \\
+	&=& \frac{(2l_3-l_2-l_1)}{3} 
+		\begin{vmatrix} 
+		 	1/2 & -1/2 \\ 
+			1/2 & 1/2 \\ 
+		\end{vmatrix} \\
+	&=& \frac{ (2l_3-l_2-l_1)}{3 \cdot 2}
+\end{eqnarray*}
+
+Since  $t=\frac{(l_1-l_2)}{2}$, $u=\frac{(l_1+l_2)}{2}$, we have $l_1=u+t$ and $l_2=u-t$
+
+\begin{eqnarray*}
+3v
+	&=& l_1^2+l_2^2+l_3^2-l_1l_2-l_1l_3-l_2l_3\\
+	&=& l_3^2 - l_3(l_1+l_2)+ l_1^2+l_2^2-l_1l_2 \\
+	&=& l_3^2 - 2u \cdot l_3+ (u+t)^2+(u-t)^2-(u+t)(u-t) \\
+	&=& l_3^2 - 2u \cdot l_3+ u^2 + 3t^2 \\
+0 	&=& l_3^2 - 2u \cdot l_3+ u^2 + 3t^2 -3v \\
+\Delta 	&=& 4u^2 - 4 (u^2+3t^2-3v) \\
+		&=& 4 (3v-3t^2) \\
+l_3	&=& \frac{2u \pm \sqrt{\Delta}}{2} \\
+	&=& u \pm \sqrt{3v-3t^2}
+\end{eqnarray*}
+
+Choose $l_3 = u + \sqrt{3v-3t^2}$, then $J_{det}=\frac{ (2l_3-l_2-l_1)}{2}=\sqrt{3v-3t^2}$. Plug these results into variable change theorem, noting that $f(l_i)=e^{ \left( l_i+\mu_0 - e^{l_i+\mu_0} \right)}$
+
+\begin{eqnarray*}
+f(t,u,v)
+	&=&\frac{f(l_1,l_2,l_3)}{J_{det}} \\
+	&=& \frac{e^{l_1+\mu_0-e^{l_1+\mu_0}}e^{l_2+\mu_0-e^{l_2+\mu_0}}e^{l_3+\mu_0-e^{l_3+\mu_0}}}{\sqrt{3v-3t^2}} \\
+	&=& \displaystyle {\frac{e^{u+t+\mu_0-e^{(u+t+\mu_0)}}e^{u-t+\mu_0-e^{(u-t+\mu_0)}}e^{u + \sqrt{3v-3t^2}+\mu_0-e^{u + \sqrt{3v-3t^2}+\mu_0}}}{\sqrt{3v-3t^2}} } \\
+	&=& \displaystyle { \frac{e^{\sqrt{3v-3t^2}}e^{3\mu_0}}{\sqrt{3v-3t^2}} e^{3u-e^{(u+\mu_0)}(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+f(v) 
+	&=& \displaystyle{ \int_{t=-\infty}^{t=\infty}{ \left[  \frac{e^{\sqrt{3v-3t^2}e^{3\mu_0}} }{ \sqrt{3v-3t^2} } \int_{u=-\infty}^{u=\infty}{e^{3u-e^{(u+\mu_0)}(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})} \, du}  \right] \, dt} } \\
+\text{Consider} \\
+f(u) 
+	&=& \int_{u=-\infty}^{u=\infty}{e^{3u-e^ue^{\mu_0}(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})} \, du} \\
+\text{Set } k
+	&=&-(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})e^{\mu_0} \text{, and }e^u=\upsilon \text{,  } u=\ln(\upsilon) \text{ or } \frac{ \partial u }{ \partial \upsilon} = \frac{1}{\upsilon} \\
+f(\upsilon)
+	&=& \int_{\upsilon=0}^{\upsilon=\infty} { \frac{\upsilon^3 \cdot e^{k \cdot \upsilon}}{\upsilon}  \, d\upsilon} \\
+	&=& \int_{\upsilon=0}^{\upsilon=\infty} { \upsilon^2 \cdot e^{k \upsilon} \, d\upsilon} \\
+	&=& \frac{\upsilon^2 e^{k \upsilon}}{k} - \frac{2}{k}  \int_{\upsilon=0}^{\upsilon=\infty} { \upsilon e^{k  \upsilon} \, d\upsilon} \\
+	&=& \frac{\upsilon^2 e^{k \upsilon}}{k} - \frac{2}{k}  \left(\frac{\upsilon e^{k \upsilon}}{k} - \frac{1}{k} \int_{\upsilon=0}^{\upsilon=\infty} { e^{k  \upsilon} \, d\upsilon} \right)  \\
+	&=&\displaystyle{ \left \vert   \frac{\upsilon^2 e^{k \upsilon}}{k} - \frac{2}{k}  \left(\frac{\upsilon e^{k \upsilon}}{k} - \frac{1}{k} \frac{ e^{k  \upsilon}}{k}   \right) \right \vert_{\upsilon=0}^{\upsilon=\infty} }  \\
+	&=&\displaystyle{ \left \vert \frac{e^{k \upsilon} (\upsilon^2k^2- 2k\upsilon + 2)}{k^3}   \right \vert_{\upsilon=0}^{\upsilon=\infty} }  \\
+\lim_{\upsilon \rightarrow \infty}{\frac{e^{k \upsilon} (\upsilon^2k^2- 2k\upsilon + 2)}{k^3}} 
+	&=& \lim_{\upsilon \rightarrow \infty}{\frac{e^{k \upsilon}}{\upsilon}} = 0 \text{ as } k<0 \\
+\lim_{\upsilon \rightarrow 0}{\frac{e^{k \upsilon} (\upsilon^2k^2- 2k\upsilon + 2)}{k^3}}  
+	&=& \frac{2}{k^3} \\
+f(\upsilon) &=& \frac{2}{(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})^3e^{3\mu_0}} \\
+f(v) 
+	&=& \displaystyle{ \int_{t=-\infty}^{t=\infty}{ \left[  \frac{e^{\sqrt{3v-3t^2}}e^{3\mu_0} }{ \sqrt{3v-3t^2} } \frac{2}{(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})^3e^{3\mu_0}}  \right] \, dt} } \\
+	&=& \displaystyle{ \int_{t=-\infty}^{t=\infty}{ \left[  \frac{e^{\sqrt{3v-3t^2}} }{ \sqrt{3v-3t^2} } \frac{2}{(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})^3}  \right] \, dt} }  
+\end{eqnarray*} 
+
+Set $t=\sqrt{v}\sin(x)$, with $-\pi/2 \leq x \leq \pi/2$, then $\frac{\partial{t}}{\partial{x}}=\sqrt{v}\cos(x)$, and $\sqrt{v-t^2}=\sqrt{v\cos^2(x)}=\cos(x)\sqrt{v}$
+
+\begin{eqnarray*}
+f(v) 
+	&=& \displaystyle{ \int_{t=-\infty}^{t=\infty}{ \left[  \frac{e^{\sqrt{3v-3t^2}} }{ \sqrt{3v-3t^2} } \frac{2}{(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})^3}  \right] \, dt} }  \\
+	&=& \displaystyle{ \int_{x=-\pi/2}^{x=\pi/2}{ \left[  \frac{e^{\sqrt{3v}\cos(x)} }{ \sqrt{3v} \cos(x)} \frac{2}{(e^{\sqrt{v}\sin(x)}+e^{-\sqrt{v}\sin(x)}+e^{\sqrt{3v}\cos(x)})^3}  \right] \sqrt{v}\cos(x) \, dx} }  \\
+	&=& \displaystyle{ \frac{2}{\sqrt{3}} \int_{-\pi/2}^{\pi/2}{\frac{1}{\left( e^{\sqrt{v}\sin(x)}+e^{-\sqrt{v}\sin(x)}+e^{\sqrt{3v}\cos(x)} \right)^3 \left( e^{-\frac{\sqrt{3v}\cos(x)}{3}} \right)^3}\, dx} } \\
+	&=& \displaystyle{ \frac{2 \sqrt{v}}{\sqrt{3}} \int_{-\pi/2}^{\pi/2}{\frac{1}{\left( e^{\sqrt{v}\sin(x)-\frac{\sqrt{3v}\cos(x)}{3}}+e^{-\sqrt{v}\sin(x)-\frac{\sqrt{3v}\cos(x)}{3}}+e^{\sqrt{3v}\cos(x)-\frac{\sqrt{3v}\cos(x)}{3}} \right)^3 }\, dx} } \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+ \sqrt{v}\sin(x)-\frac{\sqrt{3v}\cos(x)}{3} 
+	&=& \sqrt{v} \frac{\sqrt{3} \sin(x) - \cos(x)}{\sqrt{3}} \\
+	&=& \frac{2 \sqrt{v}}{\sqrt{3}} \sin(x-\pi/6)  \\
+-\sqrt{v}\sin(x)-\frac{\sqrt{3v}\cos(x)}{3} 
+	&=&  \frac{2 \sqrt{v}}{\sqrt{3}} \sin(-x-\pi/6) \\ 
+\sqrt{3v}\cos(x)-\frac{\sqrt{3v}\cos(x)}{3}
+	&=& \frac{2 \sqrt{v}}{\sqrt{3}} \cos(x) \\
+\sin(a)-\cos(b) 
+	&=& -2 \sin(a/2-b/2-\pi/4) \sin(a/2+b/2-\pi/4) \\
+\sin(x-\pi/6) - \cos(x) 
+	&=& -2 \sin(-\pi/12 -\pi/4) \sin(x-\pi/12-\pi/4) \\
+	&=& \sqrt{3}\sin(x-\pi/3) \\
+\sin(-x-\pi/6)  - \cos(x) 
+	&=& -2 \sin(-\pi/12-\pi/4) \sin(-x-\pi/12-\pi/4) \\
+	&=& \sqrt{3}\sin(-x-\pi/3) \\
+	&& e^{\sqrt{v}\sin(x)-\frac{\sqrt{3v}\cos(x)}{3}}+e^{-\sqrt{v}\sin(x)-\frac{\sqrt{3v}\cos(x)}{3}}+e^{\sqrt{3v}\cos(x)-\frac{\sqrt{3v}\cos(x)}{3}}  \\
+	&=& e^{\frac{2 \sqrt{v}}{\sqrt{3}} \sin(x-\pi/6)}+e^{\frac{2 \sqrt{v}}{\sqrt{3}} \sin(-x-\pi/6)}+e^{\frac{2 \sqrt{v}}{\sqrt{3}} \cos(x)} \\
+	&=& k^{\cos(x)} \left( k^{\sin(x-\pi/6) - \cos(x)} + k^{\sin(-x-\pi/6)  - \cos(x) } + 1 \right) \\
+	&=& k^{\cos(x)} \left( k^{\sqrt{3}\sin(x-\pi/3)} + k^{\sqrt{3}\sin(-x-\pi/3) } + 1 \right)
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+f(v) 
+	&=& \displaystyle{ \int_{t=-\infty}^{t=\infty}{ \left[  \frac{e^{\sqrt{3v-3t^2}} }{ \sqrt{3v-3t^2} } \frac{2}{(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})^3}  \right] \, dt} } \\
+f(t) 
+	&=& \displaystyle{ \int_{v=0}^{v=\infty}{ \left[  \frac{e^{\sqrt{3v-3t^2}} }{ \sqrt{3v-3t^2} } \frac{2}{(e^t+e^{-t}+e^{\sqrt{3v-3t^2}})^3}  \right] \, dv} }  \\
+x 
+	&=& e^{\sqrt{3v-3t^2}} \\
+\frac{\partial{x}}{\partial{v}}
+	&=& e^{\sqrt{3v-3t^2}} \frac{\partial{\sqrt{3v-3t^2}}}{\partial{v}} \\
+	&=& e^{\sqrt{3v-3t^2}} \frac{1}{2\sqrt{3v-3t^2}} \frac{\partial{3v-3t^2}}{\partial{v}} \\
+	&=& e^{\sqrt{3v-3t^2}} \frac{3}{2\sqrt{3v-3t^2}} \\
+f(t) 
+	&=& \displaystyle{ \int_{x=0}^{x=\infty}{ \left[ \frac{2}{3}  \frac{2}{(e^t+e^{-t}+x)^3}  \right] \, dx} }  \\
+	&=& \left \vert - \frac{1}{(e^t+e^{-t}+x)^2} \right \vert_0^{\infty} \\
+\lim_{x \rightarrow \infty}{ \frac{1}{(e^t+e^{-t}+x)^2} }
+	&=& 0 \\
+\lim_{x \rightarrow 0}{ \frac{1}{(e^t+e^{-t}+x)^2} }
+	&=& \frac{1}{(e^t+e^{-t})^2} \\
+	&=& \frac{e^{2t}}{(e^{2t}+1)^2} \\
+\end{eqnarray*}
+
+Choose $t=\frac{l_1-l_2}{2}$, $u=\frac{l_1+l_2}{2}$, $v=\frac{(l_1^2+l_2^2+l_3^2-l_1l_2-l_1l_3-l_2l_3)}{3}$. Then Jacobian is  $J_{det}=\frac{2l_3-l_1-l_2}{3}$. Choose the branch $l_3=u+\sqrt{3v-3t^2}$, then $J_{det}=\frac{\sqrt{v-t^2}}{\sqrt{3}}$. Thus  $f(v)=\displaystyle{ \int_{t=0}^{t=\infty}{\left[ 2\frac{2\sqrt{3}}{\sqrt{v-t^2}} \int_{u \in \Re}{\left[ \varphi(u-t)\varphi(u+t)\varphi(u+\sqrt{3v-3t^2})du \right]} dt \right]} }$  Here, a factor 2 appears to take both branches into account, and an extra factor 2 appears when using symmetry to restrict the integration domain to $x \geq y$ i.e. to $t \geq 0$, and $\varphi(x)=e^{x-e^x}$ \cite{Douillet_2009}
+
+Consider variable $u=y_1-y_2$ we are going to proof that they follow a distribution PDF $f(u)$. Set $v=y_1+y_2$, then the Jacobian determinant $J_{det} 
+	= \begin{vmatrix} \frac{\partial u}{\partial y_1} & \frac{\partial u}{\partial y_2} \\ \frac{\partial v}{\partial y_1} & \frac{\partial v}{\partial y_2} \end{vmatrix} 
+	= \begin{vmatrix} 1 & -1 \\ 1 & 1 \end{vmatrix} 
+	= 2
+$. The joint distribution $f(y_1,y_2) 
+	= \displaystyle{ \frac{e^{y_1}}{(1+e^{y_1})^2} \frac{e^{y_2}}{(1+e^{y_2})^2} }
+	= \displaystyle{ \frac{e^{y_1+y_2}}{(1+e^{y_1}+e^{y_2}+e^{y_1+y_2})^2} }
+$ being subjected to variable change theorem gives $f(u,v) 
+	= \displaystyle{ \frac{e^{v}}{(1+e^{\frac{u+v}{2}}+e^{\frac{v-u}{2}}+e^{v})^2} \frac{1}{J_{det}} }
+$ thus $f(u)
+	= \displaystyle{ \int_{-\infty}^{\infty}{\frac{e^{v}}{2(1+e^{\frac{u+v}{2}}+e^{\frac{v-u}{2}}+e^{v})^2} dv} }
+$.
+
+Set $e^{\frac{v}{2}}=t$ then $v=2*\ln(t)$ thus $\displaystyle{ \frac{\partial{v}}{\partial{t}} = \frac{2}{t}}$. Change variable of the integral $f(u)
+	= \displaystyle{ \int_{-\infty}^{\infty}{\frac{e^{v}}{2(1+e^{\frac{u+v}{2}}+e^{\frac{v-u}{2}}+e^{v})^2}  dv} }
+	= \displaystyle{ \int_0^{\infty}{ \frac{t^2}{2(1+t(e^{\frac{u}{2}}+e^{\frac{-u}{2}}) + t^2)^2} \frac{2}{t} dt } }
+	= \displaystyle{ \int_0^{\infty}{ \frac{t}{(1+t(k+\frac{1}{k}) + t^2)^2} dt } }
+$ with $k=e^{\frac{u}{2}}$. Or $f(u)= \displaystyle{ k^2 \int_0^{\infty}{ \frac{x}{(xk^2+kx^2+k+x)^2} } }$. We are going to proof that $\displaystyle{ \int{ \frac{x}{(xk^2+kx^2+k+x)^2} } } = \displaystyle{ \frac{ \frac{(k^2-1)(xk^2+2k+x)}{xk^2+kx^2+k+x}}{(k^2-1)^3} + \frac{(1+k^2)\ln(\frac{kx+1}{k+x})}{(k^2-1)^3} }$, thus we are able to find the PDF $f(u)$.
+
+We have $\displaystyle{ \frac{\partial{}}{\partial{x}} (\frac{xk^2+2k+x}{xk^2+kx^2+k+x}) }
+	= \displaystyle{ \frac{ \frac{\partial{(xk^2+2k+x)}}{\partial{x}} (xk^2+kx^2+k+x) - \frac{\partial{(xk^2+kx^2+k+x)}}{\partial{x}} (xk^2+2k+x) }{(xk^2+kx^2+k+x)^2} }
+	= \displaystyle{ \frac{ (1+k^2)(xk^2+kx^2+k+x) -  (xk^2+2k+x)(2kx+k^2+1)}{(xk^2+kx^2+k+x)^2} } 
+	= \displaystyle{ \frac{(1+k^2)(kx^2-k)-2kx(xk^2+2k+x)}{(xk^2+kx^2+k+x)^2} }
+	= \displaystyle{ \frac{kx^2-k + k^3x^2-k^3 -(2x^2k^3+4k^2x+2x^2k)}{(xk^2+kx^2+k+x)^2} }
+	= \displaystyle{ \frac{ -(k +k^3+x^2k^3+4k^2x+x^2k)}{(xk^2+kx^2+k+x)^2} }$
+
+We also have $\displaystyle{ \frac{\partial{}}{\partial{x}} (\ln(\frac{kx+1}{k+x})) }
+	= \displaystyle{ \frac{\partial{(\ln(\frac{kx+1}{k+x}))}}{\partial{(\frac{kx+1}{k+x})}} \frac{\partial{(\frac{kx+1}{k+x})}}{\partial{x}} }
+	= \displaystyle{ \frac{k+x}{1+kx} \frac{k(k+x)-(kx+1)}{(k+x)^2}}
+	= \displaystyle{ \frac{k^2-1}{(1+kx)(k+x)} }$
+
+Thus $\displaystyle{ \frac{ \frac{(k^2-1)(xk^2+2k+x)}{xk^2+kx^2+k+x}}{(k^2-1)^3} + \frac{(1+k^2)\ln(\frac{kx+1}{k+x})}{(k^2-1)^3} }
+	 = \displaystyle{ \frac{\frac{ -(k +k^3+x^2k^3+4k^2x+x^2k)}{(xk^2+kx^2+k+x)^2} (k^2-1) + \frac{k^2-1}{(1+kx)(k+x)} (1+k^2)}{(k^2-1)^3} }
+	 = \displaystyle{ \frac{-(k +k^3+x^2k^3+4k^2x+x^2k) + (1+k^2)(xk^2+kx^2+k+x)}{(k^2-1)^2 (xk^2+kx^2+k+x)^2} } 
+	 = \displaystyle{ \frac{-(k +k^3+x^2k^3+4k^2x+x^2k) + (xk^2+kx^2+k+x) + (xk^4+k^3x^2+k^3+xk^2)}{(k^2-1)^2 (xk^2+kx^2+k+x)^2} } 
+	 = \displaystyle{ \frac{-(2k^2x) + (x) + (xk^4)}{(k^2-1)^2 (xk^2+kx^2+k+x)^2} } 
+	 = \displaystyle{ \frac{x(k^2-1)^2}{(k^2-1)^2 (xk^2+kx^2+k+x)^2} } 
+	 = \displaystyle{ \frac{x}{(xk^2+kx^2+k+x)^2} } $. (QED)
+
+To find $f(u)$ we consider 
+\begin{eqnarray*}
+	&&\displaystyle \lim_{x \to \infty,0} {\left[ \frac{ \frac{(k^2-1)(xk^2+2k+x)}{(xk^2+kx^2+k+x)}}{(k^2-1)^3} + \frac{(1+k^2)\ln \left(\frac{kx+1}{k+x} \right)}{(k^2-1)^3} \right]}  \\
+	&=& \displaystyle \lim_{x \to \infty,0} { \left[ \frac{ \frac{(k^2-1)(xk^2+2k+x)}{(xk^2+kx^2+k+x)}}{(k^2-1)^3} \right] } + \lim_{x \to \infty,0} { \left[ \frac{(1+k^2)\ln \left(\frac{kx+1}{k+x} \right) }{(k^2-1)^3} \right] } \\
+	&=& \displaystyle { \frac{1}{(k^2-1)^2} \lim_{x \to \infty,0} { \left[ \frac{(xk^2+2k+x)}{(xk^2+kx^2+k+x)}  \right] } + \frac{(1+k^2)}{(k^2-1)^3} \lim_{x \to \infty,0} { \left[ \ln\left(\frac{kx+1}{k+x} \right) \right] } }
+\end{eqnarray*}
+We have $ \displaystyle \lim_{x \to \infty} { \frac{(xk^2+2k+x)}{(xk^2+kx^2+k+x)} } = \lim_{x \to \infty} {\frac{k^2+1}{2kx+k^2+1}} = 0$ and $ \displaystyle \lim_{x \to \infty} {\ln(\frac{kx+1}{k+x})} = \ln(k)$,  $ \displaystyle \lim_{x \to 0} { \frac{(xk^2+2k+x)}{(xk^2+kx^2+k+x)} } = \frac{2k}{k} = 2$, $ \displaystyle \lim_{x \to 0} {\ln(\frac{kx+1}{k+x})} = \ln(\frac{1}{k})$
+
+\begin{eqnarray*}
+f(u)	&=& \displaystyle{ k^2 \int_0^{\infty}{ \frac{x}{(xk^2+kx^2+k+x)^2} } } \\
+	&=& \displaystyle{ k^2 \left ( \frac{1}{(k^2-1)^2} \lim_{x \to \infty} { \frac{(xk^2+2k+x)}{(xk^2+kx^2+k+x)} } + \frac{(1+k^2)}{(k^2-1)^3} \lim_{x \to \infty} { \left[ \ln \left( \frac{kx+1}{k+x} \right) \right]} \right) } \\
+	& & \displaystyle{ - k^2 \left (\frac{1}{(k^2-1)^2} \lim_{x \to 0} { \frac{(xk^2+2k+x)}{(xk^2+kx^2+k+x)} } + \frac{(1+k^2)}{(k^2-1)^3} \lim_{x \to 0} {\left[ \ln \left( \frac{kx+1}{k+x} \right) \right]} \right)   } \\
+	&=&  \displaystyle{ k^2 \left[ \left( \frac{0}{(k^2-1)^2} + \frac{(1+k^2)}{(k^2-1)^3} \ln(k) \right) - \left(  \frac{2}{(k^2-1)^2} + \frac{(1+k^2)}{(k^2-1)^3} \ln(\frac{1}{k})\right) \right]}  \\
+	&=& \displaystyle{ 2k^2 \left( \frac{(1+k^2)}{(k^2-1)^3} \ln(k) - \frac{1}{(k^2-1)^2} \right) } 
+\end{eqnarray*}
+Note that $k=e^{\frac{u}{2}}$, thus 
+\begin{eqnarray*}
+f(u)	&=& \displaystyle{ 2e^u \left( \frac{(1+e^u)}{(e^u-1)^3} \frac{u}{2} - \frac{1}{(e^u-1)^2} \right) } \\
+	&=& \displaystyle{ e^u \left( \frac{(u+ue^u)}{(e^u-1)^3} - \frac{2(e^u-1)}{(e^u-1)^3} \right) }  \\
+	&=& \displaystyle{ e^u \frac{(ue^u - 2e^u+u+2)}{(e^u-1)^3}  } 
+\end{eqnarray*}
+
+This $f(u)$ is found but is not consistent with Monte-Carlo simulation, the reasons it seems is because $y_1$ and $y_2$ is not independent, (their correlation is around 0.5!)
+
+% We have $ \displaystyle{ \frac{\partial{\tan^{-1}(x)}}{\partial{x}} = \frac{1}{1+x^2}} $ then $
+% \displaystyle{ \frac{\partial{\tan^{-1}(ax+b)}}{\partial{x}} 
+% 	= \frac{\partial{\tan^{-1}(ax+b)}}{\partial{(ax+b)}} \frac{\partial{(ax+b)}}{\partial{x}} }
+% 	= \frac{a}{1+(ax+b)^2} 
+% $ thus $
+% \displaystyle{ \frac{\partial{\tan^{-1}(\frac{2x+k}{\sqrt{4-k^2}})}}{\partial{x}} } 
+% 	= \frac{\frac{2}{\sqrt{4-k^2}}}{1+(\frac{2x+k}{\sqrt{4-k^2}})^2} 
+% 	= \frac{2}{\sqrt{4-k^2}} \frac{1}{\frac{4-k^2+(2x+k)^2}{4-k^2}}
+% 	= \frac{2}{\sqrt{4-k^2}} \frac{4-k^2}{4+4kx+4x^2}
+% 	= \frac{\sqrt{4-k^2}}{2(1+kx+x^2)}
+% $
+% 
+% We have $\displaystyle{ \frac{\partial}{\partial{x}} (\frac{kx+2}{1+kx+x^2})  } 
+% 	= \displaystyle{ \frac{ \frac{\partial{(kx+2)}}{\partial{x}}(1+kx+x^2) - \frac{\partial{(1+kx+x^2)}}{\partial{x}}(kx+2) }{(1+kx+x^2)^2} }	
+% 	= \displaystyle{  \frac{k(1+kx+x^2) - (2x+k)(kx+2)}{(1+kx+x^2)^2} }
+% 	= \displaystyle{  \frac{ (k+xk^2+kx^2) -  (2kx^2+4x+xk^2+2k)}{(1+kx+x^2)^2} }
+% 	= \displaystyle{  - \frac{ (kx^2+4x+k)}{(1+kx+x^2)^2} }
+% $
+% 
+% $\displaystyle{ \frac{\partial}{\partial{x}} ( \frac{kx+2}{1+kx+x^2} \frac{1}{k^2-4} -  \tan^{-1}(\frac{2x+k}{\sqrt{4-k^2}}) \frac{2k\sqrt{4-k^2}}{(k^2-4)^2} )  } $ 
+% $
+% 	= \displaystyle{ - \frac{ (kx^2+4x+k)}{(1+kx+x^2)^2} \frac{1}{k^2-4} -  \frac{\sqrt{4-k^2}}{2(1+kx+x^2)} \frac{2k\sqrt{4-k^2}}{(k^2-4)^2} }
+% $
+
+\begin{listing}
+ \caption{Monte-Carlo simulation for training }
+ \label{code:training_monte_carlo}
+\begin{verbatimtab}
+function bdd()
+
+[X Y] = monte_carlo_simulation(1000);
+%plot(X,Y, 'r');
+hold on;
+
+P = exp(X);
+Y0 = exp(X-P);
+%Y0 = X .* X;
+%Y0 = Y0 .* exp(X-P);
+plot(X,Y0, 'b-');
+
+%legend('Simulation','Theoretical','Location','NorthWest');
+
+% Processing points
+P = [-6 -5.8 -4 -3 -2 -0.3 -0.1 0.1 0.3 1.6 1.8 2];
+for i=1:length(P)-1
+    step(i)=P(i+1)-P(i);
+end
+
+%M=[1 1 1 1 1 1 1 1 1];
+M = ones(1, length(P));
+
+% partition simulated data by Processing Points
+t = [X P];
+t = sort(t);
+t2 = ismember(t,P);
+t2 = find(t2==1);
+
+% X axis
+X_Cell = cell(1, length(t2)+1);
+X_Cell(1) = {t(1:t2(1)-1)};
+X_Cell(length(t2)+1) = {t(t2(length(t2))+1:length(t))};
+for i=2:length(t2)
+    X_Cell(i)={t( t2(i-1)+1 : t2(i)-1 )};
+end
+
+% Y axis
+Y_Cell = cell(1, length(X_Cell));
+for i=1:length(X_Cell)
+    Y_Cell(i)={Y(find(ismember(X,X_Cell{i})==1))'};
+end
+
+% Calculate membership values
+Pl_cell = cell(1, length(step));
+Pu_cell = cell(1, length(step));
+for i=1:length(step)
+    Pl_cell(i) = {1 - (X_Cell{i+1}   -  P(i))/step(i)};
+    Pu_cell(i) = {1 - (P(i+1) -  X_Cell{i+1})/step(i)};
+end
+
+%M=[1 1 1];
+
+%Calculate Output
+O_Cell = cell(1, length(X_Cell));
+O_Cell(1) = {M(1)};
+for i=1:length(step)
+    O_Cell(i+1) = {Pl_cell{i} * M(i) + Pu_cell{i} * M(i+1)};
+end
+O_Cell(length(X_Cell)) = {M(length(M))};
+
+%Calculate difference & perf index
+E_Cell = cell(1, length(X_Cell));
+pi = 0;
+for i=1:length(X_Cell)
+    E_Cell(i) = {Y_Cell{i} - O_Cell{i}};
+    pi = pi + sum (E_Cell{i} .* E_Cell{i});
+end
+pi
+
+%back propagate error
+El_cell = cell(1, length(step));
+Eu_cell = cell(1, length(step));
+for i=1:length(step)
+    El_cell(i) = {Pl_cell{i} .* E_Cell{i+1}};
+    Eu_cell(i) = {Pu_cell{i} .* E_Cell{i+1}};
+end
+
+%Caculate update rule
+U(1) =  (sum(E_Cell{1}) + sum(El_cell{1})) / (length(X_Cell{1}) + length(X_Cell{2})) ;
+for i=2:length(step)
+    U(i) = (sum(Eu_cell{i-1}) + sum(El_cell{i})) / (length(X_Cell{i}) + length(X_Cell{i+1}));
+end
+U(length(M)) = (sum(Eu_cell{length(step)}) + sum(E_Cell{length(E_Cell)}))  / (length(X_Cell{length(X_Cell)-1}) + length(X_Cell{length(X_Cell)}));
+
+M = M + U;
+
+for i = 1:20
+    O_Cell = cell(1, length(X_Cell));
+    O_Cell(1) = {M(1)};
+    for i=1:length(step)
+        O_Cell(i+1) = {Pl_cell{i} * M(i) + Pu_cell{i} * M(i+1)};
+    end
+    O_Cell(length(X_Cell)) = {M(length(M))};
+
+    E_Cell = cell(1, length(X_Cell));
+    pi = 0;
+    for i=1:length(X_Cell)
+        E_Cell(i) = {Y_Cell{i} - O_Cell{i}};
+        pi = pi + sum (E_Cell{i} .* E_Cell{i});
+    end
+    pi
+
+    El_cell = cell(1, length(step));
+    Eu_cell = cell(1, length(step));
+    for i=1:length(step)
+        El_cell(i) = {Pl_cell{i} .* E_Cell{i+1}};
+        Eu_cell(i) = {Pu_cell{i} .* E_Cell{i+1}};
+    end
+
+    U(1) =  (sum(E_Cell{1}) + sum(El_cell{1})) / (length(X_Cell{1}) + length(X_Cell{2})) ;
+    for i=2:length(step)
+        U(i) = (sum(Eu_cell{i-1}) + sum(El_cell{i})) / (length(X_Cell{i}) + length(X_Cell{i+1}));
+    end
+    U(length(M)) = (sum(Eu_cell{length(step)}) + sum(E_Cell{length(E_Cell)}))  / (length(X_Cell{length(X_Cell)-1}) + length(X_Cell{length(X_Cell)}));
+
+    M = M + U;
+end
+
+%f=figure();
+hold on;
+
+O_Cell = cell(1, length(X_Cell));
+O_Cell(1) = {M(1)};
+for i=1:length(step)
+    O_Cell(i+1) = {Pl_cell{i} * M(i) + Pu_cell{i} * M(i+1)};
+    plot(X_Cell{i+1},O_Cell{i+1},'g');
+end
+
+function [X Y] = monte_carlo_simulation(size)
+%size = 100;
+re = normrnd(0, 1/sqrt(2), [size*size 1]);
+im = normrnd(0, 1/sqrt(2), [size*size 1]);
+I = re .* re + im .* im;
+L = log(I);
+
+step = ( max(L)-min(L) ) / size;
+X = [min(L):step:max(L)];
+Y = histc(L,X);
+Y = Y / (size * size);
+
+%rescale among simulations Y is per unit length of X axis
+Y = Y * length(X) / (max(X)-min(X));
+
+%T = X .* X;
+%Y = T .* Y';
+%Y = Y';
+\end{verbatimtab}
+\end{listing}
+
+\begin{thebibliography}{9}
+\addcontentsline{toc}{section}{References}
+\bibitem{Douillet_2009} P.L. Douillet, \emph{Sampling Distribution Of The Variance}, Online; accessed 09-Feb-2010, available at 
+\url{http://www.douillet.info/~douillet/publications/wsc09/wsc09.pdf}
+\end{thebibliography}
+
+\PrintIndex
+
+\StopEventually
+
+

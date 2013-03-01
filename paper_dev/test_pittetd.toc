@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Intro}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Statistical Distributions}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Maximum likelihood Estimation}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}The Distribution of Log-transformed Sample Variance: the case of two samples}{6}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}The Distribution of Log-transformed Sample Variance: the case of three samples}{7}{subsection.1.4}
+\contentsline {section}{References}{15}{section*.2}

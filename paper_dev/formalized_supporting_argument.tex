@@ -1,0 +1,262 @@
+\documentclass{beamer}
+
+\usepackage{default}
+
+\begin{document}
+
+\underline{\textbf{1. Introduction}}
+
+\textbf{  1.1. The purpose of this writing (for what type of audiences?)}
+
+For every one, including me to understand!
+
+\textbf{  1.2. Describe the given context}
+
+Given the pdf of $L$ is
+\begin{equation}
+\label{eqn:1_1}
+pdf(L) = e^{L-e^L}
+\end{equation}
+with $L \in (-\infty, \infty)$
+
+\textbf{  1.3. The problem posed}
+
+Find the population expected mean and variance of $L$
+
+\textbf{  1.4. The divided structure and the campaign to explore and conquer}
+
+First expected mean is calculated, then expected variance will follow.
+
+\underline{\textbf{2. Divide and conquere campaign}}
+
+\textbf{2.1 Expected mean of $L$}
+
+Plug Eqn. (\ref{eqn:1_1}) into Eqn. (\ref{eqn:3_1}), it becomes
+\begin{equation}
+\label{eqn:2_1}
+E(L) = \int_{-\infty}^{\infty} \! L \cdot e^{L-e^L} \, dL
+\end{equation}
+
+\textbf{2.1.1 Finding indefinite integral}
+
+It is going to be proved that 
+\begin{equation}
+\label{eqn:2_2}
+\int_L \! L \cdot e^{L-e^L} \, dL = Ei(-e^L)-e^{(-e^L)} L
+\end{equation}
+
+Bearing Eqn. (\ref{eqn:3_4}) in mind, consider
+\begin{eqnarray*}
+\frac{d}{dL} \left[ Ei(-e^L) \right] 
+	&=& \frac{d \left[ Ei(-e^L) \right] }{d \left[ -e^L \right]} \cdot \frac{d \left[ -e^L \right]}{dL} \\
+	&=& \frac{ e^{(-e^L)}  }{ -e^L } \cdot  \left[ -e^L \right] \\
+\end{eqnarray*}
+
+Thus
+\begin{equation}
+\label{eqn:2_3}
+\frac{d}{dL} \left[ Ei(-e^L) \right]  = e^{(-e^L)}
+\end{equation}
+
+Bearing Eqn. (\ref{eqn:3_3}) in mind, consider
+\begin{eqnarray*}
+\frac{d}{dL} \left[ e^{(-e^L)} L \right]  
+	&=& e^{-e^L} \frac{dL}{dL} + L \frac{d \left[ e^{-e^L}  \right]}{dL} \\
+	&=& e^{-e^L} + L \frac{d \left[ e^{-e^L}  \right]}{d \left[ -e^L  \right] } \cdot \frac{d \left[ -e^L  \right]}{dL} \\
+	&=& e^{-e^L} - L  e^{-e^L}   e^L  \\
+\end{eqnarray*}
+
+Thus
+\begin{equation}
+\label{eqn:2_4}
+\frac{d}{dL} \left[ e^{(-e^L)} L \right]  = e^{-e^L} - L  e^{L-e^L}
+\end{equation}
+
+Let Eqn. (\ref{eqn:2_3}) - Eqn. (\ref{eqn:2_4}), Eqn. (\ref{eqn:2_2}) becomes evident
+\begin{eqnarray*}
+\frac{d}{dL} \left[ Ei(-e^L) -  e^{(-e^L)}  L \right]
+	&=& e^{(-e^L)} - \left( e^{-e^L} - L  e^{L-e^L} \right) \\
+	&=& L  e^{L-e^L} \\
+\end{eqnarray*}
+
+\textbf{2.1.2 Estimating the mean}
+
+Plug Eqn. (\ref{eqn:2_2}) into Eqn(\ref{eqn:2_1}), it becomes
+\begin{equation}
+\label{eqn:2_5}
+E(L) = \left[ Ei(-e^L)-e^{(-e^L)} L \right]_{-\infty}^{\infty}
+\end{equation}
+
+Consider 
+\begin{eqnarray*}
+\lim_{L \to \infty}  {Ei(-e^L)-e^{(-e^L)} }
+	&=& \lim_{L \to \infty} {Ei(-e^L)} - \lim_{L \to \infty}{e^{(-e^L)} L} \\
+	&=& Ei(-\infty) - \lim_{L \to \infty}{ \frac{L}{e^{(-e^L)}} } \\
+	&=& 0 - \lim_{L \to \infty}{ \frac{1}{ \frac{d e^{(-e^L)}}{dL} } } \\
+\end{eqnarray*}
+
+Thus
+\begin{equation}
+\label{eqn:2_6}
+\lim_{L \to \infty}  {Ei(-e^L)-e^{(-e^L)} } = 0
+\end{equation}
+
+Consider 
+\begin{eqnarray*}
+\lim_{L \to -\infty}  {Ei(-e^L)-e^{(-e^L)} L }
+	&=& \lim_{L \to -\infty} {Ei(-e^L)} - \lim_{L \to -\infty}{e^{(-e^L)} L} \\
+	&=& \lim_{L \to -\infty} {Ei(-e^L)} - e^{ \left(-\displaystyle{ \lim_{L \to -\infty}{e^L} } \right)} L   \\
+	&=& \lim_{L \to -\infty} {Ei(-e^L)} -  L   \\
+\end{eqnarray*}
+
+Evaluating is not straight forward, (Wolfram Alpha gives no step, just result)
+\begin{equation}
+\label{eqn:2_7}
+\lim_{L \to -\infty}  {Ei(-e^L)-e^{(-e^L)} } = \gamma
+\end{equation}
+
+Plug Eqns. (\ref{eqn:2_6}) and (\ref{eqn:2_7}) into Eqn(\ref{eqn:2_5}), it becomes
+\begin{equation}
+\label{eqn:2_8}
+E(L) = - \gamma
+\end{equation}
+
+\textbf{2.1.3 Alternative method}
+
+Set
+\begin{eqnarray*} 
+ z &=& e^L \text{ then } L = \ln(z) \text{ and } dz = e^L dL \\
+E(L) 
+	&=& \int_{0}^{\infty} \! L \cdot e^{L-e^L} \, dL \\
+	&=& \int_{0}^{\infty} \! L \cdot e^{-e^L} e^L \, dL \\
+	&=& \int_{0}^{\infty} \! \ln(z) \cdot e^{-z}  \, dz \\
+\end{eqnarray*}
+Thus
+\begin{equation}
+\label{eqn:2_9}
+E(L) = - \gamma
+\end{equation}
+
+
+\textbf{2.2 Expected variance of $L$}
+
+Bearing Eqns. (\ref{eqn:1_1}) and (\ref{eqn:2_8}) in mind, Eqn. (\ref{eqn:3_2}) can be written as:
+\begin{eqnarray*}
+ var(L) 
+	&=& \int_L \! (L-E(L))^2 \cdot e^{L-e^L}  \, dL \\
+	&=& \int_{-\infty}^{\infty} \! (L-\gamma)^2 \cdot e^{L-e^L}  \, dL \\
+\end{eqnarray*}
+
+Thus
+\begin{equation}
+\label{eqn:2_10}
+var(L) 	= \int_{-\infty}^{\infty} \! L^2 \cdot e^{L-e^L}  \, dL  
+		+ \int_{-\infty}^{\infty} \! \gamma^2 \cdot e^{L-e^L}  \, dL  
+		- \int_{-\infty}^{\infty} \! 2 \gamma L \cdot e^{L-e^L}  \, dL  
+\end{equation}
+
+Consider 
+\begin{eqnarray*}
+\int_{-\infty}^{\infty} \! e^{x-e^x}  \, dx  
+	&=& \left| -e^{-e^x} \right|_{-\infty}^{\infty} \\
+	&=& \lim_{x \to \infty} {-e^{-e^x}} - \lim_{x \to -\infty} {-e^{-e^x}} \\
+	&=& -e^{-\infty} + e^{0} 
+\end{eqnarray*}
+
+Thus
+\begin{equation}
+\label{eqn:2_11}
+\int_{-\infty}^{\infty} \! e^{x-e^x}  \, dx  = 1
+\end{equation}
+
+Set
+\begin{eqnarray*} 
+ z &=& e^L \text{ then } L = \ln(z) \text{ and } dz = e^L dL \\
+\int_{-\infty}^{\infty} \! L^2 \cdot e^{L-e^L}  \, dL 
+	&=& \int_{-\infty}^{\infty} \! L^2 \cdot e^{e^L} e^L \, dL \\
+	&=& \int_{0}^{\infty} \! \ln(z)^2 \cdot e^{z}  \, dz \\
+	&=& (-1)^2 \int_{0}^{\infty} \! (\ln z)^2 \cdot e^{z}  \, dz 
+\end{eqnarray*}
+
+Plug in Eqns. (\ref{eqn:3_5}) and (\ref{eqn:3_6}), this becomes
+\begin{equation}
+\label{eqn:2_12}
+\int_{-\infty}^{\infty} \! L^2 \cdot e^{L-e^L}  \, dL = I_2 = \gamma^2 + \frac{\pi^2}{6}
+\end{equation}
+
+Plug Eqns. (\ref{eqn:2_12}), (\ref{eqn:2_11}) and (\ref{eqn:2_9}) into Eqn. (\ref{eqn:2_10}), it becomes
+\begin{equation}
+\label{eqn:2_13}
+var(L) = \gamma^2 + \frac{\pi^2}{6} + \gamma^2 - 2 \gamma^2 = \frac{\pi^2}{6}
+\end{equation}
+
+\underline{\textbf{3. Evaluation and Discussion}}
+
+\textbf{3.1. Assumptions Used:}
+
+Population expected mean calculation
+\begin{equation}
+  \label{eqn:3_1}
+E(x) = \int_x \! x \cdot pdf(x)  \, dx
+\end{equation}
+
+Population expected variance calculation
+\begin{equation}
+  \label{eqn:3_2}
+var(x) = \int_x \! (x-E(x))^2 \cdot pdf(x)  \, dx
+\end{equation}
+
+Derivative Product Rule
+\begin{equation}
+  \label{eqn:3_3}
+\frac{d}{dx} (u v) = v \cdot \frac{du}{dx}+u \cdot \frac{dv}{dx}
+\end{equation}
+
+Exponential Integral
+\begin{equation}
+  \label{eqn:3_4}
+Ei(x) = \int_{- \infty}^x \! \frac{e^t}{t} \, dt
+\end{equation}
+
+Euler-Mascheroni Integrals
+\begin{equation}
+  \label{eqn:3_5}
+I_n = (-1)^n \int_0^\infty (\ln z)^n e^{-z} \, dz
+\end{equation}
+
+Particular values are
+\begin{eqnarray*}
+  \label{eqn:3_6}
+I_0 	&=& 1 \\
+I_1 	&=& \gamma \\
+I_2 	&=& \gamma^2 + \frac{\pi^2}{6} \\
+\end{eqnarray*}
+
+\textbf{3.2. Heuristics and Ad-hoc Choices made: }
+
+\underline{\textbf{4. Conclusion}}
+
+\textbf{4.1. Assert purpose achieved, problem conquered}
+
+The mean and variance are
+
+\begin{equation}
+\label{eqn:4_1}
+avg(L) = \gamma
+\end{equation}
+
+\begin{equation}
+\label{eqn:4_2}
+var(L) = \frac{\pi^2}{6}
+\end{equation}
+
+\textbf{4.2. Lessons learned and its significance}
+
+It can be seen that Exponential Integral and Euler-Mascheroni Integrals are related!
+
+\begin{equation}
+\label{eqn:3_7}
+E(L) = - \gamma = -I_1 = - \lim_{L \to -\infty}  {Ei(-e^x)- x }
+\end{equation}
+
+\end{document}

@@ -1,0 +1,128 @@
+\chapter{Discussion and Conclusions} %chapter 7
+\label{chap:conclusions}
+
+%This section summarize 
+%	the exciting overview and research motivations
+%	the works that has been done
+%	the significant contribution of the work 
+%	the intrigue and feasible of future research project to extend the current work.
+
+\section{Result Evaluation and Discussion}
+
+In this thesis, a new model is developed for POLSAR data.
+The theory development is based in the principles of statistical mathematic and is visualized using computer simulations.
+The theory has shown its capabilities through a number of applications, though further studies should unearth even more interesting results.
+
+The main assumption used in this paper is the independent and circular complex Gaussian model for POLSAR data.
+While the model may not be perfectly matched with practical data,
+  it is apparently the most-widely accepted model.
+In the following paragraphs, the imperfect practice of over-sampling   data in SAR and POLSAR processing is discussed.
+
+The practice of over-sampling in SAR (and hence POLSAR) data processing may affects the choice of nominal ENL for showing the match between real-life data and the proposed model.
+Specifically, the over-sampling practice would normally be indicated a reduction of the ENL number.
+This is for example evidenced in our experiment for the RADARSAT2 dataset.
+The RADARSAT2 given to us is in its Single-Look format,
+  and nine-look processing is applied before the dispersion histogram in log-transformed domain is computed for an homogeneous area.
+The histograms for both one-dimensional SAR and two-dimensional partial POLSAR data are plotted in Fig ???
+  against the theoretical model for the nominal ENL value of 9.
+Even though the shapes of the histograms do look similar, the match however is not very good.
+A better match can be achieved by estimating the ENL from the observable variance of the log-determinant,
+  and the theoretical model for the estimated ENL indicated a much better consistency.
+This procedure can always be carried out for any given dataset,
+  since the sample variance of the log-determinant can always be measured
+  and hence the effective ENL can always be estimated using Eqn. ???.
+
+The use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the second order statsitics POLSAR matrices.
+In fact, the log-determinant can also be computed as the sum of log-eigen values.
+Specifically:
+\begin{eqnarray}
+  \ln{|M|} = \sum \ln{\lambda_M}
+\end{eqnarray}
+where $\lambda_M$ denotes all the eigen-values of M.
+Similar to other eigen-value based approach (e.g. Entropy/Anisotropy, ...),
+  the models presented here is roll-invariant.
+
+The methodology presented in this paper call for the reduction of the multi-dimensional POLSAR data into a scalar value.
+While this is probably desirable for a wide range of application where a one-dimensional number is required to represents the complex multi-dimensional data,
+  such reduction is probably not lossless.
+Thus similar to the way the Wishart Classifier is employed,
+  the use of this technique should be complemented with some high-dimensional POLSAR target-decomposition techniques (e.g. Freeman Durden or entropy/anisotropy TODO:REF ...)
+
+\section{Contributions of the Thesis}
+
+%\subsection{POLSAR Consistent Measures of Distance}
+        
+%\subsubsection{Conclusion}
+
+In conclusion, several scalar and consistent measures-of-distance for multi-variate POLSAR data were proposed in this paper.
+The dis-similarity measures are computed for the determinant of the POLSAR covariance matrix,
+  which when converted into one-dimensional data
+  is gracefully transformed into the traditional SAR intensity.
+Consequently, these measures of dis-similarity may be employed in a wide range of application
+  where a scalar number is required to represent the complex multi-dimensional POLSAR data.
+Just like it is shown for the simpler case of SAR data processing\cite{Le_2010_ACRS},
+  when these distances are computed in the log-transformed domain,
+  their theoretical statistic models become additive and homoskedastic.
+The models are shown to be theoretically powerful.
+Not only they can provide alternative and sometimes simpler explainations to a range of theoretical concepts:
+  i.e. change detection test statistics or ENL estimation
+but also a number of results for one-dimensional SAR can be shown as special cases of the POLSAR models.
+They are also pratically versatile enough
+  capable of explaining the imperfect over-sampling practice evident in RADARSAT2 data.
+Finally, to extend our previous work in evaluating SAR speckle filters,
+  the applicaton of these additive and homoskedastic distances in the context of evaluating POLSAR speckle filters is briefly explored
+  with promising results reported.
+        
+\section{Possible Future Work and Conclusion}
+
+\subsection{Possibilities for Future Work}
+
+A fair amount of work has been carried out, published in two conference papers in 2010.
+Still, as described in this report, the opportunities for further investigation are abundant. 
+
+In the field of single channel SAR, further exploitation from the results of log-transformation should be achievable and publishable.
+An immediate opportunity is identified as the estimation of the PDF of the underlying signal in SAR images. 
+The mathematical construction and conceptualization was presented earlier, with implementation under-way.
+In the medium term, a possible protocol for evaluation using homoskedastic mean squared error under various scenarios, made possible through simulation of different ground-truth PDFs is being conceptualized.
+
+On the POLSAR front, the short term focus is to implement speckle filtering for the off-diagonal element in the target's covariance matrix.
+The mathematical conceptualization has been given earlier, with a presentation planned as a paper for IGARSS 2011.
+In a longer time frame, we are hoping to be able to apply log-transformation's homoskedastic features into POLSAR data to find a consistent measure of distance for one of the matrices representing the target's polarimetry signature.
+We are also prepared to render help toward EADS's in-house project investigating the problem of ship identification / classification, ground-truth using AIS data. 
+
+\subsection{Conclusion}
+
+In conclusion, recent advances in computational power have made SAR and multiple-channel SAR become the preferred choice for continuous and autonomous global-scale earth observation and monitoring.
+Some primitive systems have been implemented and become operational for such purposes, e.g. ship monitoring, which have show-cased the capability of the technology.
+Recent advances in multi-channels polarimetric SAR have captured attention, not only within the academic community, but also from industrial players.
+
+There are however certain issues need to be resolved to ensure the extra-information available in POLSAR data leads to better practical implementations.
+%Our pilot study have exposed the trade off between higher-resolution in partial polarimetry modes and lower-resolution in images of full polarimetry, which apparently will continue to be around for many years to come.
+%More importantly it exposed the need of a computational framework, to simulate, experiment and objectively evaluate the performance of different POLSAR processing techniques.
+Our studies have exposed the need for a computation framework, to simulate, experiment, carry out statistical analysis, modelling, validation and evaluation of various SAR and POLSAR processing techniques, most of which can be put within the framework of statistical estimations.
+Our work thus far has developed one such framework for the processing of single-channel SAR data.
+In the next phase of the project, we aim to develop a more elaborated framework for multi-channel POLSAR data processing.
+
+With the availability of such fundamental research, we can probably afford to follow a wider range of subsidiary research questions.
+For the traditional single channel SAR, one sub-topic is our hypothesis that it is possible to estimate the PDF of the true, underlying back-scattering coefficient, at least in the log-transformed domain. 
+Should we succeed in such a task, the technique could be an invaluable contributions to the whole class of MAP speckle filters.
+
+Compared to single-channel SAR, the field of multi-channel POLSAR is much less mature. 
+Thus the application of our intended framework can be expected to bring even better impact publications.
+The first sub-topic that we aim for immediate experiment is the hypothesis that off-diagonal element in the polarimetric covariance matrix element can be speckle filtered through the application of standard SAR techniques on transformed polarization basis intensities.
+In the longer term, we hope to investigate the extension of our homoskedastic log-transformation techniques towards finding a consistent measure for the multi-variate and stochastic POLSAR data.
+%Should the experiments proved successful, an alternative and simpler way to statistically model off-diagonal element can be proposed.
+
+%The previous chapter just elaborated a few of them, which showed the greatest potential and
+%One of such key issues is the filtering of speckle, especially on off-diagonal covariance matrix elements, which also available in partial polarimetric data.
+
+Presented here, and in the previous chapter, are just a few of a whole range of possibilities. 
+With such a diversity available, one of our priorities is to be focused to achieve tangible results.
+We merely choose to present only the sub-topics which showed the greatest potential and which we believe would provide the most impact and leverage for our future work.
+For such tasks, a snap-shot of the project status and the amount of remaining activities is planned and presented in the previous section.
+With continued assistance from EADS Innovation Works Singapore, who is a collaborator of this project and has provided us numerous valuable data and discussion, we believe that the remaining tasks are highly feasible.
+The academic contribution was discussed earlier while the endorsement of EADS speaks volumes about the practical contributions of our research.
+%We believe we have chosen a reasonable group of subsidiary research questions to focus, however we will be delighted to receive any feedback and suggestion from the readers.
+
+%This project, in fact, is part of a collaboration with EADS on the field.
+

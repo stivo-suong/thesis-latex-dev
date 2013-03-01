@@ -1,0 +1,520 @@
+\relax 
+\FN@pp@footnotehinttrue 
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Using the Consistent Measures of Distance}{29}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:applications}{{2}{29}{Using the Consistent Measures of Distance\relax }{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Clustering SAR images using the consistent measures}{29}{section.2.1}}
+\newlabel{sec:k_mle}{{2.1}{29}{Clustering SAR images using the consistent measures\relax }{section.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Developing kMLE clustering Algorithm}{29}{subsection.2.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1.1}Homogeneous Maximum Likelihood Estimation}{29}{subsubsection.2.1.1.1}}
+\newlabel{eqn:conditional_prob}{{2.1}{30}{Homogeneous Maximum Likelihood Estimation\relax }{equation.2.1.1}{}}
+\newlabel{eqn:mle_log_transform}{{2.5}{30}{Homogeneous Maximum Likelihood Estimation\relax }{equation.2.1.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1.2}Heterogeneous k-MLE Clustering}{31}{subsubsection.2.1.1.2}}
+\newlabel{lst:k_mle_algo_template}{{2.1}{31}{k-MLE Clustering Algorithm Template\relax }{lstlisting.2.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}k-MLE Clustering Algorithm Template}{31}{lstlisting.2.1}}
+\newlabel{lst:k_mle_algo_cluster_centers}{{2.2}{31}{Iteratively find better cluster centers\relax }{lstlisting.2.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}Iteratively find better cluster centers}{31}{lstlisting.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1.3}Determining number of clusters}{32}{subsubsection.2.1.1.3}}
+\newlabel{lst:k_mle_algo_partition_number}{{2.3}{33}{Homogenous partitions number growing\relax }{lstlisting.2.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.3}Homogenous partitions number growing}{33}{lstlisting.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Evaluating the kMLE algorithm}{34}{subsection.2.1.2}}
+\newlabel{sec:k_mle_result}{{2.1.2}{34}{Evaluating the kMLE algorithm\relax }{subsection.2.1.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2.1}Using the kMLE clustering algorithm for speckle filtering}{34}{subsubsection.2.1.2.1}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:k_mle_threshold_original}{{2.1a}{35}{Subfigure 2 2.1a\relax }{subfigure.2.1.1}{}}
+\newlabel{sub@fig:k_mle_threshold_original}{{(a)}{a}{Subfigure 2 2.1a\relax }{subfigure.2.1.1}{}}
+\newlabel{fig:k_mle_threshold_25pc}{{2.1b}{35}{Subfigure 2 2.1b\relax }{subfigure.2.1.2}{}}
+\newlabel{sub@fig:k_mle_threshold_25pc}{{(b)}{b}{Subfigure 2 2.1b\relax }{subfigure.2.1.2}{}}
+\newlabel{fig:k_mle_threshold_80pc}{{2.1c}{35}{Subfigure 2 2.1c\relax }{subfigure.2.1.3}{}}
+\newlabel{sub@fig:k_mle_threshold_80pc}{{(c)}{c}{Subfigure 2 2.1c\relax }{subfigure.2.1.3}{}}
+\newlabel{fig:boxcar_filter}{{2.1d}{35}{Subfigure 2 2.1d\relax }{subfigure.2.1.4}{}}
+\newlabel{sub@fig:boxcar_filter}{{(d)}{d}{Subfigure 2 2.1d\relax }{subfigure.2.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Speckle filtering effects by various threshold-value\relax }}{35}{figure.caption.11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {intensity image}}}{35}{subfigure.1.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {3x3 25\% k-MLE filter}}}{35}{subfigure.1.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {3x3 80\% k-MLE filter}}}{35}{subfigure.1.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {3x3 boxcar filter}}}{35}{subfigure.1.4}}
+\newlabel{fig:k_mle_diff_threshold}{{2.1}{35}{Speckle filtering effects by various threshold-value\relax \relax }{figure.caption.11}{}}
+\newlabel{fig:boxcar_5x5}{{2.2a}{36}{Subfigure 2 2.2a\relax }{subfigure.2.2.1}{}}
+\newlabel{sub@fig:boxcar_5x5}{{(a)}{a}{Subfigure 2 2.2a\relax }{subfigure.2.2.1}{}}
+\newlabel{variance}{{2.2b}{36}{Subfigure 2 2.2b\relax }{subfigure.2.2.2}{}}
+\newlabel{sub@variance}{{(b)}{b}{Subfigure 2 2.2b\relax }{subfigure.2.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Blur effects of larger window size\relax }}{36}{figure.caption.12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {5x5 boxcar}}}{36}{subfigure.2.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {5x5 k-MLE}}}{36}{subfigure.2.2}}
+\newlabel{fig:k_mle_iterative_vs_boxcar}{{2.2}{36}{Blur effects of larger window size\relax \relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2.2}Evaluation of the kMLE speckle filter on Simulated targets}{36}{subsubsection.2.1.2.2}}
+\citation{Le_2010_ACRS}
+\newlabel{variance}{{2.3a}{37}{Subfigure 2 2.3a\relax }{subfigure.2.3.1}{}}
+\newlabel{sub@variance}{{(a)}{a}{Subfigure 2 2.3a\relax }{subfigure.2.3.1}{}}
+\newlabel{variance}{{2.3b}{37}{Subfigure 2 2.3b\relax }{subfigure.2.3.2}{}}
+\newlabel{sub@variance}{{(b)}{b}{Subfigure 2 2.3b\relax }{subfigure.2.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Improving Homogenous error with iterative k-MLE filter\relax }}{37}{figure.caption.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {3x3 25\% 4 iteration k-MLE}}}{37}{subfigure.3.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Homogenous Error in log-domain}}}{37}{subfigure.3.2}}
+\newlabel{fig:k_mle_filtering_power}{{2.3}{37}{Improving Homogenous error with iterative k-MLE filter\relax \relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2.3}Evaluation of the kMLE speckle filter on Real Images}{37}{subsubsection.2.1.2.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}SAR Speckle filtering using the consistent measures}{37}{section.2.2}}
+\newlabel{eqn:boxcar}{{2.6}{37}{SAR Speckle filtering using the consistent measures\relax }{equation.2.2.6}{}}
+\newlabel{eqn:kmle}{{2.7}{37}{SAR Speckle filtering using the consistent measures\relax }{equation.2.2.7}{}}
+\newlabel{intensity}{{2.4a}{38}{Subfigure 2 2.4a\relax }{subfigure.2.4.1}{}}
+\newlabel{sub@intensity}{{(a)}{a}{Subfigure 2 2.4a\relax }{subfigure.2.4.1}{}}
+\newlabel{variance}{{2.4b}{38}{Subfigure 2 2.4b\relax }{subfigure.2.4.2}{}}
+\newlabel{sub@variance}{{(b)}{b}{Subfigure 2 2.4b\relax }{subfigure.2.4.2}{}}
+\newlabel{intensity}{{2.4c}{38}{Subfigure 2 2.4c\relax }{subfigure.2.4.3}{}}
+\newlabel{sub@intensity}{{(c)}{c}{Subfigure 2 2.4c\relax }{subfigure.2.4.3}{}}
+\newlabel{variance}{{2.4d}{38}{Subfigure 2 2.4d\relax }{subfigure.2.4.4}{}}
+\newlabel{sub@variance}{{(d)}{d}{Subfigure 2 2.4d\relax }{subfigure.2.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Qualitative evaluation on point targets \relax }}{38}{figure.caption.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {5x5 boxcar filter}}}{38}{subfigure.4.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {iterative k-MLE}}}{38}{subfigure.4.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {3x3 boxcar filter}}}{38}{subfigure.4.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {histogram response}}}{38}{subfigure.4.4}}
+\newlabel{fig:sar_point_target_test_boxcar_k_mle}{{2.4}{38}{Qualitative evaluation on point targets \relax \relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}The FMLE SAR Speckle Filters}{38}{subsection.2.2.1}}
+\newlabel{intensity}{{2.5a}{39}{Subfigure 2 2.5a\relax }{subfigure.2.5.1}{}}
+\newlabel{sub@intensity}{{(a)}{a}{Subfigure 2 2.5a\relax }{subfigure.2.5.1}{}}
+\newlabel{variance}{{2.5b}{39}{Subfigure 2 2.5b\relax }{subfigure.2.5.2}{}}
+\newlabel{sub@variance}{{(b)}{b}{Subfigure 2 2.5b\relax }{subfigure.2.5.2}{}}
+\newlabel{intensity}{{2.5c}{39}{Subfigure 2 2.5c\relax }{subfigure.2.5.3}{}}
+\newlabel{sub@intensity}{{(c)}{c}{Subfigure 2 2.5c\relax }{subfigure.2.5.3}{}}
+\newlabel{variance}{{2.5d}{39}{Subfigure 2 2.5d\relax }{subfigure.2.5.4}{}}
+\newlabel{sub@variance}{{(d)}{d}{Subfigure 2 2.5d\relax }{subfigure.2.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Qualitative evaluation on urban and agricultural areas\relax }}{39}{figure.caption.15}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {urban: intensity image}}}{39}{subfigure.5.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {urban: 3x3 iterative k-MLE}}}{39}{subfigure.5.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {natural: intensity image}}}{39}{subfigure.5.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {natural: 3x3 iterative k-MLE}}}{39}{subfigure.5.4}}
+\newlabel{fig:k_mle_on_RADARSAT2_data}{{2.5}{39}{Qualitative evaluation on urban and agricultural areas\relax \relax }{figure.caption.15}{}}
+\@writefile{brf}{\backcite{Le_2010_ACRS}{{39}{2.2.1}{subsection.2.2.1}}}
+\newlabel{eqn:boxcar}{{2.8}{39}{The FMLE SAR Speckle Filters\relax }{equation.2.2.8}{}}
+\newlabel{eqn:kmle}{{2.9}{39}{The FMLE SAR Speckle Filters\relax }{equation.2.2.9}{}}
+\citation{Le_2010_ACRS}
+\citation{Goodman_JOptSocAm_76}
+\citation{Le_2010_ACRS}
+\@writefile{brf}{\backcite{Le_2010_ACRS}{{40}{2.2.1}{equation.2.2.9}}}
+\@writefile{brf}{\backcite{Goodman_JOptSocAm_76}{{40}{2.2.1}{equation.2.2.9}}}
+\@writefile{brf}{\backcite{Le_2010_ACRS}{{40}{2.2.1}{equation.2.2.9}}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1.1}FMLE Estimation}{40}{subsubsection.2.2.1.1}}
+\newlabel{eqn:fmle_incl}{{2.10}{41}{FMLE Estimation\relax }{equation.2.2.10}{}}
+\newlabel{eqn:fmle_excl}{{2.11}{41}{FMLE Estimation\relax }{equation.2.2.11}{}}
+\newlabel{fig:consistent_contrast_log_domain}{{2.6a}{41}{Subfigure 2 2.6a\relax }{subfigure.2.6.1}{}}
+\newlabel{sub@fig:consistent_contrast_log_domain}{{(a)}{a}{Subfigure 2 2.6a\relax }{subfigure.2.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Consistent Distance Property and the FMLE Estimations\relax }}{41}{figure.caption.16}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Intensity histogram}}}{41}{subfigure.6.1}}
+\newlabel{fig:compare_filters_histograms:Original}{{2.7a}{42}{Subfigure 2 2.7a\relax }{subfigure.2.7.1}{}}
+\newlabel{sub@fig:compare_filters_histograms:Original}{{(a)}{a}{Subfigure 2 2.7a\relax }{subfigure.2.7.1}{}}
+\newlabel{fig:compare_filters_distance_histograms:Original}{{2.7b}{42}{Subfigure 2 2.7b\relax }{subfigure.2.7.2}{}}
+\newlabel{sub@fig:compare_filters_distance_histograms:Original}{{(b)}{b}{Subfigure 2 2.7b\relax }{subfigure.2.7.2}{}}
+\newlabel{fig:compare_filters_distance_histograms:Filtered:incl}{{2.7c}{42}{Subfigure 2 2.7c\relax }{subfigure.2.7.3}{}}
+\newlabel{sub@fig:compare_filters_distance_histograms:Filtered:incl}{{(c)}{c}{Subfigure 2 2.7c\relax }{subfigure.2.7.3}{}}
+\newlabel{fig:compare_filters_distance_histograms:Filtered:excl}{{2.7d}{42}{Subfigure 2 2.7d\relax }{subfigure.2.7.4}{}}
+\newlabel{sub@fig:compare_filters_distance_histograms:Filtered:excl}{{(d)}{d}{Subfigure 2 2.7d\relax }{subfigure.2.7.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Consistent Distance Property and the FMLE Estimations\relax }}{42}{figure.caption.17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Intensity histogram}}}{42}{subfigure.7.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Distance histogram}}}{42}{subfigure.7.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {FMLE (incl) outputs}}}{42}{subfigure.7.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {FMLE (excl) outputs}}}{42}{subfigure.7.4}}
+\newlabel{fig:Consistent_Distance_Property_and_the_FMLE_Estimations}{{2.7}{42}{Consistent Distance Property and the FMLE Estimations\relax \relax }{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1.2}Preservation of Distance Histogram Consistency}{42}{subsubsection.2.2.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1.3}Recursively Applying Fuzzy MLE Filter}{43}{subsubsection.2.2.1.3}}
+\newlabel{fig:plot_incl_distance_pdf_by_iterations.123}{{2.8a}{43}{Subfigure 2 2.8a\relax }{subfigure.2.8.1}{}}
+\newlabel{sub@fig:plot_incl_distance_pdf_by_iterations.123}{{(a)}{a}{Subfigure 2 2.8a\relax }{subfigure.2.8.1}{}}
+\newlabel{fig:plot_incl_distance_pdf_by_iterations.345}{{2.8b}{43}{Subfigure 2 2.8b\relax }{subfigure.2.8.2}{}}
+\newlabel{sub@fig:plot_incl_distance_pdf_by_iterations.345}{{(b)}{b}{Subfigure 2 2.8b\relax }{subfigure.2.8.2}{}}
+\newlabel{fig:plot_excl_distance_pdf_by_iterations.123}{{2.8c}{43}{Subfigure 2 2.8c\relax }{subfigure.2.8.3}{}}
+\newlabel{sub@fig:plot_excl_distance_pdf_by_iterations.123}{{(c)}{c}{Subfigure 2 2.8c\relax }{subfigure.2.8.3}{}}
+\newlabel{fig:plot_excl_distance_pdf_by_iterations.345}{{2.8d}{43}{Subfigure 2 2.8d\relax }{subfigure.2.8.4}{}}
+\newlabel{sub@fig:plot_excl_distance_pdf_by_iterations.345}{{(d)}{d}{Subfigure 2 2.8d\relax }{subfigure.2.8.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Iteratively Improving in Distance Histograms\relax }}{43}{figure.caption.18}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {FMLE (incl): 123}}}{43}{subfigure.8.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {FMLE (incl): 456}}}{43}{subfigure.8.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {FMLE (excl): 123}}}{43}{subfigure.8.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {FMLE (excl): 456}}}{43}{subfigure.8.4}}
+\newlabel{fig:plot_incl_distance_pdf_by_iterations}{{2.8}{43}{Iteratively Improving in Distance Histograms\relax \relax }{figure.caption.18}{}}
+\citation{Touzi_2002_TGRS}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Evaluating the FMLE SAR speckle filters}{44}{subsection.2.2.2}}
+\@writefile{brf}{\backcite{Touzi_2002_TGRS}{{44}{2.2.2}{subsection.2.2.2}}}
+\citation{Nyoungui_2002_IntlJRemoteSense}
+\citation{Hoekman_1991_TGRS}
+\citation{Xie_TGRS_2002}
+\@writefile{brf}{\backcite{Nyoungui_2002_IntlJRemoteSense}{{45}{2.2.2}{subsection.2.2.2}}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.1}Qualititative Evaluation on Real Images}{45}{subsubsection.2.2.2.1}}
+\citation{Mazurowski_2009_IJCNN}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.2}Evaluating Speckle Suppression Effects}{46}{subsubsection.2.2.2.2}}
+\@writefile{brf}{\backcite{Hoekman_1991_TGRS}{{46}{2.2.2.2}{subsubsection.2.2.2.2}}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.3}Evaluating Target Detection Performance}{46}{subsubsection.2.2.2.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.4}Contribution and Conclusions}{47}{subsubsection.2.2.2.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Evaluating SAR Speckle Filters using the consistent measures}{47}{section.2.3}}
+\citation{Touzi_2002_TGRS}
+\@writefile{brf}{\backcite{Touzi_2002_TGRS}{{48}{2.3}{equation.2.3.12}}}
+\citation{You_TIP_2000}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1} Speckle Filtering Process And The Homoskedastic Log-transformed Domain}{49}{subsection.2.3.1}}
+\newlabel{sec:schema_log_images}{{2.3.1}{49}{Speckle Filtering Process And The Homoskedastic Log-transformed Domain\relax }{subsection.2.3.1}{}}
+\@writefile{brf}{\backcite{You_TIP_2000}{{49}{2.3.1}{figure.caption.26}}}
+\newlabel{eqn:eval_metric}{{2.13}{49}{Speckle Filtering Process And The Homoskedastic Log-transformed Domain\relax }{equation.2.3.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Evaluating SAR Speckle Filters Over Homogeneous Areas}{50}{subsection.2.3.2}}
+\citation{Hoekman_1991_TGRS}
+\citation{Xie_2002_TGRS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.1} Estimating ENL from MSE index in homogeneous areas }{51}{subsubsection.2.3.2.1}}
+\newlabel{sec:homogeneous_theoretical}{{2.3.2.1}{51}{Estimating ENL from MSE index in homogeneous areas\relax }{subsubsection.2.3.2.1}{}}
+\@writefile{brf}{\backcite{Hoekman_1991_TGRS}{{51}{2.3.2.1}{subsubsection.2.3.2.1}}}
+\@writefile{brf}{\backcite{Xie_2002_TGRS}{{51}{2.3.2.1}{subsubsection.2.3.2.1}}}
+\newlabel{eqn:perf_index_theoretical}{{2.14}{51}{Estimating ENL from MSE index in homogeneous areas\relax }{equation.2.3.14}{}}
+\newlabel{eqn:perf_index_analytic}{{2.15}{51}{Estimating ENL from MSE index in homogeneous areas\relax }{equation.2.3.15}{}}
+\newlabel{eqn:enl_analytic}{{2.16}{51}{Estimating ENL from MSE index in homogeneous areas\relax }{equation.2.3.16}{}}
+\citation{Solbo_2006_TGRS}
+\citation{Lopes_TGRS_1990}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces  Speckle Suppression Power: ENL and Variance \relax }}{52}{table.caption.28}}
+\newlabel{tab:enl_in_log_domain}{{2.1}{52}{Speckle Suppression Power: ENL and Variance \relax \relax }{table.caption.28}{}}
+\@writefile{brf}{\backcite{Solbo_2006_TGRS}{{52}{2.3.2.1}{table.caption.28}}}
+\@writefile{brf}{\backcite{Lopes_TGRS_1990}{{52}{2.3.2.1}{table.caption.28}}}
+\citation{Hoekman_1991_TGRS}
+\citation{Xie_2002_TGRS}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.2}Using log-variance to evaluate speckle filters}{53}{subsubsection.2.3.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2.3} Estimating ENL from MSE index in homogeneous areas }{53}{subsubsection.2.3.2.3}}
+\@writefile{brf}{\backcite{Hoekman_1991_TGRS}{{53}{2.3.2.3}{subsubsection.2.3.2.3}}}
+\@writefile{brf}{\backcite{Xie_2002_TGRS}{{53}{2.3.2.3}{subsubsection.2.3.2.3}}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces  Filters' Performance: Homogeneous Area \relax }}{54}{table.caption.31}}
+\newlabel{tab:homogeneous_performance_filters}{{2.2}{54}{Filters' Performance: Homogeneous Area \relax \relax }{table.caption.31}{}}
+\newlabel{eqn:perf_index_analytic}{{2.17}{55}{Estimating ENL from MSE index in homogeneous areas\relax }{equation.2.3.17}{}}
+\newlabel{eqn:enl_analytic}{{2.18}{55}{Estimating ENL from MSE index in homogeneous areas\relax }{equation.2.3.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3} Evaluating SAR Speckle Filters over Heterogeneous Scenes }{55}{subsection.2.3.3}}
+\newlabel{sec:eval_hetero}{{2.3.3}{55}{Evaluating SAR Speckle Filters over Heterogeneous Scenes\relax }{subsection.2.3.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces  ENL: Boxcar Filter's Speckle Suppression Power \relax }}{56}{table.caption.32}}
+\newlabel{tab:enl_in_log_domain}{{2.3}{56}{ENL: Boxcar Filter's Speckle Suppression Power \relax \relax }{table.caption.32}{}}
+\FN@pp@footnotehinttrue 
+\newlabel{fig:fmle.natural.incl.iter0}{{2.9a}{59}{Subfigure 2 2.9a\relax }{subfigure.2.9.1}{}}
+\newlabel{sub@fig:fmle.natural.incl.iter0}{{(a)}{a}{Subfigure 2 2.9a\relax }{subfigure.2.9.1}{}}
+\newlabel{fig:boxcar.natural}{{2.9b}{59}{Subfigure 2 2.9b\relax }{subfigure.2.9.2}{}}
+\newlabel{sub@fig:boxcar.natural}{{(b)}{b}{Subfigure 2 2.9b\relax }{subfigure.2.9.2}{}}
+\newlabel{fig:fmle.natural.incl.iter1}{{2.9c}{59}{Subfigure 2 2.9c\relax }{subfigure.2.9.3}{}}
+\newlabel{sub@fig:fmle.natural.incl.iter1}{{(c)}{c}{Subfigure 2 2.9c\relax }{subfigure.2.9.3}{}}
+\newlabel{fig:fmle.natural.incl.iter2}{{2.9d}{59}{Subfigure 2 2.9d\relax }{subfigure.2.9.4}{}}
+\newlabel{sub@fig:fmle.natural.incl.iter2}{{(d)}{d}{Subfigure 2 2.9d\relax }{subfigure.2.9.4}{}}
+\newlabel{fig:fmle.natural.excl.iter1}{{2.9e}{59}{Subfigure 2 2.9e\relax }{subfigure.2.9.5}{}}
+\newlabel{sub@fig:fmle.natural.excl.iter1}{{(e)}{e}{Subfigure 2 2.9e\relax }{subfigure.2.9.5}{}}
+\newlabel{fig:fmle.natural.excl.iter2}{{2.9f}{59}{Subfigure 2 2.9f\relax }{subfigure.2.9.6}{}}
+\newlabel{sub@fig:fmle.natural.excl.iter2}{{(f)}{f}{Subfigure 2 2.9f\relax }{subfigure.2.9.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Qualitative Evaluation of FMLE filter on Real Life Scene of Natural Surface\relax }}{59}{figure.caption.19}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Original}}}{59}{subfigure.9.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Boxcar}}}{59}{subfigure.9.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {FMLE incl, iter 1}}}{59}{subfigure.9.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {FMLE incl, iter 2}}}{59}{subfigure.9.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {FMLE excl, iter 1}}}{59}{subfigure.9.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {FMLE excl, iter 2}}}{59}{subfigure.9.6}}
+\newlabel{fig:fmle.real.images}{{2.9}{59}{Qualitative Evaluation of FMLE filter on Real Life Scene of Natural Surface\relax \relax }{figure.caption.19}{}}
+\newlabel{fig:fmle.urban.excl.iter0}{{2.10a}{60}{Subfigure 2 2.10a\relax }{subfigure.2.10.1}{}}
+\newlabel{sub@fig:fmle.urban.excl.iter0}{{(a)}{a}{Subfigure 2 2.10a\relax }{subfigure.2.10.1}{}}
+\newlabel{fig:boxcar.urban}{{2.10b}{60}{Subfigure 2 2.10b\relax }{subfigure.2.10.2}{}}
+\newlabel{sub@fig:boxcar.urban}{{(b)}{b}{Subfigure 2 2.10b\relax }{subfigure.2.10.2}{}}
+\newlabel{fig:fmle.urban.incl.iter1}{{2.10c}{60}{Subfigure 2 2.10c\relax }{subfigure.2.10.3}{}}
+\newlabel{sub@fig:fmle.urban.incl.iter1}{{(c)}{c}{Subfigure 2 2.10c\relax }{subfigure.2.10.3}{}}
+\newlabel{fig:fmle.urban.incl.iter2}{{2.10d}{60}{Subfigure 2 2.10d\relax }{subfigure.2.10.4}{}}
+\newlabel{sub@fig:fmle.urban.incl.iter2}{{(d)}{d}{Subfigure 2 2.10d\relax }{subfigure.2.10.4}{}}
+\newlabel{fig:fmle.urban.excl.iter1}{{2.10e}{60}{Subfigure 2 2.10e\relax }{subfigure.2.10.5}{}}
+\newlabel{sub@fig:fmle.urban.excl.iter1}{{(e)}{e}{Subfigure 2 2.10e\relax }{subfigure.2.10.5}{}}
+\newlabel{fig:fmle.urban.excl.iter2}{{2.10f}{60}{Subfigure 2 2.10f\relax }{subfigure.2.10.6}{}}
+\newlabel{sub@fig:fmle.urban.excl.iter2}{{(f)}{f}{Subfigure 2 2.10f\relax }{subfigure.2.10.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces Qualitative Evaluation of FMLE filter on Real Life Scene of Urban Landscape\relax }}{60}{figure.caption.20}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Original}}}{60}{subfigure.10.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Boxcar}}}{60}{subfigure.10.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {FMLE incl, iter 1}}}{60}{subfigure.10.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {FMLE incl, iter 2}}}{60}{subfigure.10.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {FMLE excl, iter 1}}}{60}{subfigure.10.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {FMLE excl, iter 2}}}{60}{subfigure.10.6}}
+\newlabel{fig:fmle.real.images}{{2.10}{60}{Qualitative Evaluation of FMLE filter on Real Life Scene of Urban Landscape\relax \relax }{figure.caption.20}{}}
+\newlabel{fig:distance_pdf_simulation_iterative.incl}{{2.11a}{62}{Subfigure 2 2.11a\relax }{subfigure.2.11.1}{}}
+\newlabel{sub@fig:distance_pdf_simulation_iterative.incl}{{(a)}{a}{Subfigure 2 2.11a\relax }{subfigure.2.11.1}{}}
+\newlabel{fig:distance_pdf_simulation_iterative.excl}{{2.11b}{62}{Subfigure 2 2.11b\relax }{subfigure.2.11.2}{}}
+\newlabel{sub@fig:distance_pdf_simulation_iterative.excl}{{(b)}{b}{Subfigure 2 2.11b\relax }{subfigure.2.11.2}{}}
+\newlabel{fig:distance_pdf_simulation_iterative.incl.5x5}{{2.11c}{62}{Subfigure 2 2.11c\relax }{subfigure.2.11.3}{}}
+\newlabel{sub@fig:distance_pdf_simulation_iterative.incl.5x5}{{(c)}{c}{Subfigure 2 2.11c\relax }{subfigure.2.11.3}{}}
+\newlabel{fig:distance_pdf_simulation_iterative.excl.5x5}{{2.11d}{62}{Subfigure 2 2.11d\relax }{subfigure.2.11.4}{}}
+\newlabel{sub@fig:distance_pdf_simulation_iterative.excl.5x5}{{(d)}{d}{Subfigure 2 2.11d\relax }{subfigure.2.11.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces Homogeneous Area: MSE criteria and speckle suppression power of FMLE filters\relax }}{62}{figure.caption.22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {MSE (incl, 3x3)}}}{62}{subfigure.11.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {MSE (excl, 3x3)}}}{62}{subfigure.11.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {MSE (incl, 5x5)}}}{62}{subfigure.11.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {MSE (excl, 5x5)}}}{62}{subfigure.11.4}}
+\newlabel{fig:Homogeneous_Area}{{2.11}{62}{Homogeneous Area: MSE criteria and speckle suppression power of FMLE filters\relax \relax }{figure.caption.22}{}}
+\newlabel{fig:illustrate_ROC_curve.pdf.s.made.eps}{{2.12a}{63}{Subfigure 2 2.12a\relax }{subfigure.2.12.1}{}}
+\newlabel{sub@fig:illustrate_ROC_curve.pdf.s.made.eps}{{(a)}{a}{Subfigure 2 2.12a\relax }{subfigure.2.12.1}{}}
+\newlabel{fig:illustrate_ROC_curve.pdf.m.made.eps}{{2.12b}{63}{Subfigure 2 2.12b\relax }{subfigure.2.12.2}{}}
+\newlabel{sub@fig:illustrate_ROC_curve.pdf.m.made.eps}{{(b)}{b}{Subfigure 2 2.12b\relax }{subfigure.2.12.2}{}}
+\newlabel{fig:log_illustrate_ROC_curve.pdf.s.made.eps}{{2.12c}{63}{Subfigure 2 2.12c\relax }{subfigure.2.12.3}{}}
+\newlabel{sub@fig:log_illustrate_ROC_curve.pdf.s.made.eps}{{(c)}{c}{Subfigure 2 2.12c\relax }{subfigure.2.12.3}{}}
+\newlabel{fig:log_illustrate_ROC_curve.pdf.m.made.eps}{{2.12d}{63}{Subfigure 2 2.12d\relax }{subfigure.2.12.4}{}}
+\newlabel{sub@fig:log_illustrate_ROC_curve.pdf.m.made.eps}{{(d)}{d}{Subfigure 2 2.12d\relax }{subfigure.2.12.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces Histogram Discriminality and the ROC Curve\relax }}{63}{figure.caption.23}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {SLC Intensity}}}{63}{subfigure.12.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {9-Look Intensity}}}{63}{subfigure.12.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {SLC log-intensity}}}{63}{subfigure.12.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {9-Look log-intensity}}}{63}{subfigure.12.4}}
+\newlabel{fig:PDF_Discriminality}{{2.12}{63}{Histogram Discriminality and the ROC Curve\relax \relax }{figure.caption.23}{}}
+\newlabel{fig:illustrate_ROC_curve.roc}{{\caption@xref {fig:illustrate_ROC_curve.roc}{ on input line 898}}{64}{Evaluating Target Detection Performance\relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.13}{\ignorespaces Invariant ROC Curve\relax }}{64}{figure.caption.24}}
+\newlabel{fig:point_target_pattern}{{2.14a}{64}{Subfigure 2 2.14a\relax }{subfigure.2.14.1}{}}
+\newlabel{sub@fig:point_target_pattern}{{(a)}{a}{Subfigure 2 2.14a\relax }{subfigure.2.14.1}{}}
+\newlabel{fig:edge_pattern}{{2.14b}{64}{Subfigure 2 2.14b\relax }{subfigure.2.14.2}{}}
+\newlabel{sub@fig:edge_pattern}{{(b)}{b}{Subfigure 2 2.14b\relax }{subfigure.2.14.2}{}}
+\newlabel{fig:line_pattern}{{2.14c}{64}{Subfigure 2 2.14c\relax }{subfigure.2.14.3}{}}
+\newlabel{sub@fig:line_pattern}{{(c)}{c}{Subfigure 2 2.14c\relax }{subfigure.2.14.3}{}}
+\newlabel{fig:dotted_pattern}{{2.14d}{64}{Subfigure 2 2.14d\relax }{subfigure.2.14.4}{}}
+\newlabel{sub@fig:dotted_pattern}{{(d)}{d}{Subfigure 2 2.14d\relax }{subfigure.2.14.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.14}{\ignorespaces Heterogeneous Patterns: MSE criteria and FMLE performance\relax }}{64}{figure.caption.25}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Point Target}}}{64}{subfigure.14.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Edge}}}{64}{subfigure.14.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Line}}}{64}{subfigure.14.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Dotted Pattern}}}{64}{subfigure.14.4}}
+\newlabel{fig:Heterogeneous_Patterns}{{2.14}{64}{Heterogeneous Patterns: MSE criteria and FMLE performance\relax \relax }{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.15}{\ignorespaces SAR simulation, processing and filtering schema\relax }}{64}{figure.caption.26}}
+\newlabel{fig:simul_process_filter_schema}{{2.15}{64}{SAR simulation, processing and filtering schema\relax \relax }{figure.caption.26}{}}
+\newlabel{amplitude}{{2.16a}{65}{Subfigure 2 2.16a\relax }{subfigure.2.16.1}{}}
+\newlabel{sub@amplitude}{{(a)}{a}{Subfigure 2 2.16a\relax }{subfigure.2.16.1}{}}
+\newlabel{intensity}{{2.16b}{65}{Subfigure 2 2.16b\relax }{subfigure.2.16.2}{}}
+\newlabel{sub@intensity}{{(b)}{b}{Subfigure 2 2.16b\relax }{subfigure.2.16.2}{}}
+\newlabel{amplitude}{{2.16c}{65}{Subfigure 2 2.16c\relax }{subfigure.2.16.3}{}}
+\newlabel{sub@amplitude}{{(c)}{c}{Subfigure 2 2.16c\relax }{subfigure.2.16.3}{}}
+\newlabel{intensity}{{2.16d}{65}{Subfigure 2 2.16d\relax }{subfigure.2.16.4}{}}
+\newlabel{sub@intensity}{{(d)}{d}{Subfigure 2 2.16d\relax }{subfigure.2.16.4}{}}
+\newlabel{amplitude}{{2.16e}{65}{Subfigure 2 2.16e\relax }{subfigure.2.16.5}{}}
+\newlabel{sub@amplitude}{{(e)}{e}{Subfigure 2 2.16e\relax }{subfigure.2.16.5}{}}
+\newlabel{intensity}{{2.16f}{65}{Subfigure 2 2.16f\relax }{subfigure.2.16.6}{}}
+\newlabel{sub@intensity}{{(f)}{f}{Subfigure 2 2.16f\relax }{subfigure.2.16.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.16}{\ignorespaces Visualising Removed ``Noise'': Ratio images in the original domain vs. Residual images in the log-transformed domain\relax }}{65}{figure.caption.27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Original Patch}}}{65}{subfigure.16.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Boxcar Filtered Result}}}{65}{subfigure.16.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Ratio: Filtered / Original}}}{65}{subfigure.16.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Ratio: Original / Filtered}}}{65}{subfigure.16.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Log Residual: Filtered - Original}}}{65}{subfigure.16.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Log Residual: Original - Filtered}}}{65}{subfigure.16.6}}
+\newlabel{fig:real_image_ratio_vs_residual}{{2.16}{65}{Visualising Removed ``Noise'': Ratio images in the original domain vs. Residual images in the log-transformed domain\relax \relax }{figure.caption.27}{}}
+\newlabel{amplitude}{{2.17a}{66}{Subfigure 2 2.17a\relax }{subfigure.2.17.1}{}}
+\newlabel{sub@amplitude}{{(a)}{a}{Subfigure 2 2.17a\relax }{subfigure.2.17.1}{}}
+\newlabel{intensity}{{2.17b}{66}{Subfigure 2 2.17b\relax }{subfigure.2.17.2}{}}
+\newlabel{sub@intensity}{{(b)}{b}{Subfigure 2 2.17b\relax }{subfigure.2.17.2}{}}
+\newlabel{amplitude}{{2.17c}{66}{Subfigure 2 2.17c\relax }{subfigure.2.17.3}{}}
+\newlabel{sub@amplitude}{{(c)}{c}{Subfigure 2 2.17c\relax }{subfigure.2.17.3}{}}
+\newlabel{intensity}{{2.17d}{66}{Subfigure 2 2.17d\relax }{subfigure.2.17.4}{}}
+\newlabel{sub@intensity}{{(d)}{d}{Subfigure 2 2.17d\relax }{subfigure.2.17.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.17}{\ignorespaces The Inconsistency evident in the original SAR domain and the Emerged Consistency demonstrated in the log-transformed domain\relax }}{66}{figure.caption.29}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Single Look (Intensity)}}}{66}{subfigure.17.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Multi Look (Intensity)}}}{66}{subfigure.17.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Single-Look in Log Domain}}}{66}{subfigure.17.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Multi-Look in Log Domain}}}{66}{subfigure.17.4}}
+\newlabel{fig:log_consistency_model}{{2.17}{66}{The Inconsistency evident in the original SAR domain and the Emerged Consistency demonstrated in the log-transformed domain\relax \relax }{figure.caption.29}{}}
+\newlabel{amplitude}{{2.18a}{67}{Subfigure 2 2.18a\relax }{subfigure.2.18.1}{}}
+\newlabel{sub@amplitude}{{(a)}{a}{Subfigure 2 2.18a\relax }{subfigure.2.18.1}{}}
+\newlabel{intensity}{{2.18b}{67}{Subfigure 2 2.18b\relax }{subfigure.2.18.2}{}}
+\newlabel{sub@intensity}{{(b)}{b}{Subfigure 2 2.18b\relax }{subfigure.2.18.2}{}}
+\newlabel{amplitude}{{2.18c}{67}{Subfigure 2 2.18c\relax }{subfigure.2.18.3}{}}
+\newlabel{sub@amplitude}{{(c)}{c}{Subfigure 2 2.18c\relax }{subfigure.2.18.3}{}}
+\newlabel{intensity}{{2.18d}{67}{Subfigure 2 2.18d\relax }{subfigure.2.18.4}{}}
+\newlabel{sub@intensity}{{(d)}{d}{Subfigure 2 2.18d\relax }{subfigure.2.18.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces Filtered results: consistency in log-transformed domain\relax }}{67}{figure.caption.30}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Lee filter}}}{67}{subfigure.18.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Kuan Filter}}}{67}{subfigure.18.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Frost Filter}}}{67}{subfigure.18.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Gamma MAP filter}}}{67}{subfigure.18.4}}
+\newlabel{fig:log_consistency_filters}{{2.18}{67}{Filtered results: consistency in log-transformed domain\relax \relax }{figure.caption.30}{}}
+\newlabel{amplitude}{{2.19a}{68}{Subfigure 2 2.19a\relax }{subfigure.2.19.1}{}}
+\newlabel{sub@amplitude}{{(a)}{a}{Subfigure 2 2.19a\relax }{subfigure.2.19.1}{}}
+\newlabel{intensity}{{2.19b}{68}{Subfigure 2 2.19b\relax }{subfigure.2.19.2}{}}
+\newlabel{sub@intensity}{{(b)}{b}{Subfigure 2 2.19b\relax }{subfigure.2.19.2}{}}
+\newlabel{amplitude}{{2.19c}{68}{Subfigure 2 2.19c\relax }{subfigure.2.19.3}{}}
+\newlabel{sub@amplitude}{{(c)}{c}{Subfigure 2 2.19c\relax }{subfigure.2.19.3}{}}
+\newlabel{intensity}{{2.19d}{68}{Subfigure 2 2.19d\relax }{subfigure.2.19.4}{}}
+\newlabel{sub@intensity}{{(d)}{d}{Subfigure 2 2.19d\relax }{subfigure.2.19.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces Example windows of ground truth patterns, each $32 \times 32$ pixels in size.\relax }}{68}{figure.caption.33}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Line: each line is 2 pixels wide, separated by 6 pixels background}}}{68}{subfigure.19.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Edge: each stripe is 4 pixels in width}}}{68}{subfigure.19.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Point: each point is a $2 \times 2$ square spacing 6 pixels apart}}}{68}{subfigure.19.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Checker board: the squares are 4 pixels wide each side}}}{68}{subfigure.19.4}}
+\newlabel{fig:hetero_patterns}{{2.19}{68}{Example windows of ground truth patterns, each $32 \times 32$ pixels in size.\relax \relax }{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}Using MSE to find the most suitable speckle filter for practical SAR images}{69}{subsection.2.3.4}}
+\newlabel{sec:practical_conjecture}{{2.3.4}{69}{Using MSE to find the most suitable speckle filter for practical SAR images\relax }{subsection.2.3.4}{}}
+\newlabel{fig:hetero_patterns_roc_auc:amplitude}{{2.20a}{70}{Subfigure 2 2.20a\relax }{subfigure.2.20.1}{}}
+\newlabel{sub@fig:hetero_patterns_roc_auc:amplitude}{{(a)}{a}{Subfigure 2 2.20a\relax }{subfigure.2.20.1}{}}
+\newlabel{fig:hetero_patterns_roc_auc:intensity}{{2.20b}{70}{Subfigure 2 2.20b\relax }{subfigure.2.20.2}{}}
+\newlabel{sub@fig:hetero_patterns_roc_auc:intensity}{{(b)}{b}{Subfigure 2 2.20b\relax }{subfigure.2.20.2}{}}
+\newlabel{fig:hetero_patterns_roc_auc:hist_unfiltered}{{2.20c}{70}{Subfigure 2 2.20c\relax }{subfigure.2.20.3}{}}
+\newlabel{sub@fig:hetero_patterns_roc_auc:hist_unfiltered}{{(c)}{c}{Subfigure 2 2.20c\relax }{subfigure.2.20.3}{}}
+\newlabel{fig:hetero_patterns_roc_auc:hist_kuan_filtered}{{2.20d}{70}{Subfigure 2 2.20d\relax }{subfigure.2.20.4}{}}
+\newlabel{sub@fig:hetero_patterns_roc_auc:hist_kuan_filtered}{{(d)}{d}{Subfigure 2 2.20d\relax }{subfigure.2.20.4}{}}
+\newlabel{fig:hetero_patterns_roc_auc:roc_unfiltered}{{2.20e}{70}{Subfigure 2 2.20e\relax }{subfigure.2.20.5}{}}
+\newlabel{sub@fig:hetero_patterns_roc_auc:roc_unfiltered}{{(e)}{e}{Subfigure 2 2.20e\relax }{subfigure.2.20.5}{}}
+\newlabel{fig:hetero_patterns_roc_auc:roc_kuan_filtered}{{2.20f}{70}{Subfigure 2 2.20f\relax }{subfigure.2.20.6}{}}
+\newlabel{sub@fig:hetero_patterns_roc_auc:roc_kuan_filtered}{{(f)}{f}{Subfigure 2 2.20f\relax }{subfigure.2.20.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.20}{\ignorespaces Target and Clutter Separability: Histograms and resulting ROC Curve visualisation\relax }}{70}{figure.caption.34}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Simulated Image}}}{70}{subfigure.20.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Kuan Filtered Image}}}{70}{subfigure.20.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Histograms: Unfiltered}}}{70}{subfigure.20.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Histograms: Kuan Filtered}}}{70}{subfigure.20.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {ROC: Unfiltered, AUC=0.738}}}{70}{subfigure.20.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {ROC: Kuan Filtered, AUC=0.885}}}{70}{subfigure.20.6}}
+\newlabel{fig:hetero_patterns_roc_auc}{{2.20}{70}{Target and Clutter Separability: Histograms and resulting ROC Curve visualisation\relax \relax }{figure.caption.34}{}}
+\newlabel{fig:hetero_patterns_mse:amplitude}{{2.21a}{71}{Subfigure 2 2.21a\relax }{subfigure.2.21.1}{}}
+\newlabel{sub@fig:hetero_patterns_mse:amplitude}{{(a)}{a}{Subfigure 2 2.21a\relax }{subfigure.2.21.1}{}}
+\newlabel{fig:hetero_patterns_mse:intensity}{{2.21b}{71}{Subfigure 2 2.21b\relax }{subfigure.2.21.2}{}}
+\newlabel{sub@fig:hetero_patterns_mse:intensity}{{(b)}{b}{Subfigure 2 2.21b\relax }{subfigure.2.21.2}{}}
+\newlabel{fig:hetero_patterns_mse:unfiltered}{{2.21c}{71}{Subfigure 2 2.21c\relax }{subfigure.2.21.3}{}}
+\newlabel{sub@fig:hetero_patterns_mse:unfiltered}{{(c)}{c}{Subfigure 2 2.21c\relax }{subfigure.2.21.3}{}}
+\newlabel{fig:hetero_patterns_mse:kuan_filtered}{{2.21d}{71}{Subfigure 2 2.21d\relax }{subfigure.2.21.4}{}}
+\newlabel{sub@fig:hetero_patterns_mse:kuan_filtered}{{(d)}{d}{Subfigure 2 2.21d\relax }{subfigure.2.21.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.21}{\ignorespaces Bias Error Investigation: Image and Histogram Visualisation\relax }}{71}{figure.caption.35}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Error Image: Unfiltered}}}{71}{subfigure.21.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Error Image: Kuan Filtered}}}{71}{subfigure.21.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Error Histograms: Unfiltered}}}{71}{subfigure.21.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Error Histograms: Kuan-filtered}}}{71}{subfigure.21.4}}
+\newlabel{fig:hetero_patterns_mse}{{2.21}{71}{Bias Error Investigation: Image and Histogram Visualisation\relax \relax }{figure.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces Lower MSE suggest better feature detection, measured by the AUC index\relax }}{72}{table.caption.36}}
+\newlabel{tab:mse_auc_in_log_domain}{{2.4}{72}{Lower MSE suggest better feature detection, measured by the AUC index\relax \relax }{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.5}{\ignorespaces The correlation between MSE and AUC evaluation criteria (inside the brackets are corresponding p-values)\relax }}{72}{table.caption.37}}
+\newlabel{tab:mse_auc_corr_coeff}{{2.5}{72}{The correlation between MSE and AUC evaluation criteria (inside the brackets are corresponding p-values)\relax \relax }{table.caption.37}{}}
+\newlabel{amplitude}{{2.22a}{73}{Subfigure 2 2.22a\relax }{subfigure.2.22.1}{}}
+\newlabel{sub@amplitude}{{(a)}{a}{Subfigure 2 2.22a\relax }{subfigure.2.22.1}{}}
+\newlabel{intensity}{{2.22b}{73}{Subfigure 2 2.22b\relax }{subfigure.2.22.2}{}}
+\newlabel{sub@intensity}{{(b)}{b}{Subfigure 2 2.22b\relax }{subfigure.2.22.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.22}{\ignorespaces Ground Truth Images for simulation\relax }}{73}{figure.caption.38}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {A Rural Area in Vietnam}}}{73}{subfigure.22.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {A Suburb of Ha Noi}}}{73}{subfigure.22.2}}
+\newlabel{fig:real_simulated_images}{{2.22}{73}{Ground Truth Images for simulation\relax \relax }{figure.caption.38}{}}
+\newlabel{amplitude}{{2.23a}{74}{Subfigure 2 2.23a\relax }{subfigure.2.23.1}{}}
+\newlabel{sub@amplitude}{{(a)}{a}{Subfigure 2 2.23a\relax }{subfigure.2.23.1}{}}
+\newlabel{intensity}{{2.23b}{74}{Subfigure 2 2.23b\relax }{subfigure.2.23.2}{}}
+\newlabel{sub@intensity}{{(b)}{b}{Subfigure 2 2.23b\relax }{subfigure.2.23.2}{}}
+\newlabel{amplitude}{{2.23c}{74}{Subfigure 2 2.23c\relax }{subfigure.2.23.3}{}}
+\newlabel{sub@amplitude}{{(c)}{c}{Subfigure 2 2.23c\relax }{subfigure.2.23.3}{}}
+\newlabel{intensity}{{2.23d}{74}{Subfigure 2 2.23d\relax }{subfigure.2.23.4}{}}
+\newlabel{sub@intensity}{{(d)}{d}{Subfigure 2 2.23d\relax }{subfigure.2.23.4}{}}
+\newlabel{amplitude}{{2.23e}{74}{Subfigure 2 2.23e\relax }{subfigure.2.23.5}{}}
+\newlabel{sub@amplitude}{{(e)}{e}{Subfigure 2 2.23e\relax }{subfigure.2.23.5}{}}
+\newlabel{intensity}{{2.23f}{74}{Subfigure 2 2.23f\relax }{subfigure.2.23.6}{}}
+\newlabel{sub@intensity}{{(f)}{f}{Subfigure 2 2.23f\relax }{subfigure.2.23.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.23}{\ignorespaces Filtering Simulated Real Images: Qualititative Validation\relax }}{74}{figure.caption.40}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Ground-Truth Image }}}{74}{subfigure.23.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Unfiltered Image $MSE_{true}=MSE_{base}=4.1174$}}}{74}{subfigure.23.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {PDE Result: $MSE_{true}=3.8022,MSE_{noise}=0.0073$}}}{74}{subfigure.23.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Lee Result: $MSE_{true}=0.4984,MSE_{noise}=3.25553$}}}{74}{subfigure.23.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Frost Result: $MSE_{true}=0.3490, MSE_{noise} = 4.6856$}}}{74}{subfigure.23.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Boxcar Result: $MSE_{true} = 0.3107, MSE_{noise}= 4.2328$}}}{74}{subfigure.23.6}}
+\newlabel{fig:real_simulated_image_results}{{2.23}{74}{Filtering Simulated Real Images: Qualititative Validation\relax \relax }{figure.caption.40}{}}
+\citation{Arsenault_JOptSocAm_1976}
+\citation{Le_2011_ACRS}
+\@writefile{lot}{\contentsline {table}{\numberline {2.6}{\ignorespaces If the best filters are the ones with smallest true MSE, then their observable noise-MSE are also the ones closest to the MSE of inherent noise\relax }}{75}{table.caption.39}}
+\newlabel{tab:mse_true_noise_log_domain}{{2.6}{75}{If the best filters are the ones with smallest true MSE, then their observable noise-MSE are also the ones closest to the MSE of inherent noise\relax \relax }{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.7}{\ignorespaces Our Conjecture: Most Suitable Speckle Filter For The Scene Can Be Chosen Using The Residual MSE.\relax }}{75}{table.caption.41}}
+\newlabel{tab:mse_in_real_image}{{2.7}{75}{Our Conjecture: Most Suitable Speckle Filter For The Scene Can Be Chosen Using The Residual MSE.\relax \relax }{table.caption.41}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.5}Discussion and Conclusions}{75}{subsection.2.3.5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.5.1}Discussion}{75}{subsubsection.2.3.5.1}}
+\newlabel{amplitude}{{2.24a}{76}{Subfigure 2 2.24a\relax }{subfigure.2.24.1}{}}
+\newlabel{sub@amplitude}{{(a)}{a}{Subfigure 2 2.24a\relax }{subfigure.2.24.1}{}}
+\newlabel{intensity}{{2.24b}{76}{Subfigure 2 2.24b\relax }{subfigure.2.24.2}{}}
+\newlabel{sub@intensity}{{(b)}{b}{Subfigure 2 2.24b\relax }{subfigure.2.24.2}{}}
+\newlabel{amplitude}{{2.24c}{76}{Subfigure 2 2.24c\relax }{subfigure.2.24.3}{}}
+\newlabel{sub@amplitude}{{(c)}{c}{Subfigure 2 2.24c\relax }{subfigure.2.24.3}{}}
+\newlabel{intensity}{{2.24d}{76}{Subfigure 2 2.24d\relax }{subfigure.2.24.4}{}}
+\newlabel{sub@intensity}{{(d)}{d}{Subfigure 2 2.24d\relax }{subfigure.2.24.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.24}{\ignorespaces Filtering Real Images: Smaller $MSE_{benchmark}$ suggests visually better images\relax }}{76}{figure.caption.42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {PDE Filter: $MSE_{benchmark}=3.8584$}}}{76}{subfigure.24.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {MAP Filter: $MSE_{benchmark}=1.4231$}}}{76}{subfigure.24.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Lee Filter: $MSE_{benchmark}=0.6995$}}}{76}{subfigure.24.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Frost Filter: $MSE_{benchmark}=0.0024$}}}{76}{subfigure.24.4}}
+\newlabel{fig:real_image_results}{{2.24}{76}{Filtering Real Images: Smaller $MSE_{benchmark}$ suggests visually better images\relax \relax }{figure.caption.42}{}}
+\citation{You_TIP_2000}
+\@writefile{brf}{\backcite{Arsenault_JOptSocAm_1976}{{77}{2.3.5.1}{subsubsection.2.3.5.1}}}
+\@writefile{brf}{\backcite{Le_2011_ACRS}{{77}{2.3.5.1}{subsubsection.2.3.5.1}}}
+\@writefile{brf}{\backcite{You_TIP_2000}{{77}{2.3.5.1}{subsubsection.2.3.5.1}}}
+\FN@pp@footnote@aux{1}{78}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.5.2}Conclusion}{79}{subsubsection.2.3.5.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Evaluating POLSAR Speckle Filters using the consistent measures}{80}{section.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}POLSAR ENL Estimation using the Homoskedastic Property}{80}{subsection.2.4.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.8}{\ignorespaces  POLSAR Speckle Suppression Power: ENL and Variance Log-Determinant \relax }}{81}{table.caption.43}}
+\newlabel{tab:enl_in_log_domain}{{2.8}{81}{POLSAR Speckle Suppression Power: ENL and Variance Log-Determinant \relax \relax }{table.caption.43}{}}
+\newlabel{dispersion_2x2}{{2.25a}{82}{Subfigure 2 2.25a\relax }{subfigure.2.25.1}{}}
+\newlabel{sub@dispersion_2x2}{{(a)}{a}{Subfigure 2 2.25a\relax }{subfigure.2.25.1}{}}
+\newlabel{contrast_2x2}{{2.25b}{82}{Subfigure 2 2.25b\relax }{subfigure.2.25.2}{}}
+\newlabel{sub@contrast_2x2}{{(b)}{b}{Subfigure 2 2.25b\relax }{subfigure.2.25.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.25}{\ignorespaces Checking the preservation of the consistency property for POLSAR speckle filters\relax }}{82}{figure.caption.44}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {preserving consistency property: boxcar filter}}}{82}{subfigure.25.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {preserving consistency property: fmle filter}}}{82}{subfigure.25.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Evaluating POLSAR Speckle Filters over Homogeneous Areas}{82}{subsection.2.4.2}}
+\newlabel{log_determinant}{{2.26a}{83}{Subfigure 2 2.26a\relax }{subfigure.2.26.1}{}}
+\newlabel{sub@log_determinant}{{(a)}{a}{Subfigure 2 2.26a\relax }{subfigure.2.26.1}{}}
+\newlabel{contrast}{{2.26b}{83}{Subfigure 2 2.26b\relax }{subfigure.2.26.2}{}}
+\newlabel{sub@contrast}{{(b)}{b}{Subfigure 2 2.26b\relax }{subfigure.2.26.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.26}{\ignorespaces POLSAR 3x3 boxcar filter preserves the consistency property. Consistency means: as long as the area is homogeneous, regardless of the underlysing signal $\Sigma _v$ the shapes of the histograms should be the same.\relax }}{83}{figure.caption.45}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Log-determinants histograms of boxcar 3x3 speckle filter}}}{83}{subfigure.26.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Contrast histograms of boxcar 3x3 speckle filter}}}{83}{subfigure.26.2}}
+\newlabel{fig:boxcar_3x3_preserves_consistency}{{2.26}{83}{POLSAR 3x3 boxcar filter preserves the consistency property. Consistency means: as long as the area is homogeneous, regardless of the underlysing signal $\Sigma _v$ the shapes of the histograms should be the same.\relax \relax }{figure.caption.45}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Evaluating POLSAR Speckle Filters over Heterogeneous Areas}{83}{subsection.2.4.3}}
+\FN@pp@footnotehinttrue 
+\newlabel{multi_look_dispersion}{{2.27a}{85}{Subfigure 2 2.27a\relax }{subfigure.2.27.1}{}}
+\newlabel{sub@multi_look_dispersion}{{(a)}{a}{Subfigure 2 2.27a\relax }{subfigure.2.27.1}{}}
+\newlabel{multi_look_contrast}{{2.27b}{85}{Subfigure 2 2.27b\relax }{subfigure.2.27.2}{}}
+\newlabel{sub@multi_look_contrast}{{(b)}{b}{Subfigure 2 2.27b\relax }{subfigure.2.27.2}{}}
+\newlabel{multi_look_dispersion}{{2.27c}{85}{Subfigure 2 2.27c\relax }{subfigure.2.27.3}{}}
+\newlabel{sub@multi_look_dispersion}{{(c)}{c}{Subfigure 2 2.27c\relax }{subfigure.2.27.3}{}}
+\newlabel{multi_look_contrast}{{2.27d}{85}{Subfigure 2 2.27d\relax }{subfigure.2.27.4}{}}
+\newlabel{sub@multi_look_contrast}{{(d)}{d}{Subfigure 2 2.27d\relax }{subfigure.2.27.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.27}{\ignorespaces Visually Evaluating POLSAR Boxcar 3x3 vs. 5x5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. \relax }}{85}{figure.caption.46}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Log-determinant Image of boxcar 3x3 speckle filter}}}{85}{subfigure.27.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Log-determinant Image of boxcar 5x5 speckle filter}}}{85}{subfigure.27.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Image of Log-determinant Residual for 3x3 filter (MSE=1.5594)}}}{85}{subfigure.27.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Image of Log-determinant Residual for 5x5 filter (MSE=2.1420)}}}{85}{subfigure.27.4}}
+\newlabel{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}{{2.27}{85}{Visually Evaluating POLSAR Boxcar 3x3 vs. 5x5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. \relax \relax }{figure.caption.46}{}}
+\newlabel{dispersion_2x2}{{2.28a}{86}{Subfigure 2 2.28a\relax }{subfigure.2.28.1}{}}
+\newlabel{sub@dispersion_2x2}{{(a)}{a}{Subfigure 2 2.28a\relax }{subfigure.2.28.1}{}}
+\newlabel{contrast_2x2}{{2.28b}{86}{Subfigure 2 2.28b\relax }{subfigure.2.28.2}{}}
+\newlabel{sub@contrast_2x2}{{(b)}{b}{Subfigure 2 2.28b\relax }{subfigure.2.28.2}{}}
+\newlabel{dispersion_2x2}{{2.28c}{86}{Subfigure 2 2.28c\relax }{subfigure.2.28.3}{}}
+\newlabel{sub@dispersion_2x2}{{(c)}{c}{Subfigure 2 2.28c\relax }{subfigure.2.28.3}{}}
+\newlabel{contrast_2x2}{{2.28d}{86}{Subfigure 2 2.28d\relax }{subfigure.2.28.4}{}}
+\newlabel{sub@contrast_2x2}{{(d)}{d}{Subfigure 2 2.28d\relax }{subfigure.2.28.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.28}{\ignorespaces AIRSAR image in log-determinant format and its variance as an edge-indicator\relax }}{86}{figure.caption.47}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {boxcar filter: log-determinant image}}}{86}{subfigure.28.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {boxcar filter: residual image}}}{86}{subfigure.28.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {fmle filter: log-determinant image}}}{86}{subfigure.28.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {fmle filter: residual image}}}{86}{subfigure.28.4}}
+\@setckpt{5/applications}{
+\setcounter{page}{87}
+\setcounter{equation}{22}
+\setcounter{enumi}{3}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{2}
+\setcounter{section}{4}
+\setcounter{subsection}{3}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{28}
+\setcounter{table}{8}
+\setcounter{ContinuedFloat}{0}
+\setcounter{pp@next@reset}{2}
+\setcounter{@fnserial}{1}
+\setcounter{NAT@ctr}{0}
+\setcounter{Item}{10}
+\setcounter{Hfootnote}{1}
+\setcounter{bookmark@seq@number}{61}
+\setcounter{float@type}{8}
+\setcounter{parentequation}{13}
+\setcounter{lstnumber}{39}
+\setcounter{KVtest}{1}
+\setcounter{subfigure}{0}
+\setcounter{subfigure@save}{4}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{subtable@save}{0}
+\setcounter{lotdepth}{1}
+\setcounter{myequations}{0}
+\setcounter{equdepth}{1}
+\setcounter{section@level}{2}
+\setcounter{lstlisting}{3}
+}

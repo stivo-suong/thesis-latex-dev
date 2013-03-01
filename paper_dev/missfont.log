@@ -1,0 +1,83 @@
+mktextfm ptmr7t
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmr7t
+mktextfm ptmb7t
+mktextfm nullfont
+mktextfm ptmri7t
+mktextfm ptmbi7t
+mktextfm nullfont
+mktextfm ptmrc7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmrc7t
+mktexpk --mfmode / --bdpi 600 --mag 2+240/600 --dpi 1440 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 1+60/600 --dpi 660 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmri7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmb7t
+mktexpk --mfmode / --bdpi 600 --mag 0+540/600 --dpi 540 ptmbi7t
+mktexpk --mfmode / --bdpi 600 --mag 0+540/600 --dpi 540 ptmb7t
+mktexpk --mfmode / --bdpi 600 --mag 0+480/600 --dpi 480 ptmri7t
+mktexpk --mfmode / --bdpi 600 --mag 0+480/600 --dpi 480 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 0+420/600 --dpi 420 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmrc7t
+mktexpk --mfmode / --bdpi 600 --mag 2+240/600 --dpi 1440 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 1+60/600 --dpi 660 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmri7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmb7t
+mktexpk --mfmode / --bdpi 600 --mag 0+540/600 --dpi 540 ptmbi7t
+mktexpk --mfmode / --bdpi 600 --mag 0+540/600 --dpi 540 ptmb7t
+mktexpk --mfmode / --bdpi 600 --mag 0+480/600 --dpi 480 ptmri7t
+mktexpk --mfmode / --bdpi 600 --mag 0+480/600 --dpi 480 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 0+420/600 --dpi 420 ptmr7t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ptmr7t

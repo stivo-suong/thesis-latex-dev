@@ -1,0 +1,1477 @@
+\chapter{Current Methods in Processing SAR and POLSAR Data} %chapter 2
+
+\section{The nature of Polarimetric SAR: EM Wave Polarization}
+
+Remote sensing introduction paragraph (section 2.1.1)
+
+SAR introduction paragraph (section 2.1.2)
+
+EM Wave polarization (Maxwell law leads to wave equations section 2.1.3.1, choice of origin which leads to polarization basis change eq 2.22)
+
+SAR Polarimetry: and SAR as a special case of POLSAR (send and receive polarizations: 2.1.3.5)
+
+Full Polarimetric SAR and target polarimetric response (also 2.1.3.5)
+
+Partial Polarimetric SAR and EM wave polarization (2.1.3.4)
+
+SAR stochastics nature (new)
+
+\subsection{Representations of EM Wave Polarizations (Linear, Circular ...)}
+
+\subsubsection{Plane wave and solutions to the EM Wave equations}
+
+The general solution to the PDE EM wave equation is a linear superposition of waves each having the form
+\begin{equation}
+\vec{E}(\vec{r},t)=g(\phi(\vec{r},t)) = g(\omega t - \vec{k} \cdot \vec{r})
+\end{equation} 
+and
+\begin{equation}
+\vec{B}(\vec{r},t)=g(\phi(\vec{r},t)) = g(\omega t - \vec{k} \cdot \vec{r})
+\end{equation}
+where
+	$g$ is any well-behaved function of a dimensionless argument $\phi$,
+	%for virtually any well-behaved function g of dimensionless argument φ, where
+	$\omega$ is the angular frequency (in radians per second), and
+	$\vec{k}= (k_x,k_y,k_z)$ is the wave vector (in radians per meter).
+
+%Although the function $g$ can be, and often is, a monochromatic sine wave, it does not have to be. 
+%In practice, $g$ cannot have infinite periodicity because any real electromagnetic wave must always have a finite extent in time and space. 
+%Thus based on the theory of Fourier decomposition, a real wave must consist of the superposition of an infinite set of sinusoidal frequencies.
+In addition to the relations above, the wave vector and the angular frequency are not independent; they must adhere to the dispersion relation:
+\begin{equation}
+k = |\vec{k}| = \frac{\omega}{c} = \frac{2\pi}{\lambda}
+\end{equation}
+where 
+	$k$ is the wave number and $\lambda$ is the wavelength.
+
+Since any real wave can be considered as a superpositions of several sinusoidal waves, the simplest solution to consider for the EM Wave equations is:
+\begin{equation}
+\vec{E}(\vec{r},t)= \Re \left( \vec{E}(\vec{r}) e^{i \omega t} \right)
+\end{equation}
+where
+	$\omega = 2 \pi f$ is the angular frequency,
+	$f$ is the wave frequency.
+Assuming the most common case of EM waves travelling in a planar fashion, which is a good approximation of most light waves. 
+For plane waves Maxwell's equations, specifically Gauss's laws, imposes a transversality requirement that the electric and magnetic field be perpendicular to the direction of propagation and to each other. 
+Conventionally, when considering polarization, the electric field vector  is described and the magnetic field is ignored since it is perpendicular  to the electric field and proportional to it. 
+%Since the magnetic field is dependent on the electric field, 
+Thus it is sufficient to just consider electric field, which equals:
+\begin{equation}
+\vec{E}(\vec{r}) = \vec{E^0} e^{-i \vec{k} \cdot \vec{r}} %= \vec{E^0} e^{-ikz}
+\end{equation}
+
+Combining the two equations we have:
+\begin{equation}
+\vec{E}(\vec{r},t) 
+	= \vec{E^0} \Re \left( e^{i (\omega t - \vec{k} \cdot \vec{r})} \right)
+	= \vec{E^0} \cos(wt - \vec{k} \cdot \vec{r}) %\vec{E^0} \cos{ \left( wt - kz + \phi_0 \right)}
+\end{equation}
+
+If we define the $z$ direction as the travelling direction of the EM wave,
+%	and x direction is the direction of $\vec{E}$,
+%	then by Faraday's Law, the magentic field $\vec{B}$ lies in y direction, 
+%		and is related to the electric vector by $c^2 \frac{\partial B}{\partial z} = \frac{\partial E}{\partial t}$
+	and the electric field is fluctuating in the $(x,y)$ plane,
+	because the divergence of the electric and magnetic fields are zero, 
+		there will be no fields in the direction of propagation.
+Project this into $x$ and $y$ directions:
+\begin{equation}
+\vec{E}(z,t) 
+= 
+\left(
+	\begin{array} {c}
+		E_x^0 \cos{ \left( wt - kz  + \phi_x^0 \right) } \\
+		E_y^0 \cos{ \left( wt - kz  + \phi_y^0 \right)} \\
+		0
+	\end{array}
+\right)
+= 
+\left(
+	\begin{array} {c}
+		\xi_x(t) \\
+		\xi_y(t) \\
+		0
+	\end{array}
+\right)
+\end{equation}
+where $\phi_0$ is the initial phase angle, that is dependent on the choice of space-time origin.
+
+\subsubsection{Linear, Circular and Elliptical Polarization}
+
+The shape traced out in a fixed projective plane by the electric vector as the plane wave passes over it is a description of the polarization state. 
+This shape is characterized by the formula
+\begin{equation}
+ \frac{\xi_x^2(t)}{|E_x^0|^2} + \frac{\xi_y^2(t)}{|E_y^0|^2} - 2 \frac{\xi_x \xi_y}{E_x^0 E_y^0} \cos (\Delta \phi) = \sin^2(\Delta \phi)
+\end{equation}
+where
+	$\Delta \phi = \phi_y^0 - \phi_x^0$
+The formula characterizes what is termed as the polarization ellipse.
+
+%In the leftmost figure above, 
+When the two orthogonal components are in phase, i.e. $\phi_x^0 = \phi_y^0$, the ratio of the strengths of the two components is constant.
+Thus the direction of the electric vector (the vector sum of these two components) is constant. 
+Since the tip of the vector traces out a single line in the plane, this special case is called linear polarization. 
+The direction of this line depends on the relative amplitudes of the two components.
+%In the middle figure, 
+
+When the two orthogonal components have exactly the same amplitude and are exactly ninety degrees out of phase, i.e. $E_x^0=E_y^0$ and $ | \phi_x^0 - \phi_y^0 | = \pi/2$. 
+%There are two possible phase relationships that satisfy this requirement: the x component can be ninety degrees ahead of the y  component or it can be ninety degrees behind the y component. 
+In this special case the electric vector traces out a circle in the plane, so this special case is called circular polarization. 
+The direction the field's rotation depends on the signed of the difference between the two phases. 
+These cases are called right-hand circular polarization and left-hand circular polarization, 
+	depending on which way the electric vector rotates and the chosen convention.
+
+The general case is when the two components are not in phase 
+	and either do not have the same amplitude or are not ninety degrees out of phase, 
+	though their phase offset and their amplitude ratio are constant.
+This kind of polarization is called elliptical polarization because the electric vector traces out an ellipse in the plane (the polarization ellipse). 
+%This is shown in the above figure on the right.
+
+The parameters that describe the polarization ellipse are:
+\begin{equation}
+\tan (\theta ) = \frac{E_y^0}{E_x^0}
+\end{equation}
+with
+	$0 \leq \theta \leq \pi/2$. 
+The orientation angle, which is the angle between the major semi-axis of the ellipse and the x-axis, is given by:
+\begin{equation}
+\tan (\Psi) = \tan (2 \theta) \cos(\Delta \phi)
+\end{equation}
+with
+	$0 \leq \Psi < \pi$. 
+The ellipticity, $\epsilon$ is the major-to-minor-axis ratio.
+The ellipticity angle which is defined as $\chi = \arctan (1/\epsilon)$ can be calculated as:
+\begin{equation}
+\sin (2 \chi) = \sin(2 \theta) \sin( \Delta \phi)
+\end{equation}
+with
+	$0 \leq \chi \leq \pi/2$, and $0 \leq \epsilon \leq \infty$
+
+Ignoring the scale of the electrical fields, the elementary wave polarization can be completely described by two parameters, i.e. $E_y^0/E_x^0$ and $\Delta \phi = \phi_y^0 - \phi_x^0$. 
+Similarly, ignoring the scale of the ellipse, the polarization ellipse can be completely described by two angles $\Psi$ and $\chi$.
+
+%The choice of basis vector used to represent horizontal and vertical directions are evidently arbitrary.
+%In general, any pair of orthogonal polarization states can be used.
+%Formally orthogonal vector pair is defined as one having a zero inner product.
+%Another common choice is left and right circular.
+%In anyway, implicit in the representations above is the orientation of the coordination frame.
+%Of the two angles frequently used in polarization ellipse analysis, one $\Psi$ is dependent on the coordination frame and the other may not $\chi$
+
+%To recap $\chi = \tan^{-1} (1/\epsilon)$, with $\epsilon$ being the ellipse's ellipticity.
+%In polarization ellipse, $\epsilon=1$ indicates circular polarization, while $\epsilon=0$ or $\epsilon=\infty$ corresponds to linear polarizations.
+%An alternative to ellipticity angle $\chi$ is the eccentricity angle.
+%However, the use of ecccentricity angle has not been widely used, as it has no obvious geometrical interpretation in Poincare Spheres.
+
+%The polarization of light can be measured with a polarimeter.
+
+\subsubsection{Mathematical representations of wave polarizations}
+
+\paragraph{ Complex polarization ratio }
+This ratio is important in explaining polarization basis changes.
+
+It is defined as:
+\begin{equation}
+\rho = \frac{E_y^0}{E_x^0} e^{i \Delta \phi} = \frac{\cos(2 \chi) + i \sin(2 \chi)}{1 - \cos(2\Psi) \cos(2\chi)}
+\end{equation}
+
+\paragraph{Jones Vector}
+
+%Let the total wave power:
+%\begin{equation}
+%|E|^2 = (E_x^0)^2  + (E_y^0)^2
+%\end{equation}
+%and phase 
+%\begin{equation}
+%\theta = \tan^{-1} \left( \frac{E_y^0}{E_x^0} \right)
+%\end{equation}
+
+The Jones vector is defined as 
+\begin{equation}
+J = 
+\left(
+\begin{array}{c}
+	\xi_x(t) \\
+	\xi_y(t) 
+\end{array}
+\right)
+= \xi_x(t)
+\left(
+\begin{array}{c}
+	1 \\
+	\rho
+\end{array}
+\right)
+\end{equation}
+
+Thus the normalized Jones vector can be given as:
+\begin{equation}
+J = 
+\left(
+\begin{array}{c}
+	\cos(\theta) \cdot e^{i \phi_x^0} \\
+	\sin(\theta) \cdot e^{i \phi_y^0}
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+	1\\
+	\tan(\theta) \cdot e^{i \Delta \phi}
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+	\cos(\Psi) \cos(\chi) - i \sin(\Psi) \sin(\chi) \\
+	\sin(\Psi) \cos(\chi) + i \cos(\Psi) \sin(\chi)
+\end{array}
+\right)
+\end{equation}
+
+The two parameters in the Jones vector can completely describe the polarization state (ellipse) of any elementary wave.
+This same Jones vector finds extensive use in quantum machenics, and is interpreted as quantum state vector.
+Its bra-ket notation formula, which is normally used in quantum computation contexts is:
+\begin{equation}
+J = | \Psi \rangle 
+= 
+\left(
+\begin{array}{c}
+	\cos(\theta) \cdot e^{i \phi_x^0} \\
+	\sin(\theta) \cdot e^{i \phi_y^0}
+\end{array}
+\right)
+\end{equation}
+
+By definitions, the horizontal linear polarized wave is defined as: $J_h = \left(
+\begin{array}{c}
+ 1 \\
+ 0
+\end{array}
+\right)$, similarly the vertical linear polarized wave: $J_v = \left(
+\begin{array}{c}
+ 0 \\
+ 1
+\end{array}
+\right)$, the $\pm \pi/4$ linear polarized waves $J_{\pm} = \pm \frac{1}{\sqrt{2}} \left(
+\begin{array}{c}
+ 1 \\
+ 1
+\end{array}
+\right)$, the left circular polarized wave: $J_l = |L\rangle = \frac{1}{\sqrt{2}} \left(
+\begin{array}{c}
+ 1 \\
+ -i
+\end{array}
+\right)$ and the right circular polarized wave: $J_r = |R\rangle = \frac{1}{\sqrt{2}} \left(
+\begin{array}{c}
+ 1 \\
+ i
+\end{array}
+\right)$
+
+%Then any arbitrary state, written in R-L basis is given by:
+%\begin{equation}
+%| \Psi \rangle 
+%= 
+%a_R e^{i \phi_x - i \theta} | R \rangle 
+%+ 
+%a_L e^{i \phi_x + i \theta} | L \rangle 
+%\end{equation}
+
+
+\paragraph{ Stokes Vector }
+
+Another way to look at polarization is through the coherency matrix, and equivalently the Stokes matrix.
+The wave coherency matrix is defined as:
+\begin{equation}
+W_c = \left<
+\left(
+\begin{array}{c}
+ \xi_x \\
+ \xi_y
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+ \xi_x \\
+ \xi_y
+\end{array}
+\right)^{\dagger}
+\right>
+= \left<
+\left(
+\begin{array}{c c}
+ \xi_x \xi_x^* 	& \xi_x \xi_y^* \\
+ \xi_y \xi_x^* 	& \xi_y \xi_y^* 
+\end{array}
+\right)
+\right>
+= \left<
+\left(
+\begin{array}{c c}
+ |\xi_x|^2 	& |\xi_x| |\xi_y| e^{-i \Delta \phi} \\
+ |\xi_x| |\xi_y| e^{i \Delta \phi} 	& |\xi_y|^2
+\end{array}
+\right)
+\right>
+\end{equation}
+
+The Stokes vector is then defined as:
+\begin{equation}
+S_t = 
+\left(
+\begin{array}{c}
+ S_0 \\
+ S_1 \\
+ S_2 \\
+ S_3
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+ |\xi_x|^2 + |\xi_y|^2 \\
+ |\xi_x|^2 - |\xi_y|^2 \\
+ 2\Re(\xi_x \xi_y^*) \\
+ 2\Im(\xi_x \xi_y^*)
+\end{array}
+\right)
+\end{equation}
+
+In the case of elementary (or fully polarized) waves, the Stokes vector can be written as:
+\begin{equation}
+S_t = 
+\left(
+\begin{array}{c}
+ S_0 \\
+ S_0 \cos(2\Psi) \cos(2\chi) \\
+ S_0 \sin(2\Psi) \cos(2\chi) \\
+ S_0 \sin(2\chi)
+\end{array}
+\right)
+\end{equation}
+
+%It should be noted that: the factor of two before the polarization ellipse's angles indicate the fact that
+%	any polarization ellipse is practical indistinguishable from on rotated by $180^o$ 
+%	or with on with the axis lengths swapped accompanied by a $90^o$ rotation.
+
+At this point, a distinction needs to be highlighted. %explaination is warranted.
+%The naive view is that Stokes vector, which has four values are redundant in describing wave's polarization. 
+%In contrary, Stokes vector are preferred to Jones vector, as Jones vector is based on the assumption that the wave is elementary and very well behaved.
+In comparison to the two-element Jones vector, Stokes vectors have more data, four elements. 
+Jones vector can completely describe the polarization states of an elementary wave, which formulation is based on the assumption that the wave is very well behaved.
+In practice, that is not normally the case, because reflected waves are generally combinations of multiple waves which ranged over certain areas of time and frequency. 
+As such, the polarization of the waves are normally not fully polarized.
+One simple analogy is that the field ratio, i.e. $\xi_x/\xi_y$, or the phase difference, i.e. $\Delta \phi$, are not constant at all times.
+The phenomena can be loosely called wave depolarization.
+
+The analysis above is especially prevalent in the remote sensing community, where the area of a single resolution cell (pixel) is very large compared with the radar's wave length.
+In such cases, the wave field is very stochastic and only statistical information about the variations and correlations between polarization components can be gathered. 
+
+\paragraph{Degree of polarization}
+
+Degree of polarization $p$ is a quantity used to describe the portion of an EM wave, which is polarized.
+A perfectly polarized wave has $p=100\%$, while a fully depolarized wave is characterized by $p=0\%$.
+A wave which is partially polarized can be represented as a superposition of a polarized and another unpolarized component.
+Thus $0 \leq p \leq 1$.
+
+In fully polarized wave, the following equation holds:
+\begin{equation}
+S_0^2 = S_1^2 + S_2^2 + S_3^2
+\end{equation}
+
+In depolarized wave, it becomes an in-equation
+\begin{equation}
+S_0^2 > S_1^2 + S_2^2 + S_3^2
+\end{equation}
+
+Then the degree of polarization is defined as
+\begin{equation}
+p = \frac{\sqrt{ S_1^2 + S_2^2 + S_3^2 }}{S_0}
+\end{equation}
+
+In such general case, the Stokes Vector is written as:
+\begin{equation}
+S_t = 
+\left(
+\begin{array}{c}
+ I \\
+ I p \cos(2\Psi) \cos(2\chi) \\
+ I p \sin(2\Psi) \cos(2\chi) \\
+ I p \sin(2\chi)
+\end{array}
+\right)
+ = I (1 - p)
+\left(
+\begin{array}{c}
+ 1 \\
+ 0 \\
+ 0 \\
+ 0
+\end{array}
+\right) 
++ I p
+\left(
+\begin{array}{c}
+ 1\\
+ \cos(2\Psi) \cos(2\chi) \\
+ \sin(2\Psi) \cos(2\chi) \\
+ \sin(2\chi)
+\end{array}
+\right)
+\end{equation}
+
+Or alternatively, if Stokes vector is measured and given, then the polarization characteristics of a wave is given as:
+$I$, the total power of the measured beam is $I=S_0$,
+$p$, the degree of polarization is calculated as $p = \frac{\sqrt{ S_1^2 + S_2^2 + S_3^2 }}{S_0}$,
+$2\Psi = \tan^{-1} (S_2/S_1) $ and $2 \chi = \tan^{-1} (S_3 / \sqrt{S_1^2 + S_2^2})$ are the angles that characterize the wave polarization state.
+
+Depolarization phenomena is explained from the fact that most sources of EM radiation contain a large number of ``elementary'' sources.
+The polarization of the electric fields produced by the emitters may not be correlated, which leads to depolarization effects.
+If there is partial correlation among the ``elementary'' sources, the light is partially polarized. 
+One may then describe the received EM wave polarization in terms of the degree of polarization and the parameters of the polarization ellipse.
+
+\subsection{Different Modes of Polarimetric SAR}
+
+\subsubsection{Full Polarimetry and the Polarimetric Signatures}
+
+This section describes the core concept of POLSAR, i.e. the target's polarimetric signature, 
+	and illustrates why research into partial polarimetry is warranted.
+
+POLSAR radar measures the back-scattered echo received as the result of transmitting a signal.
+The scattering matrix relates the received signal $E^{Rx}$ with the transmitted $E^{Tx}$ signal as:
+\begin{equation}
+ E^{Rx} = \frac{e^{ikr}}{r} S E^{Tx}
+\end{equation}
+
+Normally, horizontal and vertical linear polarization are used, thus the scattering matrix, i.e. $S$, normally have the following expanded form:
+\begin{equation}
+ \left( 
+\begin{array}{c}
+ E_h^{Rx} \\
+ E_v^{Rx}
+\end{array}
+ \right) = \frac{e^{ikr}}{r} 
+\left( 
+\begin{array}{c c}
+ S_{HH} & S_{HV} \\
+ S_{VH} & S_{VV}
+\end{array}
+ \right) 
+\left( 
+\begin{array}{c}
+ E_h^{Tx} \\
+ E_v^{Tx}
+\end{array}
+ \right) 
+\end{equation}
+
+The scattering matrix can be called the Jones matrix (relating the Jones vector) in the forward scattering alignment.
+The matrix is normally called Sinclair matrix in SAR literature, as normally backward scattering alignment are normally used in SAR \cite{Sinclair_1950_ProcsIRE}.
+In the case of mono-static SAR, i.e. both radar transmitter and receiver can be considered as located in a single place, physical reciprocity leads to $S_{HV}=S_{VH}$ \cite{Nghiem_1992_RadioSci}.
+
+The matrix can also be "stratified" to define the target scattering vector as: 
+\begin{equation}
+T_{cv} = \left( 
+\begin{array}{c}
+ S_{HH} \\
+ \sqrt{2} S_{HV} \\
+ S_{VV}
+\end{array}
+ \right) 
+\end{equation}
+or 
+\begin{equation}
+T_{ch} = \frac{1}{\sqrt{2}} \left( 
+\begin{array}{c}
+ S_{HH} + S_{VV}\\
+ S_{HH} - S_{VV} \\
+ S_{HV}
+\end{array}
+ \right) 
+\end{equation}
+
+Similar to the reason that Stokes vector are preferred to Jones vector in wave polarization, 
+	second order statistics of target scattering matrix are normally preferred.
+The covariance matrix is defined as:
+\begin{equation}
+\small{
+C_v = \left< T_{cv} T_{cv}^{*T} \right> = 
+\left( 
+\begin{array}{c c c}
+ S_{HH}S_{HH}^* 	& \sqrt{2}S_{HH}S_{HV}^*	& S_{HH}S_{VV}^* \\
+ \sqrt{2}S_{HV}S_{HH}^* & 2 S_{HV}S_{HV}^* 		& \sqrt{2}S_{HV}S_{VV}^* \\		
+ S_{VV}S_{HH}^*		& \sqrt{2}S_{VV}S_{HV}^*	& S_{VV}S_{VV}^*
+\end{array}
+ \right) 
+}
+\end{equation}
+while the coherency matrix is defined as:
+\begin{equation}
+\small{
+C_h = \left< T_{ch} T_{ch}^{*T} \right> = \frac{1}{2}
+\left( 
+\begin{array}{c c c}
+ (S_{HH}+S_{VV})(S_{HH}+S_{VV})^* 	& (S_{HH}+S_{VV})(S_{HH}-S_{VV})^*	& (S_{HH}+S_{VV})S_{HV}^* \\
+ (S_{HH}-S_{VV})(S_{HH}+S_{VV})^* 	& (S_{HH}-S_{VV})(S_{HH}-S_{VV})^* 	& (S_{HH}-S_{VV})S_{HV}^*\\		
+ 2S_{HV}(S_{HH}+S_{VV})^*		& 2S_{HV}(S_{HH}-S_{VV})^*		& S_{HV}S_{HV}^*
+\end{array}
+ \right) 
+}
+\end{equation}
+
+Evidently the two matrices are related:
+\begin{equation}
+C_h = N C_v N^T
+\end{equation}
+where
+	$N = \frac{1}{\sqrt{2}}
+\left( 
+\begin{array}{c c c}
+ 1 & 0		& 1\\
+ 1 & 0		& -1\\
+ 0 & \sqrt{2}	& 0
+\end{array}
+\right)$ 
+
+The off-diagonal values in both covariance and coherence matrices are normally complex. 
+The equivalent all real-valued matrices which carries the same information are called Mueller matrix and Kennaugh matrix which are to be used in forward and backward scattering alignment respectively \cite{Guissard_1994_TGRS}. 
+They are defined as the matrix that relates the Stokes matrix of sent and received signals.
+\begin{equation}
+S_t^{Rx} = K S_t^{Tx}
+\end{equation}
+
+Since the Stokes and Jones matrices are related, the Kennaugh and Sinclair matrices are also related and is given by:
+\begin{equation}
+K = 1/2 Q^* S \otimes S^* Q^{T*}
+\end{equation}
+where
+	$\otimes$ denotes the Kronecker product, and
+	$Q = 
+\left( 
+\begin{array}{c c c c}
+ 1 & 0 & 0 &  1 \\
+ 1 & 0 & 0 & -1\\
+ 0 & 1 & 1 &  0\\
+ 0 & i & i &  0
+\end{array}
+\right)$ 
+
+POLSAR aims to measure target's polarimetric response.
+%Depending on the satellite instrument and processing, either Sinclair matrix or Kennaugh matrix elements are provided.
+Typically, the radar will separately send different horizontal and vertical polarized waves, and measure the response also in horizontal and vertical polarizations.
+The full polarimetric data, will then have four channels, i.e. $\{ S_{HH}, S_{VV}, S_{HV}, S_{VH} \}$. 
+The four channel, or quad-pol data, is considered full polarimetric data since it allows one to synthesize the target's response for any given pair of transmitted and received polarization.
+Such a process is called polarization synthesis.
+The formula is given as:
+\begin{equation}
+I^{Rx} = 
+\left( 
+\begin{array}{c }
+ 1 \\
+ \cos(2\chi^{Rx}) \cos(2\Psi^{Rx}) \\
+ \cos(2\chi^{Rx}) \sin(2\Psi^{Rx}) \\
+ \sin(2\chi^{Rx}) 
+\end{array}
+\right)^T
+K
+\left( 
+\begin{array}{c }
+ 1 \\
+ \cos(2\chi^{Tx}) \cos(2\Psi^{Tx}) \\
+ \cos(2\chi^{Tx}) \sin(2\Psi^{Tx}) \\
+ \sin(2\chi^{Tx}) 
+\end{array}
+\right)
+\end{equation}
+where $I^{Rx}$ is the intensity of the target's response in a given combination of sent and receive polarizations.
+
+In full polarimetric implementation, normally an alternate pulsing scheme is used to share a single time slot for transmitting two different polarizations' pulses.
+In partial polarimetry modes only a single polarization is sent.
+Since the transmitting time-slot no longer needs to be shared, a higher frequency become possible which leads to better (almost double) resolution or coverage.
+Clearly in such cases only two out of four data channels is available, i.e. either $\{S_{HH},S_{HV}\}$ or $\{S_{VH},S_{VV}\}$.
+%The limitation in payload is expected to be around for years to come, with new polarimetric projects being planned by various space agencies.
+This trade-off is based on limitations of physics, and hence is expected to be around for years to come.
+
+\subsubsection{The Polarization Basis Transformation}
+
+Assume that the polarization states are known, the wave representation can be given as:
+\begin{equation}
+\left( 
+\begin{array}{c}
+ \xi_x \\
+ \xi_y
+\end{array}
+\right) 
+= A_0 e^{-i \phi_0} \left(
+\begin{array}{c c}
+ \cos(\Psi) & -\sin(\Psi) \\
+ \sin(\Psi) & \cos(\Psi)
+\end{array}
+\right) 
+\left(
+\begin{array}{c}
+ \cos(\chi) \\
+ i \sin(\chi)
+\end{array}
+\right) 
+\end{equation}
+The representation of a wave, however, depends on the choice of orthogonal reference frame basis.
+
+Consider two different orthogonal basis, $\{ x,y \}$ and $\{ h,v \}$.
+A given Jones vector can be measured in both basis as:
+$J_{xy}= 
+\left(
+\begin{array}{c}
+ \xi_x \\
+ \xi_y
+\end{array}
+\right) $ and 
+$J_{hv}
+= \left(
+\begin{array}{c}
+ \xi_h \\
+ \xi_v
+\end{array}
+\right)$
+The transformation from $\{h,v\}$ to $\{x,y\}$ is governed by an unitary transformation matrix $U_2$.
+The transformation formula is given as:
+\begin{equation}
+\left(
+\begin{array}{c}
+ \xi_x \\
+ \xi_y
+\end{array}
+\right)
+= U_2
+\left(
+\begin{array}{c}
+ \xi_h \\
+ \xi_v
+\end{array}
+\right)
+\end{equation}
+
+Boerner \cite{Boerner_1991_ProcsIEEE} has given $U_2$ as:
+\begin{equation}
+U_2 = \frac{1}{\sqrt{1+\rho\rho^*}}
+\left(
+\begin{array}{c c}
+ 1 & -\rho^* \\
+ \rho & 1
+\end{array}
+\right)
+\left(
+\begin{array}{c c}
+ e^{-i\delta} & 0 \\
+ 0 & e^{i\delta}
+\end{array}
+\right)
+\end{equation}
+where
+	$\rho$ is the complex polarisation ratio of the Jones vector for the first new basis, and
+	$\delta = \tan^{-1}(\tan(\Psi) \tan(\chi)) - \phi_0$ is the phase reference for the new basis, 
+	and is required for the determination of the initial phase of the Jones vector in the new reference basis.
+
+In the same vein, Ferro-Famil, 2000 gives
+\begin{equation}
+U_2 = \left(
+\begin{array}{c c}
+ \cos(\Psi) & -\sin(\Psi) \\
+ \sin(\Psi) & \cos(\Psi)
+\end{array}
+\right)
+\left(
+\begin{array}{c c}
+ \cos(\chi) & i\sin(\chi) \\
+ i\sin(\chi) & \cos(\chi)
+\end{array}
+\right)
+\left(
+\begin{array}{c c}
+ e^{-i \phi_0} & 0 \\
+ 0 & e^{i \phi_0}
+\end{array}
+\right)    
+\end{equation}
+
+From these results, it is then possible to derive equations for the transformation of the scattering matrix.
+Noting that be definition, $J_{xy}^r=S_{xy} J_{xy}^t$, $J_{hv}^r=S_{hv} J_{hv}^t$ 
+and that $J_{xy}^*= U_2 J_{hv}^*$. 
+Noting further that $(U_2)^{-1} = (U_2)^T$.
+It is then trivial to show that:
+\begin{equation}
+S_{xy} = U_2 S_{hv} U_2^T
+\end{equation}.
+
+Using the result above, we then have:
+\begin{equation}
+S_{xx} = \frac{1}{1+\rho \rho^*} 
+\left( 
+S_{HH} e^{-2i\delta} - \rho^* (S_{HV}+S_{VH}) + (\rho^*)^2 S_{VV} e^{2i\delta}
+\right)
+\end{equation}
+\begin{equation}
+S_{xy} = \frac{1}{1+\rho \rho^*} 
+\left( 
+\rho S_{HH} e^{-2i\delta} + S_{HV} -\rho \rho^* S_{VH} - \rho^* S_{VV} e^{2i\delta}
+\right)
+\end{equation}
+\begin{equation}
+S_{yx} = \frac{1}{1+\rho \rho^*} 
+\left( 
+\rho S_{HH} e^{-2i\delta} - \rho \rho^* S_{HV} + S_{VH} - \rho^* S_{VV} e^{2i\delta}
+\right)
+\end{equation}
+\begin{equation}
+S_{yy} = \frac{1}{1+\rho \rho^*} 
+\left( 
+\rho^2 S_{HH} e^{-2i\delta} + \rho (S_{HV} + S_{VH}) + S_{VV} e^{2i\delta}
+\right)
+\end{equation}
+
+In the case of mono-static POLSAR, i.e. $S_{HV}=S_{VH}=S_{XX}$ and $S_{xy}=S_{yx}$, the equations become
+\begin{equation}
+S_{xx} = \frac{1}{1+\rho \rho^*} 
+\left( 
+S_{HH} e^{-2i\delta} - 2 \rho^* S_{XX} + (\rho^*)^2 S_{VV} e^{2i\delta}
+\right)
+\end{equation}
+\begin{equation}
+S_{yx} = S_{xy}= \frac{1}{1+\rho \rho^*} 
+\left( 
+\rho S_{HH} e^{-2i\delta} + (1-\rho \rho^*) S_{XX} - \rho^* S_{VV} e^{2i\delta}
+\right)
+\end{equation}
+\begin{equation}
+S_{yy} = \frac{1}{1+\rho \rho^*} 
+\left( 
+\rho^2 S_{HH} e^{-2i\delta} + 2 \rho S_{XX} +  S_{VV} e^{2i\delta}
+\right)
+\end{equation}
+
+The results here, together with Stokes Vector's formula, can be used to prove the following identity, which form the basis of our approach:
+\begin{equation}
+S_t = 
+\left(
+	\begin{array} {c}
+		S_hS_h + S_vS_v \\
+		S_hS_h - S_vS_v \\
+		2 \Re{(S_hS_v^*)} \\
+		2 \Im{(S_hS_v^*)}
+	\end{array}
+\right)
+= 
+\left(
+	\begin{array} {c}
+		S_hS_h + S_vS_v \\
+		S_hS_h - S_vS_v \\
+		S_+S_+ - S_-S_- \\
+		S_lS_l - S_rS_r
+	\end{array}
+\right)
+\end{equation}
+where $S_t$ is the Stokes vector and $S_+S_+$, $S_-S_-$, $S_rS_r$, $S_lS_l$ are the intensity of received signals in $+45^o$ linear, $-45^o$ linear, right circular and left circular polarization respectively.
+
+%The transformation from $\{h,v\}$ to $\{+\pi/4,-\pi/4\}$ as well as from $\{h,v\}$ to circular basis $\{l,r\}$ are special cases of the above formula.
+%Ignoring the determination of initial phases, we have: 
+%	the measured signal at $\pi/4$ linear polarizer / projection as: $\xi_+ = \frac{\xi_h + \xi_v}{\sqrt{2}}$,
+%	at $-\pi/4$ linear polarizer as: $\xi_- = \frac{\xi_h - \xi_v}{\sqrt{2}}$, 
+%	at left circular polarization as: $\xi_l = \frac{\xi_h + i \xi_v}{\sqrt{2}}$, 
+%	and at right circular polarization as $\xi_r = \frac{\xi_h - i \xi_v}{\sqrt{2}}$.
+%
+%The Stokes vectors, when aligned at these transformed projections are given by the following well-known equations
+%\begin{equation}
+%S_t = \left(
+%\begin{array}{c}
+% |\xi_h|^2 + |\xi_v|^2 \\
+% |\xi_h|^2 - |\xi_v|^2 \\
+% 2 \Re( \xi_h \xi_v^* ) \\
+% 2 \Im( \xi_h \xi_v^* ) 
+%\end{array}
+%\right)
+%= \left(
+%\begin{array}{c}
+% |\xi_+|^2 + |\xi_-|^2 \\
+% -2 \Re( \xi_+^* \xi_- ) \\
+% |\xi_+|^2 - |\xi_-|^2 \\
+% 2 \Im( \xi_+^* \xi_- ) 
+%\end{array}
+%\right)
+%= \left(
+%\begin{array}{c}
+% |\xi_l|^2 + |\xi_r|^2 \\
+% 2 \Re( \xi_l^* \xi_r ) \\
+% -2 \Im( \xi_l^* \xi_r ) \\ 
+% |\xi_l|^2 - |\xi_r|^2 
+%\end{array}
+%\right)  
+%\end{equation}
+
+\subsubsection{ Partial Polarimetry and the traditional SAR}
+
+The dual-polarization modes has been practically and operationally available for quite some time.
+However, partial polarimetry has only recently been investigated in the scientific community. 
+By comparison, 
+	partial polarimetry measures dual-polarized response from incoming pulses of a single polarization channel,
+	while full polarimetry measures the same response for two (most of the time orthogonal) polarisation channels.
+Mathematically, the process is modelled as:
+\begin{equation}
+ \left( 
+\begin{array}{c}
+ E_h^{Rx} \\
+ E_v^{Rx}
+\end{array}
+ \right) = \frac{e^{ikr}}{r} 
+\left( 
+\begin{array}{c}
+ S_{H} \\
+ S_{V}
+\end{array}
+ \right) E^{Tx}
+\end{equation}
+
+Souyris \cite{Souyris_2005_TGRS} pioneered the field with his paper on compact polarimetry.
+Compact polarimetry is essentially a partial polarimetry mode in which the incoming pulse is of linear polarization, 
+	but is neither of the usual horizontal nor vertical angle.
+%	rather it is of an odd angle of 
+Instead its incoming polarization of linear polarisation with an odd angle of $\pi/4$.
+%The $\pi/4$ mode has not been implemented in real-hardware, but only been simulated using polarization basis change principles.
+The partial polarimetric covariance matrix then is given as
+\begin{equation}
+J = 
+\left(	
+\begin{array}{c c}
+	|s_{HH}|^2 + |s_{HV}|^2 + 2 \Re{(s_{HH}s_{HV}^*)}
+& 	s_{HH}s_{VV}^* + |s_{HV}|^2 + s_{HH}s_{HV}^* + s_{HV}s_{VV}^*\\
+	s_{HH}^*s_{VV} + |s_{HV}|^2 + s_{HV}s_{HH}^* + s_{VV}s_{HV}^*
+& 	|s_{VV}|^2 + |s_{HV}|^2 + 2 \Re{(s_{VV}s_{HV}^*)}
+\end{array}
+\right)
+\end{equation}
+
+Raney \cite{Raney_2006_IGARSS} demonstrated a different perspective by proposing a hybrid architecture.
+He argued that the dual polarisation measurements effectively capture the polarisation states of the single back-scattered signal resulting from a single incoming pulse.
+Thus the polarisation choice of the receiving antenna is trivial (as long as they are orthogonal).
+The important parameter to choose is the use of which polarisation for the incoming pulse.
+His hybrid architecture is again a kind of partial polarimetry in which the incoming pulse is of circular polarisation, instead of the normally encountered linear polarisation.
+The partial covariance matrix then become:
+\begin{equation}
+J = \frac{1}{2} \left(	
+\begin{array}{c c}
+	|s_{HH}|^2 + |s_{HV}|^2 + i (s_{HH}s_{HV}^* - s_{HV}s_{VV}^*)
+& 	s_{HH}s_{HV}^* - s_{HV}s_{VV}^* - i (|s_{HV}|^2 + s_{HH}s_{VV}^*)\\
+	s_{HH}s_{HV}^* - s_{HV}s_{VV}^* + i (|s_{HV}|^2 + s_{HH}s_{VV}^*)
+& 	|s_{VV}|^2 + |s_{HV}|^2 + i (s_{HV}s_{VV}^* - s_{VV}s_{HV}^*)
+\end{array}
+\right)
+\end{equation}
+
+The benefits of this hybrid architecture, according to Raney being:
+	this partial polarimetric measurements can measures certain physical polarimetric phenomena like odd and even bounce phenomena.
+The suggestion is evidenced by calculating the response of known odd-bounce trihedral and even-bounce dihedral when the incident wave is right circular polarized.
+\begin{equation}
+\Gamma_{tri} = \left(
+\begin{array}{c c}
+1 & 0 \\
+0 & -1
+\end{array}
+\right)
+\end{equation}
+Then the response will be reversed as it can be calculated as:
+\begin{equation}
+J_r = \left(
+\begin{array}{c c}
+1 & 0 \\
+0 & -1
+\end{array}
+\right) \cdot
+\left(
+\begin{array}{c}
+1 \\
+-i
+\end{array}
+\right) = \left(
+\begin{array}{c}
+1 \\
+i
+\end{array}
+\right) 
+\end{equation}
+with
+	$ \left( \begin{array}{c} 1 \\ -i \end{array} \right) $ indicating right circular polarization transmitted, and
+	$ \left( \begin{array}{c} 1 \\ i \end{array} \right) $ indicating left circular polarization received.
+
+For a dihedral target, whose main axis at an angle $\theta$ with respect to the horizontal direction, the Sinclair matrix is given as:
+\begin{equation}
+\Gamma_{dih} = 
+\left(
+\begin{array}{c c}
+\cos(2\theta) & \sin(2\theta) \\
+\sin(2\theta) & \cos(2\theta)
+\end{array}
+\right)
+\end{equation}
+The even bounce phenomena is detectable as its polarimetric response is then:
+\begin{equation}
+J_r = \left(
+\begin{array}{c c}
+\cos(2\theta) & \sin(2\theta) \\
+\sin(2\theta) & \cos(2\theta)
+\end{array}
+\right) \cdot
+\left(
+\begin{array}{c}
+1 \\
+-i
+\end{array}
+\right) = \left(
+\begin{array}{c}
+1 \\
+-i
+\end{array}
+\right) 
+\end{equation}
+In \cite{Raney_2007_IGARSS}, Raney shows that hybrid circular modes bring many conviniences to hardware calibration.
+Also in a follow up study \cite{Raney_2007_TGRS}, he demonstrate the classification power of hybrid polarimetry.
+Furthermore, Lardeux \cite{Lardeux_2007_ESASP} found that for target classification using SVM techniques, compact polarimetry mode shows comparable results to full polarimetric data.
+Notably, the hybrid architectural concepts has been adopted and brought towards implementation by NASA's upcoming Desdynl satellite \cite{Raney_2009_RadarConf}.
+
+The research into partial polarimetry is convenient as its data can be simulated using polarisation basis transformation described above.
+Hardware realisation may not be needed until the final physical prototype stages.
+This methodology has been demonstrated and is widely used in the community.
+We hypothesize that the partial polarimetric covariance matrix, which is essentially a variant of the Stokes vector, can be speckle filtered, using the familiar intensity speckle filtering algorithms.
+The focus into partial polarimetry allow analysis into a smaller matrix, while its implication can be extended not only to full polarimetry modes but also towards bi-static polarimetric scenarios.
+Besides that, a number of research questions in this new field are still open, relevant and exciting.
+
+Souyris, in 2005, published a paper \cite{Souyris_2005_TGRS} which claimed and presented an algorithm to reconstruct full polarimetric information from the given partial compact polarimetric data.
+The algorithm is claimed to work on natural surfaces.
+In \cite{Nord_2009}, Nord reviewed the reconstruction problem for various different partial polarimetry modes, and an improved algorithm is given.
+In \cite{Ainsworth_2009_ISPRS}, Ainsworth reviewed performance of target classification on different partial modes, reconstructed pseudo-full mode and full polarimetric data.
+Chapter 3 reviews of this sub-topic further and introduces our work on expanding the reconstruction to urban man-made structures and surfaces.
+
+For the tasks of target detection and classification, we believe that partial dual polarization provides a unique offer.
+Compared with single-channel, dual channel provide extra polarimetric information. 
+Compared with full polarimetric data, the better spatial resolution could makes up for the loss of reconstructed polarimetric information, especially for the purpose of target detection and classification.
+
+In fact, this project is intended to provide help for a new project at EADS Innovation Works Singapore to investigate the use of polarimertic data in ship monitoring over the oceans.
+It is hypothesized that using polarimetric information would improve the possibilities of detecting ships travelling in the open seas.
+Evidently partial polarimetric modes are good candidates for better detection rates.
+
+The scientific application of POLSAR include: 
+	oil slick detection \cite{Nunziata_2009_IGARSS, Gambardella_2007_ESASP}, 
+	ship monitoring \cite{Kozai_2004_OCEANS}, 
+	sea ice monitoring \cite{Wakabayashi_2004_TGRS, Nakamura_2005_IGARSS}, 
+	volcano lava-flow monitoring \cite{Dierking_1998_IGARSS}, 
+	agricultural crop monitoring \cite{Bouvet_2009_TGRS, Hajnsek_2008_IGARSS}, 
+	planetary exploration \cite{Rosenbush_2009_JQuantSpecRadTransfer} 
+	and other surface parameter estimations \cite{TruongLoi_2009_TGRS, Touzi_2009_TGRS, Hajnsek_Thesis_2001}. 
+The remaining text of this chapter briefly look at recent literature in the context of ship detection and monitoring.
+The topic of ship detection and monitoring has already been tackled quite extensively for single channel SAR data \cite{Tello_2005_IGARSS, Tello_2006_ISPRSJPhotogrammetryRemoteSensing}.
+In fact, a number of countries have reported to implement such systems, and some uses them in everyday operations.
+The countries includes: USA \cite{Montgomery_1998_IGARSS}, Canada \cite{Vachon_2000_JHUApplPhysics}, France \cite{Losekoot_2005_IGARSS}, Norway \cite{weydahl_2007_RemoteSenseGISGeology} and Spain \cite{Margarit_2009_RemoteSensing}.
+The common scenarios in use are normally: 
+	a designated area is continuously monitored through the use of some automatic ship detection algorithm.
+If an unknown ship is detected, some manual intervention is to be applied, normally in the form of a navy ship being sent to further investigate.
+The reports however did not elaborate about the accuracy of the detection algorithms.
+
+A recent trend that is reported in the literature is the use of AIS (Automatic Identification System).
+In 2007, Vachon \cite{Vachon_2007_IGARSS} reported his study in Canada, which aimed to match ships detectable in SAR images with AIS reported locations.
+In 2009, Grasso \cite{Grasso_2009_ISDA} evaluated the performance of ship detection algorithms using AIS as ground truth.
+In our planned approach, we are prepared to study the performance improvement through using partial polarimetry data in comparison to normal single-channel SAR approaches.
+Ground truth for such study will also be using synchronized AIS data.
+
+\section{The Stochastics and Multivariate Nature of (POL)SAR data}
+
+%\subsection{The Stochastics Nature of SAR and POLSAR}
+\subsection{The Stochastic nature of SAR  and SAR speckle filtering }
+
+This section starts with a description of the stochastic nature of SAR data. 
+SAR speckle filtering is then reviewed within a statistical estimation theory framework. 
+Various different approaches to SAR speckle filtering are reviewed, 
+	ranging from Generalized Least Squared Error algorithms
+	%ranging from a discrete cartoon like algorithm 
+	to the more convoluted Maximum A Posteriori (MAP) approaches.
+	%to recent more continous multi-resolution wavelet or partial differental equations based algorithms. 
+
+Although speckle has been extensively studied for decades, speckle reduction remains one of the major issue in SAR imaging process. 
+Many reconstruction filters have been proposed and they can be classified into two main categories: 
+	minimum mean-square error (MMSE) de-speckling using the speckle model; 
+	and maximum a posteriori (MAP) de-speckling using the product model. 
+%The famous Lee, Kuan, and Frost ﬁlters in the ﬁrst category provide MMSE reconstructions based on measured local statistics.
+%In the second category, diﬀerent scene distributions are used: Gaussian, Gamma, and parameter-based distributions.
+
+In the first category the speckle random process is assumed to be stationary over the whole image. 
+Then speckle models are proposed, the multiplicative speckle model is first approximated by a linear model, then a speckle reduction filter is formulated
+The formula is as follows: 
+\begin{equation}
+\hat{R}(t) = I(t) \cdot W(t) + \bar{I}(t) \cdot (1 - W(t)) 
+\end{equation}
+where
+	$\hat{R}(t)$ is the filter response,
+	$I(t)$ is the intensity at the center of the moving window,
+	$\bar{I}(t)$ is the averaged intensity for the whole processing window,
+	$W(t)$ is the weight function,
+
+For the Lee filter \cite{Lee_PAMI_1980}, the weight function is proposed to be:
+\begin{equation}
+W(t) = 1 - \frac{C_u^2}{C_I^2} 
+\end{equation}
+where
+	$C_u$ is the variational coefficient of noise, i.e. $C_u=std(u)/avg(u)$, and
+	$C_I$ is the variational coefficient of the true image, i.e. $C_I=std(I)/avg(I)$.
+
+In the approach of the Kuan filter \cite{Kuan_1985_PAMI}, the multiplicative speckle model is first transformed into a single-dependent additive noise model, and then the MMSE criterion is applied. 
+The speckle filter has the same form as the Lee filter but with a different weighting function 
+\begin{equation}
+W(t) = \frac{1 - \frac{C_u^2}{C_I^2} }{1+ C_u^2} 
+\end{equation} 
+The Kuan filter takes into account the dependency of noise into signal. 
+In the special case of noise being independent of the underlying signal, the Kuan filter would be exactly the same as the Lee filter.
+From this point of view, it can be considered to be superior to the Lee filter.
+
+The Frost filter \cite{Frost_PAMI_1982} is different from the Lee and Kuan filters with respect that the scene reflectivity is estimated by convolving the observed image with the impulse response of the SAR system. 
+The impulse response of the SAR system is obtained by minimizing the mean square error between the observed image and the scene reflectivity model which is assumed to be an autoregressive process. 
+The filter impulse response can, after some simplification, be written as:
+\begin{equation}
+H(t) = K_1 e^{-K_2 C_I^2(t)}
+\end{equation}
+where
+	$K_1$ is some normalizing coefficient to allow preservation of signal mean values,
+	$K_2$ is a user chosen filter parameter.
+
+As can be seen from all the three most recognized algorithms in this field, they share the same principles:
+When the variation coefficient $C_I$ is small, the filter behaves like an low pass filter smoothing out the speckles. 
+When $C_I$ is large, it has a tendency to preserve the original observed image.
+The choice of functions relating speckle suppression power to local variations may be different, 
+	the weighted average as well as the weighted least square principles are apparently common.
+
+As discussed at length in Chapter 4, SAR data is heteroskedastic.
+Our literature search yielded only a single article \cite{Amirmazlaghani_2009_TIP} tackling SAR data's heteroskedastic feature, suggesting a lack of appropriate attention within the research community about such characteristic and its effects.
+%However, the community appears to be oblivious of the fact, evidenced by the fact that we could only find very few researcher \cite{Amirmazlaghani_2009_TIP} tackling heteroskedasticity in SAR data
+Under such conditions, Ordinary Least Square methods may not provide optimal results \cite{Woods_PAMI_1984}. 
+In fact as is shown by the mathematical formula above, weighted average formula were being used.
+This is consistent with the knowledge that, when variance of heteroskedastic data is available, weighted least squares is an optimal estimator.
+As is a fact in SAR data, this variance however is not available directly and can only be estimated (note the concept of variation coefficient).
+Our analysis then shows that estimating variance is as hard as estimating the un-speckled signal itself!
+We believe that log transformation could help to break through this circle of ambiguity.
+
+In the second approach, the filters assume that speckle is not stationary globally but is only stationary locally within the moving processing window.
+The filters operate based on MAP principle, which is given as:
+\begin{equation}
+f(x|z) = \frac{f(z|x) f(x)}{f(z)}
+\end{equation}
+where
+	$x$ is the underlying signal that need to be estimated, and
+	$z$ is the observed signal.
+The underlying signal is found by
+\begin{equation}
+x = argmax \{ \log(f(z|x)) + \log(f(x))  \} 
+\end{equation}
+
+As evidenced, these classes of filter require the knowledge of the \textit{a-priori} PDF $f(x)$. 
+Various PDFs for the underlying back-scattering coefficient have been assumed. 
+
+In case Normal distribution is assumed \cite{Medeiros_1998_IAI}
+\begin{equation}
+f(x) = \frac{1}{\sigma_x \sqrt{2 \pi} } e^{\frac{1}{2} \left( \frac{x-\mu}{\sigma_x} \right)^2 }
+\end{equation}
+the underlying signal is found by solving the equation
+\begin{equation}
+x^4 \Gamma^2(N) - x^3 \Gamma^2(N) \mu_x + x^2 \Gamma^2(N) 2N \sigma^2_x - 2 \sigma^2_x z^2 \Gamma^2(N+1/2) = 0
+\end{equation}
+
+In the case of Gamma distribution is assumed \cite{Lopes_1990_IGARSS} 
+\begin{equation}
+f(x) = \frac{\sigma_x}{\Gamma(\lambda)} (x \sigma_x )^{\lambda-1} e^{-x \sigma_x}
+\end{equation}
+For $\lambda=1$, the Gamma distribution is identical to the exponential distribution. 
+For $\lambda=n/2$ and $\sigma=1/2$ Gamma distribution is equivalent to the chi-square distribution.
+The underlying signal is found by solving the equation:
+\begin{equation}
+x^3 \Gamma^2(N) \sigma_x + x^2 \Gamma^2(N) (2N - \lambda + 1) - 2 z^2 \Gamma^2(N+1/2) = 0
+\end{equation}
+
+In case exponential distribution is assumed 
+\begin{equation}
+ f(x) = \sigma_x e^{-x \sigma_x}
+\end{equation}
+then the underlying signal is found by solving the equations
+\begin{equation}
+ x^3 \Gamma^2(N) \sigma_x + x^2 \Gamma^2(N) 2N - 2 z^2 \Gamma^2(N+1/2) = 0
+\end{equation}
+
+In case Chi square distribution is assumed 
+\begin{equation}
+ f(x)=\frac{1}{2^{n/2} \Gamma(n/2)} x^{n/2-1} e^{(-x/2)}
+\end{equation}
+then the true signal is found by solving the equation
+\begin{equation}
+ x^3 \Gamma^2(N) + x^2 \Gamma^2(N) (4N-n+2) - 4 z^2 \Gamma^2(N+1/2) = 0
+\end{equation}
+
+If log-normal distribution is assumed \cite{Medeiros_2003_IntJRemoteSens}
+\begin{equation}
+ f(x) = \frac{1}{\sigma_x \sqrt{2 \pi}} x^{-1} e^{\frac{-1}{2 \sigma_x} (\ln(x) - \mu_x)^2}
+\end{equation}
+\begin{equation}
+ x^2 \Gamma^2(N) (-2N \sigma^2_x - \sigma^2_x -\log(x) + \mu_x) + 2 z^2 \Gamma^2(N+1/2)=0
+\end{equation}
+%Some of them being: Gaussian PDF, Gamma PDF, chi square, Rayleigh, beta, log-normal ... 
+
+%Clearly should such PDF being estimatable from the data it-self, that would potentially presents an good opportunity for this class of speckle filters.
+Other distributions that has been assumed include: heavy tailed Rayleigh distribution \cite{Sun_2006_ICVES}, Weibull distribution \cite{Nezry_1997_IGARSS}, beta distribution \cite{Nezry_1997_IGARSS}, Rician distribution \cite{Lewinski_1983_TAntennaPropagation} \dots 
+Evidently, the performance of these filters are dependent on the underlying distribution of the back-scattering coefficient on the particular surface being imaged. 
+In this context, the community appears to focus on using Bayesian inference to choose the most suitable distributions \cite{Walessa_2000_TGRS}.
+We hypothesize that the underlying distribution of the back scattering coefficient is estimable, at least in log-transformed domain.
+
+Other approaches, that recently has been actively pursuit in the community include: 
+	%recently there has been an increase publications about the applicability of 
+	wavelet \cite{Gagnon_SPIEProc_1997, VidalPantaleoni_2004_IJRS, Moulin_1993_JMathImageVision, Hervet_1998_SPIE, Hebar_2009_TGRS, Chen_2007_IET, Bianchi_TGRS_2008, Argenti_2006_TGRS}, 
+	curvelet \cite{Wang_2007_ICWAPR, Saevarsson_2003_IGARSS, Guo_2008_ICARCV}, 
+	contourlet \cite{Foucher_2006_IGARSS}, 
+	ridgelet \cite{Saevarsson_2004_IGARSS},
+	fuzzy logic \cite{Cheng_ETCS_2009}, 
+	anisotropic kernels \cite{DHondt_2006_TGRS}, 
+	and autoregressive conditional heteroskedasticity \cite{Amirmazlaghani_2009_DSPWorkshop}. %techniques into SAR filtering.
+Central to wavelet techniques is the discoveries of a consistent and optimal choice for the wavelet coefficients.
+Similarly the development of kernel methods depends strongly on the discoveries of consistent predictive kernels.
+Evidently the choice of such coefficients are dependent on the underlying statistical characteristics of SAR signals.
+This further emphasizes the importance of investigating consistent statistical properties of SAR signals.
+Note only that statistical analysis is important in speckle filtering, the technique is also important in the development of information extraction \cite{Oliver_1991_JPhysDApplPhys}, target detection \cite{Luttrell_1986_JPhysDApplPhys}, classification \cite{Nyoungui_2002_IntlJRemoteSense} techniques. 
+
+With different speckle filtering approaches presented, it is crucial to have a framework for 
+	(a) modelling and simulation which provide the ground-truth data in different scenarios of underlying distribution, and
+	(b) analysing the interdependency between noise and the underlying signal, as well as the dependence of each filter's performance on the different underlying distribution scenarios and
+	(c) establishing consistent criteria to evaluate speckle suppression power as well as the adaptive capabilities in reconstructing the underlying signal.
+
+\subsection{The Multivariate Nature and The Observables in POLSAR data}
+
+\section{Current methods in SAR and POLSAR speckle filtering}
+
+\subsection{Current Statistical Models for SAR and POLSAR data}
+
+\subsection{Current Methods for SAR speckle filtering}
+(2.2.1)
+
+\subsection{Current Methods for POLSAR speckle filtering }
+
+Compared to SAR technologies, most POLSAR techniques have only recently been developed. 
+The state of POLSAR speckle filtering is reviewed and filtering the covariance matrix off-diagonal elements is shown to be an open problem.
+The problem can be traced back to the lack of a statistical model for the covariance matrix in polarimetry.
+%This has the consequences that very few methodologies to statistically simulate POLSAR is porposed in literature and validations for such proposals are pretty primatives.
+%is the application of such framework is shown to be beneficial academically. 
+
+In the first systems that captured POLSAR data, multi-look processing was used as a method of choice for speckle filtering, at the cost of spatial resolution.
+Novak \cite{Novak_1990_TAES} pioneered the area of speckle reduction and proposed the polarimetric whitening filter (PWF) to produce a single speckle reduced intensity image. 
+The disadvantages of PWF filter is that the polarimetric information is not well-preserved.
+Multi-look processing's polarimetric result also exhibits bias and distortion \cite{Lee_2008_TGRS}.
+
+Lee \cite{Lee_1991_TGRS} proposed a new filtering algorithm which does suppress speckle for the diagonal elements, the off-diagonal elements however remain un-filtered.
+Later, Touzi \cite{Touzi_1994_TGRS} drew out the principles of speckle filtering of POLSAR data. 
+They are
+\begin{enumerate}
+	\item Speckle can be filtered if ALL elements of its covariance matrix are filtered.
+	\item Single-channel SAR speckle filtering is only applicable to diagonal elements of the covariance matrix
+	\item Speckle filtering need to be performed also on off-diagonal elements, as correlation among the elements need to be exploited and the elements do not exists independently.
+\end{enumerate}
+
+In 1999, Lee \cite{Lee_1999_TGRS} extended his refined-Lee filters on POLSAR data, and argues that all covariance matrix elements should be filtered by the same amount to preserve polarimetric properties. 
+He then proposed to apply the weighted averaging on the full covariance matrix instead of single-channel intensities values. 
+\begin{equation}
+C_{out} = C_{avg} + w (C_{curr} - C_{avg})
+\end{equation}
+where
+	$C_{out}$ is the filtered covariance matrix output,
+	$C_{avg}$ is the average covariance matrix using an edge-aligned window,
+	$C_{curr}$ is the covariance matrix of the current processing pixel.
+The weight $w$ is computed within the edge aligned window from the total power image $y$ as:
+\begin{equation}
+w = \frac{\sigma^2_y - \mu^2_y \sigma^2_v}{\sigma^2_y - \sigma^2_y \sigma^2_n}
+\end{equation}
+where 
+	$\sigma^2_y$ and $\mu_y$ are the variance and mean computed within the edge aligned window, respectively,
+	$\sigma^2_n$ is the user specified noise variance. 
+
+Further attempts has been made towards statistical modelling the off-diagonal elements but the applications of these results towards the problem of speckle suppression for off-diagonal element have been non-conclusive.
+Based on his 2003 paper \cite{Lopez_2003_TGRS} on POLSAR statistical analysis, in 2008, Martinez \cite{Lopez_2008_TGRS} proposed a model based polarimetric filter.
+He first proposed to model $S_hS_v^*$ as having both additive and multiplicative components. 
+\begin{equation}
+S_pS_q^* = \psi |\rho | e^{i \theta} + \psi \bar{z}_n N_c (1-n_m) e^{i \theta} + \psi (n_{ar} + i n_{ai}) 
+\end{equation}
+where
+	$\psi = \sqrt{ E \left( |S_p|^2 \right) E \left( |S_q|^2 \right) }$ represents the average joint power in the two channels, 
+	$\rho = |\rho| e^{i \theta} = \frac{E \left( S_pS_q^* \right)}{ \sqrt{ E \left( |S_p|^2 \right) E \left( |S_q|^2 \right) } }$ is the complex correlation coefficient that characterize the correlation among the channels,
+	$N_c = \frac{\pi}{4} |\rho| F_{1,2} ( 1/2,1/2,2,|\rho|^2 )$ basically contains the same information as the complex correlation coefficient, and 
+	$F_{1,2} ( a,b,c,d )$ is the Gauss hyper-geometric function,
+	$n_m$ is the first speckle noise component that is multiplicative with $E(n_m)=1$ and $var(n_m)=1$,
+	$n_{ar} + i n_{ai}$ is the second additive speckle noise component with $E(n_{ar}) = E(n_{ai}) = 0$ and $var(n_{ar}) = var(n_{ai}) = \frac{1}{2} (1-|\rho|^2)^{1.32}$.
+The model is overly complicated and to do speckle filtering, various approximations has to be used.
+
+In 2009, Lee \cite{Lee_CRCPress_2009} proposed to model $S_hS_v^*$ in a different approach.
+The phase difference is defined as:
+\begin{equation}
+\phi = \arg{ \left( S_pS_q^* \right) }
+\end{equation}
+Lee gives the PDF for the phase difference as:
+\begin{equation}
+pdf(\phi) = \frac{\Gamma(3/2) (1-|\rho|^2) \beta}{2 \sqrt{\pi} \Gamma(1) (1-\beta^2)} + \frac{(1-|\rho|^2)}{2 \pi} F_{1,2}(1,1,1/2,\beta^2)
+\end{equation}
+with
+	$\beta = |\rho| cos(\phi-\theta)$ and
+	$F_{1,2} ( a,b,c,d )$ is the Gauss hyper-geometric function.
+
+The normalized magnitude which is defined as
+\begin{equation}
+\xi = \frac{E \left( S_pS_q^* \right)}{\sqrt{ E \left( |S_p|^2 \right) E \left( |S_q|^2 \right) }}
+\end{equation}
+and the PDF is given as
+\begin{equation}
+pdf(\xi) = \frac{4\xi}{\Gamma(1)(1-|\rho|^2)} I_0 \left( \frac{2 |\rho| \xi}{1-|\rho|^2} \right) K_0 \left(  \frac{2 \xi}{1-|\rho|^2} \right)
+\end{equation}
+with
+	$I_0$ and $K_0$ are modified Bessel functions.
+Again the equations looks overwhelmingly complex, and as admitted by the authors themselves:
+	this do not allow for easy speckle filtering as the model is too complex and 
+	the complex correlation coefficient $\rho$ is not easy to be estimated \cite{Lee_CRCPress_2009}
+
+There are several other attempts to filter POLSAR data.
+Vasile, 2006 proposed to region growing adaptive neighborhood approach, where averaging is performed on an adaptive homogenous neighbor.
+The draw back of the approach is that only the intensity was used to determine homogeneity and primitivev averaging filter is performed on off-diagonal elements \cite{Vasile_TGRS_2006}.
+%J.S. Lee is also very active in POLSAR speckle filtering.
+In \cite{Lee_2006_TGRS}, J.S. Lee proposed to group homogenous pixels based on their underlying scattering model. 
+While the work is interesting, it is believed that pixels having similar underlying model, says volume scattering, can still be of very different nature.
+Similar to Lee's previous work, simple weighted average filtering is applied on both diagonal and off-diagonal elements.
+Vasile, 2010, published a complicated spherically invariant random vector estimation scheme to estimate the underlying target POLSAR signature \cite{Vasile_2010_TGRS}.
+While polarimetric information is estimated independently from the power span, its output results no longer follow established Wishart distribution.
+
+%In summary, it is evident that further research into designing speckle filters for POLSAR data, especially for off-diagonal elements is warranted. 
+%We will discuss our approach in the next section.
+In summary, while off-diagonal elements, which carries phase information, is important in intepreting POLSAR data \cite{Rodionova_2009_ESASP}, their estimation and filtering is under-developed.
+We will discuss our approach based on polarization basis transformation in the next section.
+
+%\subsection{ Simulating Compact Polarimetry data and the reconstruction of POLSAR signature }
+
+%\subsection{ Target Detection and Classification using SAR-based images }
+
+\subsection{Current Methods to Evaluate (POL)SAR Speckle Filters}
+
+It is customary to divide the performance evaluation of speckle filters into two distinct classes of 
+	homogeneous and heterogeneous region evaluation.
+Across homogeneous areas, speckle filters are expected to estimate with negligible radiometric bias.
+As such, evaluating speckle filters over homogeneous areas has traditionally been focused on evaluating the variation of the estimators'
+	output (a.k.a the speckle suppression power).
+In contrast, the methodologies used to evaluate speckle filters over heterogeneous areas are much more complicated, 
+	due in part to the following difficulties.
+The first is that of determining an absolute ground-truth against which quantitative criteria can be measured.
+The second challenge is to then define a quantifiable metric that allows the performance of different speckle filters 
+	to be measured and compared.
+
+In general, any metric to evaluate speckle filters should be relevant to the normal usage of such filters.
+Furthermore, the application of any speckle filter in a SAR processing framework
+   should enable an improvement in the measurement, 
+	detection or classification of the underlying radiometric features.
+As shown in the subsequent sections, by applying log-transformation, 
+	this overall requirement of speckle filtering can be further broken down into two smaller requirements.
+On the one hand, speckle filters should preserve the underlying radiometric signal (namely the radiometric 
+	preservation requirement).
+On the other hand, they should reduce the variation of the additive noise (i.e. speckle suppression power).
+These requirements can be measured and evaluated by determining, also in the log-transformed domain, the bias 
+	and variance error of the output.
+As the MSE evaluation is a combination of bias and variance error, it is therefore capable of evaluating 
+	the general requirements of speckle filtering.
+
+For homogeneous scenes where the underlying radiometry is assumed to be constant, 
+	the filtered results are considered, statistically speaking, to be samples of 
+	a single but complex stochastic process.
+From a logarithmic transformation perspective, the radiometric preservation and speckle suppression requirements 
+	of speckle filters can be judged using the familiar bias and variance evaluation.
+
+One metric that can be used to detect radiometric distortion is the ratio between the estimated and the 
+	original value $r = X_{est} / X_{org}$ \cite{Oliver_2004_SciTech} \cite{Medeiros_2003_IJRS}.
+A somewhat similar metric is used in \cite{Wang_2005_MIPR} as $r_w = (X_{est} - X_{org} )/ X_{org}$.
+In the log-transformed domain, the equivalent criteria for evaluation could be performed by a simple subtraction.
+In other words, it is clear that the bias evaluation in the log-transformed domain 
+	can be used to evaluate the radiometric preservation requirement of speckle filters. 
+
+Specifically for homogeneous scenes, Shi et al. \cite{Shi_IGARSS_1994} found that 
+	in the original domain the ``standard'' filters (boxcar, Lee\cite{Lee_PAMI_1980}, 
+	Kuan \cite{Kuan_1985_PAMI}, Frost\cite{Frost_PAMI_1982}, 
+	MAP\cite{Lopes_IGARSS_1990}) and their enhanced versions \cite{Lopes_TGRS_1990} can achieve negligible bias. 
+In this paper, we will also show that all of these standard filters preserve
+	not only the expected radiometric values
+	but also a number of subtractive and consistent measures of distance exhibited in the log-transformed domain.
+
+Several metrics have been developed to evaluate speckle suppression power.
+The most common measure is the Equivalent Number of Looks (ENL) index 
+$ENL=avg(I)^2/var(I)$
+that was proposed by Lee \cite{Lee_1981_CGIP}.
+Another very similar metric is the ratio of mean to standard deviation, $R=avg(I)/std(I)$ \cite{Gagnon_SPIEProc_1997} 
+In Section \ref{sec:eval_homo}, it will be shown that, for homogeneous areas, ENL is mathematically related to variance in the 
+	log-transformed domain.
+Subsequently, we propose the use of log-variance to evaluate the noise suppression power of speckle filters, 
+	which is the primary criteria used to evaluate speckle filters over homogeneous area.
+
+Real-life and practical images, however, are not homogeneous.
+Thus there are a number of associated difficulties in evaluating speckle filters over heterogeneous scenes.
+The first difficulty in evaluating speckle filters for heterogeneous scenes is to select the basis for comparison. 
+It is trivially easy to estimate the underlying radiometric coefficient if an area is known to be homogeneous.
+However, without simulation or access to solid ground-truth, it is practically impossible to do so for 
+	real-life images.
+And hence, the need for speckle filters estimation is warranted.
+
+Without ground truth, one way to evaluate radiometric preservation of filters is to compute the ratio image mentioned above. 
+Under a multiplicative model, the ratio image is expected to comprise solely of
+    the noise being removed (i.e. it should be completely random). 
+Being random, this should display as little ``visible'' structure as possible. 
+However, when displaying such images for visual evaluation, the ratios that are smaller than unity are much 
+harder to distinguish than those that are bigger \cite{Medeiros_2003_IJRS}. 
+We therefore propose to adopt a log-transformed domain perspective 
+  where the multiplicative noise would then be transformed into a more familiar additive model.
+More importantly, the ratio image would then become a simple subtraction image.
+The evaluation methodology for such adoption would not change. 
+Only that the residual image would become linear and additive.
+And thus it would be more natural to be displayed and evaluated visually (see \ref{sec:schema_log_images}).
+
+Another way to evaluate speckle filters is by comparing the feature preservation characteristics 
+of the original noised data and those of the filtered image. 
+When there is no ground-truth given, the feature are estimated in both the original noised and the filtered images.
+Evaluation would then determine how closely related the two feature maps are. 
+Various methods may be applied to extract features; examples of those that have been used are the 
+	Hough Transform \cite{Medeiros_2003_IJRS}, Robert gradient edge detector \cite{Gagnon_SPIEProc_1997} 
+	and edge map \cite{Frost_PAMI_1982}.
+While significant effort has been spent on these evaluations, serious doubts remain concerning the precision 
+of these methodologies.
+This is because feature extraction algorithms are only approximations,
+	whose accuracy is not only dependent upon the characteristics of the original image 
+		but also heavily affected by 
+		the inherent noise.
+Unfortunately, speckle filters invariably alter the noise characteristics.
+Thus, without a clear understanding of these dependencies and no absolute ground truth, 
+	using feature extraction algorithms to evaluate speckle filters would leave serious questions on 
+	how to interpret the results, especially its accuracy.
+
+Since SAR statistical models are quite well understood, 
+	simulation experiments with known ground-truth can be employed 
+		to evaluate speckle filters.
+In this paper, we also make use of a methodology similar to the ones discussed above with two important changes.
+Firstly, our simulated experiments offer absolute ground-truth.
+Secondly, our threshold-based feature extraction algorithm is extremely simple.
+More importantly, the dependency between the performance of the algorithm and the level of noise is well established. 
+This performance can be 
+	conveniently visualized by plotting the Receiver Operating Characteristics Curve (ROC).   
+It can also be objectively quantified by measuring the Area Under this Curve (AUC). 
+As shown in section \ref{sec:eval_hetero}, this standard and normalized criteria allows a comparative evaluation of 
+	feature preservation capabilities for different speckle filters.
+
+%There are two main ways that ground truths are used in evaluating speckle filters.
+%A simple method is to embed speckle noise into an existing optical image, and then use the filters to estimate noise-free imagary from this. 
+%Normally the image is large, with a number of different features and test conducted in once. 
+%The benefit of this method is that a wide range of features can be tested, which is probably closer to the real-life situation. 
+%The main drawback is that, since the noise embedding process is stochastic in nature, reporting only a single experimental is probably not providing a very representative result. 
+%It is of course, also dependent upon the nature of the test image and noise embedded process employed.
+%
+%Another method is to evaluate using a patterned, structured and repeated ground truth which may be artificial or real.
+%Since the structure is repeated many times, the combined results become more representative. Also, the patterns can be pre-designed and lead to the possibility of repeatable evaluations between research groups.
+%The drawback is that only a single type of target can be tested per image. These types may normally be point targets, edges and lines (all features that are currently used to evaluate speckle filters).
+
+Even with known ground-truth, evaluating metrics need to be defined for quantitative measurements.
+This is the second difficulty in evaluating speckle filters for heterogeneous scenes.
+Under the conditions of heterogeneity, the standard speckle filters still introduce radiometric loss, 
+	normally at local or regional levels.
+In fact, the common consensus is that a powerful speckle suppression filter (for example the boxcar filter) 
+	is likely to perform poorly in terms of preserving underlying radiometric differences 
+	(e.g. causing excessive blurring).
+Furthermore, we have not found many published articles combining the evaluation
+  of these two seemingly contradicting requirements.
+
+Overall, many different methods and metrics have been proposed to evaluate various aspects of speckle filters. 
+However it is clearly advantageous to have a single metric that is able to judge if one filter is better than another. 
+Wang \cite{Wang_2005_MIPR} proposed using fuzzy membership to weight opinions of an expert panel. 
+Although this provides a potential solution, we consider it to be tedious in implementation, fuzzy in concept and 
+	subjective in nature.
+
+%Similar to the ENL index in homogeneous area, in establishing an evaluation metric, 
+%	it is desirable that the criteria should also be scene-independent\cite{Shi_IGARSS_1994}.
+%The most common measure of difference in image processing methods is to compute some substractive distances, either in intensity or in amplitude domain. 
+%However since SAR noise is multiplicative in the original domain, these differences are not only dependent on the noise level but also on the amplitude level of the signal itself.
+%Shi \cite{Shi_IGARSS_1994} define sharpness as the ratio between
+%Shi define the mid-point position of an edge as the intensity value between the nominal values of the two regions, $M= { E(X_t) + E(X_b)}/{2}$
+%	and the sharpness of an edge as the slope between the two nominal intensities value, $S=E(X_t)-E(X_b)$, 
+%	where $E()$ denotes expectation operator. 
+
+Another approach is to apply a universal mean squared error criteria into the context of SAR data. 
+However since SAR data is heteroskedastic, which violates the assumptions of the Gauss-Markov theorem, 
+	the use of MSE is not straightforward. 
+Thus Gagnon \cite{Gagnon_SPIEProc_1997} suggested the use of
+  the ratio between the expected mean of the signal and the RMSE of the removed noise. 
+The metric is argued to be similar in interpretation to the standard signal-to-noise ratio (SNR). 
+Others have suggested the use of normalized MSE, which is essentially the ratio between MSE and the expected mean.
+
+%Thus we propose the use of MSE in the homoskedastic log-transformed domain to evaluate eps. 
+%This is similar to the investigation of residual image in log-transformed domain and also agrees with the log-transformed variance metric in homogeneous area (assuming that the filters have no problem preserving the mean). We also show experimentally that this MSE measure is inversely correlated with the AUC index mentioned earlier, suggesting that the lower the MSE index a filter can achieve, the better its feature preservation capability can be.
+
+In this paper, homoskedastic property is shown to be available after logarithmic transformation of SAR data.
+As the important Gauss-Markov theorem becomes applicable in this transformed domain, 
+	the use of MSE is shown to be again relevant for evaluating statistical estimators (i.e. speckle filters).
+Intuitively, each components of the MSE measure, 
+	namely bias and variance evaluation, can be mapped into 
+	the requirements of radiometric preservation and speckle suppression for speckle filters.
+Before the details of our evaluation methodology is presented and discussed, 
+	Section \ref{sec:log_transform} provides a brief discussion on logarithmic transformation for SAR images.
+
+\section{Existing Measures of Distance for (POL)SAR data and their applications}
+
+to detect if the two scaled multi-look POLSAR covariance matrix $Z_x$ and $Z_y$,
+  which have $L_x$ and $L_y$ as the corresponding number of looks,
+  come from the same underlying stochastic process,
+Conradsen considered \cite{Conradsen_2003_TGRS_4} the following POLSAR statistics
+\begin{equation}
+  Q = \frac{(L_x+L_y)^{d \cdot (L_x+L_y)}}{L_x^{d \cdot L_x} L_y^{d \cdot L_y}} \frac{|Z_x|^{L_x} |Z_y|^{L_y} }{|Z_x+Z_y|^{(L_x+L_y)}}
+\end{equation}
+
+Taking the log-transformation of the above statistics, and note that $C_{vx} = Z_x / L_x$, $C_{vy} = Z_y / L_y$ and $C_{vxy} = (Z_x + Z_y)/(L_x + L_y)$ then we have
+\begin{eqnarray}
+  Q &=& \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \nonumber \\
+  \ln Q &=& L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \nonumber
+\end{eqnarray}
+
+Since both $Z_x$ and $Z_y$ follow complex wishart distribution with $L_x$ and $L_y$ degrees of freedom,
+  $Z_x+Z_y$ also follows the complex wishart distribution with $L_x + L_y$ degrees of freedom.
+In view of the models denoted in Eqn. \ref{eqn:log_determinant_distribution},
+  it is evident that not only the bound for $\ln Q$, or equivalently $Q$, can be derived
+  but the whole statistical distribution for it can be simulated as well:
+\begin{eqnarray}
+%  Q &\sim& \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y} \cdot (2(L_x+L_y))^{d (L_x + L_y)}}{(2 L_x)^{d \cdot L_x} \cdot (2 L_y)^{d \cdot L_y} (\chi^d_{L_x + L_y})^{L_x + L_y}} \\
+%    &=& \frac{(L_x+L_y)^{d (L_x + L_y)}}{(L_x)^{d \cdot L_x} \cdot (L_y)^{d \cdot L_y} } \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}} \\
+  \ln{Q} &\sim&  q + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
+  Q &\sim& e^q \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}  
+\end{eqnarray}
+where $q = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
+
+In the special case of $L_x = L_y$, the Conradsen statistics become
+$\ln Q = \ln |C_{vx}| + \ln |C_{vy}| - 2 |\ln C_{vxy}|$.
+%Our approach suggest a slightly simpler statistics which probably will work just as well: the contrast
+The contrast model which is written as $\mathbb{C} = \ln C_{vx} - \ln C_{vy}$ and presented above should, under exactly the same assumptions, provides another consistent and equivalent approach,
+  with probably simpler conceptual model and computational derivations. 
+%a slightly simpler statistics.
+The details application of this in edge-detection however is outside the scope of this paper.
+
+\section{The need for Scalar Consistent Measures of Distance}
+	We will show our originality and significance here!
+
+This section surveys recent developments in the research landscape. 
+First, the stochastic nature of SAR speckle phenomena is explained. 
+Then, the topic of SAR speckle is reviewed from the perspective of statistical estimation theory. 
+An opportunity for contribution in proposing a stochastic simulation and evaluation framework is identified. 
+Next, the applications of such a framework into the problem of POLSAR speckle filtering is described. 
+Recently, the practicality of Partial Polarimetry has been noticed and studied. 
+The need for reconstruction of Full Polarimetric signatures is highlighted and the possible application of the proposed framework is described. 
+Last but not least will be an illustration on the applicability of such a framework to the topic of target detection and classification.
+
+%\subsection{POLSAR speckle filter}
+        
+	%\section{The Need for Scalar Consistent Measures of Distance}
+
+	%\section{Research Framework: Originality and Significance}
+

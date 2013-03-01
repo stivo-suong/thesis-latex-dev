@@ -1,0 +1,455 @@
+
+% ----------------------------------------------------------------------
+%                   LATEX TEMPLATE FOR PhD THESIS
+% ----------------------------------------------------------------------
+
+% based on Harish Bhanderi's PhD/MPhil template, then Uni Cambridge
+% http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/ThesisStyle/
+% corrected and extended in 2007 by Jakob Suckale, then MPI-CBG PhD programme
+% and made available through OpenWetWare.org - the free biology wiki
+
+
+%: Style file for Latex
+% Most style definitions are in the external file PhDthesisPSnPDF.
+% In this template package, it can be found in ./Latex/Classes/
+\documentclass[twoside,11pt]{Latex/Classes/PhDthesisPSnPDF}
+
+\setlength{\parindent}{0pt} %no indentation on all paragraph
+\setlength{\parskip}{2ex} %so that each paragraph is separated by a line
+
+%: Macro file for Latex
+% Macros help you summarise frequently repeated Latex commands.
+% Here, they are placed in an external file /Latex/Macros/MacroFile1.tex
+% An macro that you may use frequently is the figuremacro (see introduction.tex)
+\include{Latex/Macros/MacroFile1}
+
+\usepackage{breakurl} %this makes the url link looks ok,
+%but user cannot click the link to move the WEB
+
+\usepackage{float} %to manage graphic positioning
+\usepackage{amsmath} %for math
+\usepackage{Latex/StyleFiles/epigraph} %for quote in chapters (epigraph)
+\setlength{\epigraphwidth}{10cm}
+
+\usepackage{setspace} % for onehalfspace
+\usepackage{listings} %for code listing
+\usepackage{epsfig} %for figures
+%\usepackage{cite} %for citing and indexing
+%\usepackage{natbib}
+
+\usepackage{caption}%for captions
+%\usepackage{nicefrac}
+%\usepackage{caption,subcaption} 
+\usepackage[caption=false,font=footnotesize]{subfig} %for subfigures
+
+%: ----------------------------------------------------------------------
+%:                 List of Equations 
+% ----------------------------------------------------------------------
+%\usepackage[titles]{tocloft} %for list of equations
+\makeatletter
+\@ifpackageloaded{subfig}
+    {\usepackage[subfigure]{Latex/StyleFiles/tocloft}}
+    {\usepackage{Latex/StyleFiles/tocloft}}
+\makeatother
+
+\usepackage{Latex/StyleFiles/xstring} %for list of equations
+%\numberwithin{equation}{section}
+
+% we use this for our refernces as well
+%\AtBeginDocument{\renewcommand{\ref}[1]{\mbox{\autoref{#1}}}}
+
+% redefinition of \equation for convenience
+\let\oldequation = \equation
+\let\endoldequation = \endequation
+\AtBeginDocument{\let\oldlabel = \label}% \AtBeginDocument because hyperref redefines \label
+\newcommand{\mynewlabel}[1]{%
+  \StrBehind{#1}{eqn:}[\Str]% remove "eq:" from labels
+  \myequations{\Str}\oldlabel{#1}}
+  \renewenvironment{equation}{%
+  \oldequation
+  %\let\label\mynewlabel
+  \let\caption\mynewlabel
+}{\endoldequation}
+
+\newcommand{\listequationsname}{List of Equations}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\myequations}[1]{%
+      \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}}
+\setlength{\cftmyequationsnumwidth}{3em}
+
+%\makeatother
+
+%: ----------------------------------------------------------------------
+%:                  TITLE PAGE: name, degree,..
+% ----------------------------------------------------------------------
+% below is to generate the title page with crest and author name
+
+%if output to PDF then put the following in PDF header
+\ifpdf  
+    \pdfinfo { /Title  (Homoskedastic Measures of Distance for Heteroskedastic SAR And POLSAR Data)
+%               /Creator (TeX)
+%               /Producer (pdfTeX)
+               /Author (Thanh-Hai Le)
+%               /CreationDate (D:YYYYMMDDhhmmss)  %format D:YYYYMMDDhhmmss
+%               /ModDate (D:YYYYMMDDhhmm)
+%               /Subject (xyz)
+%               /Keywords (add, your, keywords, here) }
+%    \pdfcatalog { /PageMode (/UseOutlines)
+%                  /OpenAction (fitbh)  }
+\fi
+
+%\title{Title of your thesis}
+\title{Homoskedastic Measures of Distance for Heteroskedastic SAR And POLSAR Data}
+
+% ----------------------------------------------------------------------
+% The section below defines www links/email for author and institutions
+% They will appear on the title page of the PDF and can be clicked
+%\ifpdf
+%  \author{\href{mailto:your@email.net}{YourName}}
+%%  \cityofbirth{born in XYZ} % uncomment this if your university requires this
+%%  % If city of birth is required, also uncomment 2 sections in PhDthesisPSnPDF
+%%  % Just search for the "city" and you'll find them.
+%  \collegeordept{\href{http://www.something.net}{CollegeOrDepartment}}
+%  \university{\href{http://www.something.net}{University}}
+%
+%  % The crest is a graphics file of the logo of your research institution.
+%  % Place it in ./0_frontmatter/figures and specify the width
+%  \crest{\includegraphics[width=4cm]{logo}}
+%  
+%% If you are not creating a PDF then use the following. The default is PDF.
+%\else
+%  \author{YourName}
+%%  \cityofbirth{born in XYZ}
+%  \collegeordept{CollegeOrDept}
+%  \university{University}
+%  \crest{\includegraphics[width=4cm]{logo}}
+%\fi
+
+\ifpdf
+%  \author{\href{mailto:hami0003@ntu.edu.sg}{Hamid Reza Sharifzadeh}}
+  \author{{Thanh-Hai Le}}
+%  \cityofbirth{born in XYZ} % uncomment this if your university requires this
+%  % If city of birth is required, also uncomment 2 sections in PhDthesisPSnPDF
+%  % Just search for the "city" and you'll find them.
+%  \collegeordept{\href{http://www.something.net}{CollegeOrDepartment}}
+  \collegeordept{{School of Computer Engineering}}
+%  \university{\href{http://www.something.net}{University}}
+  \university{{Nanyang Technological University}}
+ 
+  % The crest is a graphics file of the logo of your research institution.
+  % Place it in ./0_frontmatter/figures and specify the width
+  \crest{\includegraphics[height=2.6cm,width=6.5cm]{Picture1}}
+% 
+%% If you are not creating a PDF then use the following. The default is PDF.
+\else
+  \author{{Thanh-Hai Le}}
+%%  \cityofbirth{born in XYZ}
+  \collegeordept{{School of Computer Engineering}}
+  \university{{Nanyang Technological University}}
+  \crest{\includegraphics[height=2.6cm,width=6.5cm]{Picture1}}
+\fi
+
+%\renewcommand{\submittedtext}{change the default text here if needed}
+\degree{Doctor of Philosophy (PhD)}
+\degreedate{Feb 2013}
+
+% ----------------------------------------------------------------------
+       
+% turn of those nasty overfull and underfull hboxes
+\hbadness=10000
+\hfuzz=50pt
+
+%: --------------------------------------------------------------
+%:                  FRONT MATTER: dedications, abstract,..
+% --------------------------------------------------------------
+\makenomenclature
+
+\begin{document}
+
+%\language{english}
+
+% sets line spacing
+\renewcommand\baselinestretch{1.2}
+\baselineskip=18pt plus1pt
+
+
+%: ----------------------- generate cover page ------------------------
+
+\maketitle  % command to print the title page with above variables
+
+
+%: ----------------------- cover page back side ------------------------
+% Your research institution may require reviewer names, etc.
+% This cover back side is required by Dresden Med Fac; uncomment if needed.
+
+%\newpage
+%\vspace{10mm}
+%1. Reviewer: Name
+%
+%\vspace{10mm}
+%2. Reviewer: 
+%
+%\vspace{20mm}
+%Day of the defense:
+%
+%\vspace{20mm}
+%\hspace{70mm}Signature from head of PhD committee:
+
+
+
+%: ----------------------- abstract ------------------------
+
+% Your institution may have specific regulations if you need an abstract and where it is to be placed in the document. The default here is just after title.
+
+\include{0_frontmatter/abstract}
+%\pagenumbering{arabic}
+
+% The original template provides and abstractseparate environment, if your institution requires them to be separate. I think it's easier to print the abstract from the complete thesis by restricting printing to the relevant page.
+% \begin{abstractseparate}
+%   \input{Abstract/abstract}
+% \end{abstractseparate}
+
+
+%: ----------------------- tie in front matter ------------------------
+
+\frontmatter
+\include{0_frontmatter/dedication}
+\include{0_frontmatter/acknowledgement}
+\pagenumbering{roman}
+
+%: ----------------------- contents ------------------------
+
+%\addcontentsline{toc}{chapter}{Table of Contents}
+\setcounter{secnumdepth}{3} % organisational level that receives a numbers
+\setcounter{tocdepth}{3}    % print table of contents for level 3
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Content Tables}
+\tableofcontents            % print the table of contents
+% levels are: 0 - chapter, 1 - section, 2 - subsection, 3 - subsection
+
+%: ----------------------- glossary ------------------------
+
+% Tie in external source file for definitions: /0_frontmatter/glossary.tex
+% Glossary entries can also be defined in the main text. See glossary.tex
+%\include{0_frontmatter/glossary} 
+%
+%\begin{multicols}{2}  %\begin{multicols}{#columns}[header text][space]
+%\begin{footnotesize}  %scriptsize(7) < footnotesize(8) < small (9) < normal (10)
+%
+%\printnomenclature[1.5cm]  %[] = distance between entry and description
+%\label{nom}  %target name for links to glossary
+%
+%\end{footnotesize}
+%\end{multicols}
+
+\chapter*{List of Symbols}
+\addcontentsline{toc}{section}{List of Symbols}
+
+\section*{1. Glossary}
+
+\begin{multicols}{2}
+  
+%Glossary: includes term: definition
+
+%Acronym: includes acronym: full term; definition?
+
+{\bf Polarimetric Synthetic Aperture Radar:} the extension of single-channel SAR imaging solution to multiple-channel imagary using polarimetric properties.\\
+
+{\bf POLSAR:} Polarimetric Synthetic Aperture Radar \\
+
+{\bf SAR:} Synthetic Aperture Radar\\
+
+{\bf Synthetic Aperture Radar:} an active side-looking-radar remote sensing solution based on doppler-effect\\
+
+\label{glossary} % target name for links to glossary
+
+\end{multicols}
+
+\newpage
+
+\section*{2. Nomenclatures}
+
+\begin{multicols}{2} % \begin{multicols}{#columns}[header text][space]  produces a 2 column page for a compact glossary
+%\begin{footnotesize} % scriptsize(7) < footnotesize(8) < small (9) < normal (10)
+
+$C_v$: denotes the {\bf polarimetric covariance matrix}\\
+
+$C_h$: denotes the {\bf polarimetric coherency matrix}\\
+
+$M^{*T}$: denotes the {\bf complex conjugate transpose} of matrix $M$ \\
+
+$pdf(x;k)$: denotes the {\bf probability density function} of the {\bf random variable} $x$,
+  given the known and {\bf constant} $k$\\
+
+$cdf(x;k)$: denotes the {\bf cumulative distribution function} of the {\bf random variable} $x$,
+  given the known and {\bf constant} $k$\\  
+
+$cf(x;k)$: denotes the {\bf characteristic function} of the {\bf random variable} $x$,
+  given the known and {\bf constant} $k$\\  
+
+$X \sim Y$: denotes the observable values $X$,
+  which behaves as a single or a combination of random process(es) $Y$. 
+  
+$|M|$: denotes the {\bf determinant} of the matrix $M$, also denoted as $det|M|$\\
+
+$Z$: denotes the {\bf scaled polarimetric covariance matrix}, $Z=LC_v$ (see: $C_v$)\\
+
+$\Gamma(x)$: denotes the {\bf Gamma function}.\\
+
+$tr(M)$: denotes the {\bf trace} of matrix $M$.\\
+
+$\chi^2(2L)$: denotes the {\bf Chi-Square distribution} with $2L$ degrees of freedom.\\
+
+$\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees of freedom.\\
+  
+  
+%\end{footnotesize}
+\end{multicols}
+
+%: ----------------------- list of figures/tables ------------------------
+
+%\pagenumbering{roman}
+\newpage
+\listofmyequations
+\addcontentsline{toc}{section}{List of Equations}
+%\phantomsection
+%\addtocontents{toc}{List of Equations}
+
+\newpage
+\renewcommand\lstlistlistingname{List of Source Code}
+%\renewcommand\lstlistingname{Algorithm}
+\lstlistoflistings
+\addcontentsline{toc}{section}{List of Source Code}
+
+\newpage
+\listoffigures	% print list of figures
+\addcontentsline{toc}{section}{List of Figures}
+
+\newpage
+\listoftables  % print list of tables
+\addcontentsline{toc}{section}{List of Tables}
+
+%\chapter*{List of Mathematic Symbols}
+%\addcontentsline{toc}{section}{List of Mathematic Symbols}
+%
+%\begin{multicols}{2} % \begin{multicols}{#columns}[header text][space]  produces a 2 column page for a compact glossary
+%\begin{footnotesize} % scriptsize(7) < footnotesize(8) < small (9) < normal (10)
+%
+%%Nomenclature: includes math term: definition
+%
+%$C_v$: Polarimetric Covariance Matrix\\
+%
+%$C_h$: Polarimetric Coherence Matrix\\
+%
+%\label{nom2} % target name for links to glossary
+%
+%\end{footnotesize}
+%\end{multicols}
+
+%: --------------------------------------------------------------
+%:                  MAIN DOCUMENT SECTION
+% --------------------------------------------------------------
+
+% the main text starts here with the introduction, 1st chapter,...
+\mainmatter
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+%\renewcommand{\chaptername}{} % uncomment to print only "1" not "Chapter 1"
+
+
+%: ----------------------- subdocuments ------------------------
+
+% Parts of the thesis are included below. Rename the files as required.
+% But take care that the paths match. You can also change the order of appearance by moving the include commands.
+
+%\include{1_introduction/introduction}	% background information
+%\chapter{Introducing The Research Question}
+%STATE: structure stabilized
+%TODO: review the content text
+
+%\include{2/literature_review}
+%STATE: structure more or less stablized
+%TODO: attack portion 1
+
+\include{3/sar}
+%STATE: Waiting for Ian, Nick to come back
+
+%\include{4/polsar}	
+%\chapter{Consistent Measures of Distance for Multivariate POLSAR Data} %chapter 4
+%STATE: structure stablized
+%TODO: add latest contents into the section, ready this for sending to Ian,Nick
+
+%\include{5/applications}
+%\chapter{Using the Consistent Measures of Distance} %chapter 5
+%STATE: section 1: cleaned up
+%TODO: section 4 (FMLE POLSAR) needs some fresh meat
+%TODO: clean up section 2, 3, 5
+
+%\include{6/conclusional_discussion}
+%STATE: the contents come from other papers & the report
+%TODO: copy some discussions to the first section, rewrite the contribution the possibilities and the conclusion.
+
+% --------------------------------------------------------------
+%:                  BACK MATTER: appendices, refs,..
+% --------------------------------------------------------------
+
+% the back matter: appendix and references close the thesis
+%\include{9_backmatter/appendix}
+
+        
+%: ----------------------- bibliography ------------------------
+
+% The section below defines how references are listed and formatted
+% The default below is 2 columns, small font, complete author names.
+% Entries are also linked back to the page number in the text and to external URL if provided in the BibTex file.
+
+% PhDbiblio-url2 = names small caps, title bold & hyperlinked, link to page 
+%\begin{multicols}{2} % \begin{multicols}{ # columns}[ header text][ space]
+%\begin{tiny} % tiny(5) < scriptsize(7) < footnotesize(8) < small (9)
+
+%this is first choice, use with break url to handle Online resouces
+%good point is number of refs is available, not so good is not (author, year) style
+%\bibliographystyle{Latex/Classes/PhDbiblio-url2} % Title is link if provided,
+%this is second choice: good point is (author, year) style in text, bad is no number of refs
+\bibliographystyle{Latex/Classes/jmb} % calls style file jmb.bst
+\renewcommand{\bibname}{References} % changes the header; default: Bibliography
+%tried but not so impressed
+%\bibliographystyle{Latex/Classes/PhDbiblio-url} % bold + www link if provided
+%\bibliographystyle{apalike}
+%\bibliographystyle{plainnat} % calls style file plainnat.bst
+%\bibliographystyle{Latex/Classes/PhDbiblio-url} % bold + www link if provided
+
+\bibliography{thesis} % adjust this to fit your BibTex file
+
+%\end{tiny}
+%\end{multicols}
+
+% --------------------------------------------------------------
+% Various bibliography styles exit. Replace above style as desired.
+
+% in-text refs: (1) (1; 2)
+% ref list: alphabetical; author(s) in small caps; initials last name; page(s)
+%\bibliographystyle{Latex/Classes/PhDbiblio-case} % title forced lower case
+%\bibliographystyle{Latex/Classes/PhDbiblio-bold} % title as in bibtex but bold
+%\bibliographystyle{Latex/Classes/PhDbiblio-url} % bold + www link if provided
+
+%\bibliographystyle{Latex/Classes/jmb} % calls style file jmb.bst
+% in-text refs: author (year) without brackets
+% ref list: alphabetical; author(s) in normal font; last name, initials; page(s)
+
+%\bibliographystyle{plainnat} % calls style file plainnat.bst
+% in-text refs: author (year) without brackets
+% (this works with package natbib)
+
+
+% --------------------------------------------------------------
+
+% according to Dresden med fac summary has to be at the end
+%\include{0_frontmatter/abstract}
+
+%: Declaration of originality
+%\include{9_backmatter/declaration}
+
+\end{document}
