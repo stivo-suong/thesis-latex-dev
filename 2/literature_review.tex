@@ -1,284 +1,170 @@
 \chapter{Current Methods in Processing SAR and POLSAR Data} %chapter 2
 
-\section{The nature of Polarimetric SAR: EM Wave Polarization}
+\section{The Stochastics and Multivariate Nature of POLSAR data}
 
-Remote sensing introduction paragraph (section 2.1.1)
+\subsection{The Stochastic nature of SAR data}
 
-SAR introduction paragraph (section 2.1.2)
+\subsubsection{ Traditional Single-Channel SAR and the Speckle phenomena} 
 
-EM Wave polarization (Maxwell law leads to wave equations section 2.1.3.1, choice of origin which leads to polarization basis change eq 2.22)
+Wikipedia to be edited strongly.
+Speckle noise is a granular noise that inherently exists in and degrades the quality of the active radar and synthetic aperture radar (SAR) images.
+Speckle noise in conventional radar results from random fluctuations in the return signal from an object that is no bigger than a single image-processing element. It increases the mean grey level of a local area.[1]
+Speckle noise in SAR is generally more serious, causing difficulties for image interpretation.[1][2] It is caused by coherent processing of backscattered signals from multiple distributed targets. In SAR oceanography, for example, speckle noise is caused by signals from elementary scatterers, the gravity-capillary ripples, and manifests as a pedestal image, beneath the image of the sea waves.[3][4]
 
-SAR Polarimetry: and SAR as a special case of POLSAR (send and receive polarizations: 2.1.3.5)
+\subsubsection{The Stochastic nature of SAR  and SAR speckle filtering }
 
-Full Polarimetric SAR and target polarimetric response (also 2.1.3.5)
+The stochastic nature SAR arises from the speckle phenomena.
+As SAR speckle seriously hinders the interpretation and understanding of SAR images,
+  its effect are routinely reduced through a speckle filtering process.
+SAR speckle filtering is the process to suppress the effect of speckle noise SAR images for easier intepretation.
 
-Partial Polarimetric SAR and EM wave polarization (2.1.3.4)
+\subsection{The Multivariate Nature of POLSAR data}
 
-SAR stochastics nature (new)
+\subsubsection{ Partial Polarimetry and the Stokes Vector}
 
-\subsection{Representations of EM Wave Polarizations (Linear, Circular ...)}
-
-\subsubsection{Plane wave and solutions to the EM Wave equations}
-
-The general solution to the PDE EM wave equation is a linear superposition of waves each having the form
+The dual-polarization modes has been practically and operationally available for quite some time.
+However, partial polarimetry has only recently been investigated in the scientific community. 
+By comparison, 
+	partial polarimetry measures dual-polarized response from incoming pulses of a single polarization channel,
+	while full polarimetry measures the same response for two (most of the time orthogonal) polarisation channels.
+Mathematically, the process is modelled as:
 \begin{equation}
-\vec{E}(\vec{r},t)=g(\phi(\vec{r},t)) = g(\omega t - \vec{k} \cdot \vec{r})
-\end{equation} 
-and
-\begin{equation}
-\vec{B}(\vec{r},t)=g(\phi(\vec{r},t)) = g(\omega t - \vec{k} \cdot \vec{r})
-\end{equation}
-where
-	$g$ is any well-behaved function of a dimensionless argument $\phi$,
-	%for virtually any well-behaved function g of dimensionless argument φ, where
-	$\omega$ is the angular frequency (in radians per second), and
-	$\vec{k}= (k_x,k_y,k_z)$ is the wave vector (in radians per meter).
-
-%Although the function $g$ can be, and often is, a monochromatic sine wave, it does not have to be. 
-%In practice, $g$ cannot have infinite periodicity because any real electromagnetic wave must always have a finite extent in time and space. 
-%Thus based on the theory of Fourier decomposition, a real wave must consist of the superposition of an infinite set of sinusoidal frequencies.
-In addition to the relations above, the wave vector and the angular frequency are not independent; they must adhere to the dispersion relation:
-\begin{equation}
-k = |\vec{k}| = \frac{\omega}{c} = \frac{2\pi}{\lambda}
-\end{equation}
-where 
-	$k$ is the wave number and $\lambda$ is the wavelength.
-
-Since any real wave can be considered as a superpositions of several sinusoidal waves, the simplest solution to consider for the EM Wave equations is:
-\begin{equation}
-\vec{E}(\vec{r},t)= \Re \left( \vec{E}(\vec{r}) e^{i \omega t} \right)
-\end{equation}
-where
-	$\omega = 2 \pi f$ is the angular frequency,
-	$f$ is the wave frequency.
-Assuming the most common case of EM waves travelling in a planar fashion, which is a good approximation of most light waves. 
-For plane waves Maxwell's equations, specifically Gauss's laws, imposes a transversality requirement that the electric and magnetic field be perpendicular to the direction of propagation and to each other. 
-Conventionally, when considering polarization, the electric field vector  is described and the magnetic field is ignored since it is perpendicular  to the electric field and proportional to it. 
-%Since the magnetic field is dependent on the electric field, 
-Thus it is sufficient to just consider electric field, which equals:
-\begin{equation}
-\vec{E}(\vec{r}) = \vec{E^0} e^{-i \vec{k} \cdot \vec{r}} %= \vec{E^0} e^{-ikz}
+ \left( 
+\begin{array}{c}
+ E_h^{Rx} \\
+ E_v^{Rx}
+\end{array}
+ \right) = \frac{e^{ikr}}{r} 
+\left( 
+\begin{array}{c}
+ S_{H} \\
+ S_{V}
+\end{array}
+ \right) E^{Tx}
 \end{equation}
 
-Combining the two equations we have:
-\begin{equation}
-\vec{E}(\vec{r},t) 
-	= \vec{E^0} \Re \left( e^{i (\omega t - \vec{k} \cdot \vec{r})} \right)
-	= \vec{E^0} \cos(wt - \vec{k} \cdot \vec{r}) %\vec{E^0} \cos{ \left( wt - kz + \phi_0 \right)}
-\end{equation}
-
-If we define the $z$ direction as the travelling direction of the EM wave,
-%	and x direction is the direction of $\vec{E}$,
-%	then by Faraday's Law, the magentic field $\vec{B}$ lies in y direction, 
-%		and is related to the electric vector by $c^2 \frac{\partial B}{\partial z} = \frac{\partial E}{\partial t}$
-	and the electric field is fluctuating in the $(x,y)$ plane,
-	because the divergence of the electric and magnetic fields are zero, 
-		there will be no fields in the direction of propagation.
-Project this into $x$ and $y$ directions:
-\begin{equation}
-\vec{E}(z,t) 
-= 
-\left(
-	\begin{array} {c}
-		E_x^0 \cos{ \left( wt - kz  + \phi_x^0 \right) } \\
-		E_y^0 \cos{ \left( wt - kz  + \phi_y^0 \right)} \\
-		0
-	\end{array}
-\right)
-= 
-\left(
-	\begin{array} {c}
-		\xi_x(t) \\
-		\xi_y(t) \\
-		0
-	\end{array}
-\right)
-\end{equation}
-where $\phi_0$ is the initial phase angle, that is dependent on the choice of space-time origin.
-
-\subsubsection{Linear, Circular and Elliptical Polarization}
-
-The shape traced out in a fixed projective plane by the electric vector as the plane wave passes over it is a description of the polarization state. 
-This shape is characterized by the formula
-\begin{equation}
- \frac{\xi_x^2(t)}{|E_x^0|^2} + \frac{\xi_y^2(t)}{|E_y^0|^2} - 2 \frac{\xi_x \xi_y}{E_x^0 E_y^0} \cos (\Delta \phi) = \sin^2(\Delta \phi)
-\end{equation}
-where
-	$\Delta \phi = \phi_y^0 - \phi_x^0$
-The formula characterizes what is termed as the polarization ellipse.
-
-%In the leftmost figure above, 
-When the two orthogonal components are in phase, i.e. $\phi_x^0 = \phi_y^0$, the ratio of the strengths of the two components is constant.
-Thus the direction of the electric vector (the vector sum of these two components) is constant. 
-Since the tip of the vector traces out a single line in the plane, this special case is called linear polarization. 
-The direction of this line depends on the relative amplitudes of the two components.
-%In the middle figure, 
-
-When the two orthogonal components have exactly the same amplitude and are exactly ninety degrees out of phase, i.e. $E_x^0=E_y^0$ and $ | \phi_x^0 - \phi_y^0 | = \pi/2$. 
-%There are two possible phase relationships that satisfy this requirement: the x component can be ninety degrees ahead of the y  component or it can be ninety degrees behind the y component. 
-In this special case the electric vector traces out a circle in the plane, so this special case is called circular polarization. 
-The direction the field's rotation depends on the signed of the difference between the two phases. 
-These cases are called right-hand circular polarization and left-hand circular polarization, 
-	depending on which way the electric vector rotates and the chosen convention.
-
-The general case is when the two components are not in phase 
-	and either do not have the same amplitude or are not ninety degrees out of phase, 
-	though their phase offset and their amplitude ratio are constant.
-This kind of polarization is called elliptical polarization because the electric vector traces out an ellipse in the plane (the polarization ellipse). 
-%This is shown in the above figure on the right.
-
-The parameters that describe the polarization ellipse are:
-\begin{equation}
-\tan (\theta ) = \frac{E_y^0}{E_x^0}
-\end{equation}
-with
-	$0 \leq \theta \leq \pi/2$. 
-The orientation angle, which is the angle between the major semi-axis of the ellipse and the x-axis, is given by:
-\begin{equation}
-\tan (\Psi) = \tan (2 \theta) \cos(\Delta \phi)
-\end{equation}
-with
-	$0 \leq \Psi < \pi$. 
-The ellipticity, $\epsilon$ is the major-to-minor-axis ratio.
-The ellipticity angle which is defined as $\chi = \arctan (1/\epsilon)$ can be calculated as:
-\begin{equation}
-\sin (2 \chi) = \sin(2 \theta) \sin( \Delta \phi)
-\end{equation}
-with
-	$0 \leq \chi \leq \pi/2$, and $0 \leq \epsilon \leq \infty$
-
-Ignoring the scale of the electrical fields, the elementary wave polarization can be completely described by two parameters, i.e. $E_y^0/E_x^0$ and $\Delta \phi = \phi_y^0 - \phi_x^0$. 
-Similarly, ignoring the scale of the ellipse, the polarization ellipse can be completely described by two angles $\Psi$ and $\chi$.
-
-%The choice of basis vector used to represent horizontal and vertical directions are evidently arbitrary.
-%In general, any pair of orthogonal polarization states can be used.
-%Formally orthogonal vector pair is defined as one having a zero inner product.
-%Another common choice is left and right circular.
-%In anyway, implicit in the representations above is the orientation of the coordination frame.
-%Of the two angles frequently used in polarization ellipse analysis, one $\Psi$ is dependent on the coordination frame and the other may not $\chi$
-
-%To recap $\chi = \tan^{-1} (1/\epsilon)$, with $\epsilon$ being the ellipse's ellipticity.
-%In polarization ellipse, $\epsilon=1$ indicates circular polarization, while $\epsilon=0$ or $\epsilon=\infty$ corresponds to linear polarizations.
-%An alternative to ellipticity angle $\chi$ is the eccentricity angle.
-%However, the use of ecccentricity angle has not been widely used, as it has no obvious geometrical interpretation in Poincare Spheres.
-
-%The polarization of light can be measured with a polarimeter.
-
-\subsubsection{Mathematical representations of wave polarizations}
-
-\paragraph{ Complex polarization ratio }
-This ratio is important in explaining polarization basis changes.
-
-It is defined as:
-\begin{equation}
-\rho = \frac{E_y^0}{E_x^0} e^{i \Delta \phi} = \frac{\cos(2 \chi) + i \sin(2 \chi)}{1 - \cos(2\Psi) \cos(2\chi)}
-\end{equation}
-
-\paragraph{Jones Vector}
-
-%Let the total wave power:
-%\begin{equation}
-%|E|^2 = (E_x^0)^2  + (E_y^0)^2
-%\end{equation}
-%and phase 
-%\begin{equation}
-%\theta = \tan^{-1} \left( \frac{E_y^0}{E_x^0} \right)
-%\end{equation}
-
-The Jones vector is defined as 
+Souyris \cite{Souyris_2005_TGRS} pioneered the field with his paper on compact polarimetry.
+Compact polarimetry is essentially a partial polarimetry mode in which the incoming pulse is of linear polarization, 
+	but is neither of the usual horizontal nor vertical angle.
+%	rather it is of an odd angle of 
+Instead its incoming polarization of linear polarisation with an odd angle of $\pi/4$.
+%The $\pi/4$ mode has not been implemented in real-hardware, but only been simulated using polarization basis change principles.
+The partial polarimetric covariance matrix then is given as
 \begin{equation}
 J = 
-\left(
-\begin{array}{c}
-	\xi_x(t) \\
-	\xi_y(t) 
-\end{array}
-\right)
-= \xi_x(t)
-\left(
-\begin{array}{c}
-	1 \\
-	\rho
+\left(	
+\begin{array}{c c}
+	|s_{HH}|^2 + |s_{HV}|^2 + 2 \Re{(s_{HH}s_{HV}^*)}
+& 	s_{HH}s_{VV}^* + |s_{HV}|^2 + s_{HH}s_{HV}^* + s_{HV}s_{VV}^*\\
+	s_{HH}^*s_{VV} + |s_{HV}|^2 + s_{HV}s_{HH}^* + s_{VV}s_{HV}^*
+& 	|s_{VV}|^2 + |s_{HV}|^2 + 2 \Re{(s_{VV}s_{HV}^*)}
 \end{array}
 \right)
 \end{equation}
 
-Thus the normalized Jones vector can be given as:
+Raney \cite{Raney_2006_IGARSS} demonstrated a different perspective by proposing a hybrid architecture.
+He argued that the dual polarisation measurements effectively capture the polarisation states of the single back-scattered signal resulting from a single incoming pulse.
+Thus the polarisation choice of the receiving antenna is trivial (as long as they are orthogonal).
+The important parameter to choose is the use of which polarisation for the incoming pulse.
+His hybrid architecture is again a kind of partial polarimetry in which the incoming pulse is of circular polarisation, instead of the normally encountered linear polarisation.
+The partial covariance matrix then become:
 \begin{equation}
-J = 
-\left(
-\begin{array}{c}
-	\cos(\theta) \cdot e^{i \phi_x^0} \\
-	\sin(\theta) \cdot e^{i \phi_y^0}
-\end{array}
-\right)
-=
-\left(
-\begin{array}{c}
-	1\\
-	\tan(\theta) \cdot e^{i \Delta \phi}
-\end{array}
-\right)
-=
-\left(
-\begin{array}{c}
-	\cos(\Psi) \cos(\chi) - i \sin(\Psi) \sin(\chi) \\
-	\sin(\Psi) \cos(\chi) + i \cos(\Psi) \sin(\chi)
+J = \frac{1}{2} \left(	
+\begin{array}{c c}
+	|s_{HH}|^2 + |s_{HV}|^2 + i (s_{HH}s_{HV}^* - s_{HV}s_{VV}^*)
+& 	s_{HH}s_{HV}^* - s_{HV}s_{VV}^* - i (|s_{HV}|^2 + s_{HH}s_{VV}^*)\\
+	s_{HH}s_{HV}^* - s_{HV}s_{VV}^* + i (|s_{HV}|^2 + s_{HH}s_{VV}^*)
+& 	|s_{VV}|^2 + |s_{HV}|^2 + i (s_{HV}s_{VV}^* - s_{VV}s_{HV}^*)
 \end{array}
 \right)
 \end{equation}
 
-The two parameters in the Jones vector can completely describe the polarization state (ellipse) of any elementary wave.
-This same Jones vector finds extensive use in quantum machenics, and is interpreted as quantum state vector.
-Its bra-ket notation formula, which is normally used in quantum computation contexts is:
+The benefits of this hybrid architecture, according to Raney being:
+	this partial polarimetric measurements can measures certain physical polarimetric phenomena like odd and even bounce phenomena.
+The suggestion is evidenced by calculating the response of known odd-bounce trihedral and even-bounce dihedral when the incident wave is right circular polarized.
 \begin{equation}
-J = | \Psi \rangle 
-= 
-\left(
-\begin{array}{c}
-	\cos(\theta) \cdot e^{i \phi_x^0} \\
-	\sin(\theta) \cdot e^{i \phi_y^0}
+\Gamma_{tri} = \left(
+\begin{array}{c c}
+1 & 0 \\
+0 & -1
 \end{array}
 \right)
 \end{equation}
+Then the response will be reversed as it can be calculated as:
+\begin{equation}
+J_r = \left(
+\begin{array}{c c}
+1 & 0 \\
+0 & -1
+\end{array}
+\right) \cdot
+\left(
+\begin{array}{c}
+1 \\
+-i
+\end{array}
+\right) = \left(
+\begin{array}{c}
+1 \\
+i
+\end{array}
+\right) 
+\end{equation}
+with
+	$ \left( \begin{array}{c} 1 \\ -i \end{array} \right) $ indicating right circular polarization transmitted, and
+	$ \left( \begin{array}{c} 1 \\ i \end{array} \right) $ indicating left circular polarization received.
 
-By definitions, the horizontal linear polarized wave is defined as: $J_h = \left(
-\begin{array}{c}
- 1 \\
- 0
+For a dihedral target, whose main axis at an angle $\theta$ with respect to the horizontal direction, the Sinclair matrix is given as:
+\begin{equation}
+\Gamma_{dih} = 
+\left(
+\begin{array}{c c}
+\cos(2\theta) & \sin(2\theta) \\
+\sin(2\theta) & \cos(2\theta)
 \end{array}
-\right)$, similarly the vertical linear polarized wave: $J_v = \left(
-\begin{array}{c}
- 0 \\
- 1
+\right)
+\end{equation}
+The even bounce phenomena is detectable as its polarimetric response is then:
+\begin{equation}
+J_r = \left(
+\begin{array}{c c}
+\cos(2\theta) & \sin(2\theta) \\
+\sin(2\theta) & \cos(2\theta)
 \end{array}
-\right)$, the $\pm \pi/4$ linear polarized waves $J_{\pm} = \pm \frac{1}{\sqrt{2}} \left(
+\right) \cdot
+\left(
 \begin{array}{c}
- 1 \\
- 1
+1 \\
+-i
 \end{array}
-\right)$, the left circular polarized wave: $J_l = |L\rangle = \frac{1}{\sqrt{2}} \left(
+\right) = \left(
 \begin{array}{c}
- 1 \\
- -i
+1 \\
+-i
 \end{array}
-\right)$ and the right circular polarized wave: $J_r = |R\rangle = \frac{1}{\sqrt{2}} \left(
-\begin{array}{c}
- 1 \\
- i
-\end{array}
-\right)$
+\right) 
+\end{equation}
+In \cite{Raney_2007_IGARSS}, Raney shows that hybrid circular modes bring many conviniences to hardware calibration.
+Also in a follow up study \cite{Raney_2007_TGRS}, he demonstrate the classification power of hybrid polarimetry.
+Furthermore, Lardeux \cite{Lardeux_2007_ESASP} found that for target classification using SVM techniques, compact polarimetry mode shows comparable results to full polarimetric data.
+Notably, the hybrid architectural concepts has been adopted and brought towards implementation by NASA's upcoming Desdynl satellite \cite{Raney_2009_RadarConf}.
 
-%Then any arbitrary state, written in R-L basis is given by:
-%\begin{equation}
-%| \Psi \rangle 
-%= 
-%a_R e^{i \phi_x - i \theta} | R \rangle 
-%+ 
-%a_L e^{i \phi_x + i \theta} | L \rangle 
-%\end{equation}
+The research into partial polarimetry is convenient as its data can be simulated using polarisation basis transformation described above.
+Hardware realisation may not be needed until the final physical prototype stages.
+This methodology has been demonstrated and is widely used in the community.
+We hypothesize that the partial polarimetric covariance matrix, which is essentially a variant of the Stokes vector, can be speckle filtered, using the familiar intensity speckle filtering algorithms.
+The focus into partial polarimetry allow analysis into a smaller matrix, while its implication can be extended not only to full polarimetry modes but also towards bi-static polarimetric scenarios.
+Besides that, a number of research questions in this new field are still open, relevant and exciting.
 
+Souyris, in 2005, published a paper \cite{Souyris_2005_TGRS} which claimed and presented an algorithm to reconstruct full polarimetric information from the given partial compact polarimetric data.
+The algorithm is claimed to work on natural surfaces.
+In \cite{Nord_2009}, Nord reviewed the reconstruction problem for various different partial polarimetry modes, and an improved algorithm is given.
+In \cite{Ainsworth_2009_ISPRS}, Ainsworth reviewed performance of target classification on different partial modes, reconstructed pseudo-full mode and full polarimetric data.
+Chapter 3 reviews of this sub-topic further and introduces our work on expanding the reconstruction to urban man-made structures and surfaces.
 
+For the tasks of target detection and classification, we believe that partial dual polarization provides a unique offer.
+Compared with single-channel, dual channel provide extra polarimetric information. 
+Compared with full polarimetric data, the better spatial resolution could makes up for the loss of reconstructed polarimetric information, especially for the purpose of target detection and classification.
 \paragraph{ Stokes Vector }
 
 Another way to look at polarization is through the coherency matrix, and equivalently the Stokes matrix.
@@ -431,7 +317,32 @@ The polarization of the electric fields produced by the emitters may not be corr
 If there is partial correlation among the ``elementary'' sources, the light is partially polarized. 
 One may then describe the received EM wave polarization in terms of the degree of polarization and the parameters of the polarization ellipse.
 
-\subsection{Different Modes of Polarimetric SAR}
+%In fact, this project is intended to provide help for a new project at EADS Innovation Works Singapore to investigate the use of polarimertic data in ship monitoring over the oceans.
+%It is hypothesized that using polarimetric information would improve the possibilities of detecting ships travelling in the open seas.
+%Evidently partial polarimetric modes are good candidates for better detection rates.
+%
+%The scientific application of POLSAR include: 
+%	oil slick detection \cite{Nunziata_2009_IGARSS, Gambardella_2007_ESASP}, 
+%	ship monitoring \cite{Kozai_2004_OCEANS}, 
+%	sea ice monitoring \cite{Wakabayashi_2004_TGRS, Nakamura_2005_IGARSS}, 
+%	volcano lava-flow monitoring \cite{Dierking_1998_IGARSS}, 
+%	agricultural crop monitoring \cite{Bouvet_2009_TGRS, Hajnsek_2008_IGARSS}, 
+%	planetary exploration \cite{Rosenbush_2009_JQuantSpecRadTransfer} 
+%	and other surface parameter estimations \cite{TruongLoi_2009_TGRS, Touzi_2009_TGRS, Hajnsek_Thesis_2001}. 
+%The remaining text of this chapter briefly look at recent literature in the context of ship detection and monitoring.
+%The topic of ship detection and monitoring has already been tackled quite extensively for single channel SAR data \cite{Tello_2005_IGARSS, Tello_2006_ISPRSJPhotogrammetryRemoteSensing}.
+%In fact, a number of countries have reported to implement such systems, and some uses them in everyday operations.
+%The countries includes: USA \cite{Montgomery_1998_IGARSS}, Canada \cite{Vachon_2000_JHUApplPhysics}, France \cite{Losekoot_2005_IGARSS}, Norway \cite{weydahl_2007_RemoteSenseGISGeology} and Spain \cite{Margarit_2009_RemoteSensing}.
+%The common scenarios in use are normally: 
+%	a designated area is continuously monitored through the use of some automatic ship detection algorithm.
+%If an unknown ship is detected, some manual intervention is to be applied, normally in the form of a navy ship being sent to further investigate.
+%The reports however did not elaborate about the accuracy of the detection algorithms.
+%
+%A recent trend that is reported in the literature is the use of AIS (Automatic Identification System).
+%In 2007, Vachon \cite{Vachon_2007_IGARSS} reported his study in Canada, which aimed to match ships detectable in SAR images with AIS reported locations.
+%In 2009, Grasso \cite{Grasso_2009_ISDA} evaluated the performance of ship detection algorithms using AIS as ground truth.
+%In our planned approach, we are prepared to study the performance improvement through using partial polarimetry data in comparison to normal single-channel SAR approaches.
+%Ground truth for such study will also be using synchronized AIS data.
 
 \subsubsection{Full Polarimetry and the Polarimetric Signatures}
 
@@ -808,184 +719,13 @@ where $S_t$ is the Stokes vector and $S_+S_+$, $S_-S_-$, $S_rS_r$, $S_lS_l$ are 
 %\right)  
 %\end{equation}
 
-\subsubsection{ Partial Polarimetry and the traditional SAR}
-
-The dual-polarization modes has been practically and operationally available for quite some time.
-However, partial polarimetry has only recently been investigated in the scientific community. 
-By comparison, 
-	partial polarimetry measures dual-polarized response from incoming pulses of a single polarization channel,
-	while full polarimetry measures the same response for two (most of the time orthogonal) polarisation channels.
-Mathematically, the process is modelled as:
-\begin{equation}
- \left( 
-\begin{array}{c}
- E_h^{Rx} \\
- E_v^{Rx}
-\end{array}
- \right) = \frac{e^{ikr}}{r} 
-\left( 
-\begin{array}{c}
- S_{H} \\
- S_{V}
-\end{array}
- \right) E^{Tx}
-\end{equation}
-
-Souyris \cite{Souyris_2005_TGRS} pioneered the field with his paper on compact polarimetry.
-Compact polarimetry is essentially a partial polarimetry mode in which the incoming pulse is of linear polarization, 
-	but is neither of the usual horizontal nor vertical angle.
-%	rather it is of an odd angle of 
-Instead its incoming polarization of linear polarisation with an odd angle of $\pi/4$.
-%The $\pi/4$ mode has not been implemented in real-hardware, but only been simulated using polarization basis change principles.
-The partial polarimetric covariance matrix then is given as
-\begin{equation}
-J = 
-\left(	
-\begin{array}{c c}
-	|s_{HH}|^2 + |s_{HV}|^2 + 2 \Re{(s_{HH}s_{HV}^*)}
-& 	s_{HH}s_{VV}^* + |s_{HV}|^2 + s_{HH}s_{HV}^* + s_{HV}s_{VV}^*\\
-	s_{HH}^*s_{VV} + |s_{HV}|^2 + s_{HV}s_{HH}^* + s_{VV}s_{HV}^*
-& 	|s_{VV}|^2 + |s_{HV}|^2 + 2 \Re{(s_{VV}s_{HV}^*)}
-\end{array}
-\right)
-\end{equation}
-
-Raney \cite{Raney_2006_IGARSS} demonstrated a different perspective by proposing a hybrid architecture.
-He argued that the dual polarisation measurements effectively capture the polarisation states of the single back-scattered signal resulting from a single incoming pulse.
-Thus the polarisation choice of the receiving antenna is trivial (as long as they are orthogonal).
-The important parameter to choose is the use of which polarisation for the incoming pulse.
-His hybrid architecture is again a kind of partial polarimetry in which the incoming pulse is of circular polarisation, instead of the normally encountered linear polarisation.
-The partial covariance matrix then become:
-\begin{equation}
-J = \frac{1}{2} \left(	
-\begin{array}{c c}
-	|s_{HH}|^2 + |s_{HV}|^2 + i (s_{HH}s_{HV}^* - s_{HV}s_{VV}^*)
-& 	s_{HH}s_{HV}^* - s_{HV}s_{VV}^* - i (|s_{HV}|^2 + s_{HH}s_{VV}^*)\\
-	s_{HH}s_{HV}^* - s_{HV}s_{VV}^* + i (|s_{HV}|^2 + s_{HH}s_{VV}^*)
-& 	|s_{VV}|^2 + |s_{HV}|^2 + i (s_{HV}s_{VV}^* - s_{VV}s_{HV}^*)
-\end{array}
-\right)
-\end{equation}
-
-The benefits of this hybrid architecture, according to Raney being:
-	this partial polarimetric measurements can measures certain physical polarimetric phenomena like odd and even bounce phenomena.
-The suggestion is evidenced by calculating the response of known odd-bounce trihedral and even-bounce dihedral when the incident wave is right circular polarized.
-\begin{equation}
-\Gamma_{tri} = \left(
-\begin{array}{c c}
-1 & 0 \\
-0 & -1
-\end{array}
-\right)
-\end{equation}
-Then the response will be reversed as it can be calculated as:
-\begin{equation}
-J_r = \left(
-\begin{array}{c c}
-1 & 0 \\
-0 & -1
-\end{array}
-\right) \cdot
-\left(
-\begin{array}{c}
-1 \\
--i
-\end{array}
-\right) = \left(
-\begin{array}{c}
-1 \\
-i
-\end{array}
-\right) 
-\end{equation}
-with
-	$ \left( \begin{array}{c} 1 \\ -i \end{array} \right) $ indicating right circular polarization transmitted, and
-	$ \left( \begin{array}{c} 1 \\ i \end{array} \right) $ indicating left circular polarization received.
-
-For a dihedral target, whose main axis at an angle $\theta$ with respect to the horizontal direction, the Sinclair matrix is given as:
-\begin{equation}
-\Gamma_{dih} = 
-\left(
-\begin{array}{c c}
-\cos(2\theta) & \sin(2\theta) \\
-\sin(2\theta) & \cos(2\theta)
-\end{array}
-\right)
-\end{equation}
-The even bounce phenomena is detectable as its polarimetric response is then:
-\begin{equation}
-J_r = \left(
-\begin{array}{c c}
-\cos(2\theta) & \sin(2\theta) \\
-\sin(2\theta) & \cos(2\theta)
-\end{array}
-\right) \cdot
-\left(
-\begin{array}{c}
-1 \\
--i
-\end{array}
-\right) = \left(
-\begin{array}{c}
-1 \\
--i
-\end{array}
-\right) 
-\end{equation}
-In \cite{Raney_2007_IGARSS}, Raney shows that hybrid circular modes bring many conviniences to hardware calibration.
-Also in a follow up study \cite{Raney_2007_TGRS}, he demonstrate the classification power of hybrid polarimetry.
-Furthermore, Lardeux \cite{Lardeux_2007_ESASP} found that for target classification using SVM techniques, compact polarimetry mode shows comparable results to full polarimetric data.
-Notably, the hybrid architectural concepts has been adopted and brought towards implementation by NASA's upcoming Desdynl satellite \cite{Raney_2009_RadarConf}.
-
-The research into partial polarimetry is convenient as its data can be simulated using polarisation basis transformation described above.
-Hardware realisation may not be needed until the final physical prototype stages.
-This methodology has been demonstrated and is widely used in the community.
-We hypothesize that the partial polarimetric covariance matrix, which is essentially a variant of the Stokes vector, can be speckle filtered, using the familiar intensity speckle filtering algorithms.
-The focus into partial polarimetry allow analysis into a smaller matrix, while its implication can be extended not only to full polarimetry modes but also towards bi-static polarimetric scenarios.
-Besides that, a number of research questions in this new field are still open, relevant and exciting.
-
-Souyris, in 2005, published a paper \cite{Souyris_2005_TGRS} which claimed and presented an algorithm to reconstruct full polarimetric information from the given partial compact polarimetric data.
-The algorithm is claimed to work on natural surfaces.
-In \cite{Nord_2009}, Nord reviewed the reconstruction problem for various different partial polarimetry modes, and an improved algorithm is given.
-In \cite{Ainsworth_2009_ISPRS}, Ainsworth reviewed performance of target classification on different partial modes, reconstructed pseudo-full mode and full polarimetric data.
-Chapter 3 reviews of this sub-topic further and introduces our work on expanding the reconstruction to urban man-made structures and surfaces.
-
-For the tasks of target detection and classification, we believe that partial dual polarization provides a unique offer.
-Compared with single-channel, dual channel provide extra polarimetric information. 
-Compared with full polarimetric data, the better spatial resolution could makes up for the loss of reconstructed polarimetric information, especially for the purpose of target detection and classification.
-
-In fact, this project is intended to provide help for a new project at EADS Innovation Works Singapore to investigate the use of polarimertic data in ship monitoring over the oceans.
-It is hypothesized that using polarimetric information would improve the possibilities of detecting ships travelling in the open seas.
-Evidently partial polarimetric modes are good candidates for better detection rates.
-
-The scientific application of POLSAR include: 
-	oil slick detection \cite{Nunziata_2009_IGARSS, Gambardella_2007_ESASP}, 
-	ship monitoring \cite{Kozai_2004_OCEANS}, 
-	sea ice monitoring \cite{Wakabayashi_2004_TGRS, Nakamura_2005_IGARSS}, 
-	volcano lava-flow monitoring \cite{Dierking_1998_IGARSS}, 
-	agricultural crop monitoring \cite{Bouvet_2009_TGRS, Hajnsek_2008_IGARSS}, 
-	planetary exploration \cite{Rosenbush_2009_JQuantSpecRadTransfer} 
-	and other surface parameter estimations \cite{TruongLoi_2009_TGRS, Touzi_2009_TGRS, Hajnsek_Thesis_2001}. 
-The remaining text of this chapter briefly look at recent literature in the context of ship detection and monitoring.
-The topic of ship detection and monitoring has already been tackled quite extensively for single channel SAR data \cite{Tello_2005_IGARSS, Tello_2006_ISPRSJPhotogrammetryRemoteSensing}.
-In fact, a number of countries have reported to implement such systems, and some uses them in everyday operations.
-The countries includes: USA \cite{Montgomery_1998_IGARSS}, Canada \cite{Vachon_2000_JHUApplPhysics}, France \cite{Losekoot_2005_IGARSS}, Norway \cite{weydahl_2007_RemoteSenseGISGeology} and Spain \cite{Margarit_2009_RemoteSensing}.
-The common scenarios in use are normally: 
-	a designated area is continuously monitored through the use of some automatic ship detection algorithm.
-If an unknown ship is detected, some manual intervention is to be applied, normally in the form of a navy ship being sent to further investigate.
-The reports however did not elaborate about the accuracy of the detection algorithms.
-
-A recent trend that is reported in the literature is the use of AIS (Automatic Identification System).
-In 2007, Vachon \cite{Vachon_2007_IGARSS} reported his study in Canada, which aimed to match ships detectable in SAR images with AIS reported locations.
-In 2009, Grasso \cite{Grasso_2009_ISDA} evaluated the performance of ship detection algorithms using AIS as ground truth.
-In our planned approach, we are prepared to study the performance improvement through using partial polarimetry data in comparison to normal single-channel SAR approaches.
-Ground truth for such study will also be using synchronized AIS data.
-
-\section{The Stochastics and Multivariate Nature of (POL)SAR data}
 
 %\subsection{The Stochastics Nature of SAR and POLSAR}
-\subsection{The Stochastic nature of SAR  and SAR speckle filtering }
+\section{Current methods in SAR and POLSAR Data Processing}
 
+\subsection{Current Statistical Models for SAR and POLSAR data}
+
+\subsection{Current Methods for SAR speckle filtering}
 This section starts with a description of the stochastic nature of SAR data. 
 SAR speckle filtering is then reviewed within a statistical estimation theory framework. 
 Various different approaches to SAR speckle filtering are reviewed, 
@@ -1144,15 +884,6 @@ With different speckle filtering approaches presented, it is crucial to have a f
 	(a) modelling and simulation which provide the ground-truth data in different scenarios of underlying distribution, and
 	(b) analysing the interdependency between noise and the underlying signal, as well as the dependence of each filter's performance on the different underlying distribution scenarios and
 	(c) establishing consistent criteria to evaluate speckle suppression power as well as the adaptive capabilities in reconstructing the underlying signal.
-
-\subsection{The Multivariate Nature and The Observables in POLSAR data}
-
-\section{Current methods in SAR and POLSAR speckle filtering}
-
-\subsection{Current Statistical Models for SAR and POLSAR data}
-
-\subsection{Current Methods for SAR speckle filtering}
-(2.2.1)
 
 \subsection{Current Methods for POLSAR speckle filtering }
 
@@ -1420,7 +1151,7 @@ Intuitively, each components of the MSE measure,
 Before the details of our evaluation methodology is presented and discussed, 
 	Section \ref{sec:log_transform} provides a brief discussion on logarithmic transformation for SAR images.
 
-\section{Existing Measures of Distance for (POL)SAR data and their applications}
+\subsection{Existing Dis-similarity Measures for (POL)SAR data}
 
 to detect if the two scaled multi-look POLSAR covariance matrix $Z_x$ and $Z_y$,
   which have $L_x$ and $L_y$ as the corresponding number of looks,
@@ -1457,7 +1188,7 @@ The contrast model which is written as $\mathbb{C} = \ln C_{vx} - \ln C_{vy}$ an
 %a slightly simpler statistics.
 The details application of this in edge-detection however is outside the scope of this paper.
 
-\section{The need for Scalar Consistent Measures of Distance}
+\subsection{The need for Scalar Consistent Measures of Distance}
 	We will show our originality and significance here!
 
 This section surveys recent developments in the research landscape. 

@@ -1,42 +1,6 @@
 %: ----------------------- introduction file header -----------------------
 \chapter{Introducing The Research Question}
 
-% the code below specifies where the figures are stored
-%\ifpdf
-%    \graphicspath{{1_introduction/figures/PNG/}{1_introduction/figures/PDF/}{1_introduction/figures/}}
-%\else
-%    \graphicspath{{1_introduction/figures/EPS/}{1_introduction/figures/}}
-%\fi
-
-% ----------------------------------------------------------------------
-%: ----------------------- introduction content ----------------------- 
-% ----------------------------------------------------------------------
-
-Univariate SAR and multi-variate POLSAR data are multiplicative and heteroskedastic.
-By definition, heteroskedastic noised data has its variance, and correspondingly its substractive distances,
-  dependent on the main signal.
-In another line of research, log transformation has been shown
-  to convert the multiplicative nature of SAR data into a more familiar additive nature.
-We hypothesize that   
-  log-transformation also offers several consistent measures of distance in heteroskedastic SAR and POLSAR data.
-This thesis aims to investigate and validate that hypothesis.
-
-In this chapter: the main research problem and the corresponding hypothesis are explicitly stated.
-The methodology section explains how the results are obtained and analyzed.
-Contributions to advance theoretical knowledge are illustrated.
-Towards the end of the thesis, an application illustrate how the theoretical results can be applied in future research and development activities.
-  
-%: ----------------------- HELP: latex document organisation
-% the commands below help you to subdivide and organise your thesis
-%    \chapter{}       = level 1, top level
-%    \section{}       = level 2
-%    \subsection{}    = level 3
-%    \subsubsection{} = level 4
-% note that everything after the percentage sign is hidden from output
-
-	\section{Background Context and the Motivation to Study}
-
-%Advantages of SAR in remote sensing paragraph (page 3)
 Synthetic Aperture Radar can soon become the preferred choice for
   continous and autonomous large-scale remote surveillance solutions.
 Compared to optical remote sensors, which is passive,
@@ -47,22 +11,6 @@ The once-limiting drawback of SAR is the high-demanding signal processing proced
   which is needed to process SAR images, has become obsolete,
   due to recent and quick advances in computational power  \citep{Cumming_2005_Artech}.
 
-EM wave polarization and polarimetric SAR paragraph (page 3)
-
-A paragraph about partial polsar and the extension from (page 3)
-
-Problem: speckle in SAR and POLSAR, especially its heteroskedastic nature. (new)
-
-The motivation then is to provide a probably better understanding about the statistics of speckle. (new)
-
-For SAR data (page 4)
-
-For partial POLSAR data (new)
-
-For full polsar data (new)
-
-The purpose of this section is to illustrate the importance of a computational framework needed in the interpretation and processing targets' stochastic polarimetry signatures. 
-%This section start by describing the recent focus of space technology in earth observational remote sensing.
 As reviewed in the second chapter, Synthetic Aperture Radar, i.e. SAR, offers a higher resolution, large coverage, weather-independent and night-capable imaging solution.
 Recent advances in computational power has made the once-limiting high-demanding signal-processing procedures, which are needed to process SAR images, obsolete \cite{Cumming_2005_Artech}.
 Thus we believe, SAR will soon come to be the preferred choice for continuous and autonomous large-scale remote surveillance solutions.
@@ -83,34 +31,27 @@ Raney\cite{Raney_2006_IGARSS} showed that dual-channel polarimetry is not only c
 The extensions from single-channel SAR to multi-channel polarimetry can be considered as analogous to the advancement towards colour TV from the black-and-white days.
 While the future is promising, both SAR and POLSAR suffer from speckle phenomena, which hampers the human capabilities to understand SAR images.
 Speckle, which arises due to the random interference of many de-phased but coherent back-scattered waves, is inherent in all channels.
-The effects of speckle is illustrated in Figure \ref{fig:sar_speckle_wrt_optical}.
+%The effects of speckle is illustrated in Figure \ref{fig:sar_speckle_wrt_optical}.
 
-%%TODO: SWITCH IMAGES: 24 lines
-%\begin{figure}[h!]
-%\centering
-%	\subfloat[Optical Colour Image]{
-%		 \epsfxsize=1.75in
-%		 \epsfysize=1.75in
-%		 \epsffile{images/20100502_mris_clipped.eps} 	
-%		 \label{Original}
-%	} 
-%	\hfill
-%	\subfloat[Optical Gray level image]{
-%		 \epsfxsize=1.75in
-%		 \epsfysize=1.75in
-%		\epsffile{images/20100502_mris_clipped_gray.eps}
-%		 \label{}
-%	}
-%	\hfill
-%	\subfloat[Speckled SAR image]{
-%		 \epsfxsize=1.75in
-%		 \epsfysize=1.75in
-%		 \epsffile{images/20100502_sar.eps} 	
-%		 \label{Original}
-%	} 
-%\caption{Speckle phenomena in SAR data}
-%\label{fig:sar_speckle_wrt_optical}
-%\end{figure}
+\section{The Research Question and the Motivation to Study}
+
+Univariate SAR and multi-variate POLSAR data are multiplicative and heteroskedastic.
+By definition, heteroskedastic noised data has its variance, and correspondingly its substractive distances,
+  dependent on the main signal.
+In another line of research, log transformation has been shown
+  to convert the multiplicative nature of SAR data into a more familiar additive nature.
+We hypothesize that   
+  log-transformation also offers several consistent measures of distance in heteroskedastic SAR and POLSAR data.
+This thesis aims to investigate and validate that hypothesis.
+
+In this chapter: the main research problem and the corresponding hypothesis are explicitly stated.
+The methodology section explains how the results are obtained and analyzed.
+Contributions to advance theoretical knowledge are illustrated.
+Towards the end of the thesis, an application illustrate how the theoretical results can be applied in future research and development activities.
+
+Problem: speckle in SAR and POLSAR, especially its heteroskedastic nature. (new)
+
+The motivation then is to provide a probably better understanding about the statistics of speckle. (new)
 
 The motivation for this research then is to reconstruct high-quality grey-scale images from speckled single channel SAR data, and to visualise as colourful images the despeckled multi-channel POLSAR data.
 In order to do so, the speckle effects need to be removed as much as possible from original (POL)SAR data.
@@ -125,52 +66,54 @@ Last but certainly not least, such a framework allow one to apply estimators rep
 For single-channel SAR images, our initial observations and experiences indicate that the community has been oblivious to many of the negative effects of statistical heteroskedasticity manifested in the original intensity and amplitude data.
 In Chapter 4, it is shown that logarithmic transformation can convert SAR's multiplicative stochastic process into a better-understood additive noise model.
 Thus, the additive-noise domain indicates homoskedasticity as well as offers a consistent sense of distance and variance.
-As the additive noise PDF in log-domain has been worked out, we hypothesize that the true back-scattering coefficient PDF, also in log-domain, can be estimated through regularized deconvolution algorithms.
-If an algorithm could be designed to estimate such PDF, we believe this would present an improvement for a whole class of speckle filters, namely the Maximum-A-Priori (MAP) class, which up to now, still assumes the true PDF will follow certain known fixed distributions.
-%It is hoped that with the true PDF now being estimatable from the data itself, a better speckle filtering algorithm, in log-transformed domain, can be developed.
 
-For multi-channel SAR data, as reviewed in Chapter 2, speckle filtering for the off-diagonal element $S_hS_v^*$ of the covariance matrix is still an open question.
-Our observation has been that these elements are also available in dual-polarization SAR data, they specifically are part of Stokes parameters.
-As mentioned earlier, Stokes parameters have been largely ignored in polarimetric literature, until recently asserted again by Raney in 2006 \cite{Raney_2006_IGARSS}.
-Mathematically, Stokes parameters can be written as:
-\begin{equation}
-S = 
-\left(
-	\begin{array} {c}
-		S_hS_h + S_vS_v \\
-		S_hS_h - S_vS_v \\
-		2 \Re{(S_hS_v^*)} \\
-		2 \Im{(S_hS_v^*)}
-	\end{array}
-\right)
-= 
-\left(
-	\begin{array} {c}
-		S_hS_h + S_vS_v \\
-		S_hS_h - S_vS_v \\
-		S_+S_+ - S_-S_- \\
-		S_lS_l - S_rS_r
-	\end{array}
-\right)
-\end{equation}
-We have evidence, and hypothesize that $S_+S_+$, $S_-S_-$, $S_rS_r$, $S_lS_l$ will have the same physical and statistical properties as the normal $S_hS_h$, $S_vS_v$.
-If our hypothesis can be proven rigorously, it may then be possible to build and validate a statistical model for all elements in the covariance matrix of Polarimetric SAR data, namely $S_hS_h$, $S_vS_v$, $\Re{( S_hS_v^*)}$, $\Im{( S_hS_v^* )}$.
-Also, speckle filtering on off-diagonal elements can be carried out using techniques, that were originally developed for single-channel SAR data, and up to now is only applicable to the diagonal elements of the covariance matrix.
+%\subsection{The Research Questions}
 
-For the topic of target (ship) detection and classification, we notice that the use of partial polarimetry will provide extra polarimetry data without incurring loss in spatial resolution.
-We proceed to hypothesize that: partial polarimetry will lead to improved target (ship) detection and classification accuracy in comparision to traditional SAR data.
-Experiments can be carried out by capturing polarimetric SAR remote sensing imagery and ground truth data which is provided via the ships' locational identification data.
-Automatic Identification System (AIS), which normally supplements marine radars, is a standard ship tracking system for identifying and locating floating vessels.
-Empirical evidence can be obtained by applying traditional ship detection and classification on traditional and polarimetric data concurrently, and the results are to be compared.
+Figure 
+	\ref{fig:residual_as_noise} 
+shows that: when compared with optical remote sensing images, SAR data suffers from serious degradation.
+%SAR data suffers from stochastic speckle phenomena, which poses numerous challenges in human capabilities of understanding SAR images.
+%Years of research in SAR signal processing has resulted in various speckle filters, all of which aims to produce better visually de-speckled gray images from the degraded SAR data.
+The degraded SAR data almost invariably requires a treatment of speckle filtering to yield more comprehensible images.
+Recent advances in Polarimetric SAR (POLSAR) have produced multiple channels of SAR data, which are conceptually similar to the multiple channels found in colourful optical images.
+However, the stochastic effects of speckle on multivariate and correlated data is ever more eminent.
+The key proposed research question is how to reconstruct clean, colorful visualization of Polarimetric Information from the new but speckled PolSAR satellites.
+Towards the end of the research project, an optional extended question shall be how this extra de-speckled polarimetric information may help in the tasks of target detection and classification. 
+
+
+The main research question is conceptually divided into the following subsidiary questions to investigate:
+% and project phases include. 
+%1. How to simulate SAR and Polarimetric SAR data (quick pass, no lit review)
+\begin{enumerate}
+\item For single channel SAR data, the main aim would be how best to produce and quantitatively evaluate the de-speckled gray images. 
+The main contributions could be that: for the first time, the PDF for the underlying back-scattering coefficient appears to be estimate-able, at least in the log-transformed domain. 
+It is hoped this new knowledge may help in developing better speckle filters, especially those filters of \textit{Maximum a Posteriori} (MAP) nature.
+Another possible contribution could be: how the homoskedasticity in the log-transformed domain could help to consistently evaluate the performance of different speckle-filters being applied on heterogeneous spatial variations.
+%2. how the PDF of underlying back-scattering coefficient, in the log-domain, could be estimated and how this could help in improving the performance of the Maximum A Posteriori class of speckle-filters.
+%The topic and the concept itself is a new topic
+\item For multi-channel SAR data, the main aim would be to produce a smoothed and colourful visualisation of Polarimetric information. 
+The main contributions would be a methodology to extends the results of single-channel SAR speckle filtering towards the issue of estimating the off-diagonal elements in polarimetric covariance matrix. 
+Another fundamental contribution could be: how to model, simulate and visualize the multivariate and correlated channels in POLSAR data.
+\item The third portion of this project is to investigate how full polarimetric information could be reconstructed from partial polarimetry modes. 
+The main aim of this section is to fill the gap between practical dual-polarimetric implementations and theoretical established full polarimetric results. 
+%The practical application is synchronized with current satellite hardware deployments and trade-offs.
+\item An optional collaborative portion is to investigate how the extra information in different polarimetric modes may help in the task of target detection and classification. 
+The main aim of this stage is to demonstrate the capability of (partial) polarimetric information over traditional single-channel SAR data.
+%and also to evaluate the trade-off between higher resolution offered by partial polarimetric architecture and the more complete full polarimetric mode.
+%Algorithms may have been and will also be proposed to tackle these issues, but the need to evaluate the algorithms requires rigorious ground-truthed data.
+\end{enumerate}
+
+%For the topic of target (ship) detection and classification, we notice that the use of partial polarimetry will provide extra polarimetry data without incurring loss in spatial resolution.
+%We proceed to hypothesize that: partial polarimetry will lead to improved target (ship) detection and classification accuracy in comparision to traditional SAR data.
+%Experiments can be carried out by capturing polarimetric SAR remote sensing imagery and ground truth data which is provided via the ships' locational identification data.
+%Automatic Identification System (AIS), which normally supplements marine radars, is a standard ship tracking system for identifying and locating floating vessels.
+%Empirical evidence can be obtained by applying traditional ship detection and classification on traditional and polarimetric data concurrently, and the results are to be compared.
 %Besides the empirical evidences that we plan to obtain, we hope that once our work on statistical modelling of partial polarimetry has taken shape, the hypothesis can be rigorously proven by statistical mathematics.
 
-	\section{Objectives, Methodology and Contributions}
+\section{Objectives, Methodology and Contributions}
 
-Copy the objectives (page 6)
-
-copy the benefits (page 6)
-        
-\subsection{Objectives and Contributions}
+       
+\subsection{The Research Objectives}
 
 The purpose of this section is to illustrate the objectives in developing computational frameworks for Stochastic Polarimetric Data. 
 Assuming the framework will be implemented successfully, this section also describes its academic contributions as well as its projected practical benefits.
@@ -223,42 +166,6 @@ With fast and repeated experiments, the framework allows one to not only compute
 \end{enumerate}
 
 As a testament on the effectiveness of this research, the work discussed in this report was published as two separate papers in 2010, at ISCCSP\cite{Le_2010_ISCCSP} and ACRS\cite{Le_2010_ACRS}.
-
-\subsection{The Research Questions}
-
-Figure 
-	\ref{fig:residual_as_noise} 
-shows that: when compared with optical remote sensing images, SAR data suffers from serious degradation.
-%SAR data suffers from stochastic speckle phenomena, which poses numerous challenges in human capabilities of understanding SAR images.
-%Years of research in SAR signal processing has resulted in various speckle filters, all of which aims to produce better visually de-speckled gray images from the degraded SAR data.
-The degraded SAR data almost invariably requires a treatment of speckle filtering to yield more comprehensible images.
-Recent advances in Polarimetric SAR (POLSAR) have produced multiple channels of SAR data, which are conceptually similar to the multiple channels found in colourful optical images.
-However, the stochastic effects of speckle on multivariate and correlated data is ever more eminent.
-The key proposed research question is how to reconstruct clean, colorful visualization of Polarimetric Information from the new but speckled PolSAR satellites.
-Towards the end of the research project, an optional extended question shall be how this extra de-speckled polarimetric information may help in the tasks of target detection and classification. 
-
-
-The main research question is conceptually divided into the following subsidiary questions to investigate:
-% and project phases include. 
-%1. How to simulate SAR and Polarimetric SAR data (quick pass, no lit review)
-\begin{enumerate}
-\item For single channel SAR data, the main aim would be how best to produce and quantitatively evaluate the de-speckled gray images. 
-The main contributions could be that: for the first time, the PDF for the underlying back-scattering coefficient appears to be estimate-able, at least in the log-transformed domain. 
-It is hoped this new knowledge may help in developing better speckle filters, especially those filters of \textit{Maximum a Posteriori} (MAP) nature.
-Another possible contribution could be: how the homoskedasticity in the log-transformed domain could help to consistently evaluate the performance of different speckle-filters being applied on heterogeneous spatial variations.
-%2. how the PDF of underlying back-scattering coefficient, in the log-domain, could be estimated and how this could help in improving the performance of the Maximum A Posteriori class of speckle-filters.
-%The topic and the concept itself is a new topic
-\item For multi-channel SAR data, the main aim would be to produce a smoothed and colourful visualisation of Polarimetric information. 
-The main contributions would be a methodology to extends the results of single-channel SAR speckle filtering towards the issue of estimating the off-diagonal elements in polarimetric covariance matrix. 
-Another fundamental contribution could be: how to model, simulate and visualize the multivariate and correlated channels in POLSAR data.
-\item The third portion of this project is to investigate how full polarimetric information could be reconstructed from partial polarimetry modes. 
-The main aim of this section is to fill the gap between practical dual-polarimetric implementations and theoretical established full polarimetric results. 
-%The practical application is synchronized with current satellite hardware deployments and trade-offs.
-\item An optional collaborative portion is to investigate how the extra information in different polarimetric modes may help in the task of target detection and classification. 
-The main aim of this stage is to demonstrate the capability of (partial) polarimetric information over traditional single-channel SAR data.
-%and also to evaluate the trade-off between higher resolution offered by partial polarimetric architecture and the more complete full polarimetric mode.
-%Algorithms may have been and will also be proposed to tackle these issues, but the need to evaluate the algorithms requires rigorious ground-truthed data.
-\end{enumerate}
 
 \subsection{Research Methodology}
 
@@ -335,97 +242,6 @@ This however, is critical and will always be used in our investigations.
 The reason is that this helps to guard against any systematic errors in the used assumptions and approximations made in developing the theoretical models.
 Towards that end, real-data can help to build and validate statistical models.
 
-\subsubsection{Theory Development and Research Strategy}
-For single channel SAR data, we propose the use of a log transform to evaluate speckle filter's performance. 
-We have proved that homoskedasticity property is indeed manifested in the log-domain.
-The traditional performance index in comparing speckle filters, i.e. the Equivalent Number of Looks (ENL), has also been shown to be related and calculable from the standard Mean Squared Error (MSE) inside the log-domain.
-We are working to prove that, with the homoskedastic property asserted, the universal Mean Squared Error can be a good performance indicator, even on heterogeneous spatial variations.
-
-Furthermore, as the point spread function (PSF) is available in the log-transformed domain, it appears that, for the first time, the histogram of the underlying back-scattering coefficient may become estimate-able. 
-In figure 
-	\ref{fig:noise_pdf_as_psf:conv_inputs}, 
-the underlying single channel gray image histogram is presented along with the noise PDF, in the log-transformed domain. 
-As the noise is additive, it is expected that the noise PDF will act as a point spread function.
-This makes the observable speckled image histogram mathematically equivalent to the convolution of the original image's histogram and the noise PDF.
-This fact is evidenced in figure 
-	\ref{fig:noise_pdf_as_psf:conv_output_observable}, 
-where except for the un-calibrated shifting, the shapes of theoretical convolution and observed histogram are reasonably similar.
-We hypothesize that: given the observable SAR data and its histogram, it should be possible to estimate the original underlying signal's histogram through some regularized deconvolution methods.
-We intended to start by applying the Richardson-Lucy algorithm \cite{Richardson_1972_JOptSocAm, Lucy_1974_JAstronomical} for such estimations.
-
-\begin{figure}[h!]
-\centering
-	\subfloat[Original image's histogram and PSF]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
- 		 \epsffile{images/log_PSF_NTU_gray_histogram.eps}
-		 \label{fig:noise_pdf_as_psf:conv_inputs}
-	} 
-	\hfill
-	\subfloat[Convoluted and speckled image histogram]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/log_convoluted_NTU_speckled_histogram.eps} 	
-		 \label{fig:noise_pdf_as_psf:conv_output_observable}
-	}
-\caption{Observable convolution of PSF}
-\label{fig:noise_pdf_as_psf}
-\end{figure}
-  
-For multi-channel SAR data, we focus on partial polarimetric SAR satellite data.
-Attempts have been made to model the data, especially the off-diagonal covariance matrix elements, i.e. $S_hS_v^*$.
-However, the models are overly complicated which made proposed PolSAR speckle suppression algorithms became overly complex (see polarimetric data modelling section in Chapter 2).
-We preferred an alternative approach.
-We propose to transform the polarization basis of dual-polarized SAR data to help estimate this element.
-
-We first pick up a recent revelation by Raney, 2006 \cite{Raney_2006_IGARSS}, that the back scattering waves' polarization captured in dual-pol data can be completely described using Stokes parameters.
-%From the usually given pairs of $S_h$ and $S_v$, Raney has shown that Stokes parameters can be computed.
-Furthermore, Stokes parameters can be measured in multiple polarization basis, which can also be synthesized from the given data (see polarization basis transform section in Chapter 2).
-%Both transformations, i.e. from $\{h,v\}$ to circular basis $\{l,r\}$ and from $\{h,v\}$ to $\{+\pi/4,-\pi/4\}$ modes, are special cases of the transformation formula.
-That is:
-	the measured signal at $\pi/4$ linear polarizer as: $\xi_+ = \frac{\xi_h + \xi_v}{\sqrt{2}}$,
-	at $-\pi/4$ linear polarizer as: $\xi_- = \frac{\xi_h - \xi_v}{\sqrt{2}}$, 
-	at left circular polarization as: $\xi_l = \frac{\xi_h + i \xi_v}{\sqrt{2}}$, 
-	and at right circular polarization as $\xi_r = \frac{\xi_h - i \xi_v}{\sqrt{2}}$.
-
-The Stokes vectors, when aligned at these transformed projections are given by the following well-known equation:
-\begin{equation}
-S_t = \left(
-\begin{array}{c}
- |\xi_h|^2 + |\xi_v|^2 \\
- |\xi_h|^2 - |\xi_v|^2 \\
- 2 \Re( \xi_h \xi_v^* ) \\
- 2 \Im( \xi_h \xi_v^* ) 
-\end{array}
-\right)
-= \left(
-\begin{array}{c}
- |\xi_+|^2 + |\xi_-|^2 \\
- -2 \Re( \xi_+^* \xi_- ) \\
- |\xi_+|^2 - |\xi_-|^2 \\
- 2 \Im( \xi_+^* \xi_- ) 
-\end{array}
-\right)
-= \left(
-\begin{array}{c}
- |\xi_l|^2 + |\xi_r|^2 \\
- 2 \Re( \xi_l^* \xi_r ) \\
- -2 \Im( \xi_l^* \xi_r ) \\ 
- |\xi_l|^2 - |\xi_r|^2 
-\end{array}
-\right)  
-\end{equation}
-
-Evidently, the real and imaginary parts of $S_hS_v^*$ is closely related to Stokes Parameters.
-Specifically they may be considered as the subtraction of two random SAR intensity variables, e.g., $|S_l|^2 - |S_r|^2$. 
-%Since ShSh is exponential this can be calculated through convolutions, if each channels are independent. 
-%Laplace distribution is the difference between two identical exponential distributions. 
-For the same traditional reasoning of $|S_h|^2$ and $|S_v|^2$, we hypothesize that all the four intensities calculated from the transformation of polarization basis, i.e., $|S_+|^2$, $|S_-|^2$, $|S_l|^2$, $|S_r|^2$, follow negative exponential distributions. 
-The hypothesis is supported by our preliminary experiment results, where we synthesize the basis transformed intensity from real-measured polarimetric data.
-It then follows that $S_hS_v^*$ can be despeckled by independently de-speckling the four synthesized intensities.
-Read chapter 4 for our work in progress in single-channel SAR speckle filtering.
-We hope to go further speculating that: the speckle-filtering methodologies in dual-polarization SAR data is extensible to full polarimetric SAR data.
-
 %In fact, we could build and validate statistical model for all elements of POLSAR data.
 %One steps further and we could demonstrate the methodology for target detection and classification in dual-pol data.
 %The original results in reconstruction from CP to FP could be revised and evaluation may be on estimates of Entropy, Polarization angle, Anisotropy (Cloude).
@@ -437,11 +253,11 @@ We hope to go further speculating that: the speckle-filtering methodologies in d
 %One can change polarization basis to circular polarizations (see Boulbry,2007,ProcSPIE). 
 %decomposition and compact polarimetric target decomposistion
 
-To demonstrate the use of partial polarimetry for target detection and classification tasks, we could proceed with either approach.
-The first approach being: first full polarimetric information is to be reconstructed from partial polarimetry data.
-Then standard full polarimetric target detection and classification techniques can be applied on synthesized data.
-Read Chapter 3 for our published work in extending the reconstruct-ability of full polarimetric information from partial polarimetry data to urban and man-made areas.
-The second approach would be to invent a totally new target detection algorithm making use of the fact that partial polarimetric data also contains certain basic information about the target's polarimetric signature (see partial polarimetry section in Chapter 2).
+%To demonstrate the use of partial polarimetry for target detection and classification tasks, we could proceed with either approach.
+%The first approach being: first full polarimetric information is to be reconstructed from partial polarimetry data.
+%Then standard full polarimetric target detection and classification techniques can be applied on synthesized data.
+%Read Chapter 3 for our published work in extending the reconstruct-ability of full polarimetric information from partial polarimetry data to urban and man-made areas.
+%The second approach would be to invent a totally new target detection algorithm making use of the fact that partial polarimetric data also contains certain basic information about the target's polarimetric signature (see partial polarimetry section in Chapter 2).
 
 \subsection{Theoretical and Practical Contributions}
 

@@ -5,7 +5,51 @@
 %\begin{abstractslong}    %uncommenting this line, gives a different abstract heading
 \begin{abstracts}        %this creates the heading for the abstract page
 
-Put your abstract or summary in 0\_frontmatter/abstract.tex.
+In the past decades, the exponential growth in computational power has made the once overly-excessive computationaly-demanding SAR technology now become a feasible and preferred earth observation solution.
+As state-of-the-art technology, the SAR technique has been extended in a few directions, one of which is the polarimetric SAR or POLSAR.
+POLSAR is the natural extension from SAR exploiting the natural polarization property of Electro-Magnetic (EM) waves.
+Similar to the extension from black-and-white images to color photography, the polarimetric extension brought about the multi-channels POLSAR data as compared to the traditional one-channel SAR data.
+
+With (POL)SAR data becomes cheaper and more available, the recent research emphasis is on understanding and developing applications for the data. %it is of great important to understand the data.
+The SAR data, however is stochastic by nature, due to the interference phenomena of EM waves. %, SAR measurements are stochastic by nature.
+Under this condition, it is very important to understand the statistical models for SAR data.
+It is these models that form the foundation for different SAR data processing techniques,
+  for example speckle filtering, target detection, image segmentation, and other clustering, classification techniques.
+Central to these machine learning or signal processing algorithms is the need for consistent discrimination measures which are derived from the statistical models.
+
+While the statistical models for homogeneous SAR areas have long been developed and widely used,
+  in extending the model toward heterogeneous images, the impact of the heteroskedastic property in these models has virtually been ignored.
+Specifically the concept of distance as a measure of dis-similarity is seriously flawed,
+  as it is widely known that ratio offers a better discrimination measure for SAR \cite{Rignot_1993_TGRS_896}.
+This thesis starts off by proposing the logarithmic transformation which is shown converting the SAR data into an homoskedastic model.
+Within this log-transformed domain, a few consistent measures of distance is proposed. 
+In a sense the distance concept is re-emerged, as the log-transformation converts the widely used ratio into standard subtractive distance.
+
+In extending our statistical understanding of SAR data towards multi-dimensional POLSAR data, an important issue needs to be addressed.
+The trouble that the high dimensional data bring about is that there exists not one, as the intensity in the one-channel SAR, but many observables quantities in multi-channel POLSAR.
+While different statistical models have been developed for different POLSAR observables,
+  for a statistical model to be useful, scalar discrimination measures need to be derived from.
+Thus on the one hand, practical application for POLSAR data processing requires the measure to be scalar, consistent and preferably homoskedastic. % on the one hand.
+On the other hand, the observable quantity being modelled needs to be naturally representative for the high dimensional POLSAR data.
+
+In this thesis, the determinant of the POLSAR covariance matrix is proposed as an observable quantity to study.
+The representative power of this observable is demonstrated when the multi-dimensional POLSAR data is collapsed into the traditional one-dimensional SAR scenario, the determinant then is transformed into the standard SAR intensity.
+Statistical models for this heteroskedastic POLSAR determinant and homoskedastic log-determinant are then derived.
+And since POLSAR can be viewed as a multi-dimensional extension of SAR, the thesis describes how the standard statistical models for SAR can be put within the natural coverage of this generic models for POLSAR.
+%Subsequently logarithmic transformation is investigated for this generalized SAR model,
+%  which lead to the proposal for several linear and additive measures of distance for POLSAR.
+
+%There are a few benefits of using the homoskedastic measures of distance for POLSAR.
+In short, to address the dual-problem described above,
+  this thesis proposes several scalar, additive and homoskedastic measures of distance for the multi-dimensional, multiplicative and heteroskedastic POLSAR data. 
+%The proposed statistical models and the homoskedastic measures of distance for POLSAR bring about a couple of benefits. 
+There are a couple of benefits in using these homoskedastic measures of distance for (POL)SAR.
+First, compared to the multiplicative dis-similarity measure of ratio, these additive measures of distance fit more naturally with the linear nature of digital imagery.
+Second, within the homoskedastic log-transformed domain, where the distance concept as well as the Gauss-Markov theorem is again applicable,
+  the use of Mean Squared Error (MSE) as universal objective function deserves to be reviewed. % as a reliable objective function / criteria for (POL)SAR estimators.
+%This may open up a number of different research directions for future studies of (POL)SAR.
+As example applications of how these statistical models and distance measures,
+  a novel clustering algorithm, a new speckle filter and various procedures in using MSE to evaluate speckle filters are also presented as part of the thesis.
 
 \end{abstracts}
 %\end{abstractlongs}
