@@ -4,3 +4,6 @@ rm thesis.*
 mv b.thesis.tex thesis.tex
 mv b.thesis.bib thesis.bib
 
+rm chap*.pdf
+rm chap*.txt
+

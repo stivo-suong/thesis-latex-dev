@@ -12,8 +12,8 @@
 %: Style file for Latex
 % Most style definitions are in the external file PhDthesisPSnPDF.
 % In this template package, it can be found in ./Latex/Classes/
-\documentclass[twoside,11pt]{Latex/Classes/PhDthesisPSnPDF}
-
+\documentclass[a4paper, oneside, 11pt]{Latex/Classes/PhDthesisPSnPDF}
+%twoside,
 \setlength{\parindent}{0pt} %no indentation on all paragraph
 \setlength{\parskip}{2ex} %so that each paragraph is separated by a line
 
@@ -59,18 +59,25 @@
 % we use this for our refernces as well
 %\AtBeginDocument{\renewcommand{\ref}[1]{\mbox{\autoref{#1}}}}
 
-% redefinition of \equation for convenience
-\let\oldequation = \equation
-\let\endoldequation = \endequation
 \AtBeginDocument{\let\oldlabel = \label}% \AtBeginDocument because hyperref redefines \label
 \newcommand{\mynewlabel}[1]{%
   \StrBehind{#1}{eqn:}[\Str]% remove "eq:" from labels
   \myequations{\Str}\oldlabel{#1}}
-  \renewenvironment{equation}{%
+
+% redefinition of \equation for convenience
+\let\oldequation = \equation
+\let\endoldequation = \endequation
+\renewenvironment{equation}{%
   \oldequation
-  %\let\label\mynewlabel
   \let\caption\mynewlabel
 }{\endoldequation}
+% redefinition of \subequations for convenience
+\let\oldsubequations = \subequations
+\let\endoldsubequations = \endsubequations
+\renewenvironment{subequations}{%
+  \oldsubequations
+  \let\caption\mynewlabel
+}{\endoldsubequations}
 
 \newcommand{\listequationsname}{List of Equations}
 \newlistof{myequations}{equ}{\listequationsname}
@@ -87,7 +94,7 @@
 
 %if output to PDF then put the following in PDF header
 \ifpdf  
-    \pdfinfo { /Title  (Homoskedastic Measures of Distance for Heteroskedastic SAR And POLSAR Data)
+    \pdfinfo { /Title  (Scalar \& Homoskedastic Models For The Multi-Dimensional \& Heteroskedastic (POL)SAR Data)
 %               /Creator (TeX)
 %               /Producer (pdfTeX)
                /Author (Thanh-Hai Le)
@@ -100,7 +107,7 @@
 \fi
 
 %\title{Title of your thesis}
-\title{Homoskedastic Measures of Distance for Heteroskedastic SAR And POLSAR Data}
+\title{Scalar \& Homoskedastic Models For The Multi-Dimensional \& Heteroskedastic (POL)SAR Data}
 
 % ----------------------------------------------------------------------
 % The section below defines www links/email for author and institutions
@@ -152,7 +159,7 @@
 
 %\renewcommand{\submittedtext}{change the default text here if needed}
 \degree{Doctor of Philosophy (PhD)}
-\degreedate{Feb 2013}
+\degreedate{May 2013}
 
 % ----------------------------------------------------------------------
        
@@ -318,18 +325,18 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 %\addtocontents{toc}{List of Equations}
 
 \newpage
-\renewcommand\lstlistlistingname{List of Source Code}
-%\renewcommand\lstlistingname{Algorithm}
-\lstlistoflistings
-\addcontentsline{toc}{section}{List of Source Code}
-
-\newpage
 \listoffigures	% print list of figures
 \addcontentsline{toc}{section}{List of Figures}
 
 \newpage
 \listoftables  % print list of tables
 \addcontentsline{toc}{section}{List of Tables}
+
+\newpage
+\renewcommand\lstlistlistingname{List of Source Code}
+%\renewcommand\lstlistingname{Algorithm}
+\lstlistoflistings
+\addcontentsline{toc}{section}{List of Source Code}
 
 %\chapter*{List of Mathematic Symbols}
 %\addcontentsline{toc}{section}{List of Mathematic Symbols}
@@ -370,19 +377,19 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 %STATE: structure stabilized
 %TODO: review the content text
 
-%\include{2/literature_review}
+\include{2/literature_review}
 %STATE: structure more or less stablized
 %TODO: attack portion 1
 
-%\include{3/sar}
+\include{3/sar}
 %STATE: Waiting for Ian, Nick to come back
 
-%\include{4/polsar}	
+\include{4/polsar}	
 %\chapter{Consistent Measures of Distance for Multivariate POLSAR Data} %chapter 4
 %STATE: structure stablized
 %TODO: add latest contents into the section, ready this for sending to Ian,Nick
 
-%\include{5/applications}
+\include{5/applications}
 %\chapter{Using the Consistent Measures of Distance} %chapter 5
 %STATE: section 1: cleaned up
 %TODO: section 4 (FMLE POLSAR) needs some fresh meat
@@ -397,7 +404,7 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 % --------------------------------------------------------------
 
 % the back matter: appendix and references close the thesis
-%\include{9_backmatter/appendix}
+\include{9_backmatter/appendix}
 
         
 %: ----------------------- bibliography ------------------------
@@ -412,9 +419,9 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 
 %this is first choice, use with break url to handle Online resouces
 %good point is number of refs is available, not so good is not (author, year) style
-%\bibliographystyle{Latex/Classes/PhDbiblio-url2} % Title is link if provided,
+\bibliographystyle{Latex/Classes/PhDbiblio-url2} % Title is link if provided,
 %this is second choice: good point is (author, year) style in text, bad is no number of refs
-\bibliographystyle{Latex/Classes/jmb} % calls style file jmb.bst
+%\bibliographystyle{Latex/Classes/jmb} % calls style file jmb.bst
 \renewcommand{\bibname}{References} % changes the header; default: Bibliography
 %tried but not so impressed
 %\bibliographystyle{Latex/Classes/PhDbiblio-url} % bold + www link if provided

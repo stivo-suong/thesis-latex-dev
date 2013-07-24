@@ -48,8 +48,8 @@
 \usepackage[english]{babel}
 \usepackage[usenames, dvipsnames]{color}
 \usepackage[perpage]{Latex/StyleFiles/footmisc}
-\usepackage[square, authoryear]{natbib}
-  %square for [], round for (), numbers for [1], authoryear for (Cumming, 2005)
+\usepackage[square, numbers]{natbib}
+  %square for [], round for (), numbers for [1], authoryear for (Cumming, 2005), numbers and author-year clash!!!
 \usepackage{ifthen}
 \usepackage{multicol} % for pages with multiple text columns, e.g. References
 \setlength{\columnsep}{20pt} % space between columns; default 10pt quite narrow
@@ -185,15 +185,15 @@
 % taken from the original file, but with the first two lanes modified
 % ------------------------------
 \setlength{\evensidemargin}{1.9cm}  %was 1.96cm in original
-\setlength{\oddsidemargin}{-0.001cm}  %was -0.54cm in original file
+\setlength{\oddsidemargin}{1.54cm}  %was -0.54cm in original file
 \setlength{\topmargin}{1mm}
-\setlength{\headheight}{1.36cm}
-\setlength{\headsep}{1.00cm}
+\setlength{\headheight}{1.36cm} %was 1.36cm
+\setlength{\headsep}{1.00cm} %was 1cm
 \setlength{\textheight}{20.84cm}
 \setlength{\textwidth}{14.5cm}
 \setlength{\marginparsep}{1mm}
 \setlength{\marginparwidth}{3cm}
-\setlength{\footskip}{2.36cm}
+\setlength{\footskip}{2.36cm} %was 2.36cm
 
 
 %: section below defines fancy page layout options

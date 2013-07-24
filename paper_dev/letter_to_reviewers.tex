@@ -1,10 +1,10 @@
 \documentclass{letter}
 \usepackage{hyperref}
-\signature{The Authors}
+\signature{Professor Ian McLoughlin, USTC}
 \address{}
 \begin{document}
  
-\begin{letter}{The Reviewers,\\IEEE Transaction on Geoscience and Remote Sensing}
+\begin{letter}{The Reviewers,\\IEEE Journal on Selected Topic in Applied Earth Observation and Remote Sensing (JSTAR)}
 \opening{Dear Reviewers,}
 
 %\documentclass{article}
@@ -15,20 +15,16 @@
 %\maketitle
 
 
-We appreciate your time and effort in reviewing our work.
-This paper presents novel statistical models for the multi-dimensional POLSAR data which generalize the commonly used statistical model for the one-dimensional SAR data and thus provides a bridge between the two fields inviting the adaptation of many existing SAR data processing techniques for POLSAR data.
-We hope that, like us when we were faced with its results,
-  you will find satisfaction as well as excitement after reading through this paper.
-We appreciate your feedback in whatever way it may be in making this manuscript to become a better publication.
-To facilitate your review, we enclose here a short synopsis of the paper.
+%We appreciate your time and effort in reviewing our work.
+This paper presents novel statistical models for the multi-dimensional POLSAR data which generalize the commonly used statistical model for one-dimensional SAR data. The importance is that this provides a bridge between the two fields: inviting the adaptation of existing SAR data processing techniques for use with POLSAR data. We believe that this will serve as a useful and necessary addition to the research literature in this area.
+%We hope that, like us when we were faced with its results,
+%  you will find satisfaction as well as excitement after reading through this paper.
+%We appreciate your feedback in whatever way it may be in making this manuscript to become a better publication.
+To facilitate your review, a brief synopsis of the paper follows.
 
-We are aware that the paper is a bit too long.
-Specifically, the mathematical derivations in the Appendices is presented in great details.
-While this is supposed to expedite your review,
-  it probably should be shortened in publication.
-We would appreciate it if you can help us by pointing out which portion of this paper may be considered redundant by the TGRS readers. 
+We acknowledge that the appendices are rather long (around 12 pages) due to extensive mathematical derivations. While we believe that this is necessary to expedite the review, perhaps the appendices could be provided online when the final version is published.
 
-Once again, we thank you for your reviewing time and effort.
+Thank you in advance for your reviewing time and effort -- we look forward to any suggestions for improvement.
 
 \closing{Our best regards}
 
@@ -38,10 +34,10 @@ Once again, we thank you for your reviewing time and effort.
 \textbf{The Research Context:}
 
 The extension from SAR to POLSAR brings about an issue that needs to be addressed:
-  there exists not one, like the intensity in SAR, but many scalar observable quantities in POLSAR. 
-While different statistical models have been developed for different POLSAR observables, 
-  for a model to be useful, discrimination measures need to be derived.
-Many POLSAR data processing techniques requires a scalar, representative observable and statistical model.
+  there exists not one (like the intensity in SAR) but many scalar observable quantities in POLSAR. 
+Different statistical models have been developed for different POLSAR observables, 
+ but for a model to be useful, discrimination measures need to be derived.
+Many existing data processing techniques requires a scalar, representative observable and statistical model.
 
 \textbf{Problem Statement:}
 
@@ -50,25 +46,25 @@ On the other hand, the observable quantity being modelled need to be naturally r
 
 \textbf{Newly Proposed Technique to Handle this Situation:}
 
-In this paper, a couple of scalar statistical models for the determinant of the POLSAR covariance matrix are proposed.
+In this paper, a couple of scalar statistical models for the determinant of the POLSAR covariance matrix are proposed and explored.
 These models are shown to be both representative and subsequently lead to statistically consistent discrimination measures.
 
 \textbf{Shortcomings of the current POLSAR statistical models:}
 
-There are a few published scalar statistical models for POLSAR, but none of them fit the dual criteria of being representative and at the same time lead to scalar discrimination measures.
-There are also a few POLSAR discrimination measures, but all of them are based on the likelihood test statistics, which so far have only shown to be based on asymptotic distribution.
+There are a few published scalar statistical models for POLSAR (which we cite and explore), but none fit the dual criteria of being representative and at the same time serve as scalar discrimination measures.
+There are also a few POLSAR discrimination measures, but all are based on the likelihood test statistics, which so far have only shown to be based on asymptotic distribution.
 
-\textbf{Advantages of the newly proposed model}
+\textbf{Advantages of the newly proposed model:}
 
 Compared to other statistical models for POLSAR, the proposed models are scalar, and representative for POLSAR data.
 Moreover, several multiplicative discrimination measures and additive measures of distance are derived from the proposed statistical models.
 These POLSAR discrimination measures, for e.g. the determinant-ratio, can be considered as the multi-dimensional extension of the commonly used discrimination measures for the one-dimensional SAR intensity.
 Compared to other discrimination measure proposals, this paper suggests an exact distribution, as opposed to asymptotic distributions, for the POLSAR likelihood statistical test.
-As a by-product of this exact modeling, simpler discrimination measures, i.e. determinant-ratio and contrast, are proposed for the common case of Lx=Ly.
+As a by-product of this exact modelling, simpler discrimination measures, i.e. determinant-ratio and contrast, are proposed for the common case of Lx=Ly.
 
-\textbf{High-level Summary of this work}
+\textbf{High-level Summary of this work:}
 
-This paper presents novel statistical models for the multi-dimensional POLSAR data which generalize the commonly used statistical model for the one-dimensional SAR data and thus provides a bridge between the two fields inviting the adaptation of many existing SAR data processing techniques for POLSAR data.
+This paper presents novel statistical models for the multi-dimensional POLSAR data which generalize the commonly used statistical model for the one-dimensional SAR data, providing a bridge between the two fields. In consequence, inviting the adaptation of several existing SAR data processing techniques for use with POLSAR data.
 
 \end{letter}
  

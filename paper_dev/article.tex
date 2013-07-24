@@ -30,7 +30,7 @@ University of Science and Technology of China.
 %	providing us the RADAR-SAT2 imagery used in this paper. }% <-this % stops a space
 \thanks{Manuscript received ?, 2013; revised ?.}}
 
-\markboth{Transactions on Geoscience \& Remote Sensing,~Vol.~?, No.~?, ?~2013}%
+\markboth{IEEE Journal on Selected Topic in Applied Earth Observation and Remote Sensing,~Vol.~?, No.~?, ?~2013}%
 { Le \MakeLowercase{\textit{et al.}}:  Scalar and Representative Models for Polarimetric SAR Data}
 
 \begin{document}
@@ -42,12 +42,13 @@ This paper presents several novel scalar statistical models to represent the det
 Compared to other scalar statistical models for POLSAR,
   the proposed models are highly representative of the multi-dimensional data
   and enable useful discrimination measures to be easily determined. %consequently they lead to useful discrimination measures.
-When the multi-dimensional models are collapsed to a single dimension,
-  they are shown to exactly match the traditional statistical models for SAR intensity.
-The paper validates the theoretical models together with their derived discrimination measures using real world POLSAR data.  
+The representative power of these models is explained  
+when these multi-dimensional models are collapsed to single dimensional versions,
+  they are shown to exactly match the traditional statistical models for the representative observable of SAR intensity.
+The paper also validates the theoretical models together with their derived discrimination measures using real world POLSAR data.  
 %IVMThe proposed generic models are envisioned to enable the adaptation of many existing SAR data processing techniques for use with POLSAR data.
-The intention is that these proposed generic models can facilitate the adaptation of existing SAR techniques to higher-dimensional POLSAR data.
-To illstrate, an example is given where the determinant-ratio and its additive version, contrast, are applied in the evaluation of POLSAR speckle filters.
+One major benefit of this paper is that these proposed generic models can facilitate the adaptation of existing SAR techniques to higher-dimensional POLSAR data.
+To illustrate, an example is given where the determinant-ratio and its additive version, contrast, are applied in the evaluation of POLSAR speckle filters.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -65,19 +66,20 @@ POLSAR extends SAR by exploiting the natural polarization property of Electro-Ma
   leading to the availability of multi-channel POLSAR data, compared to traditional one-channel SAR data.
 
 While statistical models are important in understanding the stochastic nature of both SAR and POLSAR, in extending our understanding towards multi-dimensional POLSAR, an important issue needs to be addressed.
-Namely that there now exists not one but many observable quantities in multi-channel POLSAR (as opposed to single-channel SAR intensity).
+That is there now exists not one but many observable quantities in multi-channel POLSAR (as opposed to single-channel SAR intensity).
 The research community has responded largely by developing different statistical models for various POLSAR observables.
 However for a statistical model to be useful, scalar discrimination measures generally need to be derivable from it.
 Thus, practical applications for POLSAR data processing require dis-similarity measures that are scalar, consistent and preferably homoskedastic on the one hand.
 On the other hand, the observable quantity being modelled should be naturally representative of the high dimensionality POLSAR data.
 
-This paper presents novel statistical models for multi-dimensional POLSAR data as generalisations of the commonly used one-dimensional SAR statistical model.
-This approach makes feasible the adaptation of many existing SAR processing techniques, to be applied to POLSAR data.
-Specifically, statistical models for the heteroskedastic POLSAR determinant and its homoskedastic log-domain equivalent, together with several other discrimination measures are derived in section  \ref{sec:theoretical_model}.
+This paper presents novel statistical models for multi-channel POLSAR data as generalisations of the commonly used and representative statistical models for the one-channel SAR data.
+This approach makes feasible the adaptation of many existing SAR processing techniques to be applied to POLSAR data.
+After section \ref{sec:lit_review} reviews related work in published literature, statistical models for the heteroskedastic POLSAR determinant and its homoskedastic log-domain equivalent, together with several other discrimination measures are derived in section  \ref{sec:theoretical_model}.
 The representative properties of these observables are then demonstrated in section \ref{sec:sar_special_case_of_polsar}
   where the multi-dimensional POLSAR data is collapsed to a one-dimensional SAR scenario.
 With this transformation, the determinant of the POLSAR covariance matrix is shown to be equivalent to SAR intensity,
-  which also brings many standard statistical models used with SAR  under the umbrella of these generic POLAR models.
+%  which also brings many standard statistical models used with SAR  under the umbrella of these generic POLAR models.
+  and allow many conventional SAR statistical models to stay under the umbrella of these generic POLAR models.
 The proposed theoretical models are then validated against real life practical data in section \ref{sec:polsar_models_validation}.
 Section \ref{sec:discussion} briefly describes how evaluation of an existing SAR data processing technique, the speckle filter, can be extended to  POLSAR data processing using this approach.
 This is followed by a conclusion in Section \ref{sec:conclusion}.
@@ -91,9 +93,9 @@ Its purpose is to show that none of those  models have led to statistically cons
 Section \ref{sec:lit_measures} further strengthens those findings by discussing discrimination measures that have been proposed for POLSAR,
   and demonstrates that almost all of them are based on the likelihood statistical test for complex Wishart distribution.
 However, while an exact statistical distribution is needed for the test,
-  only an symptotic distribution is used in the original work \cite{Conradsen_2003_TGRS_4}.
+  only asymptotic distribution is used in the original work \cite{Conradsen_2003_TGRS_4}.
   
-\subsection{Investigated Scalar Observables for POLSAR Data and their Statistical Models}
+\subsection{Scalar Observables for POLSAR Data and their Statistical Models}
 \label{sec:lit_models}
 
 Different target decomposition theorems have identified many possible scalar observables for complex POLSAR data.
@@ -119,7 +121,7 @@ However, such derivations are no trivial task, and so far, only a handful of suc
 
 More recently, statistical models for
   each element of the POLSAR covariance matrix $S_{pq}S_{rs}^*$ \cite{Lopez-Martinez_2003_TGRS_2232}
-  as well as for the largest eigen-value of the covariance matrix $\lambda_1$ \cite{Erten_2012_Sensors_2766} have been studied.
+  as well as for the largest eigen-value of the covariance matrix $\lambda_1$ \cite{Erten_2012_Sensors_2766} have been proposed.
 While these models undoubtedly help in understanding POLSAR data,
   none of these observables have been shown to meet the dual criteria of
   1) resulting in statistically consistent discrimination measures and
@@ -133,21 +135,22 @@ The commonly used measure of distance for matrices are either the Euclidean or M
   d(C_x,C_y) &= \sum_{i,j} |\mathbb{R} (C_x - C_y)_{i,j}| + \sum_{i,j} |\mathbb{I} (C_x - C_y)_{i,j}| \\
   d(C_x,C_y) &= \sqrt{\sum_{i,j} |C_x - C_y|_{i,j}^2 }
 \end{align}
-where $C_{i,j}$ denotes the (i,j) elements of the matrix C,
+where $C_{i,j}$ denotes the (i,j) elements of the POLSAR covariance matrix C,
  $||$ denotes absolute values
 and $\mathbb{R},\mathbb{I}$ denote the real and imaginary parts respectively.
 However, in the context of POLSAR% covariance matrix
 , these dis-similarity measures are not widely used 
-  probably because of the multiplicative nature of the noisy data.
+  mainly due to the multiplicative nature of the noisy data.
 
 In the field of POLSAR, the Wishart distance is probably the most widely used, as part of the well-known Wishart classifier \cite{Lee_1999_TGRS}.
 It is defined \cite{Lee_1994_IJRS_2299} as:
 \begin{equation}
   d(C_x,C_y) = \ln|C_y| + tr(C_xC_y^{-1})
-\end{equation}
+\end{equation},
+where $tr(C)$ denotes the trace of the matrix C. 
 As a measure of distance, its main disadvantage is that $d(C_y,C_y) = \ln|C_y| \neq 0$.
 
-Recent works have suggested alternative dissimilarity measures including the asymmetric and symmetric refined Wishart distance \cite{Anfinsen_2007_ESA_POLINSAR},
+Recent works have suggested alternative dissimilarity measures including the symmetric and asymmetric refined Wishart distance \cite{Anfinsen_2007_ESA_POLINSAR},
 \begin{align}
   d(C_x,C_y) &= \frac{1}{2} tr(C_x^{-1}C_y + C_y^{-1}C_x) - d \\
     d(C_x,C_y) &= \ln|C_x| - \ln|C_y| + tr(C_xC_y^{-1}) - d
@@ -169,12 +172,12 @@ and the Wishart Statistical test distance \cite{Cao_2007_TGRS_3454}
 %%***IVM: Hai, you haven't introduced the notation for these!! What is tr() (in eqn. 3), what is Lx, Ly.... I changed your A_{i,j} to C_{i,j} above, just after eqn.2
 
 
-Closer investigation of these dis-similarity measures reveals that most are related in some way. %to each other.
+Closer investigation of these dis-similarity measures reveals that most are related in some ways. %to each other.
 The Bhattacharyya distance is easily shown to be related to the Barlett distance.
 At the same time the Barlett distance can be considered a special case of the Wishart Statistical Test distance,
   when the two data sets have the same number of looks, i.e. $L_x=L_y$.
 The close relation among the measures is further supported by the fact that
-  all of their proposing papers referenced the same statistical model developed in \cite{Conradsen_2003_TGRS_4} as a foundation.
+  all of their proposing papers refered the same statistical model developed in \cite{Conradsen_2003_TGRS_4} as a foundation.
 In \cite{Conradsen_2003_TGRS_4}, to determine if the two scaled multi-look POLSAR covariance matrix $Z_x$ and $Z_y$,
   which have $L_x$ and $L_y$ as the corresponding number of looks,
   come from the same underlying stochastic process,
@@ -183,7 +186,7 @@ the likelihood ratio statistics for POLSAR covariance matrix is considered:
   Q = \frac{(L_x+L_y)^{d \cdot (L_x+L_y)}}{L_x^{d \cdot L_x} L_y^{d \cdot L_y}} \frac{|Z_x|^{L_x} |Z_y|^{L_y} }{|Z_x+Z_y|^{(L_x+L_y)}}
 \end{equation*}
 
-Taking the log-transformation of the above statistics, and note that $C_{vx} = Z_x / L_x$, $C_{vy} = Z_y / L_y$ and $C_{vxy} = (Z_x + Z_y)/(L_x + L_y)$ it becomes 
+Taking the log-transformation of the above equation, and note that $C_{vx} = Z_x / L_x$, $C_{vy} = Z_y / L_y$ and $C_{vxy} = (Z_x + Z_y)/(L_x + L_y)$ then:
 \begin{eqnarray}
   Q &=& \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} \\
   \ln Q &=& L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
@@ -197,8 +200,8 @@ However, in the original work \cite{Conradsen_2003_TGRS_4}, only an asymptotic d
 \label{sec:theoretical_model}
 
 In this section, several scalar statistical models for POLSAR are presented.
-After section \ref{sec:model_basic} briefly introduces the basic foundations, concepts and notation of this paper, %reviews related work in published literature,
-  section \ref{sec:polsar_heterosked_model_and_log_transform}
+Section \ref{sec:model_basic} briefly introduces the basic foundations, concepts and notation used in this paper, %reviews related work in published literature,
+  while section \ref{sec:polsar_heterosked_model_and_log_transform}
   presents the theoretical models together with mathematical evidence for two related points.
 The first point is that the POLSAR data is multiplicative and heteroskedastic in its original domain.
 And the second conclusion states that log-transformation converts it into an additive and homoskedastic model.
@@ -279,7 +282,7 @@ We will now use this result to develop the statistical models for POLSAR. %log-t
 \label{sec:polsar_heterosked_model_and_log_transform}
 
 In this section the multiplicative nature of POLSAR data is first illustrated.
- Log-transformation is used to convert  the data into a more familiar additive model.
+ Log-transformation is then applied to convert  the data into a more familiar additive model.
 Heteroskedasticity, which is defined as the dependence of variance upon the underlying signal,
   is shown to be present in the original POLSAR data.
 In the log-transformed domain, a homoskedastic model is demonstrated,
@@ -295,7 +298,7 @@ we can deduce the following relationships:
 \end{eqnarray}
 
 In a given homogeneous POLSAR area, the parameters $\Sigma_v$, $d$ and $L$ can be considered constant.
-Thus Eqn. \ref{eqn:determinant_distribution} indicates that: 
+Thus Eqn. \ref{eqn:determinant_distribution} indicates that 
   in the original POLSAR domain, a multiplicative speckle noise pattern is present.
 At the same time, Eqn. \ref{eqn:log_determinant_distribution} shows that
   the logarithmic transformation has converted this to the more familiar additive noise.  
@@ -358,8 +361,8 @@ At the same time, in the log-transformed domain, Eqn. \ref{eqn:var_log_det_is_ho
 Similar to the way dispersion and contrast is defined for one-dimensional SAR \cite{Le_2010_ACRS},
   this section introduces the consistent sense of distance for POLSAR.
 Assuming, on the one hand, that the true value of the underlying signal $\Sigma_v$ is known \textit{a priori},
-random variables,
-  ratio ($\mathbb{R}$) and log-distance ($\mathbb{L}$),
+then the random variables,
+  ratio ($\mathbb{R}$) and log-distance ($\mathbb{L}$)
   are observable according to the following definitions:
 %Eqns. \ref{eqn:prod_chi_squared_rv} and \ref{eqn:sum_log_chi_squared_rv} lead straight to the definition of the following random variables, which is the :
 \begin{eqnarray}
@@ -407,8 +410,8 @@ Moreover, note that they are independent of the underlying signal $\Sigma_v$.
 \section{SAR as a one-dimensional case of POLSAR}
 \label{sec:sar_special_case_of_polsar}
 
-The previous section  introduced  theoretical models for 3-dimensional, d=3 full polarimetric and 2-dimensional, d=2 partial polarimetry, cases.
-This section will show that the model is equally  applicable to the 1-dimensional d=1 case,
+The previous section  introduced  theoretical models for 3-dimensional ($d=3$) full polarimetric and 2-dimensional ($d=2$) partial polarimetry, cases.
+This section will show that the model is equally  applicable to the 1-dimensional ($d=1$) case,
   which is physically equivalent to  collapsing the multi-dimensional POLSAR dataset  into conventional single dimensional SAR data.
 Mathematically, the sample covariance matrix is reduced to the sample variance while the determinant is equivalent to  the scalar value.
 As variance is equal to intensity for SAR data, our result is consistent with previous results for SAR intensity data.
@@ -451,7 +454,7 @@ N = \ln{I} &\sim& pdf \left[ \frac{L^L}{\Gamma(L)} e^{L(x-\bar{N})-Le^{x-\bar{N}
 Furthermore, the following derivations for multi-look SAR data
    show that it can be considered 
     either as extensions of the corresponding single-look SAR results
-    or as simple cases of the POLSAR results:
+    or as simpler case of the POLSAR results:
   \begin{align*}
     \mathbb{R} &= \frac{I}{\bar{I}} \sim pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \label{eqn:multi_look_SAR_ratio_dist} \right]\\
     \mathbb{L} &= \ln{I} - \ln{\bar{I}} \sim pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right] \\
@@ -467,7 +470,7 @@ Furthermore, the following derivations for multi-look SAR data
 \label{sec:polsar_models_validation}
 
 This section aims to verify the theoretical models against practical data.
-Since we have shown that the model for the case of $d=1$ matches exactly with the traditional model for SAR intensity,
+Since it is shown that the model for the case of $d=1$ matches exactly with the traditional model for SAR intensity,
   which have been validated extensively, only a simple validation is presented for this case.
   
 Fig. \ref{fig:verify_multi_look_SAR_dispersion_contrast_models} presents the results of an experiment carried out for the stated purpose.
@@ -495,7 +498,8 @@ The histograms for the log-distance and contrast are then plotted against the th
 		 \label{multi_look_contrast}
 	}
 \end{tabular}
-\caption{Multi-Look SAR dispersion and contrast: modelled response matches very well with real-life captured data.}
+\caption{Multi-Look SAR dispersion and contrast: modelled response matches very well with real-life captured data.
+It should be noted that an even better match than what is shown here is presented in Fig. \ref{fig:handling_airsar_oversampling_practice_full_pol} where a better ENL estimation is employed.}
 \label{fig:verify_multi_look_SAR_dispersion_contrast_models}
 \end{figure}
 
@@ -519,7 +523,7 @@ The stochastic models derived in the previous sections can be visualised  using 
 Their accuracy can be verified by comparing to  histograms from real-life data samples extracted over a homogeneous area.
 
 For this purpose, a homogeneous sample area was chosen from the AIRSAR Flevoland POLSAR data.
-Both the the determinant and the log-transformed models are to be validated together with the associated dissimilarity measures, namely the determinant ratio, log-distance, dispersion and contrast.
+Both the determinant and the log-transformed models are to be validated together with the associated dissimilarity measures, namely the determinant ratio, log-distance, dispersion and contrast.
 These are closely related in that the determinant and determinant ratio are simply scaled versions of each other.
 Meanwhile, the log-determinant, log-distance and dispersion are simply shifted versions of each other.
 Nevertheless, all will be separately evaluated in this experiment in order to reveal an interesting phenomenon.
@@ -685,7 +689,8 @@ This is discussed in the next subsection.
 
 Even though the assumptions made in developing this theory have intentionally been kept minimal, 
 in common with other similar derivations the proposed model in this paper is built upon certain presumptions.
-However, practical conditions may not always satisfy these prerequisites, thus we find a common and observable gap between the conditions found in practical real-life data and the theoretical assumptions.
+However, practical conditions may not always satisfy these prerequisites,
+  a common and observable gap is noticed between the conditions found in practical real-life data and the theoretical assumptions.
 
 The assumption of statistical independence between samples (for both SAR and POLSAR data) is reasonable given that 
   the transmission and receipt of analogue signals is independent for each radar pulse, i.e. for each resolution cell.
@@ -719,13 +724,13 @@ The common approach in ENL estimation is to investigate the summary statistics o
   before making inferences about the inherent ENL.
 The summary statistics for $|C_v|$ and $\ln|C_v|$ have been derived in Section \ref{sec:polsar_heterosked_model_and_log_transform},
   where Eqn. \ref{eqn:avg_log_det} indicates that there is a relationship among $|avg(C_v)|,avg(\ln|C_v|),d,L$.
-In a given POLSAR datasat, since all values of $|avg(C_v)|,avg(\ln|C_v|),d$ are known,
+In a given POLSAR dataset, since all values of $|avg(C_v)|,avg(\ln|C_v|),d$ are known,
   it is possible to estimate the ``effective'' number of looks, by finding an $L$ that ensures the above relationship is valid.
 This approach was taken in \cite{Anfinsen_2009_TGRS_3795},
   where an equation of exactly the same form as Eqn.  \ref{eqn:avg_log_det} was used to estimate the ENL.
 However, the only known way to solve the equation for unknown $L$ requires the use of an ``iterative numerical method''.
 
-We will instead propose an alternative approach making use of variance statistics in the homoskedastic log-domain.
+This paper instead proposes an alternative approach that makes use of variance statistics in the homoskedastic log-domain.
 Specifically, Eqn. \ref{eqn:var_log_det_is_homoskedastic} can be rewritten as: 
 \begin{equation}
   var \left[ ln|C_v| \right] = f(L) = \sum^{d-1}_{i=0} \psi^1(L-i)
@@ -825,37 +830,50 @@ Still, the ``corrected'' ENL offers an evidently better match between the model 
 		 \label{part_pol}
 	}   
 \end{tabular}
-\caption{AIRSAR Flevoland also exhibits phenomena of over-sampling practice, through at a lesser extend than the RADARSAT 2 data.}
+\caption{AIRSAR Flevoland also exhibits phenomena of over-sampling practice, through at a lesser extent than the RADARSAT 2 data.}
 \label{fig:handling_airsar_oversampling_practice_full_pol}
 \end{figure}
 
 \section{Discussion}
 \label{sec:discussion}
 
-Let us begin by noting a few theoretical properties of the proposed statistical model.
+Let us begin by noting a few theoretical properties of the proposed statistical models.
 First, the use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the POLSAR covariance matrices.
 In fact, the log-determinant can also be computed as the sum of log-eigenvalues.
 Specifically $\ln{|M|} = \sum \ln{\lambda_M}$ where $\lambda_M$ denotes all the eigenvalues of M.
 Thus similar to other eigenvalue based approach (e.g. entropy/anisotropy, ...),
   the models presented here are invariant to polarization basis transformations.
 
-Second, the model is developed for the POLSAR covariance matrix.
+Second, the models are developed for the POLSAR covariance matrix.
 However, since the POLSAR coherency matrix is related to the covariance matrix via a unitary transformation which preserves the determinant,
   the model should also be applicable to the coherency matrix.
 
-The model is far from complete.
- It reduces the multi-dimensional POLSAR data to a scalar value.
-While this is probably desirable for a wide range of application,
-  such a reduction is unlikely to be lossless.
+It should be noted that the models are far from complete.
+% It reduces the multi-dimensional POLSAR data to a scalar value.
+%While this is probably desirable for a wide range of application,
+%  such a reduction is unlikely to be lossless.
+While it is desirable to reduce the multi-dimensonal POLSAR data to a scalar value for many applications,
+  such a reduction is unlikely to be lossless.  
 Thus %to better understand POLSAR data
-the use of this technique could be complemented with some high-dimensional POLSAR target-decomposition techniques (e.g. the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar).
+the use of this technique could be complemented with some high-dimensional POLSAR target-decomposition techniques, such as the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar.
 
-However the proposed model is promising.
+Nevertheless the proposed models are promising.
 Even though initially developed for partial and monostatic POLSAR data,
   it was shown to be applicable to traditional SAR data as well.
-Since the models assumptions are quite minimal, they may also be found to apply to bi-static and interferometric data, although that would require significant further investigation.
+Since the models assumptions are quite minimal, they may potentially applicable to bi-static and interferometric data, although that would require further study.
 
-The theoretical models may also provide an alternative derivation for the widely used likelihood test statistics in POLSAR.
+Intuitively, the concept of the determinant being representative of the POLSAR data can be thought of as being similar to the concept of using the magnitude as being representative of a complex number
+(in a sense this is also why intensity is widely considered representative of the SAR data complex).
+Similar to the determinant, the magnitude observable is also scalar and is not lossless.
+To fully represent the complex number, another observable is needed besides the magnitude.
+The magnitude however is much more widely used, as it can be shown that its is invariant to a change in the reference frame.
+Similarly, the determinant of the POLSAR covariance matrix is also scalar and invariant to a change of polarization basis.
+Thus while it is not fully representative of the POLSAR data, it can be said to be highly representative of it.
+The important thing is that, it can be used to give a scalar comparison of the multi-dimensional data.
+This is also similar to the standard use of the magnitude when two or more complex numbers are to be compared. %, most of the times the magnitude is to be used. 
+
+This leads to the application of the models in deriving discrimination measures.
+Besides the above properties, the theoretical models may also provide an alternative derivation for the widely used likelihood test statistics in POLSAR.
 In view of the models given in Eqns \ref{eqn:determinant_distribution} \& \ref{eqn:log_determinant_distribution},
   the likelihood test statistics exposed in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:ori_likelyhood_stats} \& \ref{eqn:log_likelyhood_stats}
 can be simulated as:
@@ -868,9 +886,39 @@ As a by-product of this exact derivation, the current paper also proposed severa
 
 Similar to the way that other measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
 new detection, classification, clustering or speckle filtering algorithms can be derived using the models presented in this paper.
+These applications however are not included in this paper, but rather left as a suggestion for future investigations.
+There are a few reasons for this decision.
+The first is that the advantages of the proposed models have been demonstrated through a few applications in this paper:
+  the first being a faster ENL evaluation for POLSAR data and
+  the second being the visual evaluation of POLSAR speckle filters.
+The second reason is that such an application would be quite big in scope, and as such would easily distract the reader from the main proposal of this paper.
+Last but not least, this paper focuses on the proposal of several scalar and representative statistical models for POLSAR, which results in associated statistical models and discrimination measures.
+It does not, technically speaking, focuses on proposing new discrimination measures.
 %***IVM remove this single sentence, it detracts from the argument...
 %Moreover many of the existing techniques in SAR may be adaptable for POLSAR data, such as visual evaluation of speckle filters.
 
+The advantages of this proposal are thus to be compared against other published models for POLSAR.
+Consequently, the methodology to evaluate the result of this proposal is a bit unusual.
+While quantitative evaluation is normally employed, in this theoretical model proposal only qualitative evaluation are shown.
+This is because compared to existing published observables for POLSAR, the advantage of the proposed observables are qualitative which does not requires numerical quantitative comparisons.
+Instead a straightforward binary evaluation would be sufficient.
+In comparison to other scalar models for POLSAR, the proposed models for determinant and its log-transformed version are representative are highly representative of the POLSAR data.
+This is because these models collapses into the representative SAR intensity when the multi-dimensional data is collapsed into the traditional one-dimensional SAR data.
+This is proven in section \ref{sec:sar_special_case_of_polsar}.
+No other existing models for POLSAR is known to have this property.
+
+Other advantage is that compared to other proposed scalar models for POLSAR, only these proposed statistical models lead to existing discrimination measures.
+This argument is supported by an extensive literature survey in section \ref{sec:lit_review}.
+There not only existing published scalar models for POLSAR are reviewed to show that none of them lead to discrimination measure,
+  existing discrimination measures for POLSAR are also extensively surveyed leaving virtually no chance of there exists an existing scalar statistical model for POLSAR which leads to existing discrimination measures.
+%to comprehensively support the argument. 
+%To support these arguments, extensive literature surveys has been carried out for both published scalar models as well as for discrimination measures for POLSAR. Thus given such extensive reviews the above claims are water-tight.
+
+There may have many beneficials implications for this proposal.
+One of the main benefits is believed to be that:
+  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
+This is illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
+%Here a major benefit is illustrated in showing that 
 In evaluating SAR speckle filters, the intensity ratio is widely used.
 Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
 Assuming a perfect filtering condition, the ratio image should only contain random noise.
@@ -883,8 +931,8 @@ In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is
   which is linear and additive in nature.
 Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
 
-To briefly evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV),
-  a square 700$\times$700 pixel patch is extracted from the AIRSAR dataset,
+To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
+  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
   and the two POLSAR speckle filters are then applied to the patch.
 \footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
   they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
@@ -932,35 +980,36 @@ In this visual evaluation, while it is quite hard to observe the worsen blurring
 in the additive log-determinant image of the filtered output, 
   such an observation can be made relatively easier by inspecting the residual image.
   
-Ian version: There are many similar SAR data processing techniques such as  the usage of  the mean and variance of the ratio image to quantitatively evaluate speckle filters.
-Evidently these techniques can also be adapted for POLSAR.
-Other examples of such techniques include existing SAR speckle filters, target detectors, land-cover classifiers and edge detectors.
+%Ian version: There are many similar SAR data processing techniques such as  the usage of  the mean and variance of the ratio image to quantitatively evaluate speckle filters.
+%Evidently these techniques can also be adapted for POLSAR.
+%Other examples of such techniques include existing SAR speckle filters, target detectors, land-cover classifiers and edge detectors.
 
-Hai version: (Ian have not seen this yet) There are many similar SAR data processing technique that may be adaptable to POLSAR.
+%Hai version: (Ian have not seen this yet)
+There are many similar SAR data processing technique that may be adaptable to POLSAR.
 Examples in the same topic of evaluating speckle filters include
   the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
 Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
 
-In fact, at the time of this writing, the field of SAR is much more developed than the field of POLSAR.
-The two fields however are quite separated,
-  as many techniques applicable to SAR are not directly applicable to POLSAR.
-This work may build the bridge between these two separated fields,
-  inviting potential extension of various SAR processing techniques on POLSAR data.
-Here a specific example is shown
-  where, similar to the way ratio was commonly used to carry out visually evaluation of SAR speckle filters,
+Currently while the field of SAR is much more developed than the field of POLSAR,
+  the two fields however are quite separated.
+Hence many techniques applicable to SAR are not directly applicable to POLSAR.
+Under this context, the current proposal provide the bridge between these two separated fields,
+  inviting potential extension of various SAR processing techniques to POLSAR data.
+%Here a specific example is shown
+For instance the earlier example illustrate that while intensity ratio was commonly used to carry out visually evaluation of SAR speckle filters,
   the newly proposed determinant ratio and its log-transformed version (i.e. contrast) are shown capable of visually evaluating POLSAR speckle filters.
-In general, we believe there are many more unexplored possibilities for such applications
-  which is only limited by our imagination.
+We believe there are many more unexplored possibilities for such applications.
+%  which is only limited by our imagination.
   
 \section{Conclusion}
 \label{sec:conclusion}
 
 A number of scalar statistical models for the determinant of the POLSAR covariance matrix are proposed and validated in this paper,
-  resulting in several consistent discrimination measures for POLSAR applications.
-The theoretical models are shown to be powerful in that
+  resulting in several consistent discrimination measures useful POLSAR applications.
+The theoretical models are shown to be comprehensive in that
   not only can they provide alternative and simple explanations to a range of theoretical concepts such as POLSAR test statistics or ENL estimation,
   but they can also be considered multi-dimensional extensions of traditional models for one-dimensional SAR data.
-They are also practically useful since they lead to several consistent discrimination measures.
+The models are also practically useful since they provide several consistent discrimination measures.
 Moreover, compared to other scalar statistical models for POLSAR, the proposed models are excellent representations of the multi-dimensional POLSAR data.
 Consequently, the derived discrimination measures may be employed in a wide range of applications where a scalar number is required to represent the complex multi-dimensional POLSAR data.
 Thus the models are envisioned to form a bridge inviting the adaptation of many existing SAR data processing techniques for POLSAR data.
@@ -1225,7 +1274,7 @@ with $\Gamma()$ and $B()$ denoting Gamma and Beta functions respectively.
 \label{sec:appendix_sar_special_case_of_polsar}
 
 In this appendix, the following results for SAR intensity $I$ are shown to be special cases of the results given in this paper for the determinant of the POLSAR covariance matrix $det|C_v|$.
-Specifically, the following results extend from the authors previous work on single-look SAR \cite{Le_2013_TGRS_SAR_MSE}, i.e. $d=L=1$, which is considerd a special case. We can state the following:
+Specifically, the following results extend from the authors previous work on single-look SAR \cite{Le_2010_ACRS}, i.e. $d=L=1$, which is considerd a special case. We can state the following:
 \begin{eqnarray}
   I &\sim& \bar{I} \cdot pdf \left[ e^{-R} \right] \\
   \log_2{I} &\sim& \log_2{\bar{I}} + pdf \left[ 2^{D-2^D} \right] \\
@@ -1277,9 +1326,9 @@ Mathematically this means setting the dimensional number in POLSAR to  $d=1$
   and collapsing the POLSAR covariance matrix into the variance measure in SAR, which also equals the SAR intensity i.e. $|C_v|=I,|\Sigma_v|=\bar{I}$.
 
 The output of the first phase, in the general case, is applicable to multi-look SAR data, where $d=1$ but $L>1$.
-The second phase simplifies the multi-look results into single-look results, which will match those presented in our previous work \cite{Le_2013_TGRS_SAR_MSE}.
+The second phase simplifies the multi-look results into single-look results, which will match those presented in our previous work \cite{Le_2010_ACRS}.
 Mathematically, it means setting $L=1$ in the multi-look result
-  and converting from the natural logarithmic domain used in this paper to the base-2 logarithm used in \cite{Le_2013_TGRS_SAR_MSE} (base-2 was chosen in the previous paper to simplify the computation).
+  and converting from the natural logarithmic domain used in this paper to the base-2 logarithm used in \cite{Le_2010_ACRS} (base-2 was chosen in the previous paper to simplify the computation).
 
 \subsection{Original Domain: SAR Intensity and its ratio}
 
@@ -1311,7 +1360,7 @@ Now setting $L=1$, these results become:
     I &\sim& pdf \left[ \frac{ e^{x/\bar{I}}}{ \bar{I}} \right] \\
     \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ e^{-x} \right] 
 \end{eqnarray}
-which is the same as stated in \cite{Le_2013_TGRS_SAR_MSE}, demonstrating that the previous work is a special case of the more generic POLSAR forms.
+which is the same as stated in \cite{Le_2010_ACRS}, demonstrating that the previous work is a special case of the more generic POLSAR forms.
 
 \subsection{Log-transformed domain: SAR log-intensity and the log-distance}
 
@@ -1434,7 +1483,7 @@ Thus we have
 \begin{equation}
   \mathbb{D}_2 \sim pdf \left[ e^{-(2^xe^{-\gamma})} (2^xe^{-\gamma}) \ln2 \right]
 \end{equation}
-which is consistent with the results found in our previous work \cite{Le_2013_TGRS_SAR_MSE}.
+which is consistent with the results found in our previous work \cite{Le_2010_ACRS}.
 
 Setting $d=1$ into Eqn. for contrast results in
 \begin{equation}
@@ -1469,7 +1518,7 @@ Converting to base-2 logarithm gives the following:
 %     &\sim& pdf \left[ \ln{2} \frac{e^{t \cdot \ln{2}}}{(1+e^{t \cdot \ln{2}})^{2}}  \right] \\
      &\sim& pdf \left[ \ln{2} \frac{2^t}{(1+2^t)^{2}}  \right] 
 \end{eqnarray*}
-which is also consistent to the results shown in our previous work \cite{Le_2013_TGRS_SAR_MSE}.
+which is also consistent to the results shown in our previous work \cite{Le_2010_ACRS}.
 
 % references section
 \bibliographystyle{IEEEtran}
