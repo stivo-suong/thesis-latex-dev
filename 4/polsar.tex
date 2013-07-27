@@ -714,178 +714,178 @@ Using the  effective number-of-looks value, the reconstructed model exhibits a b
 \label{fig:handling_airsar_oversampling_practice_full_pol}
 \end{figure}
 
-\section{Discussion}
-
-Let us consider the different theoretical properties of the proposed models.
-First, the use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the POLSAR covariance matrices.
-In fact, the log-determinant can also be computed as the sum of log-eigenvalues.
-Specifically $\ln{|M|} = \sum \ln{\lambda_M}$ where $\lambda_M$ denotes all the eigenvalues of M.
-Thus similar to other eigenvalue based approaches (e.g. entropy/anisotropy, ...),
-  the models presented here are invariant to polarization basis transformations.
-
-Second, the models are developed for the POLSAR covariance matrix.
-However, since the POLSAR coherency matrix is related to the covariance matrix via a unitary transformation which preserves the determinant,
-  the model should also be applicable to the coherency matrix.
-
-It should be noted that the models are far from complete.
-% It reduces the multi-dimensional POLSAR data to a scalar value.
-%While this is probably desirable for a wide range of application,
-%  such a reduction is unlikely to be lossless.
-While it is desirable to reduce the multi-dimensonal POLSAR data to a scalar value for many applications,
-  such a reduction is unlikely to be lossless.  
-Thus %to better understand POLSAR data
-the use of this technique could be complemented with some high-dimensional POLSAR target-decomposition techniques, such as the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar.
-
-Nevertheless the proposed models are promising.
-Even though initially developed for partial and monostatic POLSAR data,
-  this was shown to be applicable to traditional SAR data as well.
-Since the model assumptions are quite minimal, they may potentially be applicable to bi-static and interferometric data, although that would require further study.
-
-%If move to chapter 4, can add these paragraphs
-%The thesis also derives the homoskedastic models for both SAR and POLSAR heteroskedastic data.
-%Within this consistent variance models, several consistent sense of subtractive distance is proposed.
-%These can be thought of as the linear and subtractive versions of the commonly used ratio discrimination measure in the original multiplicative SAR model.
+%\section{Discussion}
 %
-%Theses additive and homoskedastic models should be beneficial to all the steps of the computational and statistical estimation framework in particular as well as to many existing digital technologies and algorithms in general.
-%This thesis also includes several published studies which illustrate several of such benefits.
-%These include the use of the consistent variance to break the vicious circle of speckle filtering, as well as the use of MSE in evaluating (POL)SAR Statistical estimators within the additive and homoskedastic model.
+%Let us consider the different theoretical properties of the proposed models.
+%First, the use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the POLSAR covariance matrices.
+%In fact, the log-determinant can also be computed as the sum of log-eigenvalues.
+%Specifically $\ln{|M|} = \sum \ln{\lambda_M}$ where $\lambda_M$ denotes all the eigenvalues of M.
+%Thus similar to other eigenvalue based approaches (e.g. entropy/anisotropy, ...),
+%  the models presented here are invariant to polarization basis transformations.
 %
-
- \subsection{Beneficial}
-
-%How to exploit the advantages of these new results? What
-%                are their benefit? And
-%                to whom? OK, assuming your solution is novel and it can
-%                hold water, is it useful? How is it better than the
-%                state-of-the-art? And to whom does this matter? Why
-%                should they use your solutions instead of other?
-The over-arching strategic benefit is to enable the application of existing and established techniques from one matured field into another less-than-developed new field.
-An example is between the fields of SAR and POLSAR, where obviously SAR data processing has been studied in much further detail than the more newly derived field of POLSAR data processing.
-%As is shown, the one-dimensional SAR neatly falls into the limit special case of the multi-dimensional POLSAR.
-By putting both SAR and POLSAR into one consistent theory, this thesis opens up the opportunities to apply many of the existing SAR processing technique to POLSAR.
-Another example is between the fields of computer science and SAR-based remote sensing.
-Evidently while the number of different digital image processing, computational intelligence or signal processing techniques for digital input data is many times higher than the number of available techniques applicable to (POL)SAR data.
-And the proposed homoskedastic models, together with the consistent measures of distance,  %a solution for the second problem
-could potentially allow this currently small portion to grow larger.
-%a plethoria number of digital image processing algorithms as well as artificial intelligence and machine learning techniques to be applicable for both SAR and POLSAR data.
-
-%Speaking from the author's experience since he first being introduced to this field, the solution for these problem should be important for the next generation of new-comers to the field of (POL)SAR.
-%This should also be interesting for experienced experts in the field %as it will increase our capabilities in understanding and processing of (POL)SAR data.
-The proposed homoskedastic statistical estimation framework provides a firm foundation
-to overcome the various negative impacts of heteroskedasticity on statistical estimations.
-This
-                is demonstrated in both stages of developing new
-                statistical estimators (e.g. speckle filters) as well as evaluating their estimating performance.
-Specifically
-                in the context of SAR speckle filters: consistent
-                variance and homoskedasticity is shown to help in
-                breaking the vicious circle of speckle filtering.
-
-At
-                the same time, a consistently meaningful sense of
-                distance leads to our proposal of using the familiar
-                MSE in the homoskedastic domain to evaluate SAR speckle
-                filters.
-Intuitively,
-                this comes about as the speckle suppression power of
-                speckle filters can be evaluated via variance estimation
-                practice, while the radiometric preservation can be
-                evaluated via the normal bias evaluation.
-Combined,
-                while there are many different evaluation criteria in
-                the heteroskedastic SAR speckle filter evaluation
-                framework, the MSE is proposed as the single unified
-                evaluation criteria for SAR speckle filters.
-%***IVM: not sure about the above paragraph... can you check it? Why the 'combined'?
-In
-                short, it is shown that in the homoskedastic domain, not
-                only it is possible to find the equivalent of existing
-                methods overcoming heteroskedastic drawbacks in the
-                original domain, it is also possible to suggest further
-                improvements based on existing techniques.
-
-The
-                proposed models for POLSAR also bring forward 
-                important benefits.
-Since
-                the models, especially those for discrimination
-                measures, can be considered as the multidimensional
-                extension of the models for SAR, it makes many existing
-                SAR processing techniques extensible towards POLSAR
-                data.
-The POLSAR determinant ratio, for example, can be considered as
-                the extension of the ubiquitous SAR intensity ratio.
-This
-                thesis also illustrates how the MSE evaluation
-                criteria can also be extended from SAR to POLSAR.
-
-From another angle, the theoretical models for POLSAR also offer several benefits.
-The theoretical models may also provide an alternative derivation for the widely used likelihood test statistics in POLSAR.
-In view of the models given in Eqns \ref{eqn:determinant_distribution} \& \ref{eqn:log_determinant_distribution},
-  the likelihood test statistics exposed in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:Complex Wishart Distribution Likelihood Test Statistics} \& \ref{eqn:Complex Wishart Distribution Likelihood Test Statistics (Log Domain)}
-can be simulated as:
-\begin{align*}
-  \ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
-  Q &\sim e^k \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}   
-\end{align*}
-where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
-As a by-product of this exact derivation, the paper also proposed several simpler discrimination measures for the common case of $L_x=L_y$.%***IVM: Hai, by "paper" in this sentence, are you referring to the Conradsen 2003 TGRS paper?
-
-Similar to the way that other measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
-new detection, classification, clustering or speckle filtering algorithms can be derived using the models proposed.
-
-%While some of these obstacles have been overcome by various experienced researcher in the field proposing different genuine approaches, 
-%  the additive and homoskedastic transformation approach proposed in this thesis suggests that these problems also have equivalent handling techniques which usually are more familiar.
-%Furthermore competitive and even sometimes better proposal are made making use of this familiarity.
-%For example, not only it is shown that both radiometric preservation and speckle suppression evaluation of SAR speckle filters can be carried out equivalently well under both domain, 
-%  MSE is in the additive and homoskedastic domain is shown capable of combining the two evaluations, which so far have not been figured out in the original heteroskedastic domain.
-%Elsewhere, the application of wavelet in this same transformed domain has resulted in a new class of speckle filters which performs respectably in comparison to other well established filters.
-%The familiarity of this transformed domain should also be very helpful for the new comers of the field, who is much more likely to find comfort ability in this derived domain in comparison to the original multiplicative and heteroskedastic domain. 
-
-\subsection{Limitations}
-
-%What are their limitations? What problems this appears
-%                to solve, but actually is not?
-
-The
-                proposed scalar models for POLSAR also have limitations.
-They
-                involve a dimensional reduction operation, which is
-                probably not lossless.
-Thus
-                while the determinant of the POLSAR covariance matrix could be described as
-                ``highly representative'', it is definitely not
-                \textit{fully representative} of the data.
-Intuitively,
-                this is similar to the use of magnitude as being
-                representative of a complex number, which also is not
-                fully representative of the two-dimensional number.
-But it is important to emphasize that,
-                just like the magnitude is invariant to the rotation of
-                the reference frame, the POLSAR determinant is also
-                invariant to polarization basis transformation.
-
-While
-                the proposed homoskedastic measures of distance have
-                their own benefits, their biggest challenge probably
-                lies in changing the hard learned lessons that
-                previous generation of researchers have experienced tackling
-                the multiplicative and heteroskedastic SAR data.
-At
-                the same time, while the logarithmic transformation has
-                the advantages of converting the multiplicative and
-                heteroskedastic model into an additive and homoskedastic
-                data, such transformation does not arrive conveniently
-                to the common additive white noise model.
-In fact, figures presented in the previous chapters show that 
-	they are not even centred around the origin. 
-This may explain why averaging filters in the log-transformed domain (e.g. \cite{Arsenault_JOptSocAm_1976}) do not 
-	work very well in practice, as the operation is biased and statistically inconsistent.
-To counter this, the use of maximum likelihood estimation, instead of simple averaging, 
-	is suggested \cite{Le_2011_ACRS}.
-While averaging is also the MLE operator in SAR's original domain,
-                the MLE operation in the log-transformed domain is admittedly more complex in comparison.
-
+%Second, the models are developed for the POLSAR covariance matrix.
+%However, since the POLSAR coherency matrix is related to the covariance matrix via a unitary transformation which preserves the determinant,
+%  the model should also be applicable to the coherency matrix.
+%
+%It should be noted that the models are far from complete.
+%% It reduces the multi-dimensional POLSAR data to a scalar value.
+%%While this is probably desirable for a wide range of application,
+%%  such a reduction is unlikely to be lossless.
+%While it is desirable to reduce the multi-dimensonal POLSAR data to a scalar value for many applications,
+%  such a reduction is unlikely to be lossless.  
+%Thus %to better understand POLSAR data
+%the use of this technique could be complemented with some high-dimensional POLSAR target-decomposition techniques, such as the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar.
+%
+%Nevertheless the proposed models are promising.
+%Even though initially developed for partial and monostatic POLSAR data,
+%  this was shown to be applicable to traditional SAR data as well.
+%Since the model assumptions are quite minimal, they may potentially be applicable to bi-static and interferometric data, although that would require further study.
+%
+%%If move to chapter 4, can add these paragraphs
+%%The thesis also derives the homoskedastic models for both SAR and POLSAR heteroskedastic data.
+%%Within this consistent variance models, several consistent sense of subtractive distance is proposed.
+%%These can be thought of as the linear and subtractive versions of the commonly used ratio discrimination measure in the original multiplicative SAR model.
+%%
+%%Theses additive and homoskedastic models should be beneficial to all the steps of the computational and statistical estimation framework in particular as well as to many existing digital technologies and algorithms in general.
+%%This thesis also includes several published studies which illustrate several of such benefits.
+%%These include the use of the consistent variance to break the vicious circle of speckle filtering, as well as the use of MSE in evaluating (POL)SAR Statistical estimators within the additive and homoskedastic model.
+%%
+%
+% \subsection{Beneficial}
+%
+%%How to exploit the advantages of these new results? What
+%%                are their benefit? And
+%%                to whom? OK, assuming your solution is novel and it can
+%%                hold water, is it useful? How is it better than the
+%%                state-of-the-art? And to whom does this matter? Why
+%%                should they use your solutions instead of other?
+%The over-arching strategic benefit is to enable the application of existing and established techniques from one matured field into another less-than-developed new field.
+%An example is between the fields of SAR and POLSAR, where obviously SAR data processing has been studied in much further detail than the more newly derived field of POLSAR data processing.
+%%As is shown, the one-dimensional SAR neatly falls into the limit special case of the multi-dimensional POLSAR.
+%By putting both SAR and POLSAR into one consistent theory, this thesis opens up the opportunities to apply many of the existing SAR processing technique to POLSAR.
+%Another example is between the fields of computer science and SAR-based remote sensing.
+%Evidently while the number of different digital image processing, computational intelligence or signal processing techniques for digital input data is many times higher than the number of available techniques applicable to (POL)SAR data.
+%And the proposed homoskedastic models, together with the consistent measures of distance,  %a solution for the second problem
+%could potentially allow this currently small portion to grow larger.
+%%a plethoria number of digital image processing algorithms as well as artificial intelligence and machine learning techniques to be applicable for both SAR and POLSAR data.
+%
+%%Speaking from the author's experience since he first being introduced to this field, the solution for these problem should be important for the next generation of new-comers to the field of (POL)SAR.
+%%This should also be interesting for experienced experts in the field %as it will increase our capabilities in understanding and processing of (POL)SAR data.
+%The proposed homoskedastic statistical estimation framework provides a firm foundation
+%to overcome the various negative impacts of heteroskedasticity on statistical estimations.
+%This
+%                is demonstrated in both stages of developing new
+%                statistical estimators (e.g. speckle filters) as well as evaluating their estimating performance.
+%Specifically
+%                in the context of SAR speckle filters: consistent
+%                variance and homoskedasticity is shown to help in
+%                breaking the vicious circle of speckle filtering.
+%
+%At
+%                the same time, a consistently meaningful sense of
+%                distance leads to our proposal of using the familiar
+%                MSE in the homoskedastic domain to evaluate SAR speckle
+%                filters.
+%Intuitively,
+%                this comes about as the speckle suppression power of
+%                speckle filters can be evaluated via variance estimation
+%                practice, while the radiometric preservation can be
+%                evaluated via the normal bias evaluation.
+%Combined,
+%                while there are many different evaluation criteria in
+%                the heteroskedastic SAR speckle filter evaluation
+%                framework, the MSE is proposed as the single unified
+%                evaluation criteria for SAR speckle filters.
+%%***IVM: not sure about the above paragraph... can you check it? Why the 'combined'?
+%In
+%                short, it is shown that in the homoskedastic domain, not
+%                only it is possible to find the equivalent of existing
+%                methods overcoming heteroskedastic drawbacks in the
+%                original domain, it is also possible to suggest further
+%                improvements based on existing techniques.
+%
+%The
+%                proposed models for POLSAR also bring forward 
+%                important benefits.
+%Since
+%                the models, especially those for discrimination
+%                measures, can be considered as the multidimensional
+%                extension of the models for SAR, it makes many existing
+%                SAR processing techniques extensible towards POLSAR
+%                data.
+%The POLSAR determinant ratio, for example, can be considered as
+%                the extension of the ubiquitous SAR intensity ratio.
+%This
+%                thesis also illustrates how the MSE evaluation
+%                criteria can also be extended from SAR to POLSAR.
+%
+%From another angle, the theoretical models for POLSAR also offer several benefits.
+%The theoretical models may also provide an alternative derivation for the widely used likelihood test statistics in POLSAR.
+%In view of the models given in Eqns \ref{eqn:determinant_distribution} \& \ref{eqn:log_determinant_distribution},
+%  the likelihood test statistics exposed in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:Complex Wishart Distribution Likelihood Test Statistics} \& \ref{eqn:Complex Wishart Distribution Likelihood Test Statistics (Log Domain)}
+%can be simulated as:
+%\begin{align*}
+%  \ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
+%  Q &\sim e^k \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}   
+%\end{align*}
+%where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
+%As a by-product of this exact derivation, the paper also proposed several simpler discrimination measures for the common case of $L_x=L_y$.%***IVM: Hai, by "paper" in this sentence, are you referring to the Conradsen 2003 TGRS paper?
+%
+%Similar to the way that other measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
+%new detection, classification, clustering or speckle filtering algorithms can be derived using the models proposed.
+%
+%%While some of these obstacles have been overcome by various experienced researcher in the field proposing different genuine approaches, 
+%%  the additive and homoskedastic transformation approach proposed in this thesis suggests that these problems also have equivalent handling techniques which usually are more familiar.
+%%Furthermore competitive and even sometimes better proposal are made making use of this familiarity.
+%%For example, not only it is shown that both radiometric preservation and speckle suppression evaluation of SAR speckle filters can be carried out equivalently well under both domain, 
+%%  MSE is in the additive and homoskedastic domain is shown capable of combining the two evaluations, which so far have not been figured out in the original heteroskedastic domain.
+%%Elsewhere, the application of wavelet in this same transformed domain has resulted in a new class of speckle filters which performs respectably in comparison to other well established filters.
+%%The familiarity of this transformed domain should also be very helpful for the new comers of the field, who is much more likely to find comfort ability in this derived domain in comparison to the original multiplicative and heteroskedastic domain. 
+%
+%\subsection{Limitations}
+%
+%%What are their limitations? What problems this appears
+%%                to solve, but actually is not?
+%
+%The
+%                proposed scalar models for POLSAR also have limitations.
+%They
+%                involve a dimensional reduction operation, which is
+%                probably not lossless.
+%Thus
+%                while the determinant of the POLSAR covariance matrix could be described as
+%                ``highly representative'', it is definitely not
+%                \textit{fully representative} of the data.
+%Intuitively,
+%                this is similar to the use of magnitude as being
+%                representative of a complex number, which also is not
+%                fully representative of the two-dimensional number.
+%But it is important to emphasize that,
+%                just like the magnitude is invariant to the rotation of
+%                the reference frame, the POLSAR determinant is also
+%                invariant to polarization basis transformation.
+%
+%While
+%                the proposed homoskedastic measures of distance have
+%                their own benefits, their biggest challenge probably
+%                lies in changing the hard learned lessons that
+%                previous generation of researchers have experienced tackling
+%                the multiplicative and heteroskedastic SAR data.
+%At
+%                the same time, while the logarithmic transformation has
+%                the advantages of converting the multiplicative and
+%                heteroskedastic model into an additive and homoskedastic
+%                data, such transformation does not arrive conveniently
+%                to the common additive white noise model.
+%In fact, figures presented in the previous chapters show that 
+%	they are not even centred around the origin. 
+%This may explain why averaging filters in the log-transformed domain (e.g. \cite{Arsenault_JOptSocAm_1976}) do not 
+%	work very well in practice, as the operation is biased and statistically inconsistent.
+%To counter this, the use of maximum likelihood estimation, instead of simple averaging, 
+%	is suggested \cite{Le_2011_ACRS}.
+%While averaging is also the MLE operator in SAR's original domain,
+%                the MLE operation in the log-transformed domain is admittedly more complex in comparison.
+%
 %\section{Simulating All Elements of POLSAR Covariance Matrix}
 %
 %Jong sen lee simulation procedures is applied and verified in 2x2 partial polsar AIRSAR Flevoland image.

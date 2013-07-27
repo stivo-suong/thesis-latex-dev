@@ -3,7 +3,7 @@
 
 In this chapter, some beneficial applications of the proposed models are presented,
   which demonstrate how the models' consistent sense of variance capability can help to break the vicious circle encountered in SAR speckle
-filtering .
+filtering.
 This chapter also shows how the MSE can then be 
 applicable in the additive and homoskedastic domain to evaluate SAR speckle filters, and further extends the concept to also evaluate
  POLSAR speckle filters. 
@@ -14,7 +14,7 @@ applicable in the additive and homoskedastic domain to evaluate SAR speckle filt
 Given an area to be analyzed, 
   the question of whether it is homogeneous or not can be investigated using
 the statistical hypothesis test described in chapter \ref{chap:sar}. 
-If that is found to be the case, clustering algorithm can then be applied to partition the area into smaller regions. 
+If that is found to be the case, a clustering algorithm can then be applied to partition the area into smaller regions. 
 Thus an image can be segmented into homogeneous areas by applying the process repeatedly.
 
 \subsection{Developing k-MLE clustering Algorithm}
@@ -23,9 +23,10 @@ Thus an image can be segmented into homogeneous areas by applying the process re
 
 In a window of analysis, intensity dataset $X^I=\{x^I_1,...,x^I_n\}$ follows the exponential distribution given in Eqn. \ref{eqn:SAR Intensity PDF}. 
 Assuming prior knowledge of it being homogeneous, thus having a single $\sigma$, the objective then is to estimate $\sigma$. 
-This section shows how $\sigma$ can be estimated in log-transformed domain.
+This section shows how $\sigma$ can be estimated in the log-transformed domain.
 
 It has already been proven that the log-transformed dataset $X^l=\log_2 \sigma$ follows a Fisher-Tippet distribution $pdf(x)= \ln 2 \frac{ 2^d }{ e^{2^d} }$, with $d=x-\mu$, and $\mu=2 \log_2 \sigma$. 
+%***IVM: Hai can you clarify the \ln 2 \frac{ 2^d }{ e^{2^d} }, is that a base 2 in there? Maybe some brackets would help....
 Thus the problem of estimating $\sigma$, casting into the log-transformed domain, equals to the problem of estimating $\mu$. 
 The PDF given in Eqn. \ref{eqn:conditional_prob} can then be interpreted as
   the conditional probability of observing a single value of $x^l_i$ when the underlying coefficient equals $\mu$: %is estimated, $\sigma$ can also be estimated $\sigma=2^{ \frac{\mu}{2} }$.
@@ -42,10 +43,10 @@ P(x^l_i | \mu )
 \end{equation}
 
 Since log-transformed variables are biased, an MLE approach is used to estimate $\mu$. 
-The MLE strategy aims to maximize the conditional (likelihood) probability of observing a set of value X found in the area, given the underlying coefficient equals $\mu$: $P(X^l | \mu )$. 
+The MLE strategy aims to maximize the conditional (likelihood) probability of observing a set of values X found in the area, given that the underlying coefficient equals $\mu$: $P(X^l | \mu )$. 
 Assuming the values of $x^l_i$ are independent, the statistical product rule indicates that $P(X^l | \mu )=\displaystyle{\prod^n_{i=1}{P(x^l_i | \mu ) }}$, with  $P(x^l_i | \mu)$ as given in Eqn. \ref{eqn:conditional_prob}.   
 %$P(x^l_i | \mu ) = \ln 2 \frac{ 2^{x^l_i - \mu} }{ e^{2^{ x^l_i -\mu }} }$. 
-Maximize $P(X^e | \mu )$ also maximizes $\ln[P(X^l | \mu )]$, which can be written as:
+Maximizing $P(X^e | \mu )$ also maximizes $\ln[P(X^l | \mu )]$, which can be written as:
 
 \begin{eqnarray*}
 \ln[P(X^l | \mu )] 
@@ -70,12 +71,12 @@ The parameter $\mu$ which maximizes the likelihood is found by setting its deriv
 Thus $\mu$ can be found by:
 \begin{equation}
 2^\mu 
-	= \frac{ \displaystyle{ \sum^n_{i=1}{ 2^{ x^l_i } }} }{n}  
+	= \frac{1}{n} \displaystyle{ \sum^n_{i=1}{ 2^{ x^l_i } }}  %***IVM: I edited this slightly to make it look 'nicer'. The same with the next eqn too...
 \label{eqn:mle_log_transform}
 \caption{eqn:MLE Estimation in the Log-Transformed Domain}  
 \end{equation}
 
-This result in the log-transformed domain is consistent with the analysis result in the original domain where $\sigma^2 = \frac{\sum^n_{i=1}{x^e_i}}{n} $, with $x^e_i = 2^{x^l_i}$
+This result in the log-transformed domain is consistent with the analysis result in the original domain where $\sigma^2 = \frac{1}{n}\sum^n_{i=1}{x^e_i}$, with $x^e_i = 2^{x^l_i}$
 
 \subsubsection{Heterogeneous k-MLE Clustering}
 
@@ -108,7 +109,7 @@ function optimized_clusters = k_mle_clustering(l, c_init)
 end function
 \end{lstlisting}
 
-Due to the special characteristics of the log-transformed domain, 
+Due to the characteristics of the log-transformed domain, 
 an MLE estimator is used in lieu of the standard averaging estimation for cluster centers. 
 Consequently the k-MLE algorithm is presented in Listing \ref{lst:k_mle_algo_cluster_centers}.
 
@@ -128,7 +129,7 @@ function c_new = find_new_centers(l, c)
   end for
 
   for ( j = 1 to size(c) )
-    c_new[j] = maximum_likelyhood_of( l[i] with m[i,j]==1 );
+    c_new[j] = maximum_likelihood_of( l[i] with m[i,j]==1 );
   end for
 
   return c_new;
@@ -139,8 +140,8 @@ Compared with using the standard k-means algorithm, the following differences ar
 %When compared with standard k-means the following differences are evident:
 \begin{enumerate}
   \item In k-means, data points are grouped into clusters with minimum distance. 
-In our specific situation, as the dispersion PDF is non-symmetric around the cluster center, log-transformed data points are assigned to the cluster that gives them highest likelihood probability.
-  \item The calculation of new cluster centers is also different. 
+In our specific situation, as the dispersion PDF is non-symmetric around the cluster centre, log-transformed data points are assigned to the cluster that gives them highest likelihood probability.
+  \item The calculation of new cluster centres is also different. 
 In k-means, new cluster centres are estimated as the average of all membered data points. 
 Here, due to the bias of the PDF, maximum likelihood estimations are preferred.
   \item All the design decisions are made possible by the knowledge of the statistical PDF in the log-transformed domain.
@@ -149,21 +150,21 @@ Here, due to the bias of the PDF, maximum likelihood estimations are preferred.
 \subsubsection{Determining number of clusters}
 
 In the last section the algorithm was designed with the assumption that the number of clusters are known \textit{a priori}. 
-In practice, this is not the case. This section will describe how the issue is to be tackled.
+In practice, this is not the case. This section will describe how the issue can be tackled with real world data.
 
 The basic idea is to start with an assumption that the whole area is homogeneous.
 Then such an assumption is put to test using the hypothesis testing procedure described earlier. 
-If the assumption appears to be violated, the area is broken down by introducing a new cluster center. 
+If the assumption appears to be violated, the area is broken down by introducing a new cluster centre. 
 The clustering algorithm is again performed and the new clusters are again assumed to be homogeneous, and tested. 
 The process iterates until all partitions are confirmed to be homogeneous. 
 The pseudo code for such a procedure is given in Listing \ref{lst:k_mle_algo_partition_number}
 
-\lstset{language=Matlab,caption=Homogenous partitions number growing,label=lst:k_mle_algo_partition_number}
+\lstset{language=Matlab,caption=Homogeneous partitions number growing,label=lst:k_mle_algo_partition_number}
 \definecolor{darkgray}{rgb}{0.95,0.95,0.95}
 \lstset{backgroundcolor=\color{darkgray}}
 \begin{lstlisting}[frame=tb]
 function centers = partition_into_homogenous_groups(l, threshold)
-  c_init = maximum_likelyhood_of(l);
+  c_init = maximum_likelihood_of(l);
   [further_partition_needed, c_new] = 
           check_homogeneity_status(l, c_init, threshold);
 
@@ -212,13 +213,13 @@ In the context of statistical hypothesis testing, there is a difference between 
 However, in the section that follows, the decision rule in use is that if the sample variance is lower than the cut-off value, the null hypothesis is accepted. 
 This section illustrates that for the purpose of speckle-filtering the difference is negligible. 
 
-The principle of speckle filtering is to group pixels into homogeneous areas so that the stochastics noise can be removed.
-Hence the k-MLE clustering algorithm can be used to form the basis of a speckle filtering technique.
-Specifically the clustered areas directly serves as the grouping of pixels into homogeneous areas, and
-the cluster centers serves as the estimated backscattering coefficient for the analysis window.
+The principle of speckle filtering is to group pixels into homogeneous areas so that the stochastic noise can be removed.
+Hence the k-MLE clustering algorithm can be used to form the basis of a speckle filter.
+Specifically, the clustered areas directly serve as the grouping of pixels into homogeneous areas, and
+the cluster centres serve as the estimated backscattering coefficient for the analysis window.
 
-Considering the case where some extreme threshold-values are used as the homogeneous criteria
-If threshold-value is set to a very high value (close to 100\%), then a given partition would almost never be broken down.
+Considering the case where some extreme threshold-values are used as the homogeneous criteria,
+if threshold-value is set to be very high (close to 100\%), then a given partition would almost never be broken down.
 The kMLE speckle filter effect would then equals to a box-car filter. 
 Conversely, if the threshold-value is set to a very low value (close to 0\%), then a given partition would almost always be broken down to a single value.
 The kMLE speckle filtering effect then would be virtually negligible.
@@ -267,8 +268,8 @@ threshold is set at 0\% (i.e. left untouched), 25\%, 80\% and 100\% (i.e. equals
 \end{figure}
 
 One way to improve the speckle filtering  performance is to use a larger window size.
-Fig. \ref{fig:boxcar_5x5} shows the visual quality performance of k-MLE filtering on $5 \times 5$ window.
-As can be seen, the blurring effect in comparison to $3 \times 3$ filters is clearly visible.
+Fig. \ref{fig:boxcar_5x5} shows the visual quality performance of k-MLE filtering on $5\times5$ window.
+As can be seen, the blurring effect in comparison to the $3\times3$ filter is clearly visible.
 To reduce the associated blurring effect, a threshold-value lower than 100\%  would help by providing an adaptive partitioning of the analysis
 window (via the k-MLE clustering algorithm). 
 
@@ -297,11 +298,11 @@ window (via the k-MLE clustering algorithm).
 %\subsubsection{Quantitative Evaluation in Log-Transformed domain}
 
 Another way to improve the raw k-MLE speckle filter is to apply it iteratively.
-As can be seen in Fig. \ref{fig:k_mle_diff_threshold}, a normal 3x3 k-MLE filter would not filter as much noise as a 3x3 boxcar filter. 
-At the same time, a 5x5 boxcar filter while having better speckle suppression power, would lose out by its blurring effects as can be seen in Fig. \ref{fig:boxcar_5x5}. 
+As can be seen in Fig. \ref{fig:k_mle_diff_threshold}, a normal $3\times3$ k-MLE filter would not filter as much noise as a $3\times3$ boxcar filter. 
+At the same time, a $5\times5$ boxcar filter, while having better speckle suppression power, would lose out by its blurring effects as can be seen in Fig. \ref{fig:boxcar_5x5}. 
 To improve k-MLE filtering power while avoiding the blurring effect, the k-MLE speckle filter can be used iteratively. 
-Presented in the figure \ref{fig:k_mle_filtering_power} is the result of a k-MLE filter configured in a 3x3 window with 25\% threshold-value, being applied iteratively for four times. 
-From the plot, the $3 \times 3$ iterative k-MLE filter appears to have similar quantitative performance with the $5 \times 5$ boxcar filter,
+Presented in the figure \ref{fig:k_mle_filtering_power} is the result of a k-MLE filter configured in a $3\times3$ window with 25\% threshold-value, being applied iteratively for four times. 
+From the plot, the $3\times 3$ iterative k-MLE filter appears to have similar quantitative performance with the $5\times5$ boxcar filter,
   while its visual imagery output appears much sharper, qualitatively speaking.
 
 \begin{figure}[h!]
@@ -314,7 +315,7 @@ From the plot, the $3 \times 3$ iterative k-MLE filter appears to have similar q
 		 \label{variance}
 	} 
 	\hfill
-	\subfloat[Homogenous Error in log-domain]{
+	\subfloat[Homogeneous Error in log-domain]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
 		 \epsffile{images/k_mle_filter_homogenous_performance.eps}
@@ -322,7 +323,7 @@ From the plot, the $3 \times 3$ iterative k-MLE filter appears to have similar q
 		 \label{variance}
 	} 
 \end{tabular}
-\caption{Improving Homogenous error with iterative k-MLE filter}
+\caption{Improving Homogeneous error with iterative k-MLE filter}
 \label{fig:k_mle_filtering_power}
 \end{figure}
 
@@ -334,7 +335,7 @@ In this test, the SNR between the target and background clutter is fixed at 9dB.
 Subsequently, the kMLE speckle filter is to be benchmarked against the standard boxcar filters as shown in Fig. \ref{fig:sar_point_target_test_boxcar_k_mle}.
 %Both qualitative and quantitative comparisons is done between boxcar filters and the proposed iterative k-MLE filter.
 Qualitatively speaking, it is clear that the kMLE speckle filter delivers
-a resultant image with both sharper edges than the 5x5 boxcar filter and a stronger visual contrast  than the 3x3 boxcar filter.
+a resultant image with both sharper edges than the $5\times5$ boxcar filter and a stronger visual contrast  than the $3\times3$ boxcar filter.
 %a sharper image than the 5x5 boxcar filter, at the same time its result has better contrast than the 3x3 boxcar filter.
 Quantitatively, the k-MLE also appears to have the best histogram response among the 3 filters compared.
 
@@ -376,7 +377,7 @@ Quantitatively, the k-MLE also appears to have the best histogram response among
 
 The k-MLE filters are also applied on a SLC RadarSat 2 image covering the Muada Merbok area of Malaysia. 
 Figure \ref{fig:k_mle_on_RADARSAT2_data} shows the patches of original and filtered images of both natural and urban landscape.
-It is obvious that the kMLE speckle filter delivers a significantly ``better'' image than the original data.
+It is obvious that the k-MLE speckle filter delivers a significantly ``better'' image than the original data.
 
 \begin{figure}[h!]
 \centering
@@ -414,11 +415,11 @@ It is obvious that the kMLE speckle filter delivers a significantly ``better'' i
 
 \section{SAR Speckle filtering using the consistent measures}
 
-As mentioned earlier, speckle filters removes the stochastic noise by grouping data into homogeneous areas. 
+As mentioned earlier, speckle filters remove the stochastic noise by grouping data into homogeneous areas. 
 In the boxcar filter, the filtering process can be described via Eqn. \ref{eqn:boxcar}, 
 where 
 	$I_i$ is the intensity value of pixel \textit{i} and
-	$n$ is the total number of pixel in the surrounding areas.
+	$n$ is the total number of pixels in the surrounding areas.
 The implicit assumption for this filter is that ALL pixels in the surrounding area belongs to the same homogeneous area with the estimating central point.
 In the k-MLE filter presented in the previous section and in \citep{Le_2010_ACRS}, the surrounding region is partitioned into homogeneous areas and the approximation is based on Eqn. \ref{eqn:kmle},
 where 
@@ -448,11 +449,11 @@ In fact, the classification decisions between homogeneity and heterogeneity are 
 This is evident in the statistical hypothesis testing used to support these decision makings \cite{Le_2010_ACRS}.
 
 %The f-MLE speckle filter presented
-In this section fuzzy logic approach is followed
+In this section, a fuzzy logic approach is followed
   where, instead of fixing on a rigid two-member set of logical values (i.e. true and false),
-  embraces truth values that range from 1 to 0.
-Thus instead of making a YES/NO decision on whether or not a data point is in the same homogeneous region with the estimated central point, a fuzzy probabilistic scale is calculated.
-Then the noise-removal impact of the surrounding data point will be scaled with this probability value.
+the system  embraces truth values that range from 1 to 0.
+Thus instead of making a YES/NO decision on whether or not a data point is in the same homogeneous region as the estimated central point, a fuzzy probabilistic scale is calculated.
+Then the noise-removal impact of the surrounding data points will be scaled with this probability value.
 This fuzzy logic approach give rise to the f-MLE speckle filter presented next,
   and its main benefit is that:  we no longer need to worry about the homogeneous / heterogeneous problem.
 
@@ -470,22 +471,22 @@ where
 %Distance in log-transformed domain is defined as:
 The contrast is then defined as:
 $C= L_I^1 - L_I^2$. 
-Assuming $I^i$ follows a negative exponential distribution \citep{Goodman_JOptSocAm_76}, 
-  then this dis-similarity distance will follow the distribution 
+Assuming that $I^i$ follows a negative exponential distribution \citep{Goodman_JOptSocAm_76}, 
+  then this dissimilarity distance will follow the distribution 
 $pdf(C)= \frac{2^C}{(1+2^C)^2} \ln2$,
   which is consistent.
 This analysis is confirmed by real-life data validations (see \cite{Le_2010_ACRS}) and visually demonstrated in Fig. \ref{fig:consistent_contrast_log_domain}.
 
-\subsubsection{F-MLE Estimation}
+\subsubsection{f-MLE Estimation}
 
-In this fuzzy logic approach, a pixel with intensity value $I_i$ in the surrounding area of the center point $I_0$ has a likelihood of being in the same homogeneous area given as: 
+In this fuzzy logic approach, a pixel with intensity value $I_i$ in the surrounding area of the centre point $I_0$ has a likelihood of being in the same homogeneous area given as: 
 $p_i = pdf(C_i)$, with $C_i=log_2(I_i) - log_2(I_0)$.
-The fMLE approximation is then proposed as written in Eqn. \ref{eqn:fmle_incl}. 
+The f-MLE approximation is then proposed as written in Eqn. \ref{eqn:fmle_incl}. 
 
 %We will see how this works in an homogeneous simulated area.
 %The figures demonstrate speckle being filtering effects.
 In implementing this statistical estimator, there are very noticeable black dots in the filtered output image.
-These dots can be explained as the long-tailed nature of the intensity PDF, 
+These dots can be explained by the long-tailed nature of the intensity PDF, 
   which manifests itself in the significant existence of very small values in the population.
 In this all-inclusive scheme, there is 
 	a single $C_0=0$ (at $I_0$) in the middle of other very large $C_{i, (i > 0)}$, which results in
@@ -530,7 +531,7 @@ And it is apparent that
   \epsffile{images/consistent_contrast_log_domain.made.eps}
 \label{fig:consistent_contrast_log_domain}
   }
-\caption{Consistent Distance Property and the F-MLE Estimations}
+\caption{Consistent Distance Property and the f-MLE Estimations}
 \end{figure}
 
 \begin{figure}[h!]
@@ -549,38 +550,38 @@ And it is apparent that
 		 \epsffile{images/compare_filters_distance_histograms.3.made.eps} 
 \label{fig:compare_filters_distance_histograms:Original}
 	}\\ 
- 	\subfloat[F-MLE (incl) outputs\label{fig:compare_filters_distance_histograms:Filtered:incl}]{
+ 	\subfloat[f-MLE (incl) outputs\label{fig:compare_filters_distance_histograms:Filtered:incl}]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/consistency_preservation.d_incl.made.eps} 
 	} \hfill
-	\subfloat[F-MLE (excl) outputs\label{fig:compare_filters_distance_histograms:Filtered:excl}]{
+	\subfloat[f-MLE (excl) outputs\label{fig:compare_filters_distance_histograms:Filtered:excl}]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/consistency_preservation.d_excl.made.eps} 
 	} 
 \end{tabular}
-\caption{Consistent Distance Property and the F-MLE Estimations}
+\caption{Consistent Distance Property and the f-MLE Estimations}
 \label{fig:Consistent_Distance_Property_and_the_FMLE_Estimations}
 \end{figure}
 
 \subsubsection{Preservation of Log-Distance Histogram Consistency}
 
 Fig. \ref{fig:compare_filters_distance_histograms:Filtered:incl} and \ref{fig:compare_filters_distance_histograms:Filtered:excl} plot the filtering treatment described above when applied on the inputs depicted in Fig. \ref{fig:compare_filters_histograms:Original}.
-They clearly demonstrate that the F-MLE speckle filters preserves the consistent sense of distance.
+They clearly demonstrate that the f-MLE speckle filters preserve the consistent sense of distance.
 This can be explained from the consistent histogram of the input log distance PDF.
 
-Unfortunately, the filtering formula given in Eqn. \ref{eqn:fmle_incl} and Eqn. \ref{eqn:fmle_excl}, especially when applied to large image areas, involves large number of random variables.
+Unfortunately, the filtering formula given in Eqn. \ref{eqn:fmle_incl} and Eqn. \ref{eqn:fmle_excl}, especially when applied to large image areas, involves a large number of random variables.
 %This renders the task of giving analytical PDF for the output log-distance impractical.
 This renders the task of deriving an analytical PDF expression impractical for the  log-distance output. 
 However, large scale computer simulations can be used to provide a usable histogram, from which a PDF can be estimated.
 %from large scale simulations. 
 %Simulating experiments with $10^6$ samples is carried out and the histogram information is saved.
-Specifically, given a distance $d$, its corresponding probability $pdf(d)$ can be simulated by intrapolating from the saved histogram $y\equiv hist(x)$ at the value of $x \equiv d$.
+Specifically, given a distance $d$, its corresponding probability $pdf(d)$ can be simulated by interpolating from the saved histogram $y\equiv hist(x)$ at the value of $x \equiv d$.%***IVM: Hai, you had made up a word "intrapolating". It should be either "extrapolating" or "interpolating"... so I've replaced it with the latter... 
 
-\subsubsection{Recursively Applying The F-MLE Filters}
+\subsubsection{Recursively Applying The f-MLE Filters}
 
-The preservation of consistent distance property is the enabling factor that allows the recursive application of F-MLE filters.
+The preservation of consistent distance property is the enabling factor that allows the recursive application of f-MLE filters.
 Additional execution of the filtering process is be expected to further reduce the random noise power / variance even further.
 %In a sense, this scheme is similar to statistical asymptotic estimations, with the added advantage of spatial preservation.
 
@@ -592,25 +593,25 @@ Fig. \ref{fig:plot_incl_distance_pdf_by_iterations} illustrates the extra speckl
 
 \begin{figure}[H]
 \centering
-	\subfloat[F-MLE (incl): 123]{
+	\subfloat[f-MLE (incl): 123]{
 		 \epsfxsize=3.5cm
 		 \epsfysize=3.5cm
 		 \epsffile{images/incl_distance_pdf_by_iterations.123.made.eps} 
 		 \label{fig:plot_incl_distance_pdf_by_iterations.123}
 	}
-	\subfloat[F-MLE (incl): 456]{
+	\subfloat[f-MLE (incl): 456]{
 		 \epsfxsize=3.5cm
 		 \epsfysize=3.5cm
 		 \epsffile{images/incl_distance_pdf_by_iterations.345.made.eps} 
 		 \label{fig:plot_incl_distance_pdf_by_iterations.345}
 	} 
-	\subfloat[F-MLE (excl): 123]{
+	\subfloat[f-MLE (excl): 123]{
 		 \epsfxsize=3.5cm
 		 \epsfysize=3.5cm
 		 \epsffile{images/excl_distance_pdf_by_iterations.123.made.eps} 
 		 \label{fig:plot_excl_distance_pdf_by_iterations.123}
 	}
-	\subfloat[F-MLE (excl): 456]{          
+	\subfloat[f-MLE (excl): 456]{          
 		 \epsfxsize=3.5cm
 		 \epsfysize=3.5cm
 		 \epsffile{images/excl_distance_pdf_by_iterations.345.made.eps} 
@@ -621,7 +622,7 @@ Fig. \ref{fig:plot_incl_distance_pdf_by_iterations} illustrates the extra speckl
 \end{figure}
 
 
-\subsection{Evaluating the F-MLE SAR speckle filters}
+\subsection{Evaluating the f-MLE SAR speckle filters}
 
 %Estimators are evaluated based on the bias and variance properties of their estimates. 
 %The performance evaluation is usually based qualitatively on some real data and quantitatively through simulated experiments. 
@@ -634,7 +635,7 @@ The other important criteria include radiometric preservation, something obvious
 In practical terms, the most common usage of speckle filtered imagery include target and feature detection and classification.
 In this section, the use of the ROC curve and the area under it as the statistical evidence of separability between target and clutter PDFs is briefly explored.
 
-The performance of the F-MLE filter is evaluated both qualitatively against real
+The performance of the f-MLE filter is evaluated both qualitatively against real
 images and quantitatively via simulated experiments. 
 Let us start with a qualitative visual evaluation of the speckle filter on real-captured images.
 
@@ -663,32 +664,32 @@ Furthermore, they offer roughly the same level of speckle suppression power in c
 		 \epsffile{images/boxcar.natural.3x3.made.eps} 
 		 \label{fig:boxcar.natural}
 	}\\
-	\subfloat[F-MLE incl, iter 1]{
+	\subfloat[f-MLE incl, iter 1]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.natural.incl.iter1.made.eps} 
 		 \label{fig:fmle.natural.incl.iter1}
 	} \hfill
-	\subfloat[F-MLE incl, iter 2]{
+	\subfloat[f-MLE incl, iter 2]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.natural.incl.iter2.made.eps} 
 		 \label{fig:fmle.natural.incl.iter2}
 	} \\
-	\subfloat[F-MLE excl, iter 1]{
+	\subfloat[f-MLE excl, iter 1]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.natural.excl.iter1.made.eps} 
 		 \label{fig:fmle.natural.excl.iter1}
 	} \hfill
-	\subfloat[F-MLE excl, iter 2]{
+	\subfloat[f-MLE excl, iter 2]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.natural.excl.iter2.made.eps} 
 		 \label{fig:fmle.natural.excl.iter2}
 	} 
 	\end{tabular}
-\caption{Qualitative Evaluation of F-MLE filter on Real Life Scene of Natural Surface}
+\caption{Qualitative Evaluation of f-MLE filter on Real Life Scene of Natural Surface}
 \label{fig:fmle.real.images}
 \end{figure}
 
@@ -707,38 +708,38 @@ Furthermore, they offer roughly the same level of speckle suppression power in c
 		 \epsffile{images/boxcar.urban.3x3.made.eps} 
 		 \label{fig:boxcar.urban}
 	} \\
-	\subfloat[F-MLE incl, iter 1]{
+	\subfloat[f-MLE incl, iter 1]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.urban.incl.iter1.made.eps} 
 		 \label{fig:fmle.urban.incl.iter1}
 	} \hfill
-	\subfloat[F-MLE incl, iter 2]{
+	\subfloat[f-MLE incl, iter 2]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.urban.incl.iter2.made.eps} 
 		 \label{fig:fmle.urban.incl.iter2}
 	} \\ 
-	\subfloat[F-MLE excl, iter 1]{
+	\subfloat[f-MLE excl, iter 1]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.urban.excl.iter1.made.eps} 
 		 \label{fig:fmle.urban.excl.iter1}
 	} \hfill
-	\subfloat[F-MLE excl, iter 2]{
+	\subfloat[f-MLE excl, iter 2]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/fmle.urban.excl.iter2.made.eps} 
 		 \label{fig:fmle.urban.excl.iter2}
 	} 
 	\end{tabular}
-\caption{Qualitative Evaluation of F-MLE filter on Real Life Scene of Urban Landscape}
+\caption{Qualitative Evaluation of f-MLE filter on Real Life Scene of Urban Landscape}
 \label{fig:fmle.real.images}
 \end{figure}
 
 \subsubsection{Evaluating Speckle Suppression Effects}
 
-We have found that variance in the log-transformed domain is related to the standard Equivalent Number of Look value.
+We have found that variance in the log-transformed domain is related to the standard Equivalent Number of Looks value.
 Deriving from the results of \cite{Hoekman_1991_TGRS} and \cite{Xie_TGRS_2002_721}, the formula is given as:
 $MSE = \frac{1}{(ENL - 0.5)ln^2(2)}$.
 %An experiment is carried out to 
@@ -784,7 +785,7 @@ This is illustrated with ``tighter'' distance histograms and reducing MSE, as pl
 		 \label{fig:distance_pdf_simulation_iterative.excl.5x5}
 	}
      \end{tabular}
-\caption{Homogeneous Area: MSE criteria and speckle suppression power of F-MLE filters}
+\caption{Homogeneous Area: MSE criteria and speckle suppression power of f-MLE filters}
 \label{fig:Homogeneous_Area}
 \end{figure}
 \afterpage{\clearpage}
@@ -797,9 +798,9 @@ The Receiver Characteristic Curve (ROC) and the area under it (AUC) is typically
 
 It is normally claimed that applying speckle filters increases the performance of subsequent target detection tasks.
 The following experiment illustrates this point.
-In this experiment, we apply a simple 3x3 boxcar filter to two different homogeneous and SLC noise corrupted scenes that are known to be 3dB apart.
+In this experiment, we apply a simple $3\times3$ boxcar filter to two different homogeneous and SLC noise corrupted scenes that are known to be 3dB apart.
 And then the histograms as well as the resulting ROC curve are plotted between the pairs of target and background histogram for both cases of unfiltered and filtered data.
-We noted that the ROC curve for the histograms in original domain matches perfectly with ROC for the histograms in the log-transformed domain (see Fig. \ref{fig:PDF_Discriminality}), as expected from theory.
+We note that the ROC curve for the histograms in original domain matches perfectly with the ROC for the histograms in the log-transformed domain (see Fig. \ref{fig:PDF_Discriminality}), as expected from theory.
 
 %\afterpage{\clearpage}
 
@@ -831,7 +832,7 @@ We noted that the ROC curve for the histograms in original domain matches perfec
 		 \label{fig:log_illustrate_ROC_curve.pdf.m.made.eps}
 	}
    \end{tabular}
-\caption{Histogram Discriminality and the ROC Curve}
+\caption{Histogram discriminality and the ROC Curve}
 \label{fig:PDF_Discriminality}
 \end{figure}
 
@@ -848,7 +849,7 @@ We noted that the ROC curve for the histograms in original domain matches perfec
 
 The most common types of target to be detected in image processing are point targets, line targets, and edge targets.
 The detectability of these targets are measured using the AUC index which is tabulated against the MSE.
-Fig. \ref{fig:Heterogeneous_Patterns} illustrates the evaluation result in benchmarking the performance of F-MLE filters for heterogenous regions.
+Fig. \ref{fig:Heterogeneous_Patterns} illustrates the evaluation result in benchmarking the performance of f-MLE filters for artificially-generated heterogenous test regions.
 Apparently the f-MLE filters have better performance than boxcar filters.
 Also noticeable is the correlation between MSE and the Area Under the ROC curve criteria, 
   which is an interesting phenomena that will be investigated further in the next section.
@@ -935,32 +936,33 @@ Dotted 			& boxcar (5x5) 			& 3.35	& 0.382 \\
 \subsubsection{Summary}
 
 The nature of SAR speckle is stochastic. 
-The speckle filtering problem has been casted into a statistical estimation theory framework. 
-Speckle filtering, by and large, means the removal of stochastic component in SAR images. 
+The speckle filtering problem has been cast into a statistical estimation theory framework. 
+Speckle filtering, by and large, means the removal of stochastic components from SAR images. 
 Log-transformation is shown to provide homoskedasticity in statistical models. 
-Using speckle filtering as an applicative example, these homoskedastic features are shown to be useful. %here to improve speckle-filtering.
+Using speckle filtering as an application example, these homoskedastic features are shown to be useful. %here to improve speckle-filtering.
 
 The log-transformed domain provides a consistent sense of distance. By embracing
 a probabilistic approach, the proposed Fuzzy Maximum Likelihood Estimator makes
-use of this consistency. Experimental results suggest that the estimator’s output also
+use of this consistency. Experimental results suggest that the estimator� output also
 exhibits this consistency property, which allows recursive application of the filter discussed above. 
 
 The speckle filtering technique proposed here has been shown to work for single-look SAR images. 
 Multi-look processed image speckle filtering should be possible to use this technique with some minor adaptations. 
-The fMLE approach is developed from an easy to understand winner-take-all kMLE clustering approach. %to a more fuzzy probabilistic clustering algorithm. 
+The f-MLE approach is developed from an easy to understand winner-take-all k-MLE clustering approach. %to a more fuzzy probabilistic clustering algorithm. 
 With the fuzziness be taken to a new level, fuzzy probabilistic speckle filters which requires no clustering have been specified and designed.
 
-The filter is rigoriously evaluated.
+The filter is rigorously evaluated.
 Over homogeneous regions, the speckle suppression power is
 evaluated by measuring the ubiquitous MSE on simulated and truth-grounded experiments. 
 The results suggest that by applying the estimation recursively, this value can be reduced arbitrarily low, assuming that the number of iterations, and hence the available computational power, is sufficiently large.
+%***IVM: Hai, I don't like this statement "this value can be reduced arbitrarily low". Surely there is a performance floor which is data and technique-dependent, and below which you cannot go?
 For heterogeneous scenes, the robust Area Under the ROC Curve criteria is used as
 statistical evidence for better performance in the subsequent tasks of target detection
 and surface classification. 
-Experiments confirm the power of F-MLE filters in various
+Experiments confirm the power of f-MLE filters in various
 heterogeneously simulated areas. 
 A good correlation between the MSE and the AUC index is also exhibited. 
-The result suggests that lower MSE achievable by F-MLE filters does lead to better performance in the subsequent tasks of target detection and classification.
+The result suggests that lower MSE achievable by f-MLE filters does lead to better performance in the subsequent tasks of target detection and classification.
 
 %The nature of SAR speckle is stochastic. 
 %The speckle filtering problem has been casted into a statistical estimation theory framework. 
@@ -978,12 +980,12 @@ The result suggests that lower MSE achievable by F-MLE filters does lead to bett
 
 The nature of SAR speckle is that
 	it is stochastic even if the underlying radiometry is constant. 
-And when there are spatial radiometric variation, not only its expected value changes, its heteroskedastic variance varies as well.
+And when there is spatial radiometric variation, not only its expected value changes, but its heteroskedastic variance changes as well.
 Nevertheless, statistical models have been developed to derive the underlying back-scattering coefficient ($\sigma$) from measured SAR data. 
 As such, speckle filters are, by and large, estimators that attempt to determine this unknown coefficient from observable SAR data. 
 
 SAR speckle-filtering can be, and has been, positioned within the context of estimation theory \cite{Touzi_2002_TGRS}. 
-The stages in this statistical framework consist of statistical modeling, estimator development and evaluation of the estimators' performance. 
+The stages in this statistical framework consist of statistical modelling, estimator development and evaluation of the estimators' performance. 
 %Estimators are typically evaluated based on the bias and variance properties of their estimates: 
 %	with lower bias and / or lower variance, hence lower MSE indicates better accuracy.
 Estimators are typically evaluated based on the bias and variance properties of their estimates:
@@ -1019,7 +1021,7 @@ Furthermore, it is desirable that the error, i.e. the difference between the fil
 
 In general, the measure of difference for evaluation should be based on the original SAR intensity or amplitude domain. 
 However owing to the additive and homoskedastic effects of the log-transformation,
-  the error measured in log-transformed domain is preferred here.
+  the error measured in the log-transformed domain is preferred here.
 This is because homoskedasticity would allow the use of standard Minimum Squared Error as a performance index.   
 In this section, the use of MSE in the homoskedastic log-transformed domain to evaluate SAR speckle filters is proposed and validated.
 
@@ -1034,6 +1036,7 @@ In this section, the use of MSE in the homoskedastic log-transformed domain to e
 \caption{SAR simulation, processing and filtering schema}
 \label{fig:simul_process_filter_schema}
 \end{figure}
+%***IVM: Can you make the text bigger, or just increase the figure size? A width of about 12cm would probably be OK.
 
 Fig. \ref{fig:simul_process_filter_schema} illustrates the general schema of SAR simulation / processing and 
 SAR speckle filtering process.
@@ -1069,7 +1072,7 @@ The benefit of using log-residual over original-ratio is that the additive and h
 For visual comparison, Fig. \ref{fig:real_image_ratio_vs_residual} depicts the residual image in the log-transformed domain 
 and the ratio images in the original domain, where a simple boxcar filter has been applied to data obtained from a 
 real RADARSAT SAR image.
-``Visible'' structure appears to be more easily discerniable in the log-2 residual random pictures than in 
+``Visible'' structure appears to be more easily discernable in the log-2 residual random pictures than in 
 the ratio images, although this conclusion is of course itself a subjective one.
 
 %Our qualititative conclusion is that
@@ -1148,22 +1151,22 @@ Compared to qualitative visual evaluation which is subjective by nature,
   quantitative measurements are more objective and hence are usually preferred.
 In quantitative evaluation, it is important that the quantitative metric is computable and relevant.
 Different metrics to evaluate speckle filters, which will be investigated in subsequent sections, 
-are given in Eqns. \ref{eqn:eval_metric}, all in log-transformed domain.
+are given in Eqns. \ref{eqn:eval_metric}, all in the log-transformed domain.
 When the ground-truth is available, 
-	either in simulated experiments or over homogeneous area where it can be reasonably estimated, 
+	either in simulated experiments or over homogeneous areas where it can be reasonably estimated, 
 	true MSE is the expected squared error between the estimated and true values.
 
 However, in real captured SAR images where such ground truth is unknown,
   the evaluation can only be carried out through a benchmarked MSE. 
 The idea is that since both the speckled values and the estimated values are available, the residual $MSE_{noise}$ 
-can be computed, which can be thought of as the level of noise being removed by speckle filtering process.
+can be computed, which can be thought of as the level of noise being removed by a speckle filtering process.
 Even as the ground-truth is not known in real SAR images, their speckle level (i.e. ENL) may be known or can be 
 estimated reasonably well.
 Thus the base MSE level, which is also a measure of the speckle noise level, can also be estimated.
 Naturally, while the speckle filter should remove as much noise as possible, 
 	it also should not remove more variations than that caused by the speckle noise.
 %Assumming that the speckle level of the scene is known (e.g. ENL can be reasonably estimated) then the base 
-That is $MSE_{noise}$ should track the base MSE as close as possible,
+That is, $MSE_{noise}$ should track the base MSE as close as possible,
   making the $MSE_{benchmark}$ as close to 0 as possible.
         
 \subsection{Evaluating SAR Speckle Filters Over Homogeneous Areas}
@@ -1171,7 +1174,7 @@ That is $MSE_{noise}$ should track the base MSE as close as possible,
 %\subsubsection{Evaluating Speckle Filters on Homogeneous Areas}
 %\label{sec:eval_homo}
 
-In this section, a methodology to evaluate speckle filters over homogeneous area in the log-transformed domain is 
+In this section, a methodology to evaluate speckle filters over homogeneous areas in the log-transformed domain is 
 illustrated. Under the condition of homogeneity, speckle filters are supposed to estimate with negligible bias.
 Then the filters are traditionally compared by measuring their speckle suppression power using the ENL index.
 Consequently, in the log-transformed domain, the first component of MSE evaluation (i.e. bias evaluation) is 
@@ -1194,7 +1197,7 @@ over homogeneous areas.
 
 Let us consider the multi-look processing effect in the log-transformed domain. 
 %Since multi-look processing is unbiased, we will take the variance of log-transformed multi-look processing output as the MSE performance index. 
-Hoek \cite{Hoekman_1991_TGRS} and Xie \cite{Xie_2002_TGRS} have given the variance for L-look log-transformed random 
+Hoekmen \cite{Hoekman_1991_TGRS} and Xie et. al. \cite{Xie_2002_TGRS} have given the variance for L-look log-transformed random 
 variables as: 
 \begin{equation*}
 var(\hat{X}^L)= \frac{1}{\ln^2(2)} \left( \frac{\pi^2}{6} - \sum^{L-1}_{i=1}{\frac{1}{i^2}} \right).
@@ -1284,17 +1287,18 @@ For example,
 	Solbo \cite{Solbo_2006_TGRS} used standard deviation in the log-transformed domain to measure homogeneity, 
 	while Lopes \cite{Lopes_TGRS_1990} proposed the use of variation co-efficient index $C_v = std(I)/avg(I)$ 
 	to evaluate scene heterogeneity.
+	%****IVM: just check these are single authors, otherwise you need an "et al" or to name them if there are two authors.
 
 \subsubsection{Using MSE criteria to evaluate speckle filters}
 
-Over homogeneous area, the ground-truth is unchanged, i.e. $X^L_i=X^L \forall i$.
+Over an homogeneous area, the ground-truth is unchanged, i.e. $X^L_i=X^L \forall i$.
 Assuming the filters achieve negligible bias, i.e. $E(\hat{X}^L)=X^L$, 
 	then the MSE evaluation is reduced to variance evaluation.
 Since the log-variance is related to the ENL, 
   this evaluation approach is equivalent the established ENL evaluation methodology.
 In fact, a few more observations and analysis can be carried out as follows.
 
-Fig. \ref{fig:log_consistency_model} plots the histograms of homogenous SAR data over different radiometric values.
+Fig. \ref{fig:log_consistency_model} plots the histograms of homogeneous SAR data over different radiometric values.
 Both single-look simulated and multi-look processed/box-car filtered data is displayed.
 Specifically the plots show that the log-transformed domain is consistent,
   i.e. they retains similar shapes regardless of the underlying signal value,
@@ -1410,7 +1414,7 @@ kuan & 3 & 0.2964 (0.0010) & 7.5225 (0.0244) & 25.6112 (0.0226)\\
 frost & 3 & 0.2862 (0.0008) & 7.7714 (0.0202) & 25.6263 (0.0409)\\
 boxcar & 3 & 0.2529 (0.0005) & 8.7296 (0.0178) & 25.6261 (0.0407)
 \end{tabular}
-\caption{ Filters' Performance: Homogeneous Area }
+\caption{Performance of various filters over homogeneous areas}
 \label{tab:homogeneous_performance_filters}
 \end{table}
 
@@ -1737,7 +1741,7 @@ Fig. \ref{fig:real_simulated_images} illustrates some of the images used for our
 		 \epsfysize=6cm
 		 \epsffile{images/simulated_images.hanoi_suburb.gt.jpg.eps} 	
 		 \label{intensity}
-	} %\\
+	} %\\   %****IVM: Hai, I think you need to say where (i.e. which satellite/agency) you got the data from, before you show the picture (or in the same page), I think you show the picture first and then mention where it's from afterwards.
 %	\subfloat[NTU Campus]{
 %		 \epsfxsize=6cm
 %		 \epsfysize=6cm
@@ -1930,7 +1934,7 @@ Fig. \ref{fig:real_image_results} confirms this visually.
 
 Although it is widely known that log transformation transforms multiplicative SAR speckle into additive noise, 
 	one should note that the noise is not Gaussian. In fact, figures presented in the previous sections show that 
-	they are not even centered around the origin. 
+	they are not even centred around the origin. 
 This may explain why averaging filters in the log-transformed domain (e.g. \cite{Arsenault_JOptSocAm_1976}) do not 
 	work very well in practice.
 To counter this, the use of maximum likelihood estimation, instead of simple averaging, 
@@ -1953,13 +1957,13 @@ A case in point is the simple ratio based discriminator in the original SAR doma
 Looking backwards, in designing new speckle filters,
   by ensuring that the filtered output preserves these consistent properties,
 	the newly designed filters would be eligible to be employed as pre-processing step for properly designed classifiers / detector.
-From a higher level perspective, the applicability of Gauss-Markov theorem and consequently a meaningful MSE 
+From a higher level perspective, the applicability of the Gauss-Markov theorem and consequently a meaningful MSE 
   predict fruitful applications for a variety of least-squared-error algorithms in the homoskedastic log-transformed domain.
         
 Of course, there are other speckle filters that do not preserve such consistency 
 	(e.g. the PDE filter \cite{You_TIP_2000}). One could argue that it would not be fair to judge such filters 
 	using the MSE criteria, which tend to favour the ``standard'' filters.
-While we respect any other criteria that have been used, we reiterate the two salient points of our approach. 
+While we respect other criteria that have been used, we reiterate the two salient points of our approach: 
 Firstly, our MSE criteria is closely related to the basic ENL criteria.
 As shown in previous sections, experimental results indicated that
   the ENL measures for such filter (i.e. the PDE filter) differ depending  on the radiometric values. 
@@ -1969,7 +1973,7 @@ Thus it is relevant towards subsequent target detection / classification process
 	believed to be a common subsequent processing step. 
 For these two reasons, the MSE criteria is advocated.
 
-In the experiments above, speckle filters with a $3 \times 3$ sliding window were used 
+In the experiments above, speckle filters with a $3\times3$ sliding window were used 
 	even though we are aware that the normal window size employed is much larger. 
 The reasons for maintaining such a small window is that 
 	smaller-sized filters facilitate the use of smaller patterns without too much concern for crosstalk 
@@ -1978,7 +1982,7 @@ In addition, we focused on the use of MSE in the log-transformed domain for the 
 	and do not wish to advocate any particular ``best'' filter. 
 In other words, we addressed the methodology of evaluating speckle filters, 
 	and did not directly address the design of speckle filters.
-However, interested filter designers are invited to download the open Matlab source code used in this paper 
+However, interested filter designers are invited to download the open Matlab source code used in this chapter 
 to evaluate their own designs
   \footnote{This can be found at \texttt{http://www.lintech.org/Hai/Matlab}}.
 
@@ -1994,7 +1998,7 @@ Its use also provides an absolute ground-truth which can serves as a solid base 
 The main drawback, of course, is that ground truth often does not exist in real-captured SAR images.
 Thus the result extension towards real images is only analogical.
 While the proposed rule is heuristic, 
-	the experimental results presented in this paper are shown to be valid empirically.
+	the experimental results presented in this chapter are shown to be valid empirically.
 
 We distinctively divided evaluation of SAR speckle filters into two distinct scenarios, that of homogeneity and heterogeneity.
 While perfect homogeneous ground truth can be defined, 
@@ -2012,7 +2016,7 @@ As different patterns result in different homogeneity/heterogeneity degrees,
 One extreme example is that of perfect homogeneity, where boxcar filters would exhibit a respectable performance.
 While, at the other end of the spectrum: that of high heterogeneity, it is common knowledge that the boxcar filter 
 	would not perform that well.
-While the ranking of the speckle filters may change, the methodology to compare and choose the ``best’’ speckle filter should work regardless of the choice of patterns.
+While the ranking of the speckle filters may change, the methodology to compare and choose the ``best'' speckle filter should work regardless of the choice of patterns.
 
 The current scheme of finding the most suitable speckle filter requires the application of all filters before 
 a decision is made, which probably demands excessive processing. 
@@ -2033,7 +2037,7 @@ Logarithmic transformation has been shown
 With the Gauss-Markov theorem becoming applicable in this domain, we describe and propose the use of MSE in the 
 log-transformed domain as a unifying criteria to quantitatively measure different requirements for speckle filters.
 
-Our contribution is mainly centered around a few points. 
+Our contribution is mainly centred around a few points. 
 Firstly, a mathematical equation is established to link the ENL index to the variance in the log-transformed domain. 
 We also illustrate the use of log-variance evaluation -
   which is shown to be equivalent to the standard ENL evaluation -
@@ -2042,7 +2046,7 @@ Secondly we show that MSE is inversely correlated to the AUC index for simulated
 The result suggests that the smaller MSE a filter could achieve, the better it would
 be at discriminating between the underlying radiometric features.
 %The result suggests that the smaller MSE a filter could achieve, the easier it would be discriminating the underlying radiometric features.
-Thirdly, the practical contribution is to suggest an heuristic rules using the benchmark MSE to find 
+Thirdly, the practical contribution is to suggest heuristic rules using the benchmark MSE to find 
 the most suitable speckle filter for any given scene. 
 Combined, we propose the use of MSE in log-transformed domain in evaluating the performance of different speckle filters in a variety of evaluation scenarios, and suggest several evaluation methodologies that may be useful in this regard.
 
@@ -2065,7 +2069,7 @@ This section discusses how ENL can be estimated using the log-variance approach 
 %\begin{equation}
 %  var \left[ ln|C_v| \right] = \sum^{d-1}_{i=0} \psi^1(L-i)
 %\end{equation}
-Theoretically speaking, the Eqn. \ref{eqn:var_log_det_is_homoskedastic} can be solved for the unknown L, which would require some iterative, and hence intensive, computation.
+Theoretically speaking, the Eqn. \ref{eqn:var_log_det_is_homoskedastic} can be solved for the unknown $L$, which would require some iterative, and hence intensive, computation.
 Extending the result in the previous sub-section for SAR, simpler estimation can be derived as:
 \begin{equation}
   \label{eqn:Estimate ENL from log-variance of POLSAR homogeneous areas}
@@ -2186,13 +2190,13 @@ This section describes how the performance of POLSAR filters over homogeneous ar
 %The procedure is simple and is described next.
 To evaluate a given POLSAR speckle filter over homogeneous areas,
   the filter is applied over any known homogeneous areas and the sample variance of log-determinant is measured.
-The Equivant Number of Look (ENL) is then estimated
+The Equivalent Number of Looks (ENL) is then estimated
   either by referencing the prepared graphs given by Eqn. \ref{eqn:var_log_det_is_homoskedastic}. %TODO:REF
   or alternatively by setting the measured variance value into $var[\ln{|C_v|}]$ in Eqn. \ref{eqn:Estimate ENL from log-variance of POLSAR homogeneous areas}.
 The estimated ENL and equivalently the measured log-variance is finally used to evaluate the speckle suppression power of the filters.
-It is common consensus that higher the ENL estimated,
-  which also means lower the log-variance measured,
-  leads to better POLSAR speckle filters in terms of suppressing speckle noise.
+It is common consensus that the higher the ENL estimated,
+  implies the lower the log-variance measured,
+  leading to better POLSAR speckle filters in terms of suppressing speckle noise.
   
 %In order for such a procedure to generic enough, however, it is important that the given POLSAR speckle filter to preserve the consistency property.
 %That can be tested by applying the POLSAR filter into different sets of homogeneous area and investigate the plots of the dis-similarity measures presented above.
@@ -2204,17 +2208,17 @@ It is common consensus that higher the ENL estimated,
 
 However, in order for such a procedure to be generic, 
   it is important that the given POLSAR speckle filter preserve the consistency property in the log-transformed domain.
-That can be tested by applying the POLSAR filter into different sets of homogeneous area and investigate the plots of the measures of distance presented above.
+That can be tested by applying the POLSAR filter into different sets of homogeneous areas and investigating the plots of the measures of distance presented above.
 %Fig. \ref{fig:boxcar_3x3_preserves_consistency} presents two example plots to show that:
 An experiment is carried out as follows to show that
-  the 3x3 POLSAR boxcar speckle filter preserves the consistency property.
+  the $3\times3$ POLSAR boxcar speckle filter preserves the consistency property.
 The boxcar filter is applied into 2 sets of part-pol AIRSAR data over Flevoland (HH-HV and VH-VV).
 Log-determinant and the contrast measure is computed for the inputs and outputs filtered POLSAR data,
   and their plots are presented in Fig. \ref{fig:boxcar_3x3_preserves_consistency}.
 %In fact, the test procedure can be applied on any of the models presented above.  
 It is clear that for the log-determinant histograms,
   while the location of the filtered plots differs depending on the underlying signal $\Sigma_v$,
-  the shape of the plots, for both pre-filtered and post-filtered data, is invariant to that underlying signal.
+  the shape of the plots, for both pre-filtered and post-filtered data, is invariant to the underlying signal.
 Contrast, and similarly dispersion, measures of distance have its location independent of $\Sigma_v$.
 Thus, the contrast plots for the filtered output should overlap each other to show consistency.
 Similar procedures can also be applied using any of the models presented above.
@@ -2222,21 +2226,21 @@ Similar procedures can also be applied using any of the models presented above.
 \begin{figure}[h!]
 \centering
 \begin{tabular}{c}
-	\subfloat[Log-determinants histograms of boxcar 3x3 speckle filter]{
+	\subfloat[Log-determinants histograms of boxcar $3\times3$ speckle filter]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/boxcar_3x3_preserves_consistency.log_determinant.eps} 	
 		 \label{log_determinant}
 	} 
 	\hfill	
-	\subfloat[Contrast histograms of boxcar 3x3 speckle filter]{
+	\subfloat[Contrast histograms of boxcar $3\times3$ speckle filter]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/boxcar_3x3_preserves_consistency.contrast.eps} 	
 		 \label{contrast}
 	}   
 \end{tabular}
-\caption{POLSAR 3x3 boxcar filter preserves the consistency property. Consistency means: as long as the area is homogeneous, regardless of the underlying signal $\Sigma_v$ the shapes of the histograms should be the same.}
+\caption{POLSAR $3\times3$ boxcar filter preserves the consistency property. Consistency means: as long as the area is homogeneous, regardless of the underlying signal $\Sigma_v$ the shapes of the histograms should be the same.}
 \label{fig:boxcar_3x3_preserves_consistency}
 \end{figure}
 
@@ -2245,7 +2249,7 @@ Similar procedures can also be applied using any of the models presented above.
 %  not only to make the estimation of ENL become general enough
 %  but also to ensure that any classification / detection algorithm
 %    which is based on the scalar and consistent measures of distance would work on both pre-filtered and post-filtered data.
-The consistency property of POLSAR speckle filter is important
+The consistency property of POLSAR speckle filters is important
   not only to make the estimation of ENL become general enough.
 It is also important in ensuring that any classification / detection algorithm
     which is based on the scalar and consistent measures of distance would work on both pre-filtered and post-filtered data.
@@ -2258,18 +2262,18 @@ In short, the preservation of this consistency is believed to be an important co
   
 \subsection{Evaluating POLSAR Speckle Filters over Heterogeneous Areas}
 
-Over heterogeneous area, the consistent measures of distance may also be an important tools to help evaluating POLSAR speckle filters.
+Over heterogeneous areas, the consistent measures of distance may also be an important tool to help evaluate POLSAR speckle filters.
 For a start, since the model for log-determinant is additive and homoskedastic,
-  log-determinant images is naturally more suitable for gray-level digital images.
+  log-determinant images is naturally more suitable for grey-level digital images.
 In particular for evaluation of statistical estimators,
   the estimators' error / residual plays an important role.
 Specifically, it is both important and convenient to investigate the estimator's error and/or residual image(s).  
 
-Ideally speaking, under the context of additive model,
+Ideally speaking, under the context of an additive model,
   the perfect estimators' residual should only consists of random noise.
-And Gauss-Markov theorem, which works under the assumption of homoskedasticity, states that the optimal estimator should have minimal Mean Squared Error.
-When the underlying signal is not known apriori,
-  the second best gauge is possibly having the MSE of residual being equals or being as close as possible to the MSE of the inherent noise.
+The Gauss-Markov theorem, which works under the assumption of homoskedasticity, states that the optimal estimator should have minimal Mean Squared Error.
+When the underlying signal is not known \textit{a priori},
+  the second best gauge is possibly having the MSE of the residual being equal or being as close as possible to the MSE of the inherent noise.
   
 %Our previous work TODO:CITE explored the hypothesis context of SAR data.
 %Here an experiment is carried out to illustrate the use of the consistent and homoskedastic measures of distance in evaluating the performance of boxcar 3x3 and boxcar 5x5 POLSAR filter on the AIRSAR Flevoland partial POLSAR data (HH-HV).
@@ -2286,8 +2290,8 @@ When the underlying signal is not known apriori,
 %%  \end{equation}
 %by setting $d=2,L=4$ into Eqn. (TODO:REF) making the expected MSE being $mse(\mathbb{L})=1.0132$.
 
-To illustrate the above analysis, an experiment is carried out to evaluate the performance of boxcar 3x3 and boxcar 5x5 POLSAR filter on the AIRSAR Flevoland partial polarimetric data (HH-HV).
-A square 700x700 portion of the AIRSAR dataset is extracted,
+To illustrate the above analysis, an experiment is carried out to evaluate the performance of boxcar $3\times3$ and boxcar $5\times5$ POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
+A square $700\times700$ portion of the AIRSAR dataset is extracted,
   and the two POLSAR speckle filters are applied on to the patch.
 Then the log-determinant images of the filtered outputs are presented in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
 At the same time the residual is computed for both filters and the images are also displayed in the same figure.
@@ -2299,49 +2303,49 @@ by setting $d=2,L=4$ into Eqn. \ref{eqn:polsar_dispersion_mse} making the expect
 \begin{figure}[h!]
 \centering
 \begin{tabular}{c}
-	\subfloat[Log-determinant Image of boxcar 3x3 speckle filter]{
+	\subfloat[Log-determinant Image of boxcar $3\times3$ speckle filter]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
 		 \label{multi_look_dispersion}
 	} 
 	\hfill	
-	\subfloat[Log-determinant Image of boxcar 5x5 speckle filter]{
+	\subfloat[Log-determinant Image of boxcar $5\times5$ speckle filter]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
 		 \label{multi_look_contrast}
 	} \\
-	\subfloat[Image of Log-determinant Residual for 3x3 filter (MSE=1.5594)]{
+	\subfloat[Image of Log-determinant Residual for $3\times3$ filter (MSE=1.5594)]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/visual_eval_part_pol_boxcar_3.residual.eps} 	
 		 \label{multi_look_dispersion}
 	} 
 	\hfill	
-	\subfloat[Image of Log-determinant Residual for 5x5 filter (MSE=2.1420)]{
+	\subfloat[Image of Log-determinant Residual for $5\times5$ filter (MSE=2.1420)]{
 		 \epsfxsize=6cm
 		 \epsfysize=6cm
 		 \epsffile{images/visual_eval_part_pol_boxcar_5.residual.eps} 	
 		 \label{multi_look_contrast}
 	} 
 \end{tabular}
-\caption{Visually Evaluating POLSAR Boxcar 3x3 vs. 5x5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. }
+\caption{Visually Evaluating POLSAR Boxcar $3\times3$ vs. $5\times5$ Speckle Filters on AIRSA Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. }
 \label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
 \end{figure}
 %Note if the picture does not look convincing enough
 %another option here is to show 7x7 filter with more pronouced blurring MSE=2.5
 
-In visual and qualitative evaluation, Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only the log-determinant image can offer nice visualization of the scene, 
+In visual and qualitative evaluation, Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only can the log-determinant image offer a nice visualization of the scene, but
   the residual images also help in visualizing the distortion impact of the filter. % can also be made visible by the residual image.
-Specifically, while it is quite hard to observe the worsening blurring-effects of the 5x5 boxcar speckle filter as compared to the 3x3 filter
+Specifically, while it is quite hard to observe the worsening blurring-effects of the $5\times5$ boxcar speckle filter as compared to the $3\times3$ filter
 in the additive log-determinant image of the filtered output, 
   such a conclusion can be made relatively easier by visually investigating the residual image.
 
 And when quantified evaluation is carried out
   where the residual MSE is compared with the expected level of noise to be removed,
-  the excessive blurring effects of the 5x5 filter become crystal clear.
-In fact, even the 3x3 boxcar filter itself might be also a bit blurry,  as suggested by its relatively high residual values.
+  the excessive blurring effects of the $5\times5$ filter become crystal clear.
+In fact, even the $3\times3$ boxcar filter itself might be also a bit blurry,  as suggested by its relatively high residual values.
 %A conclusion which is hard to make
 
 In summary, while it may be hard to make such a conclusion just by looking at the filtered imagery,
