@@ -259,16 +259,16 @@
     \thispagestyle{empty}
 %  \null\vfill
   \begin{center}
-    { \Huge {\bfseries {\@title}} \par}
-{\large \vspace*{25mm} {{\@crest} \par} \vspace*{25mm}}
+    {{\@crest} \par}
+{\large \vspace*{25mm} { \Huge {\bfseries {\@title}} \par} \vspace*{25mm}}
     {{\Large \@author} \par}
 %	\vspace*{1ex}
 %	{{\@cityofbirth} \par}    
 {\large 
 	\vspace*{1ex}
     {{\@collegeordept} \par}
-	\vspace*{1ex}
-    {{\@university} \par}
+%	\vspace*{1ex}
+%    {{\@university} \par}
 	\vspace*{25mm}
     {{\submittedtext} \par}
 	\vspace*{1ex}

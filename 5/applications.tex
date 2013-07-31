@@ -5,7 +5,7 @@ In this chapter, some beneficial applications of the proposed models are present
   which demonstrate how the models' consistent sense of variance capability can help to break the vicious circle encountered in SAR speckle
 filtering.
 This chapter also shows how the MSE can then be 
-applicable in the additive and homoskedastic domain to evaluate SAR speckle filters, and further extends the concept to also evaluate
+applied in the additive and homoskedastic domain to evaluate SAR speckle filters, and further extends the concept to also evaluate
  POLSAR speckle filters. 
 
 \section{Clustering SAR images using the consistent measures}
@@ -159,6 +159,7 @@ The clustering algorithm is again performed and the new clusters are again assum
 The process iterates until all partitions are confirmed to be homogeneous. 
 The pseudo code for such a procedure is given in Listing \ref{lst:k_mle_algo_partition_number}
 
+{\small
 \lstset{language=Matlab,caption=Homogeneous partitions number growing,label=lst:k_mle_algo_partition_number}
 \definecolor{darkgray}{rgb}{0.95,0.95,0.95}
 \lstset{backgroundcolor=\color{darkgray}}
@@ -206,6 +207,7 @@ end function
 %\section{Experiment Results and Discussions}%describe analysis and compare
 \subsection{Evaluating the k-MLE algorithm}
 \label{sec:k_mle_result}
+}%
 
 \subsubsection{Using the k-MLE clustering algorithm for speckle filtering}
 
@@ -224,7 +226,7 @@ The kMLE speckle filter effect would then equals to a box-car filter.
 Conversely, if the threshold-value is set to a very low value (close to 0\%), then a given partition would almost always be broken down to a single value.
 The kMLE speckle filtering effect then would be virtually negligible.
 
-Figure \ref{fig:k_mle_diff_threshold} shows various degrees of speckle filtering controllable by using different threshold-values.
+Fig. \ref{fig:k_mle_diff_threshold} shows various degrees of speckle filtering controllable by using different threshold-values.
 Using the same moving window size of $3\times3$, the effect of filtering is clearly proportional to the threshold values employed.
 This can be observed from Figs. \ref{fig:k_mle_threshold_original} to \ref{fig:boxcar_filter}
 where the  visual quality  reflects the effects of the kMLE speckle filter when its  
@@ -301,7 +303,7 @@ Another way to improve the raw k-MLE speckle filter is to apply it iteratively.
 As can be seen in Fig. \ref{fig:k_mle_diff_threshold}, a normal $3\times3$ k-MLE filter would not filter as much noise as a $3\times3$ boxcar filter. 
 At the same time, a $5\times5$ boxcar filter, while having better speckle suppression power, would lose out by its blurring effects as can be seen in Fig. \ref{fig:boxcar_5x5}. 
 To improve k-MLE filtering power while avoiding the blurring effect, the k-MLE speckle filter can be used iteratively. 
-Presented in the figure \ref{fig:k_mle_filtering_power} is the result of a k-MLE filter configured in a $3\times3$ window with 25\% threshold-value, being applied iteratively for four times. 
+Presented in the Fig. \ref{fig:k_mle_filtering_power} is the result of a k-MLE filter configured in a $3\times3$ window with 25\% threshold-value, being applied iteratively for four times. 
 From the plot, the $3\times 3$ iterative k-MLE filter appears to have similar quantitative performance with the $5\times5$ boxcar filter,
   while its visual imagery output appears much sharper, qualitatively speaking.
 
@@ -376,7 +378,7 @@ Quantitatively, the k-MLE also appears to have the best histogram response among
 \subsubsection{Evaluation of the k-MLE speckle filter on Real Images}
 
 The k-MLE filters are also applied on a SLC RadarSat 2 image covering the Muada Merbok area of Malaysia. 
-Figure \ref{fig:k_mle_on_RADARSAT2_data} shows the patches of original and filtered images of both natural and urban landscape.
+Fig. \ref{fig:k_mle_on_RADARSAT2_data} shows the patches of original and filtered images of both natural and urban landscape.
 It is obvious that the k-MLE speckle filter delivers a significantly ``better'' image than the original data.
 
 \begin{figure}[h!]
@@ -457,7 +459,7 @@ Then the noise-removal impact of the surrounding data points will be scaled with
 This fuzzy logic approach give rise to the f-MLE speckle filter presented next,
   and its main benefit is that:  we no longer need to worry about the homogeneous / heterogeneous problem.
 
-\subsection{The F-MLE SAR Speckle Filters}
+\subsection{The f-MLE SAR Speckle Filters}
   
 The foundation of the fuzzy-estimation approach is the consistent sense of distance found in the log-transformed domain.
 %It is shown in \cite{Le_2010_ACRS}
@@ -499,14 +501,14 @@ One way to counter this effect is to exclude the centre point $I_0$ from its est
 %\begin{minipage}[c]{0.45\textwidth}
 \begin{equation}
 \label{eqn:fmle_incl}
-\caption{eqn:F-MLE Estimation (Inclusive Version)}
+\caption{eqn:f-MLE Estimation (Inclusive Version)}
 FMLE_{incl}= \frac{\displaystyle{\sum_{i=0}^n{p_i * I_i} } }{\displaystyle{\sum_{i=0}^n{p_i } } }
 \end{equation}
 %\end{minipage}
 %\begin{minipage}[c]{0.45\textwidth}
 \begin{equation}
 \label{eqn:fmle_excl}
-\caption{eqn:F-MLE Estimation (Exclusive Version)}
+\caption{eqn:f-MLE Estimation (Exclusive Version)}
 FMLE_{excl}= \frac{\displaystyle{\sum_{i=1}^n{p_i * I_i} } }{\displaystyle{\sum_{i=1}^n{p_i } } } 
 \end{equation}
 %\end{minipage}
@@ -517,7 +519,7 @@ For visualization and comparison purposes, both filtering schemes are applied to
 The histogram of the filtered images are plotted in Fig. \ref{fig:compare_filters_histograms:Original} and Fig. \ref{fig:compare_filters_distance_histograms:Original},
   where the speckle suppression power is clearly visible.
 %demonstrated in Figure \ref{fig:compare_filters_histograms:Original}.
-%For comparison, the two schemesâ€™ histogram are plotted in the same figure.
+%For comparison, the two schemesà¥ˆ€™ histogram are plotted in the same figure.
 %In comparing the two schemes' histogram in the same figure,
 And it is apparent that 
 	the filtering performance of the excluding-centre-point scheme is at least as good as that of the centre-point-included scheme and
@@ -903,23 +905,23 @@ Also noticeable is the correlation between MSE and the Area Under the ROC curve 
 \hline
 Scene 				& Filter 						& MSE 	& AUC \\
 \hline
-Point Target 	& F-MLE (incl, 3x3) 	& 1.38	& 0.901 \\
-Point Target 	& F-MLE (excl, 3x3) 	& 1.47	& 0.893 \\
+Point Target 	& f-MLE (incl, 3x3) 	& 1.38	& 0.901 \\
+Point Target 	& f-MLE (excl, 3x3) 	& 1.47	& 0.893 \\
 Point Target 	& boxcar (3x3) 			& 1.56	& 0.826 \\
 Point Target 	& boxcar (5x5) 			& 2.67	& 0.502 \\
 \hline
-Edge 	& F-MLE (incl, 3x3) 	& 0.68	& 0.969 \\
-Edge 	& F-MLE (excl, 3x3) 	& 0.73	& 0.964 \\
+Edge 	& f-MLE (incl, 3x3) 	& 0.68	& 0.969 \\
+Edge 	& f-MLE (excl, 3x3) 	& 0.73	& 0.964 \\
 Edge 	& boxcar (3x3) 			& 1.03	& 0.942 \\
 Edge 	& boxcar (5x5) 			& 1.51	& 0.934 \\
 \hline
-Line 	& F-MLE (incl, 3x3) 	& 1.89	& 0.791 \\
-Line 	& F-MLE (excl, 3x3) 	& 2.02	& 0.767 \\
+Line 	& f-MLE (incl, 3x3) 	& 1.89	& 0.791 \\
+Line 	& f-MLE (excl, 3x3) 	& 2.02	& 0.767 \\
 Line 	& boxcar (3x3) 			& 2.27	& 0.658 \\
 Line 	& boxcar (5x5) 			& 2.88	& 0.375 \\
 \hline
-Dotted 			& F-MLE (incl, 3x3) 	& 2.28	& 0.639 \\
-Dotted 			& F-MLE (excl, 3x3) 	& 2.32	& 0.621 \\
+Dotted 			& f-MLE (incl, 3x3) 	& 2.28	& 0.639 \\
+Dotted 			& f-MLE (excl, 3x3) 	& 2.32	& 0.621 \\
 Dotted 			& boxcar (3x3) 			& 2.92	& 0.431 \\
 Dotted 			& boxcar (5x5) 			& 3.35	& 0.382 \\
 \hline
@@ -929,7 +931,7 @@ Dotted 			& boxcar (5x5) 			& 3.35	& 0.382 \\
 \end{minipage}
 %}
 %\end{tabular}
-\caption{Heterogeneous Patterns: MSE criteria and F-MLE performance}
+\caption{Heterogeneous Patterns: MSE criteria and f-MLE performance}
 \label{fig:Heterogeneous_Patterns}
 \end{figure}
 
@@ -943,7 +945,7 @@ Using speckle filtering as an application example, these homoskedastic features 
 
 The log-transformed domain provides a consistent sense of distance. By embracing
 a probabilistic approach, the proposed Fuzzy Maximum Likelihood Estimator makes
-use of this consistency. Experimental results suggest that the estimatorâ output also
+use of this consistency. Experimental results suggest that the estimatorà¥ˆ output also
 exhibits this consistency property, which allows recursive application of the filter discussed above. 
 
 The speckle filtering technique proposed here has been shown to work for single-look SAR images. 
@@ -1030,8 +1032,8 @@ In this section, the use of MSE in the homoskedastic log-transformed domain to e
 
 \begin{figure}[h]
  \centering
- \epsfxsize=2.4in
- \epsfysize=1.2in
+ \epsfxsize=4.8in
+ \epsfysize=2.4in
  \epsffile{images/simulation_schema.eps} 	
 \caption{SAR simulation, processing and filtering schema}
 \label{fig:simul_process_filter_schema}
@@ -1501,14 +1503,6 @@ The target and background can then be separated using a simple threshold based c
 Using this method, the separability of the two stochastic populations are judged by the standard ROC, 
 	and the normalized metric of AUC can then be used as an evaluation criteria.
         
-Fig. \ref{fig:hetero_patterns_roc_auc} shows that feature preservation can be 
-evaluated by examining the separability of the two background and target populations.
-Figures \ref{fig:hetero_patterns_roc_auc:hist_unfiltered} and \ref{fig:hetero_patterns_roc_auc:hist_kuan_filtered} 
-	allows visual evaluation of target and clutter histograms and their separability.
-Quantitative evaluation of these separability is carried out by plotting the Receiver Operating Curve (ROC), 
-in subfigures \ref{fig:hetero_patterns_roc_auc:roc_unfiltered} and \ref{fig:hetero_patterns_roc_auc:roc_kuan_filtered} 
-respectively, and is measured by computing the Area Under these Curves (AUC).
-
 \afterpage{\clearpage}
 \begin{figure}[h!]
 \centering  
@@ -1557,41 +1551,13 @@ respectively, and is measured by computing the Area Under these Curves (AUC).
 \label{fig:hetero_patterns_roc_auc}
 \end{figure}
 
-Detailed examination of figures \ref{fig:hetero_patterns_roc_auc} and \ref{fig:hetero_patterns_mse} 
-	can help to explain how the MSE is related to the histograms' separation capability.
-In pre-filtered images, shown in figures \ref{fig:hetero_patterns_roc_auc:hist_unfiltered} and 
-\ref{fig:hetero_patterns_mse:unfiltered}, there is no bias error visible.
-Then the separability of background and target populations depends only on the variance of the additive noise. 
-This variance is visualized as the horizontal spread of the histograms.
-Naturally, given a fixed location (i.e. expectation) of the two populations, the smaller the spread (i.e. variance) of these sample histograms, 
-the better the separation capability.
-
-In post-filtered images, shown in figures \ref{fig:hetero_patterns_roc_auc:hist_kuan_filtered} and 
-\ref{fig:hetero_patterns_mse:kuan_filtered}, the situation is more complicated.
-Here, besides the effect of the histogram spread, one also needs to take into account the bias error.
-A closer examination of Fig. \ref{fig:hetero_patterns_mse:kuan_filtered} indicates that the output of the 
-Kuan filter, and in fact the outputs of all other filters (which are not reproduced here due to space constraints), 
-also introduce bias errors.
-Specifically, the target (brighter) populations are always under-estimated and the clutter (darker) population are 
-always over-estimated. This is probably due to the entropy reduction effect of the speckle filters.
-Apparently, assuming that the variances are fixed, the lower these bias errors, the better the separation capability.
-
-In SAR domain terminology, the general requirements of feature preservation for SAR speckle filters can be broken 
-down into the requirements of radiometric preservation and speckle suppression.
-In the log-transformed domain, these smaller requirements are equivalent to the bias and variance evaluation of 
-statistical estimators respectively.
-Overall, while the MSE index combines the measurements of bias and variance evaluation, 
-	the feature preservation requirement, in the context of simple target and clutter scenes, can be measured by 
-	the standard metric for target detectability: the Area Under the ROC Curve (AUC).
-        
-Next the MSE is experimentally shown to be inversely correlated with the AUC index, for all simulated patterns.
-Table \ref{tab:mse_auc_in_log_domain} provides the measurements of MSE and AUC performance for various filters and 
-patterns.
-It suggests that the MSE is inversely correlated to this separability index.
-%The first column in Table \ref{tab:mse_auc_corr_coeff} quantitatively measures this statistical correlation.
-This statistical correlation is quantitatively measured in the first column of Table \ref{tab:mse_auc_corr_coeff}.
-%The results suggest that the lower MSE achievable by the filters would, in general, lead to better feature preservation.
-The results suggest that the lower MSE achievable by a SAR speckle filter would, in general, lead to better feature preservation in its filtered output.
+Fig. \ref{fig:hetero_patterns_roc_auc} shows that feature preservation can be 
+evaluated by examining the separability of the two background and target populations.
+Figs. \ref{fig:hetero_patterns_roc_auc:hist_unfiltered} and \ref{fig:hetero_patterns_roc_auc:hist_kuan_filtered} 
+	allows visual evaluation of target and clutter histograms and their separability.
+Quantitative evaluation of these separability is carried out by plotting the Receiver Operating Curve (ROC), 
+in Figs. \ref{fig:hetero_patterns_roc_auc:roc_unfiltered} and \ref{fig:hetero_patterns_roc_auc:roc_kuan_filtered} 
+respectively, and is measured by computing the Area Under these Curves (AUC).
 
 %\afterpage{\clearpage}
 \begin{figure}[h!]
@@ -1627,6 +1593,43 @@ The results suggest that the lower MSE achievable by a SAR speckle filter would,
 \caption{Bias Error Investigation: Image and Histogram Visualisation}
 \label{fig:hetero_patterns_mse}
 \end{figure}
+
+Detailed examination of Figs. \ref{fig:hetero_patterns_roc_auc} and \ref{fig:hetero_patterns_mse} 
+	can help to explain how the MSE is related to the histograms' separation capability.
+In pre-filtered images, shown in Figs. \ref{fig:hetero_patterns_roc_auc:hist_unfiltered} and 
+\ref{fig:hetero_patterns_mse:unfiltered}, there is no bias error visible.
+Then the separability of background and target populations depends only on the variance of the additive noise. 
+This variance is visualized as the horizontal spread of the histograms.
+Naturally, given a fixed location (i.e. expectation) of the two populations, the smaller the spread (i.e. variance) of these sample histograms, 
+the better the separation capability.
+
+In post-filtered images, shown in Figs. \ref{fig:hetero_patterns_roc_auc:hist_kuan_filtered} and 
+\ref{fig:hetero_patterns_mse:kuan_filtered}, the situation is more complicated.
+Here, besides the effect of the histogram spread, one also needs to take into account the bias error.
+A closer examination of Fig. \ref{fig:hetero_patterns_mse:kuan_filtered} indicates that the output of the 
+Kuan filter, and in fact the outputs of all other filters (which are not reproduced here due to space constraints), 
+also introduce bias errors.
+Specifically, the target (brighter) populations are always under-estimated and the clutter (darker) population are 
+always over-estimated. This is probably due to the entropy reduction effect of the speckle filters.
+Apparently, assuming that the variances are fixed, the lower these bias errors, the better the separation capability.
+
+In SAR domain terminology, the general requirements of feature preservation for SAR speckle filters can be broken 
+down into the requirements of radiometric preservation and speckle suppression.
+In the log-transformed domain, these smaller requirements are equivalent to the bias and variance evaluation of 
+statistical estimators respectively.
+Overall, while the MSE index combines the measurements of bias and variance evaluation, 
+	the feature preservation requirement, in the context of simple target and clutter scenes, can be measured by 
+	the standard metric for target detectability: the Area Under the ROC Curve (AUC).
+        
+Next the MSE is experimentally shown to be inversely correlated with the AUC index, for all simulated patterns.
+Table \ref{tab:mse_auc_in_log_domain} provides the measurements of MSE and AUC performance for various filters and 
+patterns.
+It suggests that the MSE is inversely correlated to this separability index.
+%The first column in Table \ref{tab:mse_auc_corr_coeff} quantitatively measures this statistical correlation.
+This statistical correlation is quantitatively measured in the first column of Table \ref{tab:mse_auc_corr_coeff}.
+%The results suggest that the lower MSE achievable by the filters would, in general, lead to better feature preservation.
+The results suggest that the lower MSE achievable by a SAR speckle filter would, in general, lead to better feature preservation in its filtered output.
+
 
 \begin{table}[h!]
 \centering
@@ -1671,7 +1674,7 @@ Pattern  & Filter  & AUC & $MSE_{true}$   & $MSE_{noise}$      \\% &85\%        
 \label{tab:mse_auc_in_log_domain}
 \end{table}
 
-\begin{table}
+\begin{table}[h!]
 \centering
 \begin{tabular}{c|c|c}
 Pattern  & AUC - $MSE_{true}$  & AUC - $MSE_{benchmark}$  \\
@@ -2089,6 +2092,7 @@ This relationship forms the special case of Eqn. \ref{eqn:Estimate ENL from log-
 
 
 In the case of partial POLSAR, d=2, then
+{\small
 \begin{align*}
 &  var_2 \left[ ln|C_v| \right] = \psi^1(L) + \psi^1(L-1)     = \sum^{\infty}_{i=L}1/i^2 + \sum^{\infty}_{i=L-1}1/i^2 &\\
 \noindent \text{Similar to the SAR case: } \\
@@ -2098,20 +2102,24 @@ In the case of partial POLSAR, d=2, then
 \noindent \text{Equivalently: } \\
 & L = 2/var_2 \left[ \ln |C_v| \right] + 1 & \\
 \end{align*}
+}%
 %Similar to the SAR case, $var[ln|Cv|]$ is bounded: $1/L + 1/(L-1) < var_d \left[ \ln |C_v| \right] < 1/(L-1) + 1/(L-2)$.
 %Thus an approximation can be made: $var_d \left[ \ln |C_v| \right] = 2/(L-1)$.
 %Equivalently L can be estimated as:  $L = 2/var_d \left[ \ln |C_v| \right] + 1$
 
 In the case of full POLSAR, d=3, then
+{\small
 \begin{align*}
 &  var_3 \left[ ln|C_v| \right] = \psi^1(L) + \psi^1(L-1) + \psi^1(L-2)    = \sum^{\infty}_{i=L}1/i^2 + \sum^{\infty}_{i=L-1}1/i^2  + \sum^{\infty}_{i=L-2}1/i^2 & \\
 \noindent \text{Again: }  \\
 & 1/L + 1/(L-1) + 1/(L-2) < var_3 \left[ \ln |C_v| \right] < 1/(L-1) + 1/(L-2) + 1/(L-3) &\\
-\noindent \text{With } L>3 \\
+\noindent \text{As } L>3 \\
 & var_3 \left[ \ln |C_v| \right] = 3/(L-1.5) &\\
 \noindent \text{Or: }\\
 & L = 3/var_3 \left[ \ln |C_v| \right] + 1.5 &
 \end{align*}
+}%
+
 %Again, $var[ln|Cv|]$ is bounded: $1/L + 1/(L-1) + 1/(L-2) < var_d \left[ \ln |C_v| \right] < 1/(L-1) + 1/(L-2) + 1/(L-3)$.
 %With $L>3$, it is trivial to prove that $3/(L-1.5)$ is also bounded by the same limits. %also is bounded by the above thresholds.
 %Thus a similar approximation can be written as: $var_d \left[ \ln |C_v| \right] = 3/(L-1.5)$

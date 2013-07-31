@@ -92,8 +92,7 @@ Its log-transformed variable consequently
 \caption{eqn:Logarithm of Determinant Ratio and the Sum of Log-Chi-Squared Distributions}
 \Lambda^d_L = ln \left[ (2L)^d \frac{|C_v|}{|\Sigma_v|} \right] \sim \sum_{i=0}^{d-1} \Lambda^\chi (2L-2i)
 \end{equation}
-with
-  $\Lambda^\chi (k) \sim \ln \left[ \chi^2 (k) \right]$
+where $\Lambda^\chi (k) \sim \ln \left[ \chi^2 (k) \right]$
 
 \section{Heteroskedastic POLSAR data and the Homoskedastic Log-Transformation}
 \label{sec:polsar_heterosked_model_and_log_transform}
@@ -166,6 +165,7 @@ var \left[ \Lambda(2L) \right] &= \psi^1(L)
 Since the average and variance of both chi-squared distribution and log-chi-squared distribution are constant,
   the product and summation of these random variables also has fixed summary statistics.
 Specifically:
+
 \begin{eqnarray*}
   avg \left[ \prod^{d-1}_{i=0} \chi^2(2L-2i) \right] &=& 2^d \cdot \prod^{d-1}_{i=0} (L-i), \\
   var \left[ \prod^{d-1}_{i=0} \chi^2(2L-2i) \right] &=& \prod^{d-1}_{i=0} 4(L-i)(L-i+1) - \prod^{d-1}_{i=0} 4(L-i)^2, \\
@@ -298,6 +298,7 @@ with previous results for SAR intensity data. This can be thought of either as a
 as the special case of POLSAR.
 
 The results so far for our models can be summarized as:
+{\footnotesize
 \begin{align*}
   \mathbb{R} &= \frac{|C_v|}{|\Sigma_v|} \sim \frac{1}{(2L)^d} \prod^{d-1}_{i=0} \chi^2(2L-2i) \\% \label{eqn:polsar_ratio_det_cov_dist} \\
   \mathbb{L} &= \ln{|C_v|} - \ln{|\Sigma_v|} \sim \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \\ %\label{eqn:polsar_dispersion_log_det_cov_dist} \\
@@ -307,11 +308,14 @@ The results so far for our models can be summarized as:
   \mathbb{V} &= var(\mathbb{L}) = \sum^{d-1}_{i=0} \psi^1(L-i) \\ %\label{eqn:polsar_dispersion_variance} \\
   \mathbb{E} &= mse(\mathbb{L}) =\left[ \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \right]^2 +  \sum^{d-1}_{i=0} \psi^1(L-i) %\label{eqn:polsar_dispersion_mse} 
 \end{align*}
+}%
 
 Upon setting d = 1 into the above models,
   Section \ref{sec:appendix_sar_special_case_of_polsar} shows that the reduced results
 are consistent with not only the following results for single-look SAR derived earlier, i.e. $d =1,  L = 1$,
-\begin{align*}
+
+{\footnotesize
+\begin{align*}  
   I &\sim \bar{I} \cdot pdf \left[ e^{-R} \right] \\
   \log_2{I} &\sim \log_2{\bar{I}} + pdf \left[ 2^xe^{-2^x}\ln2 \right] \\
   \mathbb{R} &= \frac{I}{\bar{I}} \sim pdf \left[ e^{-x} \right]  \\
@@ -322,6 +326,7 @@ are consistent with not only the following results for single-look SAR derived e
   \mathbb{V} &= var(\mathbb{L}) = \frac{\pi^2}{6} \frac{1}{ \ln^2{2}} \\
   \mathbb{E} &= mse(\mathbb{L}) = \frac{1}{\ln^2{2}}( \gamma^2 + \pi^2/6 ) = 4.1161 
 \end{align*}
+}%
 but also the following well-known results for multi-look SAR, i.e. $d=1,L>1$:
   \begin{align*}
 I &\sim pdf \left[ \frac{L^L x^{L-1} e^{-Lx/\bar{I}}}{\Gamma(L) \bar{I}^L} \right] \\
@@ -401,7 +406,7 @@ dimensional number $d$ is set to 3 for the full polarimetric SAR dataset, and 2 
 The histogram plots of the theoretical models and the real-life dataset are presented in Fig. \ref {fig:verify_polsar_2x2_simulation_dispersion_contrast}. A visual match is clearly observable which verifies the applicability of
 the theoretical models for the dispersion and contrast measures of distance.
 
-\begin{figure}[h]
+\begin{figure}[bth!]
 \centering
 \begin{tabular}{c}
 	\subfloat[part-pol (2x2) dispersion]{
@@ -553,7 +558,8 @@ There are two main ``imperfections'' that are usually found in practical POLSAR 
 The first is the mutually independent assumption for each component in the POLSAR target vector $s$.
 However, in practice, high correlation is routinely observable between the POLSAR data components,
   specifically between $S_{hh}$ and $S_{vv}$.
-This phenomena is also present in our AIRSAR dataset, where $\Sigma_v = avg(C_v) = \begin{vmatrix} 0.0084 & 1 \cdot 10^{-6} + 4 \cdot 10^{-4} i & 0.0071 - 0.0017 i \\ 1 \cdot 10^{-6} - 4 \cdot 10^{-4} i & 0.0017 & -3 \cdot 10^{-4} - 2 \cdot 10^{-4} i \\ 0.0071 + 0.0017 i & -3 \cdot 10^{-4} + 2 \cdot 10^{-4} i & 0.0122 \end{vmatrix}$.
+This phenomena is also present in our AIRSAR dataset, where
+${\Sigma_v = avg(C_v) = \begin{vmatrix} 0.0084 & 1 \cdot 10^{-6} + 4 \cdot 10^{-4} i & 0.0071 - 0.0017 i \\ 1 \cdot 10^{-6} - 4 \cdot 10^{-4} i & 0.0017 & -3 \cdot 10^{-4} - 2 \cdot 10^{-4} i \\ 0.0071 + 0.0017 i & -3 \cdot 10^{-4} + 2 \cdot 10^{-4} i & 0.0122 \end{vmatrix}}$.
 Despite the mismatch, the proposed model  is still valid under such conditions, as observed in the part-pol (HH-VV) and full-pol
 plots in Figs. \ref{fig:verify_polsar_2x2_simulation_dispersion_contrast} to \ref{fig:verify_polsar_2x2_simulation_det}.
 
@@ -1008,7 +1014,7 @@ Using the  effective number-of-looks value, the reconstructed model exhibits a b
 %\end{figure}
 %
 
-In \textbf{summary}, this chapter proposes the determinant of the POLSAR covariance matrix as the scalar and representative observable for the both partial and full polarimetric SAR data.
+In summary, this chapter proposes the determinant of the POLSAR covariance matrix as the scalar and representative observable for the both partial and full polarimetric SAR data.
 Out of many different scalar projections of the multi-dimensional POLSAR data, this observable is proposed together with its underlying statistical model, from which consistent discriminant measures are also proposed.
 The derived models are shown to be heteroskedastic in the original domain, and logarithmic transformation is shown to convert these into homoskedastic models.
 The representative power of the observable is explained in a few different ways.

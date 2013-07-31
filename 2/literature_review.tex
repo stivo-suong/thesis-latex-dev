@@ -3,10 +3,10 @@
 
 This chapter 
 reviews the published literature for SAR and POLSAR data processing.
-Specifically, its first section describes the multi-dimensional and stochastic nature of the POLSAR data.
+Specifically, its first section describes the multi-dimensional and stochastic nature of the (POL)SAR data.
 The second section then illustrates the different approaches that have been published to address the grand challenge of modelling, processing and ultimately understanding these types of data.
 
-\section{The Stochastic and Multivariate Nature of POLSAR data}
+\section{The Stochastic and Multivariate Nature of (POL)SAR data}
 
 \subsection{The Stochastic Nature of SAR data}
 
@@ -1134,7 +1134,7 @@ In the field of POLSAR, the Wishart distance is probably the most widely used, a
 It is defined \cite{Lee_1994_IJRS_2299} as:
 \begin{equation*}
   d(C_x,C_y) = \ln|C_y| + tr(C_xC_y^{-1})
-\end{equation*},
+\end{equation*}
 where $tr(C)$ denotes the trace of the matrix C. 
 As a measure of distance, its main disadvantage is that $d(C_y,C_y) = \ln|C_y| \neq 0$.
 
@@ -1155,7 +1155,6 @@ and the Wishart Statistical test distance \cite{Cao_2007_TGRS_3454}
 \begin{equation*}
   d(C_x,C_y) = (L_x + L_y) \ln|C| - L_x \ln|C_x| - L_y\ln|C_y|
 \end{equation*}
-.
 
 
 Closer investigation of these dis-similarity measures reveals that most are related in some ways. %to each other.
@@ -1456,7 +1455,7 @@ In summary, while off-diagonal elements, which carry phase information, are know
 
 %\subsection{ Target Detection and Classification using SAR-based images }
 
-\subsection{Current Methods to Evaluate SAR Speckle Filters}
+\subsection{Current Techniques to Evaluate SAR Speckle Filters}
 
 Because of the variaties of  speckle filtering available, it is hence crucial to have a framework for 
 	(a) modelling and simulation, which provide the ground-truth data in different scenarios of underlying distribution, and
@@ -1672,7 +1671,7 @@ Specifically, it showed that when the sense of subtractive distance is not consi
 It also showed that while the MMSE criteria is not very suitable to evaluate SAR speckle filters, other criteria such as radiometric preservation and speckle suppression power evaluation are employed.
 Unfortunately, these counter-intuitive measures are fragmented and thus not very popular outside the SAR community.
 
-In the next chapters, theoretical models are built to form the foundation required to systematically tackle these issues. 
+In the next chapter, theoretical models are developed to form the foundation required to systematically tackle these issues. 
 
 
 

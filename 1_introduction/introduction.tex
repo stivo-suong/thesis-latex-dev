@@ -2,8 +2,7 @@
 \chapter{Introduction}
 
 %What is the situation, the background context of your research? the BIG problem!
-Synthetic Aperture Radar is a technology with many advantages.
-%Compared to optical remote sensors, which are passive, active SAR sensors provide weather independent and night-inclusive operational capabilities.
+Synthetic Aperture Radar (SAR) is a technology with many advantages.
 Compared to optical remote sensors - which are passive, SAR uses active sensors to provide weather independent and night-inclusive operational capabilities. 
 Compared to other radar based active sensors,
 for example Real Aperture Radar (RAR), SAR provides state-of-the-art resolution
@@ -12,13 +11,13 @@ In the past decades, the exponential growth in computational power has made the 
 Thus SAR has now become the preferred choice for continuous and autonomous large-scale
 remote surveillance solutions.
 
-As state-of-the-art technology, the SAR technique has been extended in a few directions, one of which is polarimetric SAR or POLSAR. POLSAR is the natural
-extension from SAR, exploiting the natural polarization property of Electromagnetic
-(EM) waves. It extends the SAR acquisition information from the traditional single
-SAR channel to multi-channel polarimetric SAR data, corresponding to a different combination of transmitted and received polarizations. Similar to the extension from black-and-white images to colour photography, the polarimetric extension brought about
+As state-of-the-art technology, the SAR technique has been extended in a few directions, one of which is Polarimetric SAR (POLSAR).
+POLSAR is the natural extension of SAR, exploiting the natural polarization property of Electromagnetic (EM) waves.
+It extends the SAR acquisition information from the traditional single
+SAR channel to multi-channel POLSAR data, corresponding to a different combination of transmitted and received polarizations. Similar to the extension from black-and-white images to colour photography, the polarimetric extension brought about
 multi-channel POLSAR data as compared to the traditional one-channel SAR data.
 
-With both SAR and POLSAR data becoming cheaper and more available, the recent research emphasis is on understanding and developing applications for the data. However, both SAR 
+With both SAR and POLSAR data becoming cheaper and more readily available, the recent research emphasis is on understanding and developing applications using these data. However, both SAR 
 and POLSAR suffer from speckle phenomena, which hampers the human capabilities
 to understand SAR images. Speckle arises due to the random interference of many
 de-phased but coherent backscattered waves. Thus both SAR and POLSAR data are
@@ -28,7 +27,7 @@ stochastic by nature.
 
 %Given the BIG problem, Why it is important to solve this problem?
 The
-                big picture, as introduced above, is that POLSAR data is multi­dimensional,
+                big picture, as introduced above, is that POLSAR data is multi-dimensional,
                 stochastic, multiplicative and heteroskedastic.
 %Under
 %                this context, the motivation is to gain a better
@@ -36,13 +35,13 @@ The
 %which
 %                hopefully will lead to better information that can be
 %                extracted from these data.
-Under this condition, it is very important to understand the statistical models for SAR
-data. It is these models that form the foundation for different SAR data processing
+Under this condition, it is very important to understand the statistical models for its
+data. It is these models that form the foundation for different (POL)SAR data processing
 techniques, for example speckle filtering, target detection, image segmentation, and
 other clustering, classification techniques.
 In fact, due to the random nature of speckle, all of these techniques are essentially based on statistical estimation theory,
-which comprises statistical modeling and validation, estimator design and development
-as well as evaluation of different estimators’ accuracy. And central to this statistical
+which comprises statistical modelling and validation, estimator design and development
+as well as evaluation of different estimators' accuracy. And central to this statistical
 estimation theory is the need for statistically consistent discrimination measures which
 are commonly derived from the statistical models.
 
@@ -50,9 +49,9 @@ That is, while different statistical models have been developed for different PO
 observables, for a statistical model to be useful, scalar discrimination measures need to
 be derived from it. At the same time, the extension from SAR to POLSAR brings about
 a representation difficulty in that: there exists not one, like the intensity in SAR, but
-many observable quantities in POLSAR. Thus on the one hand, practical application for
-POLSAR data processing requires the measure to be scalar, consistent and preferably
-homoskedastic. On the other hand, the observable quantity being modeled needs to
+many observable quantities in POLSAR. Thus, on the one hand, practical applications for
+POLSAR data processing require measures which are scalar, consistent and preferably
+homoskedastic. On the other hand, the observable quantity being modelled needs to
 be naturally representative of the high dimensional POLSAR data.
 
 %Solving these dual-problem is both important and interesting.
@@ -64,18 +63,20 @@ This is due to a number of reasons, for example the prevalence of the normal dis
 %of the Additive White Gaussian Noise (AWGN) model in natural processes.
 %of the additive noise model which probably arises due to the linear and additive nature of digital data.%****IVM I'm not sure about this - you seem to assume (in this sentence) that digital data is linear and additive. However this is definitely not true - your POLSAR data is digital and yet is not additive. Maybe you can say "or the prevalence of AWGN in the majority of sensing or sampling systems, and electronic devices."
 %OR PERHAPS THIS: "... the prevalence of AWGN in natural processes."
+%****IVM2: I'm still not sure about it, but we can put it to the examiner, see if he picks it up.
 It should be noted that even for the case of SAR data which is digital and not additive,
-  the above statement is still true as SAR actually has two components, real and imaginary part,
-  and all of them follows the standard Additive White Gaussian Noise model.
+  the above statement is still true as SAR actually has two components, the real and imaginary parts,
+  both of which follow the standard Additive White Gaussian Noise model.
+%****IVM: I really don't understand what you're trying to say here.  Are you saying that "both parts are corrupted by AWGN"?
 
-Both SAR and POLSAR data however is multiplicative and heteroskedastic by nature.
+Both SAR and POLSAR data however are multiplicative and heteroskedastic by nature.
 While there is no doubt that a number of data processing techniques have been proposed to handle certain aspects of the data, the breadth and depth of these studies trails in comparison to that of the more familiar additive and homoskedastic model.
 This leads to the fact that a lot of times, existing statistical or computational techniques initially designed for additive and homoskedastic models are applied on multiplicative and heteroskedastic data, in ignorance of the incompatibility. 
-An example is the use of mean, variance and squared error criteria, which are linear by nature and works excellently on additive and homoskedastic models, being applied on multiplicative and heteroskedastic distribution such as the gamma distribution.
+An example is the use of mean, variance and squared error criteria, which are linear by nature and work excellently on additive and homoskedastic models, being applied on multiplicative and heteroskedastic distribution such as the gamma distribution.
 Such use, however, is known to be not very robust for these so-called heavy tailed distributions.
 
 Similarly speaking, heteroskedasticity poses numerous negative impacts on the usual framework of statistical estimation, which most of the time makes use of various different techniques and criteria known to work very well on the usual models.
-For example, in modelling, it is very common to use subtractive differences to discriminate and to make decisional inferences. However for heteroskedastic SAR, it is known that such use should be avoided in preference to a ratio-based discrimination measure.
+For example, in modelling, it is very common to use subtractive differences to discriminate and to make decisional inferences. However, for heteroskedastic SAR, it is known that such use should be avoided in preference to a ratio-based discrimination measure.
 Another example is in the normal performance evaluation stage of statistical estimators, where the Ordinary Least Square (OLS) is widely used as the best evaluation criteria which is probably due to the Gauss Markov theorem.
 For SAR data, however, its heteroskedasticity directly violates the homoskedastic assumption of the theorem and thus many different ways to evaluate SAR speckle filters were proposed.
 
@@ -89,7 +90,7 @@ This linear and additive nature is manifested, for example, in a
 large number of algorithms in the field of computational intelligence which make use of
 MSE as an objective function, as well as the extensive use of variance and
 contrast in digital image processing. 
-Thus it is very exciting to derive homoskedastic models for this heteroskedastic data
+Thus it will be very useful to develop homoskedastic models for this heteroskedastic data
   so that the benefits of an additive and homoskedastic statistical estimation framework can be explored.
 
 %Specifically, 
@@ -120,10 +121,10 @@ the
 The
                 complex POLSAR data have been statistically modelled as
                 following the complex Wishart distribution, which
-                apparently is multi­dimensional, complex and
-                un­intuitive.
+                apparently is multi-dimensional, complex and
+                un-intuitive.
 There
-                has been a few published scalar statistical models for
+                have been a few published scalar statistical models for
                 POLSAR, but none of them fit the dual criteria of being
                 highly representative of the data and at the same time
                 lead to scalar discrimination measures.
@@ -136,7 +137,7 @@ There
  In
                 another thread of study, to combat the negative
                 impacts caused by multiplicative and heteroskedastic
-                properties for SAR data, experienced researchers of the
+                properties for SAR data, experienced researchers in the
                 field have developed numerous ingenious ways to tackle
                 these issues.
 For
@@ -149,66 +150,16 @@ Or
                 preservation and speckle suppression power evaluation
                 are employed. 
 Unfortunately,
-                these counter­intuitive measures are not very popular
+                these counter-intuitive measures are not very popular
                 outside the SAR community, and newcomers to the field
-                are frequently found being trapped in these pitfalls.
+                are frequently found being trapped by these pitfalls.
 
 %In what way is your solution different ? What is the novelty in your approach and hence solution?
 Some of the problems described above have been studied using different approaches in the literature.
-However, the set of problems has not been presented in a systematic manner nor with a strong underlying foundational theory.
-In
-                this thesis, the statistical model for the determinant
-                of the POLSAR covariance matrix is proposed and
-                validated.
-Out
-                of many different possible scalar projections of the
-                multi-dimensional data, the proposed projection is
-                highly representative.
-When the dimension number is collapsed to one, the
-                special case of the proposed model matches perfectly
-                with the commonly used statistical model for SAR
-                intensity.
-Furthermore,
-                the proposed statistical model also leads to the
-                derivation of existing as well as the newly proposed
-                discrimination measure: determinant-ratio which is the
-                generalized multi dimensional version of the widely used
-                SAR intensity ratio.
-
- Another
-                novelty of the contributions in this thesis comes from the systematic
-                treatment towards the problem of statistical estimation
-                of heteroskedastic SAR data.
-While
-                many different ways to combat the negative impacts
-                caused by multiplicative and heteroskedastic properties
-                for SAR data have been proposed over the years, they have often been
-                handled in a piecemeal manner.
-Here,
-                a systematic homoskedastic framework of statistical
-                estimation is developed, where not only homoskedastic
-                statistical models are proposed, the impacts of
-                homoskedasticity on estimator development and
-                performance evaluation of statistical estimators is also
-                studied.
-This
-                comprehensive treatment not only explains why the
-                original SAR data requires special treatment very
-                different to the common practice of computational
-                sciences, 
-it
-                also allows thorough and unique discussion, for example on
-                evaluating different evaluation criteria for statistical
-                estimators.  % ;-)).
-And
-                since the POLSAR data can be considered as the multi
-                dimensional extension of traditional SAR data, these
-                treatments are shown extensible towards POLSAR data
-                which is definitely yet another novelty. 
-
+However, they have not been presented in a systematic manner nor with a strong underlying foundational theory.
 %precise problem statement
-With this approach, the \textbf{main problem statement} of this thesis arise. %it is important to emphasize again the main problem statement of this thesis.
-That is
+Hence the \textbf{main problem statement} of this thesis arises. %it is important to emphasize again the main problem statement of this thesis.
+That is,
                 this thesis focuses on providing a solution for the
                 dual-problem of: 1) establishing scalar and
                 representative statistical models for the
@@ -238,15 +189,15 @@ The
                 development of these models are based on
                 rigorous statistical mathematics transformations. % and theory. 
 The
-                assumptions used are minimal and widely
+                assumptions used are minimal and also widely
                 acknowledged for this type of data.
 Then, the variable change theorem is applied to derive the statistical model for these transformed observables. %log-transformed SAR data.
 The
                 derived theoretical models are validated against
                 real life data.
-And
-                the imperfect conditions found in practice (in
-                comparison to the theoretical assumption) are also
+The
+                imperfect conditions found in practice (in
+                comparison to the theoretical assumptions) are also
                 investigated, and the models are shown to be robust, capable of
                 handling these imperfections.
 The
@@ -280,7 +231,7 @@ Experiment results are evaluated both qualitatively on real images and quantitat
 \subsection{Statistical Estimation Framework for (POL)SAR data}
 
 Even though the research topic seems to spread across different sub-fields, the common framework that binds them all together is the application and development of statistical estimators.
-For speckle filtering, it is the estimation of underlying back-scattering coefficients being corrupted with stochastic noise.
+For example, for speckle filtering, it is the estimation of underlying back-scattering coefficients being corrupted with stochastic noise.
 For the problem of target detection or classification,
   it is the estimation of the likelihood that the target belongs to a certain category.
 
@@ -288,7 +239,7 @@ Thus a significant portion of this research effort focuses on developing a compu
 The benefits of such a framework are many fold.
 Firstly, simulation allows one to quickly carry out experiments on small synthesized and well-designed scenarios, without the need for highly expensive satellite imagery.
 Secondly, simulation provides ground-truth, without which quantitative evaluation of estimators would have been impossible.
-Last but certainly not least, such a framework allow one to apply estimators repeatedly, and results from different estimators can be statistically and reliably compared. For example, allowing different authors to compare results quantitatively.
+Last but certainly not least, such a framework allow one to apply estimators repeatedly, and results from different estimators can be statistically and reliably compared. For example, this would allow different authors to compare results quantitatively.
 
 The objective of such framework being:
 \begin{enumerate}
@@ -313,7 +264,7 @@ This, in turn, allows for design and development of better estimators.
 \begin{enumerate}
 \item The computational framework allows for quantitative evaluation and comparison of estimators.
 With fast and repeated experiments, the framework allows one to not only compute a single performance value on a single experiment, but also to analyze the whole behaviour of such performance measures over repeated stochastic simulations.
-\item Thus the computational framework provides significant help in deriving new performance evaluation criteria for statistical estimators.
+\item The computational framework provides significant help in deriving new performance evaluation criteria for statistical estimators.
 \end{enumerate}
 \end{enumerate}
 
@@ -324,8 +275,8 @@ This work has made extensive use of simulated data, which have a number of advan
 \item Once the model is validated against real-life data, simulated experiments can be carried out on more focused scenarios.
 This allows smaller data sets to be generated and analysis can become faster and more accurate.
 \item Contrary to real-life images where underlying coefficients are to be estimated, ground truth is readily available in simulated experiments.
-\item Quantitative evaluation is possible not only via a single experiment on a single real-image but via repeated stochastic runs. 
-\item Thus not only single values of mean or mean-squared-error are to be evaluated. 
+\item Quantitative evaluation is possible not only via a single experiment on a single real-image but via repeated stochastic runs.
+  Thus not only single values of mean or mean-squared-error are to be evaluated. 
 As the whole response PDF is available, statistical bias or heteroskedasticity can also be reported.
 \end{enumerate}
 
@@ -377,7 +328,7 @@ For
 For
                 the homoskedastic models, their advantage is that they
                 enable an additive and homoskedastic statistical
-                framework, which is not only capable of overcome various
+                framework, which is not only capable of overcoming various
                 negative impacts of heteroskedasticity, but also results
                 in a single better evaluation criteria that can combine
                 and represent many different existing performance
@@ -387,7 +338,7 @@ To validate the theoretical models,  real-life data are used in this work.
 Specifically, estimated theoretical PDFs are plotted against the histogram of real data,
   and a good visual match indicates a good validation.
 In cases where theoretical PDF cannot be derived, simulated data are then generated
-  and their histograms are matched against real-life practical data for validation.
+  and their histograms are matched against real-life data for validation.
 
 %***IVM This was all said before...
 %Simulated experiments allows evaluation of estimators against ground-truth.
@@ -395,53 +346,105 @@ In cases where theoretical PDF cannot be derived, simulated data are then genera
 %Thus simulated experiments could produce quick results, which may provide faster analysis and 
 %further insights for developing more accurate estimators.
 
-To evaluate the models’ application in statistical estimation framework, a practical point of view is adopted.
+To evaluate the application of these models in a statistical estimation framework, a practical point of view is adopted.
 Practically, all estimators would eventually need to be applied on and work for real images.
-Contrary to experiments on simulated data, experiments on real images often can only be compared qualitatively.
+Contrary to experiments on simulated data, experiments on real images can often only be compared qualitatively.
 This however is critical and will always be included in our investigations.
 The reason is that this helps to guard against any systematic errors in the various assumptions and approximations made in developing the theoretical models.
 Towards that end, real-data can help to build and validate statistical models.
 
 \section{Research Contributions}
-% How do you know if the problem is solved?   State your research objectives
-Interestingly, the dual-problem stated above are found to have a single solution.
-They are the derivation of scalar, representative and homoskedastic measures of distance for the POLSAR data
-  which is multidimensional, inter-correlated and heteroskedastic
+Interestingly, the dual-problems stated above are found to have a single solution.
+They are the derivation of scalar, representative and homoskedastic statistical models for the multidimensional, inter-correlated and heteroskedastic POLSAR data.
+%  which is 
 
-Specifically, the following sub-objectives are to be achieved
+%In what way is your solution different ? What is the novelty in your approach and hence solution?
+%In
+%                this thesis, the statistical model for the determinant
+%                of the POLSAR covariance matrix is proposed and
+%                validated.
+These theoretical models are studied and validated in this thesis.
+They are based on a highly representative observable, which is the determinant of the POLSAR covariance matrix.
+Out
+                of many different possible scalar projections of the
+                multi-dimensional data, the proposed projection is
+                highly representative.
+When the dimension number is collapsed to one, the
+                special case of the proposed model matches perfectly
+                with the commonly used statistical model for SAR
+                intensity.
+Furthermore,
+                the proposed statistical model also leads to the
+                derivation of existing as well as the newly proposed
+                discrimination measure: determinant-ratio which is the
+                generalized multi dimensional version of the widely used
+                SAR intensity ratio.
+
+ Another
+                novelty of the contributions in this thesis comes from the systematic
+                treatment towards the problem of statistical estimation
+                of heteroskedastic SAR data.
+While
+                many different ways to combat the negative impacts
+                caused by multiplicative and heteroskedastic properties
+                for SAR data have been proposed over the years, they have often been
+                handled in a piecemeal manner.
+Here,
+                a systematic homoskedastic framework of statistical
+                estimation is developed, where not only homoskedastic
+                statistical models are proposed, the impacts of
+                homoskedasticity on estimator development and
+                performance evaluation of statistical estimators is also
+                studied.
+This
+                comprehensive treatment not only explains why the
+                original SAR data requires special treatment very
+                different to the common practice of computational
+                sciences, 
+it
+                also encourages a thorough and unique discussion, for example on
+                evaluating different evaluation criteria for statistical
+                estimators.  % ;-)).
+And
+                since the POLSAR data can be considered as the multi
+                dimensional extension of traditional SAR data, these
+                treatments are shown extensible towards POLSAR data
+                which is definitely yet another novelty. 
+                
+% How do you know if the problem is solved?   State your research objectives
+Specifically, the following results are to be obtained:
 \begin{enumerate}
-\item                 To derive scalar and representative statistical models
+\item                Scalar and representative statistical models
                 for the multi-dimensional and inter-correlated POLSAR
-                data.
+                data are to be derived.
                 \begin{enumerate}
-                \item \label{itm:polsar_model} To derive a scalar statistical model for the
+                \item \label{itm:polsar_model} A scalar statistical model for the
                 POLSAR observable, being the determinant of the
-                covariance matrix.
-                \item \label{itm:polsar_discrimination_measure} To derive consistent discrimination measures for
-                the observable being modeled 
-                \item \label{itm:polsar_include_sar} To illustrate its representation power by showing
+                covariance matrix, is to be derived.
+                \item \label{itm:polsar_discrimination_measure} The statistical models for different discrimination measures which are based on
+                the observable are to be established together with its consistent property. %being modelled 
+                \item \label{itm:polsar_include_sar} The representation power of these observables is to be illustrated by showing
                 that when the multi-channel POLSAR data is collapsed
                 into the traditional one-channel SAR data, this
                 determinant is transformed into the representative SAR
                 intensity.
-                \item \label{itm:polsar_validation} To validate the model against practical real-life
+                \item \label{itm:polsar_validation} The model os to be validated against practical real-life
                 captured POLSAR data.
-                \item \label{itm:extend_sar_to_polsar} To demonstrate an example where an existing SAR
-                processing technique is extensible towards POLSAR data
                 \end{enumerate}
-\item                To derive homoskedastic statistical models for the
-                heteroskedastic (POL)SAR data. 
+\item                Homoskedastic statistical models for the
+                heteroskedastic (POL)SAR data are to be derived. 
                 \begin{enumerate}
-                \item \label{itm:log_transform} To show that (POL)SAR data are heteroskedastic in
+                \item \label{itm:log_transform} The fact that (POL)SAR data are heteroskedastic in
                 the original domain and logarithmic transformation
-                can convert this into a homoskedastic model.
-                \item \label{itm:sar_measures_distance} To derive homoskedastic measures of distance for
+                can convert this into a homoskedastic model are to be shown
+                \item \label{itm:sar_measures_distance} Homoskedastic measures of distance for
                 the multi dimensional POLSAR as well as for the one
-                dimensional SAR data.
-                \item \label{itm:sar_validation} To validate these statistical models against both
+                dimensional SAR data are to be derived.
+                \item \label{itm:sar_validation} These statistical models are to be validated against both
                 practical SAR and POLSAR data
-                \item To illustrate the beneficial applications of these
-                statistical models. Specifically:
+                \end{enumerate}
+\item The beneficial applications of these
+                statistical models are to be demonstrated. Specifically:
                 \begin{enumerate}
                 \item \label{itm:filter_vicious_circle} To show how the consistent sense of variance
                 helps break the vicious cycle in the problem of SAR
@@ -452,7 +455,8 @@ Specifically, the following sub-objectives are to be achieved
                 speckle filters: the log-MSE is proposed to combine the
                 evaluation of radiometric preservation and speckle
                 suppression power.
-                \end{enumerate}
+                \item \label{itm:extend_sar_to_polsar} An example where an existing SAR
+                processing technique is extensible towards POLSAR data is to be demonstrated
                 \end{enumerate}
 \end{enumerate}
 
@@ -466,19 +470,20 @@ This is first applied on the simpler case of SAR data. %devided into a few small
 %  it also results in a homoskedastic statistical model.
 %From this consistent sense of variance, the second step illustrates the consistent sense of contrast and distance.
 %After these models are validated against practical data, their beneficial applications are further explored.
-To combine these two seemingly disconnected threads of research, the above results for SAR are extended to POLSAR,
-  since the thesis also shows that the POLSAR models are a generic multi-dimensional superset of the traditional SAR data.%***IVM I changed "version" to "superset" in the sentence above. Please check if you are comfortable with that change, and if not, change it back!
-Thus the homoskedastic theoretical models and their benefits are extended from SAR to POLSAR.   
+To combine these two seemingly disconnected threads of research, the results for SAR are extended to POLSAR,
+  since the thesis also shows that the POLSAR models are a generic multi-dimensional superset of the traditional SAR data. %***IVM I changed "version" to "superset" in the sentence above. Please check if you are comfortable with that change, and if not, change it back!
+%Thus the homoskedastic theoretical models and their benefits are extended from SAR to POLSAR.   
 %The 3 paragraphs are collapsed into 1: to address Prof Vun's comment:
 %(comment: you are stating the objectives repetitively so far – I counted three time so far, and confuse the results obtained with the objectives. There is no need to re-emphasize the objective if the write-up is clear)
 
 
 \section{Organisation of the Thesis}
-The rest of this thesis is organized into five chapters, as follows:
-The next chapter will survey the related publications
-  and state-of-the-art techniques in modelling, processing, filtering and evaluating (POL)SAR speckle filter will be presented.
+The rest of this thesis is organized into five chapters as follows.
+
+Chapter \ref{chap:lit_survey} will survey the related publications
+  and the state-of-the-art techniques in modelling, processing, filtering and evaluating (POL)SAR speckle filter. %will be presented.
 It will also discuss the different measures of distance for both SAR and POLSAR data, together with their extensive applications. 
-Through these discussion, the need for a homoskedastic and scalar model for the multivariate and heteroskedastic POLSAR is brought forward.
+Through these discussions, the need for a homoskedastic and scalar model for the multivariate and heteroskedastic POLSAR is brought forward.
 
 %\section{Research Contributions}
 
@@ -497,47 +502,49 @@ Through these discussion, the need for a homoskedastic and scalar model for the 
 %                stated objectives, the research results of each section
 %                contribute to the achievement of the objectives.
 %Specifically,
-The heart of is thesis contains several contributions which meet the stated objectives.
+
+%The heart of is thesis contains several contributions which meet the stated objectives.
                 Chapter \ref{chap:sar} begins by by highlighting that SAR
                 data are heteroskedastic in the original domain, whereas
                 logarithmic transformation converts this into a
-                homoskedastic model (Research Contribution \ref{itm:log_transform}). 
+                homoskedastic model. 
 It
                 also drives consistent and homoskedastic measures of
-                distance for the one dimensional SAR data (Research Contribution \ref{itm:sar_measures_distance}).
+                distance for the one dimensional SAR data.
 These
                 models for SAR are then validated against real-life
-                practical data (Research Contribution \ref{itm:sar_validation})
+                practical data. (i.e. see Research Contribution \ref{itm:log_transform} to \ref{itm:sar_validation})
 
  Chapter
                 \ref{chap:polsar} then derives several scalar statistical models for the
-                determinant of the POLSAR covariance matrix (Research Contribution \ref{itm:polsar_model}) and
+                determinant of the POLSAR covariance matrix and
                 shows that this is heteroskedastic in the original
                 domain as well as homoskedastic in the log-transformed
-                domain (Research Contribution \ref{itm:log_transform}).
+                domain.
 It
                 also derives the heteroskedastic discrimination measures
-                (Research Contribution \ref{itm:polsar_discrimination_measure}) as well as several homoskedastic measures of
-                distance for the data (Research Contribution \ref{itm:sar_measures_distance}).
+                 as well as several homoskedastic measures of
+                distance for the data.
 Then
                 the models for SAR are shown to be a special case of
-                the proposed models for POLSAR (Research Contribution \ref{itm:polsar_include_sar}) and finally it
-                validates these proposed models (Research Contribution \ref{itm:polsar_validation})
+                the proposed models for POLSAR and finally it
+                validates these proposed models (i.e. see Research Contribution \ref{itm:polsar_model} to \ref{itm:polsar_validation})
 
  The
                 beneficial applications of these models is presented in
-                chapter \ref{chap:applications}, where the consistent sense of variance
-                property helps to break the vicious cycle in SAR
-                speckle filtering (Research Contribution \ref{itm:filter_vicious_circle}).
+                chapter \ref{chap:applications}, where the property of a consistent sense of variance
+                 helps to break the vicious cycle in SAR
+                speckle filtering.
 It
-                also shows how MSE can be again applicable in the
+                also shows how MSE can again be applicable in the
                 additive and homoskedastic domain to evaluate SAR
-                speckle filters (Research Contribution \ref{itm:log_mse}).
+                speckle filters.
 An
                 example of extending existing techniques from SAR to
                 POLSAR is also demonstrated in this chapter where the
                 MSE evaluation criteria is also shown capable of
-                evaluating POLSAR speckle filters (Research Contribution \ref{itm:extend_sar_to_polsar}).
+                evaluating POLSAR speckle filters.
+(i.e. see Research Contribution \ref{itm:filter_vicious_circle} to \ref{itm:extend_sar_to_polsar})
 Finally, the contribution of the thesis with respect to the research objectives and research impact is discussed in the concluding chapter \ref{chap:conclusions}.
 
 

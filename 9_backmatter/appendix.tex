@@ -32,7 +32,7 @@ pdf(\Lambda;L) = \frac{e^{L \Lambda -e^\Lambda/2}}{2^L\Gamma(L)}
 \label{eqn:log_chi_square_dist_pdf}
 \end{equation}
 
-From the PDF given in Eqn. \ref{eqn:log_chi_square_dist_pdf}, characteristics function can be computed.
+From the PDF given in Eqn. \ref{eqn:log_chi_square_dist_pdf}, a characteristic function can be computed.
 By definition, the characteristic function (CF) $\varphi_X(t)$ for a random variable $X$ is computed as:
 \begin{eqnarray*}
 \varphi_X(t) = \operatorname{E}\big[e^{itX}\big] 
@@ -42,12 +42,12 @@ By definition, the characteristic function (CF) $\varphi_X(t)$ for a random vari
 with $\varphi_x(t)$ is the characteristic function,
      $F_X(x)$ is the CDF function of X and
      $f_X(x)$ is the PDF function of X.
-Thus the characteristic function for log-chi-squared distribution is defined as: 
+Thus the characteristic function for the log-chi-squared distribution is defined as: 
 \begin{equation}
 \varphi_\Lambda(t)=\int_0^\infty e^{itx} \frac{e^{Lx-e^x/2}}{2^L \Gamma(L)}\,dx 
 \end{equation}
 
-Gamma function is defined over complex domain as:
+The Gamma function is defined over the complex domain as:
 $\Gamma(z) = \int_0^\infty  e^{-x} x^{z-1} dx .$
 Thus $\Gamma(L+it) = \int_0^\infty  e^{-x} x^{L+it-1} dx .$
 Set $x=e^z/2$ then $dx=e^z/2dz$, we have $\Gamma(L+it)= \int_0^\infty  e^{itz} \frac{e^{Lz-e^z/2}}{2^{L+it}} dz$
@@ -75,7 +75,7 @@ due to
   \frac{\partial 2^{it}}{\partial t} &=& i2^{it}\ln(2), \\
   \partial (u \cdot v) / \partial t &=& u \cdot \partial v /\partial t + v \cdot \partial u/\partial t, 
 \end{eqnarray*}
-where $\psi^0()$ denotes di-gamma function.
+where $\psi^0()$ denotes the di-gamma function.
 
 Meanwhile, the second derivative can be written as:
 \begin{equation}
@@ -88,7 +88,7 @@ due to:
   \frac{d \psi^0(L+it)}{dt} &=& i \psi^1(L+it), \\
   \partial (u \cdot v) / \partial t &=& u \cdot \partial v /\partial t + v \cdot \partial u/\partial t,
 \end{eqnarray*}
-with $\psi^1()$ denotes tri-gamma function.
+with $\psi^1()$ denotes the tri-gamma function.
 
 The $n^{th}$ moments of random variable $X$ can be computed from the derivatives of its characteristic function as:
 \begin{equation}
@@ -163,7 +163,7 @@ Thus they can be computed as:
 
 \section{Deriving the Characteristic Functions for the Consistent Measures of Distance}
 
-Given characteristic function (CF) of the elementary log-chi square distributions can be written as:
+Given that the characteristic function (CF) of the elementary log-chi square distributions can be written as:
 \begin{eqnarray}
  CF_{\Lambda(2L)}(t) &=& 2^{it}\Gamma(L+it)/\Gamma(L) \nonumber
 \end{eqnarray}
@@ -202,10 +202,10 @@ we arrive at:
 \end{eqnarray}
 with $\Gamma()$ and $B()$ denotes Gamma and Beta functions respectively.
 
-\section{SAR intensity as the special case of POLSAR covariance matrix determinant}
+\section{SAR intensity as a special case of POLSAR covariance matrix determinant}
 \label{sec:appendix_sar_special_case_of_polsar}
 
-In this appendix, the following results for SAR intensity $I$ is shown to be special cases of the results given in this paper for the determinant of POLSAR's covariance matrix $det|C_v|$.
+In this appendix, the following results for SAR intensity $I$ are shown to be special cases of the results given in this thesis for the determinant of POLSAR's covariance matrix $det|C_v|$.
 Specifically, not only the following results from chapter \ref{chap:sar}, i.e. $d=L=1$, is reviewed:
 \begin{eqnarray}
   I &\sim& \bar{I} \cdot pdf \left[ e^{-R} \right] \\
@@ -253,12 +253,12 @@ They are:
   \end{eqnarray}
 
 The derivation process detailed below consists of two-phases.
-The first phase collapse the generic multi-dimensional POLSAR results into the classical one-dimensional SAR domain.
+The first phase collapses the generic multi-dimensional POLSAR results into the classical one-dimensional SAR domain.
 Mathematically this means setting the dimensional number in POLSAR to  $d=1$
   and collapsing the POLSAR covariance matrix into the variance measure in SAR, which also equals the SAR intensity i.e. $|C_v|=I,|\Sigma_v|=\bar{I}$.
 
-The output of the first phase, in the general case is applicable to multi-look SAR data, where $d=1$ but $L>1$.
-The second phase simplify the multi-look results into single-look results.
+The output of the first phase, in the general case, is applicable to multi-look SAR data, where $d=1$ but $L>1$.
+The second phase simplifies the multi-look results into single-look results.
 Mathematically, that means setting $L=1$ in the multi-look result
   and converting from natural logarithmic domain to the base-2 logarithm used in \ref{chap:sar}.
 
@@ -270,7 +270,7 @@ we have:
   I &\sim& \frac{\bar{I}}{2L} \chi^2(2L)  \\
   \frac{I}{\bar{I}} = \mathbb{R} &\sim& \frac{1}{2L}  \chi^2(2L)   
 \end{eqnarray*}
-Or in PDF forms, and applying variable change theorem we have:
+Or in PDF forms, and applying the variable change theorem we have:
 \begin{eqnarray*}
     \frac{2L I}{\bar{I}} &\sim& pdf \left[ \frac{x^{L-1}e^{-x/2}}{2^L \Gamma(L)} \right] \\
   \frac{I}{\bar{I}} &\sim& pdf \left[ \frac{x^{L-1}e^{-x/2}}{2^L \Gamma(L)} \cdot dx/dt \right]_{x=2L \cdot t} \\
@@ -297,10 +297,10 @@ which is the same as in chapter \ref{chap:sar}.
 \section{Log-transformed domain: SAR log-intensity and the log-distance}
 
 The result for multi-look SAR data written in log-transformed domain can be derived from two different approaches.
-The first is to follow the simplification method, where the results for log-transformed POLSAR data is simplified into log-transformed multi-look SAR result.
+The first is to follow the simplification method, where the results for log-transformed POLSAR data are simplified into a log-transformed multi-look SAR result.
 
 The second approach is to apply log-transformation into the results derived in the previous section.
-In this section, it is shown that both approaches would results into identical results.
+In this section, it is shown that both approaches would result in identical results.
 
 Setting $d=1$, $|C_v|=I$ and $|\Sigma_v|=\bar{I}$ into Eqns. \ref{eqn:polsar_log_det_cov_dist} and \ref{eqn:polsar_dispersion_log_det_cov_dist}
 we have
@@ -327,7 +327,7 @@ Thus the first approach arrives at
 \end{eqnarray}
 
 In the second approach, log-transformation is applied on previous result for multi-look SAR intensity and its ratio in the original domain (Eqns. \ref{eqn:multi_look_SAR_ratio_dist} and \ref{eqn:multi_look_SAR_intensity_dist}).
-The also arrives at the same results as above, the details working however is omitted here for brevity.
+This also arrives at the same results as above, the detailed working however is omitted here for brevity.
 
 %\begin{eqnarray*}
 %    I &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{x}}}{ \bar{I}^{L}\Gamma(L)} \right] \\
@@ -360,7 +360,7 @@ we have:
 
 This completes the first phase of the derivation process.
 The second phase of simplification involves setting $L=1$ into the above results for multi-look SAR data,
-  and converting natural logarithm into base-2 logarithm.
+  and converting natural logarithms into base-2 logarithms.
 First, setting $L=1$ makes the above results become
 \begin{eqnarray*}
    \ln{I} = \mathbb{N} &\sim&  pdf \left[ e^{(x-\bar{N})-e^{x-\bar{N}}} \right] \\
@@ -371,7 +371,7 @@ First, setting $L=1$ makes the above results become
 \end{eqnarray*}
 with $\gamma$ denotes the Euler-Mascharoni constant.
 Then to convert to base-2 logarithm from natural logarithmic transformation,
-  variable change theorem is invoked.
+  the variable change theorem is invoked.
   That is:
   \begin{eqnarray*}
    \log_2{I}  = \mathbb{N}_2    &\sim&  pdf \left[ e^{(x-\bar{N})-e^{x-\bar{N}}} \cdot dx/dt \right]_{x=t\cdot \ln{2}} \\
@@ -409,7 +409,7 @@ Setting $L=1$ for Single-Look SAR we have
 \end{equation}
 due to: $\psi^0(1)=-\gamma$ and $\Gamma(1)=1$
 with $\gamma$ being the Euler Mascheroni Constant which equals $0.5772$. 
-In base-2 logarithm, variable change theorem is invoked
+In base-2 logarithm, the variable change theorem is invoked
 \begin{eqnarray*}
   \mathbb{D}_2 &=& \log_2{I} - avg(\log_2{I}) = \mathbb{D}/\ln{2} \\
   \mathbb{D}_2 &\sim& pdf \left[ e^{x-\gamma-e^{x-\gamma}} \cdot \frac{dx}{dt} \right]_{x=t \cdot \ln2}
@@ -455,5 +455,5 @@ Converting to base-2 logarithm we have
 \end{eqnarray*}
 which is also consistent to the result in chapter \ref{chap:sar}.
 
-\chapter{Articles Prepared For Public Communication}
+%\chapter{Articles Prepared For Public Communication}
 

@@ -4,7 +4,7 @@
 This chapter  highlights that SAR
                 data are heteroskedastic in the original domain.
 Relying solely on statistical and mathematical principles,             
-the log-transformed SAR data is shown to be homoskedastic.
+the log-transformed SAR data is then shown to be homoskedastic.
 From there, the consistent sense of variance and a few consistent measures of distance are proposed and validated against real-life
                 practical SAR data.
 
@@ -515,9 +515,9 @@ Table \ref{tab:var_cut_off_values} gives the result of one such experiment for a
 The table is useful in cases when an area is to be tested for homogeneity,
   for example in the kMLE speckle filter \cite{Le_2010_ACRS}
 
-\begin{table}
+\begin{table}[H]
 \centering
-
+\small
 %awk -F"&" '{print $4}' tmp.0.txt | awk -F"(" '{print $1}'
 \begin{tabular}{c|c|c|c|c|c}
 No  & 70\%            &75\%             &80\%             &85\%             &90\%\\
@@ -552,7 +552,7 @@ No  & 70\%            &75\%             &80\%             &85\%             &90\
 \label{tab:var_cut_off_values}
 \end{table}
 
-\textbf{In summary}, a few measurements of distance, being dispersion and contrast, are shown to agree with the consistent sense of variance and homoskedasticity.
+In summary, a few measurements of distance, being dispersion and contrast, are shown to agree with the consistent sense of variance and homoskedasticity.
 The dispersion measurement can be used to test 
 if a pixel belongs to a ``known'' class of physical scatterer.
 The consistent sense of contrast can be used to test if any pair of measured data points belong to  the same homogeneous class.
