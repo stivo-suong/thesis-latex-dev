@@ -39,7 +39,7 @@ University of Science and Technology of China.
 
 \begin{abstract}
 %Problem statement  
-This proposes a scalar and representative observable for the multi-dimensional POLSAR data,
+This paper proposes a scalar and representative observable for the multi-dimensional POLSAR data,
   from which statistically consistent discrimination measures can be derived.
 %What actually were done? and As the result, what is learned?
 Specifically, the statistical behaviour of the POLSAR covariance matrix determinant is used
@@ -49,8 +49,10 @@ As the POLSAR covariance matrix determinant generalizes the SAR intensity toward
   the proposed model is also shown to include the traditional model used for SAR intensity under its natural coverage.
 %What are the larger implications of the findings presented in this paper?
 Consequently, the main beneficial implication of the proposed approach is that
-  it enables the adaptation of many existing SAR data processing techniques for POLSAR data,
-  and at the same time, it provides a consistent theory unifying the seemingly disparate discrimination measure proposals for SAR and POLSAR data.
+  it provides a consistent theory unifying the currently disconnected proposals for SAR and POLSAR discrimination measures
+  which enables the adaptation of many existing SAR data processing techniques for POLSAR data.
+%  it enables the adaptation of many existing SAR data processing techniques for POLSAR data,
+%  and at the same time, it provides a consistent theory unifying the seemingly disparate discrimination measure proposals for SAR and POLSAR data.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -71,14 +73,16 @@ POLSAR extends SAR by exploiting the natural polarization property of Electro-Ma
 
 %Research Motivation: Why it is important to solve this problem?
 %The POLSAR data, however, is multidimensional and stochastic.
-Similar to the SAR data, POLSAR data is stochastic.
-Moreover, it is multi-dimensional.
+Similar to the SAR data, the POLSAR data is stochastic.
+Moreover, it is multi-dimensional making it even harder to interpret.
 Under this context, it is therefore important to establish a simple and intuitive understanding of the data
-  and statistical models are undoubtedly crucial in understand the stochastic nature of the data.
+  and statistical models are undoubtedly crucial in understand the stochastic its nature.
 While several multidimensional models have been proposed for the POLSAR data (TODO:CITE source thesis),
   unfortunately, due to the multidimensional nature, they are complex and not very intuitive.
-Practical POLSAR data processing, however, makes heavily uses of scalar discrimination measures,
-  which should be based on statistically consistent models for scalar yet representative observables of the multidimensional data.
+Practical POLSAR data processing, however, makes heavily use of scalar discrimination measures,
+  which should be based on statistically consistent models for scalar and representative observables of the multidimensional data.
+It is thus important to establish a scalar and representative observable for this multi-dimensional POLSAR data.
+  
 %Moreover, to provide theoretical foundation for discrimination measures proposal,
 %  statistically consistent models should be derived from this scalar observable.
 
@@ -92,7 +96,7 @@ As such no observable has been widely accepted as being highly representative of
   which severely limits their applicability in practical data processing applications.
 From an alternative approach, there are also a few POLSAR discrimination measures proposed,
   but all of them are based on the likelihood ratio statistics.
-This statistical test should be based on a statistically consistent distribution
+This statistical test should be based on an exact and consistent statistical distribution
   but so far has only shown to be based on an asymptotic distribution.
 
 %Research Objective: Give your precise problem statement  
@@ -104,14 +108,22 @@ This article hence present a scalar and representative observable, and its assoc
 %Consequently, in this article, the statistical behaviour of the determinant of POLSAR covariance matrix is further investigated.
 %Prof Vuns: comment: the article provides the result, not the journey!
 The POLSAR data have been statistically modelled as following the complex Wishart distribution.
-As such the generic statistical model for the covariance matrix determinant, being just a scalar projection of the multidimensional data, is presented.
+Consequently, the generic statistical model for the covariance matrix determinant, being just a scalar projection of the multidimensional data, is presented.
+This model is then used to derive several scalar and consistent statistical models suggesting that their associated observables are capable of being used as discrimination measures for POLSAR data.
+The specific two and three dimensional models of these models, 
+  which also include the derived discrimination measures,
+  are originally designed against both partial and full polarimetric SAR data.
+
 %The specific two and three dimensional models are then validated against both partial and full polarimetric SAR data.
-It is also shown that
-  the specific one dimensional version of the generic model proposed in this paper
-  matches perfectly with the traditional statistical model used for SAR intensity.
-Furthermore, the approach proposed in this paper
-  not only provides a consistent foundation for the different discrimination measures proposal in POLSAR
-  but also leads to the establishment of a new discriminating measures: the determinant-ratio and the change-ratio.
+Interestingly the paper also shows that %It is also shown that
+  the specific one dimensional versions of these models proposed 
+  match perfectly with the traditional statistical model used for SAR intensity.
+This effectively puts the one dimensional SAR theory to stay within the proposed scalar approach for multi dimensional POLSAR.
+With this new insight the different discrimination proposals for SAR and POLSAR are reviewed and it is shown that the approach proposed in this paper provides a strong unifying and consistent foundation relating them all together.
+The applicability of these theoretical applications is illustrated by experiments where the specific one, two and three dimensional versions of the proposed generic models are validated against practical data. 
+%Furthermore, the approach proposed in this paper
+%  not only provides a consistent foundation for the different discrimination measures proposal in POLSAR
+%  but also leads to the establishment of a new discriminating measures: the determinant-ratio and the change-ratio.
 
 %What is the novelty of your solution? What are its advantages
 %Compared to other published scalar observables with accompanying statistical model,
@@ -123,13 +135,14 @@ Furthermore, the approach proposed in this paper
 %  not only is simpler in concept and computation than the existing POLSAR discrimination measures
 %  but also can be considered as the natural multi-dimensional extension of the commonly-used intensity-ratio discrimination measure in SAR.
 % Prof Vun Comment: already mentioned above, no need to repeat
+%hai thoughts: actually this should be included to justify our title, and our approach. It is however being moved to discussion / conclusion section
 
 %How do you know if the problem is solved? State your research contribution to be achieved
 In summary, the main objective of this article is to propose the determinant of the POLSAR covariance matrix as a scalar observable
   that is representative of the multi-dimensional data.
 Specifically the following research results are to be achieved:
-  1. The generic multi-dimensional statistical model for the POLSAR covariance matrix is to be derived, 
-  2. The generic model is also shown not only providing a staititically consistent models for newly proposed POLSAR discrimination measures, namely the determinant-ratio and the change-ratio.
+  1. The generic scalar and representative statistical model for the determinant of the multi-dimensional POLSAR covariance matrix is to be derived, 
+  2. This generic model is also shown leading to staititically consistent models for newly proposed POLSAR observables, namely the determinant-ratio and the change-ratio.
   3. The special one-dimensional version of the derived generic model is to be shown perfectly matches with the traditionally used SAR intensity model,
   4. All specific one, two and three dimensional versions of the derived generic model are to be validated against real-life captured data,
 (Hai note: I kept this to keep my focus while working on this paper.
