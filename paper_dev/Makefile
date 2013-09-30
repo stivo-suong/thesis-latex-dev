@@ -1,9 +1,11 @@
 final:
-	FINAL=1 ./texpp.awk < article_pp.tex > article.tex
+	#FINAL=1 ./texpp.awk < article_pp.tex > article.tex
 	latex -interaction=nonstopmode 'article.tex'
 	bibtex article
 	latex 'article.tex'
 	latex 'article.tex'
+	dvips article.dvi
+	ps2pdf article.ps
 review:
 	REVIEW=1 ./texpp.awk < article_pp.tex > article.tex
 	latex -interaction=nonstopmode 'article.tex'
