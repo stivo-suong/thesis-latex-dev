@@ -150,7 +150,7 @@ Specifically the following research results are to be achieved:
   2. This generic model is also shown leading to staititically consistent models for newly proposed POLSAR observables, namely the determinant-ratio and the change-ratio.
   3. The special one-dimensional version of the derived generic model is to be shown perfectly matches with the traditionally used SAR intensity model,
   4. All specific one, two and three dimensional versions of the derived generic model are to be validated against real-life captured data,
-(Hai note: I kept this to keep my focus while working on this paper.
+(Hai NOTE: I kept this to keep my focus while working on this paper.
   It can be removed before the final submission.)
   
 %Article Organization: Show that you deliver on the objectives and hence solve the stated problem
@@ -566,7 +566,6 @@ The histograms for both the intensity and intensity ratio %the log-distance and 
   are then plotted against the theoretical PDF given above.
 Also presented are the plots of the same test applied on a homogeneous patch inside the nine-look processed RADARSAT2 image.
 The plots are obtained with ENL set an estimated value obtained using the technique presented in \cite{Anfinsen_2009_TGRS_3795}.
-%In this case, even though the RADARSAT2 has a nominal look-number of 9, its ``true'' value is estimated as $L=$ (TODO:CALC).
 In all cases, good visual match is apparent, which hence validates the model proposed above. %providing us a simple validation of the result.
 
 %ifdef FINAL
@@ -1064,42 +1063,44 @@ Other topics that may also be connected include: speckle filtering, target detec
 \label{sec:conclusion}
 
 %What has been done?
-In this article,
+In this paper,
   based on the commonly used complex Wishart distribution for the POLSAR target vector,
-  a generic statistical model has been derived for the POLSAR covariance matrix determinant.
+  a generic statistical model has been proposed for the POLSAR covariance matrix determinant.
 Then the specific (d=2) and (d=3) versions of the derived model are respectively validated against real-life partial and full polarimetric SAR data.
-The article also shows a perfect match between the (d=1) specific model and the traditional model for SAR intensity,
-  effectively putting the existing SAR theories under the generic model's natural coverage.
-It also establish a new POLSAR discrimination measure: the determinant-ratio,
-  which essentially is the generic version of the SAR intensity ratio.
+The paper also establishes a few POLSAR discrimination measures: the determinant-ratio and the change-ratio,
+  which essentially are the generic version of the SAR intensity-ratio.
+At the same time, it also shows a perfect match between the (d=1) specific models and the traditional model for SAR intensity,
+  effectively encompassing the existing SAR theories within the proposed generic models' natural coverage.
 
 %What are the results? What are their advantages over others' results?
-The result is the proposal of the POLSAR covariance matrix determinant as the scalar and representative observable for the multi-dimensional POLSAR data.
-Compared to other published scalar observable, the proposed determinant is highly representative of the multi-dimensional data.
+The main result of this paper is the proposal to consider the POLSAR covariance matrix determinant as the scalar and representative observable for the multi-dimensional POLSAR data.
+Compared to other published scalar observables, the proposed determinant is highly representative of the multi-dimensional data.
 Its representative power is justified by the following reasons.
 Firstly, the covariance matrix determinant, when collapsed into one-dimensional case, transforms neatly into the representative SAR intensity.
 Secondly, the statistical model for this observable is shown to be the generic multi-dimensional extension of the traditional model for the one dimensional SAR intensity.
 And last but not least, this observable also leads to the establishment of the determinant-ratio discrimination measure for POLSAR data, which should increase the usability of this proposal.
 
 %What are their benefit?
-There are several beneficial implications of the proposal presented in this article.
+There are several beneficial implications of the proposed approach presented in this paper.
 Since the scalar and representative model for POLSAR generalizes the traditional model for SAR intensity,
   its main benefit is that it enables the adaptation of many existing SAR data processing techniques for POLSAR data.
 At the same time, it provides a consistent theory unifying the seemingly disparate discrimination measure proposals for SAR and POLSAR data.  
 
 %What are their limitations? What problems this appears to solve, but actually is not?
-The theory proposed in this article also has its limitations.
-Firstly, the theoretical model proposed is based on the complex Wishart distribution.
-Thus its applicability is also limited by that of its foundation,
-  that is the proposed theoretical model is only guaranteed to work in homogeneous area.
+The models proposed in this article also has its limitations.
+Firstly, they are based on the complex Wishart distribution.
+%Thus its applicability is also limited by that of its foundation,
+%  that is the proposed theoretical model 
+  which is only guaranteed to work for homogeneous area.
 Secondly, while it is desirable for a large number of applications to reduce the multi-dimensional POLSAR data to a scalar value,
   such a reduction is unlikely to be lossless.
-Finally, in this article, the theoretical model has only been validated for partial (d=2) and full (d=3) monostatic POLSAR data,
+
+In this paper, the theoretical model has only been validated for partial (d=2) and full (d=3) monostatic POLSAR data,
 %and hence What can be done next?
-  leaving the test of its validity on different types of dataset like bistatic POLSAR data (d=4) or interferrometric POLSAR data (d=6) a possible future work.
+  leaving the test of its validity for different types of dataset like bistatic POLSAR data (d=4) or interferrometric POLSAR data (d=6) a possible future work.
 Other possible future work includes
   an investigation on the applicability of this observables into POLSAR heterogeneous areas,
-  as well as further studies to explore the use of this theory in conjunction with other target decomposition techniques
+  as well as further studies to explore the use of these generic models in conjunction with other target decomposition techniques
     such as the Freeman-Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68}, etc.
 
 % references section
