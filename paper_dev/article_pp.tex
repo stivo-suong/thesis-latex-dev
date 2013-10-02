@@ -7,6 +7,7 @@
 %\documentclass[a4paper, 10pt, conference]{ieeeconf}
 
 \usepackage{cite} %for citations
+\renewcommand{\citedash}{--}
 \usepackage{url}
 
  %this is for math typing (eg: cases)
@@ -82,7 +83,7 @@ Similar to the SAR data, the POLSAR data is stochastic.
 Moreover, it is multi-dimensional making it even harder to interpret.
 Under this context, it is therefore important to establish a simple and intuitive understanding of the data
   and statistical models are undoubtedly crucial in understand the stochastic its nature.
-While several multidimensional models have been proposed for the POLSAR data (TODO:CITE source thesis),
+While several multidimensional models have been proposed for the POLSAR data,
   unfortunately, due to the multidimensional nature, they are complex and not very intuitive.
 Practical POLSAR data processing, however, makes heavily use of scalar discrimination measures,
   which should be based on statistically consistent models for scalar and representative observables of the multidimensional data.
@@ -94,7 +95,7 @@ It is thus important to establish a scalar and representative observable for thi
 %How do others solve this problem?
 %The complex POLSAR data have been statistically modelled as following the complex Wishart distribution,
 %  which apparently is multidimensional, complex and thus not very intuitive.
-There has been a few scalar observables with accompanying statistical models proposal for POLSAR (TODO:CITE from section II),
+There has been a few scalar observables with accompanying statistical models proposal for POLSAR \cite{Conradsen_2003_TGRS_4, Alberga_2008_IJRS_4129, Joughin_1994_TGRS_562, Lee_1994_TGRS_1017, Touzi_1996_TGRS_519, Lopez-Martinez_2003_TGRS_2232, Erten_2012_Sensors_2766},
   but none of them is able to provide meaningful scalar discrimination measures.
 %  but none of them has led to scalar discrimination measures proposal.
 As such no observable has been widely accepted as being highly representative of the multi-dimensional data,
@@ -971,7 +972,6 @@ These applications however are not included in this paper, but rather left as a 
 %In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
 %  which is linear and additive in nature.
 %Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
-%(TODO: shorten the above 2 paragraphs. 
 %NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
 %
 %To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
