@@ -119,8 +119,8 @@ Interestingly the paper also shows that %It is also shown that
   the specific one dimensional versions of these models proposed 
   match perfectly with the traditional statistical model used for SAR intensity.
 This effectively puts the one dimensional SAR theory to stay within the proposed scalar approach for multi dimensional POLSAR.
-With this new insight the different discrimination proposals for SAR and POLSAR are reviewed and it is shown that the approach proposed in this paper provides a strong unifying and consistent foundation relating them all together.
-The applicability of these theoretical applications is illustrated by experiments where the specific one, two and three dimensional versions of the proposed generic models are validated against practical data. 
+With this new insight the different discrimination proposals for SAR and POLSAR are reviewed and it is shown that the approach proposed in this paper provides a strong, unifying and consistent foundation relating them all together.
+The applicability of these theoretical models is illustrated by experiments where the specific one, two and three dimensional versions of the proposed generic models are validated against practical data. 
 %Furthermore, the approach proposed in this paper
 %  not only provides a consistent foundation for the different discrimination measures proposal in POLSAR
 %  but also leads to the establishment of a new discriminating measures: the determinant-ratio and the change-ratio.
@@ -138,23 +138,27 @@ The applicability of these theoretical applications is illustrated by experiment
 %hai thoughts: actually this should be included to justify our title, and our approach. It is however being moved to discussion / conclusion section
 
 %How do you know if the problem is solved? State your research contribution to be achieved
-In summary, the main objective of this article is to propose the determinant of the POLSAR covariance matrix as a scalar observable
-  that is representative of the multi-dimensional data.
-Specifically the following research results are to be achieved:
-  1. The generic scalar and representative statistical model for the determinant of the multi-dimensional POLSAR covariance matrix is to be derived, 
-  2. This generic model is also shown leading to staititically consistent models for newly proposed POLSAR observables, namely the determinant-ratio and the change-ratio.
-  3. The special one-dimensional version of the derived generic model is to be shown perfectly matches with the traditionally used SAR intensity model,
-  4. All specific one, two and three dimensional versions of the derived generic model are to be validated against real-life captured data,
-(Hai note: I kept this to keep my focus while working on this paper.
-  It can be removed before the final submission.)
+%In summary, the main objective of this article is to propose the determinant of the POLSAR covariance matrix as a scalar observable
+%  that is representative of the multi-dimensional data.
+%Specifically the following research results are to be achieved:
+%  1. The generic scalar and representative statistical model for the determinant of the multi-dimensional POLSAR covariance matrix is to be derived, 
+%  2. This generic model is also shown leading to staititically consistent models for newly proposed POLSAR observables, namely the determinant-ratio and the change-ratio.
+%  3. The special one-dimensional version of the derived generic model is to be shown perfectly matches with the traditionally used SAR intensity model,
+%  4. All specific one, two and three dimensional versions of the derived generic model are to be validated against real-life captured data,
+%(Hai NOTE: I kept this to keep my focus while working on this paper.
+%  It can be removed before the final submission.)
   
 %Article Organization: Show that you deliver on the objectives and hence solve the stated problem
-The rest of this article is organized as follows.
-After the next section reviews existing discrimination measures as well as scalar observables models for POLSAR,
-  section 3? derives the generic statistical model for the determinant of the POLSAR covariance matrix.
-Section 4? then validates the specific two and three dimensional versions of the model against real-life captured data.
-After section 5? illustrates the match between the specific model of one dimensional and the traditional model for SAR intensity,
-  section 6? establishes the generic determinant-ratio descrimination measure which links the disparate discrimination measure proposals for the traditional SAR and the more recent POLSAR data.
+Thus, the rest of this article is organized as follows.
+After the next section reviews existing discrimination measures as well as scalar observables models for POLSAR, section \ref{sec:theoretical_model}
+  derives the generic statistical model for the determinant of the POLSAR covariance matrix
+  and proposes several new discrimination measures for the multi-dimensional data.
+After section \ref{sec:sar_special_case_of_polsar} illustrates the match between the specific model of one dimensional and the traditional model for SAR intensity,
+  section \ref{sec:link_sar_polsar} links the disparate discrimination measure proposals for the traditional SAR and the more recent POLSAR data.
+%Section \ref{sec:polsar_models_validation} then validates the specific one, two and three dimensional versions of the proposed model against real-life captured data.
+The applicability of these models against practical data is illustrated in section \ref{sec:polsar_models_validation}.
+Section \ref{sec:discussion} presents a high-level discussion of the results presented before
+  section \ref{sec:conclusion} finally concludes this paper.
 
 \section{Related Work in Literature}
 \label{sec:lit_review}
@@ -493,16 +497,24 @@ I &\sim& pdf \left[ \frac{L^L x^{L-1} e^{-Lx/\bar{I}}}{\Gamma(L) \bar{I}^L} \rig
   \end{eqnarray}
 considering that $|C_v| \mapsto I$ and $|\Sigma_v| \mapsto \bar{I}$ as multi-dimensional POLSAR collapses into single-dimensional SAR.
 
-\section{Unifying the different discrimination measures proposals for bpth SAR and POLSAR}
+\section{Unifying the different discrimination measures proposals for both SAR and POLSAR}
+\label{sec:link_sar_polsar}
 
-At least for both fields of SAR and POLSAR, statistical models have always been the foundation to derive discrimination measures.
-For SAR, the statistical model for SAR intensity has been used to derive the most widely used intensity-ratio discrimination measure \cite{Rignot_1993_TGRS_896}.
-For POLSAR, the same case should apply, 
-  except that so far only asymptotic distribution has been derived for the most common foundation, i.e. the likelihood test statistics.
-With the insight gained from section \ref{sec:sar_special_case_of_polsar}, 
-  it should be clear that the proposed model can also be used to derive discrimination measures for POLSAR.
+Statistical models have always been the foundation to derive discrimination measures.
+This is true for both fields of SAR and POLSAR.
+For SAR, where the field is more or less settled on the issue,
+  the statistical model for SAR intensity has been used to derive the most widely used intensity-ratio discrimination measure \cite{Rignot_1993_TGRS_896}.
+For POLSAR, where the field is much less matured,
+  the same case should apply, 
+  except that so far only asymptotic distribution has been derived for the most common foundation, i.e. the likelihood test statistics \cite{Conradsen_2003_TGRS_4}.
 
-As a matter of course, in view of the models given in Eqns \ref{eqn:determinant_distribution},
+With the insight gained from section \ref{sec:sar_special_case_of_polsar}, this section presents a few results.
+%  it should be clear that the proposed model can also be used to derive discrimination measures for POLSAR.
+First, similar to the way that the statistical model for SAR intensity has been used to provide the foundation for SAR discrimination measures, e.g. intensity-ratio \cite{Rignot_1993_TGRS_896},
+  the statistical model proposed for POLSAR covariance matrix determinant is to be reviewed as providing the foundation for POLSAR discrimination measures, i.e. the likelihood test statistics.
+And second, new discrimination measures for POLSAR may be derived by learning from the existing SAR discrimination measures.
+
+As for the first matter, in view of the models given in Eqn \ref{eqn:determinant_distribution},
   the likelihood test statistics presented in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:ori_likelyhood_stats} \& \ref{eqn:log_likelyhood_stats}
 can be expressed as:
 \begin{align*}
@@ -510,26 +522,20 @@ can be expressed as:
   Q &\sim e^k \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}   
 \end{align*}
 where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
+This, in essence, derives an exact statistical distribution for the likelyhood test statistics,
+  as opposed to the asymptotic distribution derived in \cite{{Conradsen_2003_TGRS_4}}.
 
 As a by-product of this exact derivation,
   several discrimination measures for the common case of $L_x=L_y$ are further proposed.
 They are the determinant-ratio and the change-ratio presented in Section \ref{sec:theoretical_model}.
-Compared to existing discrimination measures for POLSAR reviewed in section \ref{sec:lit_review}, 
-  the proposed dissimilarity measures are much simpler.
+Compared to existing discrimination measures for POLSAR reviewed in Section \ref{sec:lit_review}, 
+  the proposed dissimilarity measures are simpler in both concept and computation.
 They, at the same time, are multi-dimensional extensions of the intensity-ratio discrimination measure widely used in SAR.
 
-Thus the core of the proposed approach is that the determinant of the POLSAR covariance matrix is proposed as the scalar and representative observable of the complex and multi-dimensional data.
-%What is the novelty of your solution? What are its advantages
-Compared to other published scalar observables with accompanying statistical model,
-  the proposed observable and its models are highly representative of the multidimensional data.
-The representative power of the proposed observable is justified by the following reasons.
-Firstly, the covariance matrix determinant, when collapsed into one-dimensional case, transforms neatly into the representative SAR intensity.
-Secondly, the statistical model for this observable is shown as the generic multi-dimensional extension of the traditional and representative intensity model for the one dimensional SAR data.
-And last but not least, this observable also leads to the determinant-ratio discrimination measure which
-  not only is simpler in concept and computation than the existing POLSAR discrimination measures
-  but also can be considered as the natural multi-dimensional extension of the commonly-used intensity-ratio discrimination measure in SAR.
-% Prof Vun Comment: already mentioned above, no need to repeat
-%hai thoughts: actually this should be included to justify our title, and our approach. It is however being moved to discussion / conclusion section
+In short, with the newly gained insight,
+  the approach proposed in this paper provides a new bridge between the two fields of SAR and POLSAR.
+This invites the adaptation of many established SAR data processing techniques towards POLSAR data,
+  where this Section has just described a few examples.
 However, before further discussion ensues, 
   it is necessary to validate the presented theoretical model with real-life practical data.
 
@@ -561,7 +567,6 @@ The histograms for both the intensity and intensity ratio %the log-distance and 
   are then plotted against the theoretical PDF given above.
 Also presented are the plots of the same test applied on a homogeneous patch inside the nine-look processed RADARSAT2 image.
 The plots are obtained with ENL set an estimated value obtained using the technique presented in \cite{Anfinsen_2009_TGRS_3795}.
-%In this case, even though the RADARSAT2 has a nominal look-number of 9, its ``true'' value is estimated as $L=$ (TODO:CALC).
 In all cases, good visual match is apparent, which hence validates the model proposed above. %providing us a simple validation of the result.
 
 \begin{figure}[h]
@@ -779,91 +784,128 @@ These applications however are not included in this paper, but rather left as a 
 %There not only existing published scalar models for POLSAR are reviewed to show that none of them lead to discrimination measure,
 %  existing discrimination measures for POLSAR are also extensively surveyed leaving virtually no chance of there exists an existing scalar statistical model for POLSAR which leads to existing discrimination measures.
 
-\section{Extending SAR data processing techniques towards POLSAR}
-
-Currently while the field of SAR is much more developed than the field of POLSAR,
-  the two fields however are quite separated.
-Hence many techniques applicable to SAR are not directly applicable to POLSAR.
-With the newly gained, the current proposal provide the bridge between these two separated fields,
-  inviting potential extension of various SAR processing techniques to POLSAR data.
-%For instance the earlier example illustrate that while intensity ratio was commonly used to carry out visually evaluation of SAR speckle filters,
-%  the newly proposed determinant ratio and its log-transformed version (i.e. contrast) are shown capable of visually evaluating POLSAR speckle filters.
-%We believe there are many more unexplored possibilities for such applications.
-  
-There are many beneficial implications for this proposal.
-One of the main benefits is that:
-  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
-One example has already been presented in this paper, 
-  where existing SAR discrimination measures are extended towards POLSAR.
-Another example can be illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
-
-In evaluating SAR speckle filters, the intensity ratio is widely used.
-Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
-Assuming a perfect filtering condition, the ratio image should only contain random noise.
-Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
-
-Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
-  this technique can be equally applied to evaluate POLSAR speckle filters.
-In fact better results can be achieved.
-In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
-  which is linear and additive in nature.
-Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
-(TODO: shorten the above 2 paragraphs. 
-NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
-
-To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
-  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
-  and the two POLSAR speckle filters are then applied to the patch.
-\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
-  they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
-  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.} 
-The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
-At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
-
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
-		 \label{multi_look_dispersion}
-	} 
-	\hfill	
-	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
-		 \label{multi_look_contrast}
-	} \\
-	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
-		 \label{multi_look_dispersion}
-	} 
-	\hfill	
-	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
-		 \label{multi_look_contrast}
-	} 
-\end{tabular}
-\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV).}
-\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
-\end{figure}
-
-Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
-  the distortion impact of the filter can also be made visible by the residual image.
-In this visual evaluation, while it is quite hard to observe the worsen blurring-effects of the boxcar 5$\times$5 speckle filter compared to the 3$\times$3 filter
-in the additive log-determinant image of the filtered output, 
-  such an observation can be made relatively easier by inspecting the residual image.
-  
-There are many similar SAR data processing technique that may be adaptable to POLSAR.
-Examples in the same topic of evaluating speckle filters include
-  the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
-Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
+%\section{Extending SAR data processing techniques towards POLSAR}
+%
+%Currently while the field of SAR is much more developed than the field of POLSAR,
+%  the two fields however are quite separated.
+%Hence many techniques applicable to SAR are not directly applicable to POLSAR.
+%With the newly gained, the current proposal provide the bridge between these two separated fields,
+%  inviting potential extension of various SAR processing techniques to POLSAR data.
+%%For instance the earlier example illustrate that while intensity ratio was commonly used to carry out visually evaluation of SAR speckle filters,
+%%  the newly proposed determinant ratio and its log-transformed version (i.e. contrast) are shown capable of visually evaluating POLSAR speckle filters.
+%%We believe there are many more unexplored possibilities for such applications.
+%  
+%There are many beneficial implications for this proposal.
+%One of the main benefits is that:
+%  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
+%One example has already been presented in this paper, 
+%  where existing SAR discrimination measures are extended towards POLSAR.
+%Another example can be illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
+%
+%In evaluating SAR speckle filters, the intensity ratio is widely used.
+%Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
+%Assuming a perfect filtering condition, the ratio image should only contain random noise.
+%Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
+%
+%Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
+%  this technique can be equally applied to evaluate POLSAR speckle filters.
+%In fact better results can be achieved.
+%In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
+%  which is linear and additive in nature.
+%Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
+%(TODO: shorten the above 2 paragraphs. 
+%NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
+%
+%To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
+%  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
+%  and the two POLSAR speckle filters are then applied to the patch.
+%\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
+%  they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
+%  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.} 
+%The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
+%At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
+%
+%%ifdef FINAL
+%\begin{figure}[h]
+%\centering
+%\begin{tabular}{c}
+%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
+%		 \label{multi_look_contrast}
+%	} \\
+%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
+%		 \label{multi_look_contrast}
+%	} 
+%\end{tabular}
+%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV).}
+%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+%\end{figure}
+%%endif
+%%ifdef REVIEW
+%\begin{figure}[h!]
+%\centering
+%\begin{tabular}{c}
+%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
+%		 \label{multi_look_contrast}
+%	} \\
+%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
+%		 \label{multi_look_contrast}
+%	} 
+%\end{tabular}
+%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSAR Flevoland part-pol data (HH-HV).}
+%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+%\end{figure}
+%%endif
+%
+%Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
+%  the distortion impact of the filter can also be made visible by the residual image.
+%In this visual evaluation, while it is quite hard to observe the worsen blurring-effects of the boxcar 5$\times$5 speckle filter compared to the 3$\times$3 filter
+%in the additive log-determinant image of the filtered output, 
+%  such an observation can be made relatively easier by inspecting the residual image.
+%  
+%There are many similar SAR data processing technique that may be adaptable to POLSAR.
+%Examples in the same topic of evaluating speckle filters include
+%  the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
+%Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -888,8 +930,13 @@ And last but not least, this observable also leads to the establishment of the d
 
 %What are their benefit?
 There are several beneficial implications of the proposed approach presented in this paper.
+Currently while the field of SAR is much more developed than the field of POLSAR,
+  the two fields however are quite separated.
+Hence many techniques applicable to SAR are not directly applicable to POLSAR.
 Since the scalar and representative model for POLSAR generalizes the traditional model for SAR intensity,
   its main benefit is that it enables the adaptation of many existing SAR data processing techniques for POLSAR data.
+One example has already been presented in this paper, 
+  where existing SAR discrimination measures are extended towards POLSAR.
 At the same time, it provides a consistent theory unifying the seemingly disparate discrimination measure proposals for SAR and POLSAR data.  
 
 %What are their limitations? What problems this appears to solve, but actually is not?

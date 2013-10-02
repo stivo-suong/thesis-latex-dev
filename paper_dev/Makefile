@@ -1,5 +1,5 @@
 final:
-	#FINAL=1 ./texpp.awk < article_pp.tex > article.tex
+	FINAL=1 ./texpp.awk < article_pp.tex > article.tex
 	latex 'article.tex'
 	bibtex article
 	latex 'article.tex'
