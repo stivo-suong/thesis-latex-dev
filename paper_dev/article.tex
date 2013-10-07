@@ -1,4 +1,4 @@
-\documentclass[journal]{IEEEtran}
+\documentclass[journal,12pt,draftcls,onecolumn]{IEEEtran}
 %\documentclass[a4paper, 10pt, conference]{ieeeconf}
 
 \usepackage{cite} %for citations
@@ -78,7 +78,7 @@ Similar to the SAR data, the POLSAR data is stochastic.
 Moreover, it is multi-dimensional making it even harder to interpret.
 Under this context, it is therefore important to establish a simple and intuitive understanding of the data
   and statistical models are undoubtedly crucial in understand the stochastic its nature.
-While several multidimensional models have been proposed for the POLSAR data (TODO:CITE source thesis),
+While several multidimensional models have been proposed for the POLSAR data,
   unfortunately, due to the multidimensional nature, they are complex and not very intuitive.
 Practical POLSAR data processing, however, makes heavily use of scalar discrimination measures,
   which should be based on statistically consistent models for scalar and representative observables of the multidimensional data.
@@ -570,45 +570,46 @@ Also presented are the plots of the same test applied on a homogeneous patch ins
 The plots are obtained with ENL set an estimated value obtained using the technique presented in \cite{Anfinsen_2009_TGRS_3795}.
 In all cases, good visual match is apparent, which hence validates the model proposed above. %providing us a simple validation of the result.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \begin{tabular}{c}
 	\subfloat[AIRSAR (HH) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_determinant_model_on_AIRSAR_1d.eps} 	
 		 \label{AIRSAR_1D_determinant}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
-		 \label{RADARSAT2_1D_determinant}
-	} \\
 	\subfloat[AIRSAR (HH) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_1d.eps} 	
 		 \label{AIRSAR_1D_det_ratio}
-	} 
+	}
 	\hfill	
-	\subfloat[RADARSAT2 (HH) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
-		 \label{RADARSAT2_1D_det_ratio}
-	} \\
 	\subfloat[AIRSAR (HH) change ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_1d.eps} 	
 		 \label{AIRSAR_1D_det_ratio}
-	} 
-	\hfill	
-	\subfloat[RADARSAT2 (HH) change ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+	}  \\
+	\subfloat[RADARSAT2 (HH) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_determinant}
+	}
+        \hfill
+        \subfloat[RADARSAT2 (HH) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	}
+        \hfill
+        \subfloat[RADARSAT2 (HH) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps} 	
 		 \label{RADARSAT2_1D_det_ratio}
 	}
@@ -627,94 +628,96 @@ Similar tests %like the one described for SAR data
 The look-number is estimated for each type of data and for each image using the technique described in \cite{Anfinsen_2009_TGRS_3795}. %and is also noted in the plots.
 From the plots, their visual matches again validates the proposed model. 
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \begin{tabular}{c}
+	\subfloat[RADARSAT2 (HH-HV) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
+		 \label{RADARSAT2_2D_determinant}
+	}
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	}
+ 	\hfill	
+	\subfloat[RADARSAT2 (HH-HV) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
+		 \label{RADARSAT2_2D_determinant}
+	} \\
 	\subfloat[AIRSAR (HH-HV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_determinant_model_on_AIRSAR_2d.eps} 	
 		 \label{AIRSAR_2D_determinant}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
-		 \label{RADARSAT2_2D_determinant}
-	} \\
 	\subfloat[AIRSAR (HH-HV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_2d.eps} 	
-		 \label{AIRSAR_2D_det_ratio}
+		 \label{AIRSAR_1D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
-		 \label{RADARSAT2_2D_det_ratio}
-	} \\
 	\subfloat[AIRSAR (HH-HV) change ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
-		 \label{AIRSAR_2D_det_ratio}
+		 \label{AIRSAR_1D_det_ratio}
 	} 
-	\hfill	
-	\subfloat[RADARSAT2 (HH-HV) change ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps} 	
-		 \label{RADARSAT2_2D_det_ratio}
-	}
 \end{tabular}
 \caption{The specific d=2 models are validated on both practical RADARSAT2 and AIRSAR datasets}
 \label{fig:verify_det_ratio_model_2D}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \begin{tabular}{c}
 	\subfloat[AIRSAR (HH-HV-VV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_determinant_model_on_AIRSAR_3d.eps} 	
 		 \label{AIRSAR_3D_determinant}
 	} 
 	\hfill	
+	\subfloat[AIRSAR (HH-HV-VV) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
+	}
+	\hfill	
+ 	\subfloat[AIRSAR (HH-HV-VV) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_3D_change_ratio}
+	} \\
 	\subfloat[RADARSAT2 (HH-HV-VV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_3d.eps} 	
 		 \label{RADARSAT2_3D_determinant}
-	} \\
-	\subfloat[AIRSAR (HH-HV-VV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_3d.eps} 	
-		 \label{AIRSAR_2D_det_ratio}
-	} 
-	\hfill	
+	}
+        \hfill
 	\subfloat[RADARSAT2 (HH-HV-VV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps} 	
-		 \label{RADARSAT2_2D_det_ratio}
-	} \\
-	\subfloat[AIRSAR (HH-HV-VV) change ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_3d.eps} 	
-		 \label{AIRSAR_2D_change_ratio}
+		 \label{RADARSAT2_1D_det_ratio}
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH-HV-VV) change ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
+		 \epsfxsize=2in
+		 \epsfysize=2in
 		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps} 	
-		 \label{RADARSAT2_2D_change_ratio}
+		 \label{RADARSAT2_1D_change_ratio}
 	}
 \end{tabular}
 \caption{The specific d=3 models are validated on both practical RADARSAT2 and AIRSAR datasets}
@@ -814,7 +817,6 @@ These applications however are not included in this paper, but rather left as a 
 %In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
 %  which is linear and additive in nature.
 %Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
-%(TODO: shorten the above 2 paragraphs. 
 %NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
 %
 %To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).

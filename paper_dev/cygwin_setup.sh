@@ -12,10 +12,11 @@ if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
   export TEMPDIR=/cygdrive/d/workspaces/portable/MikTex/miktex/temp/
   export TMPDIR=/cygdrive/d/workspaces/portable/MikTex/miktex/temp
 
+fi
+
   latex 'article.tex'
   bibtex article
   latex 'article.tex'
   latex 'article.tex'
 
-fi
 
