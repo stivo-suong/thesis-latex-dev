@@ -24,10 +24,10 @@
   yunit=\dimexpr\ht\IBox/\row,
 }
 
-\newcommand{\plotWithLegend}[1]{          
+\newcommand{\plotWithLegend}[2]{          
           \begin{pspicture}[showgrid=false](\column,\row)% set showgrid=false for the final
 	    \rput[bl](0,0){\includegraphics[width=1.5in,height=1.5in]{#1}}% \usebox\IBoxCRThreeR
-	    \rput(5,1.5){\footnotesize{change-ratio}}
+	    \rput(5,1.5){\footnotesize{#2}}
 	    \rput{90}(1.5,5){\footnotesize{pdf/histogram}}
 	    \psline[linecolor=plot](5,8)(6,8)
 	    \psline[linestyle=dashed](5,9)(6,9)%another line style: dotted
@@ -81,8 +81,8 @@ This paper proposes a scalar and representative observable for multi-dimensional
 Specifically, the statistical behaviour of the POLSAR covariance matrix determinant is used
   to derive a scalar and generic statistical model for multi-dimensional POLSAR data,
   which is specifically applicable to the two and three dimensional versions of partial and full monostatic polarimetric SAR data.
-As the POLSAR covariance matrix determinant generalizes the SAR intensity towards the multidimensional extension,
-  the proposed model is also shown to include the traditional model of SAR intensity under its natural coverage.
+As the POLSAR covariance matrix determinant generalizes the SAR intensity towards multiple dimensions,
+  the proposed model is able to subsume the traditional SAR intensity model under the umbrella of a unified model. 
 %What are the larger implications of the findings presented in this paper?
 Consequently, the main beneficial implication of the proposed approach is that
   it provides a consistent theory unifying the currently disconnected proposals for SAR and POLSAR discrimination measures
@@ -488,8 +488,7 @@ This section shows that the proposed generic model is equally  applicable to the
   which is physically equivalent to  collapsing the multi-dimensional POLSAR dataset  into conventional single dimensional SAR data.
 Mathematically, the sample covariance matrix $C_v$ is reduced to the sample variance while the determinant $|C_v|$ is equivalent to  the scalar variance value.
 As variance is equal to intensity $I$ for SAR data, our result is consistent with previous results for SAR intensity data.
-Thus the proposed generic model for POLSAR, collapsed into one dimension will be shown to map to the traditional model for SAR intensity in its natural coverage.
-%****IVM: Hai, by "natural coverage" above do you mean non-built-up areas, or are you using this as a figure of speech?  Note: this sentence needs additional correction to include the word 'confidence'.. I'll do that once you can confirm the meaning of 'natural coverage'.
+Thus the proposed generic model for POLSAR, collapsed into one dimension will be shown to incorporate the traditional SAR intensity as a natural case of the unified model.
 %  as well as reminding us that SAR is a special case of POLSAR.
   
 The results for our models can be summarized using the following equations:
@@ -608,33 +607,37 @@ In all cases, the good visual match between the actual data and model distributi
 \centering
 \begin{tabular}{c}
 	\subfloat[AIRSAR (HH) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_AIRSAR_1d.eps} 	
+          \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_1d.eps}{determinant}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_determinant_model_on_AIRSAR_1d.eps} 	
 		 \label{AIRSAR_1D_determinant}
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
+          \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_1d.eps}{determinant}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
 		 \label{RADARSAT2_1D_determinant}
 	} \\
 	\subfloat[AIRSAR (HH) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_1d.eps} 	
+          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_1d.eps}{determinant-ratio}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_1d.eps} 	
 		 \label{AIRSAR_1D_det_ratio}
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
+          \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps}{determinant-ratio}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
 		 \label{RADARSAT2_1D_det_ratio}
 	} \\
 	\subfloat[AIRSAR (HH) change ratio]{
-          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_1d.eps}
+          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_1d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_1d.eps} 	
@@ -643,7 +646,7 @@ In all cases, the good visual match between the actual data and model distributi
 	\hfill	
 	\subfloat[RADARSAT2 (HH) change ratio]{
 
-\plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps}
+\plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps} 	
@@ -720,33 +723,37 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 \centering
 \begin{tabular}{c}
 	\subfloat[AIRSAR (HH-HV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_AIRSAR_2d.eps} 	
+          \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_2d.eps}{determinant}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_determinant_model_on_AIRSAR_2d.eps} 	
 		 \label{AIRSAR_2D_determinant}
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH-HV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
+          \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_2d.eps}{determinant}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
 		 \label{RADARSAT2_2D_determinant}
 	} \\
 	\subfloat[AIRSAR (HH-HV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_2d.eps} 	
+          \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_2d.eps}{determinant-ratio}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_2d.eps} 	
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH-HV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
+          \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps}{determinant-ratio}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
 		 \label{RADARSAT2_2D_det_ratio}
 	} \\
 	\subfloat[AIRSAR (HH-HV) change ratio]{
-          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_2d.eps}
+          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_2d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
@@ -754,7 +761,7 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH-HV) change ratio]{
-          \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps}
+          \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps}{change-ratio}
 %\newsavebox\IBoxCRTwoR
 %\savebox\IBoxCRTwoR{\includegraphics[width=1.5in,height=1.5in]{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps}}
 %          \begin{pspicture}[showgrid=false](\column,\row)% set showgrid=false for the final
@@ -831,33 +838,37 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 \centering
 \begin{tabular}{c}
 	\subfloat[AIRSAR (HH-HV-VV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_AIRSAR_3d.eps} 	
+          \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_3d.eps}{determinant}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_determinant_model_on_AIRSAR_3d.eps} 	
 		 \label{AIRSAR_3D_determinant}
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH-HV-VV) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_3d.eps} 	
+          \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_3d.eps}{determinant}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_3d.eps} 	
 		 \label{RADARSAT2_3D_determinant}
 	} \\
 	\subfloat[AIRSAR (HH-HV-VV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_3d.eps} 	
+          \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_3d.eps}{determinant-ratio}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_3d.eps} 	
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH-HV-VV) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps} 	
+          \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps}{determinant-ratio}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps} 	
 		 \label{RADARSAT2_2D_det_ratio}
 	} \\
 	\subfloat[AIRSAR (HH-HV-VV) change ratio]{
-          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_3d.eps}
+          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_3d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_3d.eps} 	
@@ -865,7 +876,7 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 	} 
 	\hfill	
 	\subfloat[RADARSAT2 (HH-HV-VV) change ratio]{
-          \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}
+          \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}{change-ratio}
 %          \begin{pspicture}[showgrid=false](\column,\row)% set showgrid=false for the final
 %	    \rput[bl](0,0){\includegraphics[width=1.5in,height=1.5in]{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}}% \usebox\IBoxCRThreeR
 %	    \rput(5,1.5){\footnotesize{change-ratio}}
