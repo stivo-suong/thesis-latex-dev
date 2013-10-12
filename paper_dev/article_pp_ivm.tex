@@ -1,4 +1,3 @@
-%\documentclass[a4paper,10pt]{article}
 %ifdef FINAL
 \documentclass[journal]{IEEEtran}
 %endif
@@ -8,6 +7,7 @@
 %\documentclass[a4paper, 10pt, conference]{ieeeconf}
 
 \usepackage{cite} %for citations
+\renewcommand{\citedash}{--}
 \usepackage{url}
 
  %this is for math typing (eg: cases)
@@ -19,12 +19,9 @@
 \usepackage[center]{caption}%for captions
 \usepackage[caption=false,font=footnotesize]{subfig} %for subfigures
 
-%\nonstopmode
-
 %opening
 \title{
-  %Consistent and Homoskedastic Measures of Distance for Heteroskedastic POLSAR Data
-  Scalar and Representative Models for Polarimetric SAR Data
+  Scalar and Representative Observables for Polarimetric SAR Data
 }
 
 %\author{Thanh-Hai Le, Ian McLoughlin}
@@ -36,51 +33,32 @@ Nanyang Technological University, Singapore. Ian~McLoughlin is with School of In
 University of Science and Technology of China.
 }% <-this % stops a space
 %\thanks{The authors wish to thank Dr. Ken-Yoong Lee and Dr. Timo Brestchneider of EADS Innovation-Works Singapore for 
-%	their initial discussions and for providing us the RADAR-SAT2 imagery used in this paper. }% <-this % stops a space
+%	providing us the RADAR-SAT2 imagery used in this paper. }% <-this % stops a space
 \thanks{Manuscript received ?, 2013; revised ?.}}
 
-\markboth{Transactions on Geoscience \& Remote Sensing,~Vol.~?, No.~?, ?~2013}%
-{ Le \MakeLowercase{\textit{et al.}}:  Scalar and Representative Models for Polarimetric SAR Data}
+\markboth{IEEE Journal on Selected Topic in Applied Earth Observation and Remote Sensing,~Vol.~?, No.~?, ?~2013}%
+{ Le \MakeLowercase{\textit{et al.}}:  Scalar and Representative Observables for Polarimetric SAR Data}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-This paper presents several novel scalar statistical models to represent the determinant of both partial and full polarimetric SAR (POLSAR) covariance matrices.
-Compared to other scalar statistical models for POLSAR,
-  the proposed models are highly representative of the multi-dimensional data
-  and enable useful discrimination measures to be easily determined. %consequently they lead to useful discrimination measures.
-When the multi-dimensional models are collapsed to a single dimension,
-  they are shown to exactly match the traditional statistical models for SAR intensity.
-%The representative power of these multi-dimensional models is illustrated
-%  when they are collapsed into the special case of one-dimensional,
-%  the special-case statistical models then match perfectly with the traditionally used statistical models for SAR intensity.
-%These theoretical models, together with their derived discrimination measures, are then validated against practically captured POLSAR data.
-The paper validates the theoretical models together with their derived discrimination measures using real world POLSAR data.  
-%IVMThe proposed generic models are envisioned to enable the adaptation of many existing SAR data processing techniques for use with POLSAR data.
-The intention is that these proposed generic models can facilitate the adaptation of existing SAR techniques to higher-dimensional POLSAR data.
-To illstrate, an example is given where the determinant-ratio and its additive version, contrast, are applied in the evaluation of POLSAR speckle filters.
-%For example, similar to the way that the intensity ratio is routinely used to evaluate SAR speckle filters,
-%  this paper describes how the determinant-ratio and its additive version, contrast, can be used to evaluate POLSAR speckle filters.
-%  While statistical models are important in understanding the stochastic nature of Polarimetric SAR (POLSAR),
-%  scalar discrimination measures are routinely used in processing this multi-dimensional data.
-%  Ideally speaking, the latter should be drived from the former.
-%  As far as we know, however, it has not exactly been so for the case of POLSAR.
-%  In this paper, a couple of statistical models for the determinant of the POLSAR covariance matrix and its log-transformed derivations are proposed.
-%  These scalar models for the determinant of the POLSAR covariance matrix are shown to be respresentative
-%    since this observable is neatly transformed into the traditional SAR intensity
-%    when the generic multi-dimensional polarimetry is collapsed into the case of one-dimensional SAR. %case of traditional SAR data.
-%  Similar to SAR, the generic model for POLSAR is also shown to be multiplicative and heteroskedastic in the original domain 
-%    and the logarithmic transformation converts this into a more familiar additve and homoskedastic model.
-%  Moreover, the scalar property of these statistical models lead to the derivation of several statistical discrimination measures. %homoskedastic measures of distance.
-%  All of these statistical models are validated on real-life captured data
-%    and they are shown to be applicable even when the theoretical ``independent samples'' assumption is violated in practice.
-%  The combination of scalar, additive and homoskedastic properties of the derived statistical models bring about a couple of benefits, which are also described in this paper.
-%  First, compared to the original multiplicative domain, %dis-criminative measure of ratio,
-%    the additive log-transformed fit more naturally with the linear nature of digital imagery.
-%  Second, since the Gauss-Markov theorem is again applicable in the homoskedastic log-transformed domain,
-%    the use of Mean Squared Error (MSE) as an reliable objective function for POLSAR speckle filters is briefly explored.
+%Problem statement  
+This paper proposes a scalar and representative observable for multi-dimensional POLSAR data,
+  from which statistically consistent discrimination measures can be derived.
+%What actually were done? and As the result, what is learned?
+Specifically, the statistical behaviour of the POLSAR covariance matrix determinant is used
+  to derive a scalar and generic statistical model for multi-dimensional POLSAR data,
+  which is specifically applicable to the two and three dimensional versions of partial and full monostatic polarimetric SAR data.
+As the POLSAR covariance matrix determinant generalizes the SAR intensity towards the multidimensional extension,
+  the proposed model is also shown to include the traditional model of SAR intensity under its natural coverage.
+%What are the larger implications of the findings presented in this paper?
+Consequently, the main beneficial implication of the proposed approach is that
+  it provides a consistent theory unifying the currently disconnected proposals for SAR and POLSAR discrimination measures
+  which simplifies the adaptation of existing SAR data processing techniques for POLSAR data.
+%  it enables the adaptation of many existing SAR data processing techniques for POLSAR data,
+%  and at the same time, it provides a consistent theory unifying the seemingly disparate discrimination measure proposals for SAR and POLSAR data.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -90,151 +68,129 @@ Polarimetric Synthetic Aperture Radar, Electromagnetic Modeling, Multidimensiona
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
-%\section{POLSAR data: statistical analysis and logarithmic transformation}
 
-During the past decades, exponential growth in computing power has allowed once computationally-demanding Synthetic Aperture Radar (SAR)
+%What is the situation, the background context of your research? the BIG problem!
+During the past decades, exponential growth in computing power has allowed the once computationally-demanding Synthetic Aperture Radar (SAR)
 technology to become a feasible and preferred technique for earth observation applications.
-SAR technology has since extended in a few directions, one of which is polarimetric SAR (POLSAR).
-POLSAR incorporates multiple channels to represent the natural polarization properties of reflected and sensed Electro-Magnetic (EM) waves, unlike the single dimension of SAR intensity.
+SAR technology has since been extended in a few directions, one of which is polarimetric SAR (POLSAR).
+POLSAR extends SAR by exploiting the natural polarization property of Electro-Magnetic (EM) waves,
+  leading to the availability of multi-channel POLSAR data, compared to traditional one-channel SAR data.
+  
 
-%In the past decades, the exponential growth in computational power has made the once overly-excessive computationaly-demanding SAR technology now become a feasible and preferred earth observation solution.
-%As state-of-the-art technology, the SAR technique has been extended in a few directions, one of which is the polarimetric SAR.
-%POLSAR is the natural extension from SAR exploiting the natural polarization property of Electro-Magnetic (EM) waves.
-%Similar to the extension from black-and-white images to color photography, the polarimetric extension brought about the multi-channels POLSAR data as compared to the traditional one-channel SAR data.
+%Research Motivation: Why it is important to solve this problem?
+%The POLSAR data, however, is multidimensional and stochastic.
+Like SAR data, POLSAR data is stochastic.
+Moreover, it is multi-dimensional, making it even harder to interpret.
+Under this context, it is therefore important to establish a simple and intuitive understanding of the data.
+ Statistical models are undoubtedly crucial in understanding its stochastic nature.
+While several %multidimensional 
+models have been proposed to describe POLSAR data, they
+  unfortunately tend to be complex and not very intuitive due to the multidimensional nature of the data.
+Practical POLSAR data processing however, makes heavy use of scalar discrimination measures,
+  which should be based on statistically consistent models for scalar and representative observables of the multidimensional data.
+It is thus important to establish a scalar and representative observable for this multi-dimensional POLSAR data.
+  
+%Moreover, to provide theoretical foundation for discrimination measures proposal,
+%  statistically consistent models should be derived from this scalar observable.
 
-%With (POL)SAR data becomes cheaper and more available, the recent research emphasis is on understanding and developing applications for the data. %it is of great important to understand the data.
-%The complex data, however is stochastic by nature, due to the interference phenomena of EM waves. %, SAR measurements are stochastic by nature.
-%Under this condition, it is very important to understand the statistical models for (POL)SAR data.
+%How do others solve this problem?
+%The complex POLSAR data have been statistically modelled as following the complex Wishart distribution,
+%  which apparently is multidimensional, complex and thus not very intuitive.
+There has been a few scalar observables with accompanying statistical models proposal for POLSAR \cite{Conradsen_2003_TGRS_4, Alberga_2008_IJRS_4129, Joughin_1994_TGRS_562, Lee_1994_TGRS_1017, Touzi_1996_TGRS_519, Lopez-Martinez_2003_TGRS_2232, Erten_2012_Sensors_2766},
+  but none of them is able to provide meaningful scalar discrimination measures.
+%  but none of them has led to scalar discrimination measures proposal.
+As such no observable has been widely accepted as being highly representative of this multi-dimensional data,
+  which severely limits their applicability in practical data processing applications.
+From an alternative approach, a few POLSAR discrimination measures have been proposed,
+  but all are based on the likelihood ratio statistics.
+This statistical test should be based on an exact and consistent statistical distribution
+  but so far has only shown to be based on an asymptotic distribution.
 
-%While the statistical models for homogeneous areas of one-dimensional SAR data have been developed,
-%  in extending the model toward heterogeneous images, the impact of heteroskedasticity has virtually been ignored.
-%Specifically the concept of distance as a measure of dis-similarity is seriously flawed, as it is widely known that ratio offers a better discrimination measure TODOCITE.
-%This thesis starts off by proposing the logarithmic transformation which is shown converting the SAR data into an homoskedastic model.
-%From this log-transformed model, a few consistent measures of distance is proposed. 
-%in a sense the distance concept is re-emerged, as the log-transformation converts the widely used ratio into standard subtraction, and thus distance.
-While statistical models are important in understanding the stochastic nature of both SAR and POLSAR, in extending our understanding towards multi-dimensional POLSAR, an important issue needs to be addressed.
-Namely that there now exists not one but many observable quantities in multi-channel POLSAR (as opposed to single-channel SAR intensity).
-The research community has responded largely by developing different statistical models for various POLSAR observables.
-However for a statistical model to be useful, scalar discrimination measures generally need to be derivable from it.
-Thus, practical applications for POLSAR data processing require dis-similarity measures that are scalar, consistent and preferably homoskedastic on the one hand.
-On the other hand, the observable quantity being modelled should be naturally representative of the high dimensionality POLSAR data.
+%Research Objective: Give your precise problem statement  
+This article hence presents a scalar and representative observable, and its associated generic statistical model to describe multi-dimensional POLSAR data and provide a consistent foundation for the derivation of POLSAR discrimination measures.
+%Now State your approach  
+%This study started off with the observation that the determinant of the covariance matrix is widely used in POLSAR discrimination measures.
+%However, our survey of existing scalar models for POLSAR indicates that no statistical model for this observable has been published so far.
+%Consequently, in this article, the statistical behaviour of the determinant of POLSAR covariance matrix is further investigated.
+%Prof Vuns: comment: the article provides the result, not the journey!
+POLSAR data have been statistically modelled as following the complex Wishart distribution.
+Consequently, the generic statistical model for the covariance matrix determinant is presented as being just a scalar projection of the multidimensional data.
+This model is then used to derive several scalar and consistent statistical descriptions suggesting that their associated observables are capable of being used as discrimination measures for POLSAR data.
+%
+%***IVM: the following sentence doesn't make sense, also, I don't think it's good to talk about 'models of a model'.  Maybe 'model variants' instead?
+%%%***IVM***The specific two and three dimensional models of these models, which %also include the derived discrimination measures, are originally designed against both partial and full polarimetric SAR data.
 
-%While statistical models are important in understanding the stochastic nature of both SAR and POLSAR,
-%  in extending our understanding towards multi-dimensional POLSAR data, an important issue needs to be addressed.
-%The trouble that the high dimensional data bring about is that there exists not one, as the intensity in the one-channel SAR, but many observables quantities in multi-channel POLSAR.
-%While different statistical models have been developed for different POLSAR observables,
-%  for a statistical model to be useful, scalar discrimination measures need to be derived from it.
-%Thus practical application for POLSAR data processing requires the dis-similarity measure to be scalar, consistent and preferably homoskedastic on one hand.
-%On the other hand, the observable quantity being modelled needs to be naturally representative for the high dimensional POLSAR data.
+%The specific two and three dimensional models are then validated against both partial and full polarimetric SAR data.
+Interestingly the paper also shows that %It is also shown that
+  the specific one dimensional versions of the proposed  models 
+  match perfectly with the traditional statistical model used for SAR intensity.
+This effectively incorporates the common one dimensional SAR theory under the unbrella of the proposed scalar approach for multi dimensional POLSAR.
+With this new insight the different discrimination proposals for SAR and POLSAR are reviewed and it is shown that the approach proposed in this paper provides a strong, unifying and consistent foundation relating them all together.
+The applicability of these theoretical models will be illustrated by experiments where the specific one, two and three dimensional versions of the proposed generic models are validated against practical data. 
+%Furthermore, the approach proposed in this paper
+%  not only provides a consistent foundation for the different discrimination measures proposal in POLSAR
+%  but also leads to the establishment of a new discriminating measures: the determinant-ratio and the change-ratio.
 
-%In this paper, the determinant of the POLSAR covariance matrix is proposed as an observable quantity to study.
-%Statistical models for this heteroskedastic POLSAR determinant and homoskedastic log-determinant, together with several discrimination measures, are then derived in section \ref{sec:theoretical_model}.
-%The representative power of this observable is demonstrated in section \ref{sec:sar_special_case_of_polsar},
-%  where the multi-dimensional POLSAR data is collapsed into the traditional one-dimensional SAR scenario.
-%Under this transformation, the determinant of the POLSAR covariance matrix is converted into the standard SAR intensity
-%Section \ref{sec:sar_special_case_of_polsar} describes how
-%  which puts the standard statistical models for SAR to be within the natural coverage of this generic models for POLSAR.
-%All of these theoretical developments are then validated against real-life practical data in section  \ref{sec:polsar_models_validation}.
-%Finally section \ref{sec:discussion_conclusion} concludes the paper by briefly describing how an existing SAR data processing technique can be adapted for POLSAR data.
+%What is the novelty of your solution? What are its advantages
+%Compared to other published scalar observables with accompanying statistical model,
+%  the proposed observable and its models are highly representative of the multidimensional data.
+%The representative power of the proposed observable is justified by the following reasons.
+%Firstly, the covariance matrix determinant, when collapsed into one-dimensional case, transforms neatly into the representative SAR intensity.
+%Secondly, the statistical model for this observable is shown as the generic multi-dimensional extension of the traditional and representative intensity model for the one dimensional SAR data.
+%And last but not least, this observable also leads to the determinant-ratio discrimination measure which
+%  not only is simpler in concept and computation than the existing POLSAR discrimination measures
+%  but also can be considered as the natural multi-dimensional extension of the commonly-used intensity-ratio discrimination measure in SAR.
+% Prof Vun Comment: already mentioned above, no need to repeat
+%hai thoughts: actually this should be included to justify our title, and our approach. It is however being moved to discussion / conclusion section
 
-This paper presents novel statistical models for multi-dimensional POLSAR data as generalisations of the commonly used one-dimensional SAR statistical model.
-This approach makes feasible the adaptation of many existing SAR processing techniques, to be applied to POLSAR data.
-Specifically, statistical models for the heteroskedastic POLSAR determinant and its homoskedastic log-domain equivalent, together with several other discrimination measures are derived in section  \ref{sec:theoretical_model}.
-The representative properties of these observables are then demonstrated in section \ref{sec:sar_special_case_of_polsar}
-  where the multi-dimensional POLSAR data is collapsed to a one-dimensional SAR scenario.
-With this transformation, the determinant of the POLSAR covariance matrix is shown to be equivalent to SAR intensity,
-  which also brings many standard statistical models used with SAR  under the umbrella of these generic POLAR models.
-The proposed theoretical models are then validated against real life practical data in section \ref{sec:polsar_models_validation}.
-Section \ref{sec:discussion} briefly describes how evaluation of an existing SAR data processing technique, the speckle filter, can be extended to  POLSAR data processing using this approach.
-This is followed by a conclusion in Section \ref{sec:conclusion}.
-
-%Besides being theoretically comprehensive, 
-%  the models are also shown, in Section \ref{sec:polsar_models_validation}, %in section \ref{sec:improve_the_match_bw_theory_practice},
-%  to be robust in handling practical data. % imperfection that violate conventional assumptions. 
-%shows how the statistical models for POLSAR can be considered as the generic
-%And since POLSAR can be viewed as a multi-dimensional extension of SAR, the paper
-
-%There are a few benefits of using the homoskedastic measures of distance for POLSAR.
-%Firstly, compared to the multiplicative dis-similarity measure of ratio, these additive measures of distance fit more naturally with the linear scale nature of digital imagery.
-%Secondly, within the homoskedastic log-transformed domain, where the distance concept as well as the Gauss Markov theorem is again applicable, the universal MSE deserves to be reviewed as a reliable objective function / criteria for (POL)SAR estimators.
-%This may open up a number of different research directions for future studies of (POL)SAR.
-%As example demonstrations of how these models and distance measures can be used, a novel clustering algorithm, a new speckle filter and various procedures in using MSE to evaluate speckle filters are also presented as part of the thesis.
-
-%Specifically, the rest of this paper is structured as follows.
-%After the related work in literature is critically reviewed in Section \ref{sec:lit_review},
-%  Section \ref{sec:theoretical_model} presents the theoretical models for both partial and full polarimetric SAR and their derived discrimination measures.
-%The representative power of the scalar models are illuminated in Section \ref{sec:sar_special_case_of_polsar},
-%  which details how the proposed models for the multi-variate POLSAR also includes the well-known models for the traditional SAR as its special univariate case.
-%can be used to derive the well-known models for the univariate SAR data as its special case.
-%Besides being theoretically comprehensive, 
-%  the model is also shown, in Section \ref{sec:polsar_models_validation}, %in section \ref{sec:improve_the_match_bw_theory_practice},
-%  to be robust in handling practical data. % imperfection that violate conventional assumptions. 
-%To demonstrate the application of these scalar and representative models, 
-%  Section \ref{sec:evaluating_polsar_filters} explores how they can be used to evaluate POLSAR speckle filters.   
-%In the end, Section \ref{sec:discussion_conclusion} provides the final conclusion of the paper.
-%critically reviews and discusses related literature  
-%  before the paper is concluded in Section \ref{sec:conclusion}.
-
-%In this paper, the above results are exploited in the context of POLSAR data processing. In particular, a few scalar, consistent and homoskedastic measures of distance are proposed. The paper is structured as follows:
-%  after the preceding introduction to the basics of POLSAR statistical analysis,
-%  the second section briefly reviews related work in published literature.
-%Section \ref{sec:polsar_heterosked_model_and_log_transform} presents the theoretical models together with conclusive evidence for two related points.
-%The first point is that: POLSAR data is multiplicative and heteroskedastic in its original domain.
-%And the second conclusion being: log-transformation converts it into an additive and homoskedastic model.
-%Consequently a few consistent measures of distance are presented in section \ref{sec:distance_measure}.
-%After the model is presented for both partial and full polarimetric SAR data,
-%  section \ref{sec:sar_special_case_of_polsar} discusses
-%    how the proposed models for the multi-variate POLSAR can be used to derive the well-known models for the univariate SAR data as its special case.
-%Besides being theoretically comprehensive, 
-%  the model is also shown, in Section \ref{sec:polsar_models_validation}, %in section \ref{sec:improve_the_match_bw_theory_practice},
-%  to be robust in handling practical data. % imperfection that violate conventional assumptions. 
-%To demonstrate the application of the consistent and homoskedastic dis-similarity measures, 
-%  Section \ref{sec:evaluating_polsar_filters} explores how they are used for evaluating POLSAR speckle filters.   
-%Finally, Section \ref{sec:discussion_conclusion} critically reviews and discusses related literature  
-%  before the paper is concluded in Section \ref{sec:conclusion}.
+%How do you know if the problem is solved? State your research contribution to be achieved
+%In summary, the main objective of this article is to propose the determinant of the POLSAR covariance matrix as a scalar observable
+%  that is representative of the multi-dimensional data.
+%Specifically the following research results are to be achieved:
+%  1. The generic scalar and representative statistical model for the determinant of the multi-dimensional POLSAR covariance matrix is to be derived, 
+%  2. This generic model is also shown leading to staititically consistent models for newly proposed POLSAR observables, namely the determinant-ratio and the change-ratio.
+%  3. The special one-dimensional version of the derived generic model is to be shown perfectly matches with the traditionally used SAR intensity model,
+%  4. All specific one, two and three dimensional versions of the derived generic model are to be validated against real-life captured data,
+%(Hai NOTE: I kept this to keep my focus while working on this paper.
+%  It can be removed before the final submission.)
+  
+%Article Organization: Show that you deliver on the objectives and hence solve the stated problem
+The remainder of this article is organized as follows.
+After the next section reviews existing discrimination measures as well as scalar observables models for POLSAR, section \ref{sec:theoretical_model}
+  derives the generic statistical model for the determinant of the POLSAR covariance matrix
+  and proposes several new discrimination measures for the multi-dimensional data.
+After section \ref{sec:sar_special_case_of_polsar} illustrates the match between the specific model of one dimensional and the traditional model for SAR intensity,
+  section \ref{sec:link_sar_polsar} links the disparate discrimination measure proposals for the traditional SAR and the more recent POLSAR data.
+%Section \ref{sec:polsar_models_validation} then validates the specific one, two and three dimensional versions of the proposed model against real-life captured data.
+The applicability of these models against practical data is illustrated in section \ref{sec:polsar_models_validation}.
+Section \ref{sec:discussion} presents a high-level discussion of the results presented before
+  section \ref{sec:conclusion} finally concludes the paper.
 
 \section{Related Work in Literature}
 \label{sec:lit_review}
 
-This section outlines related published work.
-In particular, section \ref{sec:lit_models} reviews various scalar statistical models used for different POLSAR observables.
-Its purpose is to show that none of those  models have led to statistically consistent discrimination measures. 
+%This section outlines related publication.
+Section \ref{sec:lit_models} reviews various statistical models used for different scalar observables for POLSAR.
+  where it is shown that none are able to provide statistically consistent discrimination measures. 
 Section \ref{sec:lit_measures} further strengthens those findings by discussing discrimination measures that have been proposed for POLSAR,
   and demonstrates that almost all of them are based on the likelihood statistical test for complex Wishart distribution.
-However, while an exact statistical distribution is needed for the test,
-  only an symptotic distribution is used in the original work \cite{Conradsen_2003_TGRS_4}.
+While an exact statistical distribution is expected to be necessary for a test,
+  only an asymptotic distribution is used in the underlying approach \cite{Conradsen_2003_TGRS_4}.
   
-%it should be noted that while the original proposed work \cite{Conradsen_2003_TGRS_4}
-%  for the test requires an exact distribution, only an asymptotic distribution is used.  
-%This section critically review the related work in published literature.
-%Specifically, the first sub-section reviews various scalar statistical models for different POLSAR observables.
-%Its purpose is to show that none of the proposed models have led to statistically consistent discrimination measures.
-%%shows that while many
-%The second sub-section strengthen this findings by reviewing many different discrimination measures that have been proposed for POLSAR data.
-%It shows that almost all of them depends on the likelihood statistical test for complex Wishart distribution.
-%Unfortunately, in the original proposed work \cite{Conradsen_2003_TGRS_4} for the test,
-%  while an exact distribution is to be expected, only an asymptotic distribution was given.
-
-\subsection{Investigated Scalar Observables for POLSAR Data and their Statistical Models}
+\subsection{Scalar Observables for POLSAR Data and their Statistical Models}
 \label{sec:lit_models}
 
-%Of course, discrimination measures are not the only way to carry out classification tasks in POLSAR.
-%Another common approach is to carry out classification using POLSAR observables identified by different target decomposition theorems.
 Different target decomposition theorems have identified many possible scalar observables for complex POLSAR data.
 In \cite{Alberga_2008_IJRS_4129}, the performance of different scalar POLSAR observables is evaluated for classification purposes.
 While many scalar observables for POLSAR were presented, their corresponding statistical models and classifiers were not available.
 Furthermore, at its conclusion, the paper indicated that it is impossible to identify a single best representation.
-  %``it is impossible to indentify the best one''
-  %as these ``representations ... do not show a precise trend''.
-%Instead an MLP classification approach were employed. 
-Although, to be fair, those observables were identified to describe a decomposed portion of the complex POLSAR data,
-  rather than providing a single unified representation of the POLSAR data.
-%and thus they are not to be used individually for the purpose of single-handedly representing POLSAR data.
+Although, to be fair, the observables were identified for describing a decomposed portion of the complex POLSAR data,
+  rather than providing a unified representation of the POLSAR data.
 
-Given that the joint distribution for POLSAR is known to be the multi-variate complex Wishart distribution,
+Using a different approach, given that the joint distribution for POLSAR is known to be the multi-variate complex Wishart distribution,
   it is possible to derive the scalar statistical models for some univariate POLSAR observables.
-This becomes an alternative approach used in the study of POLSAR data.
-However, such derivations are no trivial task, and so far, only a handful of such statistical models have been proposed, including the following:
+%This becomes an alternative approach used in the study of POLSAR data.
+However, such derivations are not trivial tasks, and so far, only a handful of such statistical models have been proposed, including the following:
   \begin{enumerate}
   \item cross-pol ratio $r_{HV/HH} = |S_{HV}|^2/|S_{HH}|^2$ \cite{Joughin_1994_TGRS_562},
   \item co-pol ratio $r_{VV/HH} = |S_{VV}|^2/|S_{HH}|^2$ \cite{Joughin_1994_TGRS_562},
@@ -244,54 +200,39 @@ However, such derivations are no trivial task, and so far, only a handful of suc
   \item intensity ratio $w = avg(|S_{pq}|^2)/avg(|S_{rs}|^2)$ \cite{Lee_1994_TGRS_1017},
   \item and the Stokes parameters $S_i,0 \leq i \leq 3$ \cite{Touzi_1996_TGRS_519}. 
   \end{enumerate}
+More recently, statistical models for
+  each element of the POLSAR covariance matrix, i.e. $S_{pq}S_{rs}^*$, \cite{Lopez-Martinez_2003_TGRS_2232}
+  as well as for the largest eigen-value of the covariance matrix $\lambda_1$ \cite{Erten_2012_Sensors_2766} have been proposed.
 
-More recently, %other studies has offered
-  %\cite{Lopez-Martinez_2003_TGRS_2232} and \cite{Erten_2012_Sensors_2766} gives
-  statistical models for
-  each element of the POLSAR covariance matrix $S_{pq}S_{rs}^*$ \cite{Lopez-Martinez_2003_TGRS_2232}
-  as well as for the largest eigen-value of the covariance matrix $\lambda_1$ \cite{Erten_2012_Sensors_2766} have been studied.
-While these models undoubtedly help in understanding POLSAR data,
-  none of these observables have been shown to meet the dual criteria of
-  1) resulting in statistically consistent discrimination measures and
+While these models undoubtedly help to further our understandings of the POLSAR data,
+  none of the underlying observables have been shown to meet the dual criteria of
+  1) resulting in statistically consistent discrimination measures and thus 
   2) being representative of the complex POLSAR data.
-%While these models undoubtedly help in understanding the SAR data,
-%  individually none of these observables has been shown to statisfy the dual criteria of
-%  1) resulting in statistically consistent discrimination measures and
-%  2) being representative of the complex POLSAR data.
-  %that they model have the power to represent the multi-demensional POLSAR covariance matrix.
 
 \subsection{POLSAR Discrimination Measures}
 \label{sec:lit_measures}
 
-%This sub-section reviews some relevant and published works relating to different measures of distance for POLSAR data. 
-%In particular, a few different matrix distances have been proposed and evaluated in recent review papers\cite{Dabboor_2013_IJRS_1492}\cite{Kersten_2005_TGRS_519}
-%will be briefly reviewed.
-%specifically a few different matrix distances have been proposed and evaluated in recent review papers\cite{Dabboor_2013_IJRS_1492}\cite{Kersten_2005_TGRS_519}
-
-The commonly used measure of distance for matrices are either the Euclidean or Manhattan distances, defined as:
-%The commonly used measure of distance for matrices are either the Euclidean or the Manhattan distance,
-%  which are defined in the following equations, respectively:
+The commonly used measure of distance for matrices are either the Euclidean or Manhattan distances, defined respectively as:
 \begin{align}
   d(C_x,C_y) &= \sum_{i,j} |\mathbb{R} (C_x - C_y)_{i,j}| + \sum_{i,j} |\mathbb{I} (C_x - C_y)_{i,j}| \\
   d(C_x,C_y) &= \sqrt{\sum_{i,j} |C_x - C_y|_{i,j}^2 }
 \end{align}
-where $C_{i,j}$ denotes the (i,j) elements of the matrix C,
+where $C_{i,j}$ denotes the $(i,j)$ elements of the POLSAR covariance matrix C,
  $||$ denotes absolute values
 and $\mathbb{R},\mathbb{I}$ denote the real and imaginary parts respectively.
-However, in the context of POLSAR% covariance matrix
-, these dis-similarity measures are not widely used 
-  probably because of the multiplicative nature of the noisy data.
-%In the context of polsar covariance matrix, however, they are not widely used 
-%  probably because of the multiplicative nature of the data.
+However, in the context of POLSAR, % covariance matrix
+  these dissimilarity measures are not widely used 
+  mainly due to the multiplicative nature of the noisy data.
 
 In the field of POLSAR, the Wishart distance is probably the most widely used, as part of the well-known Wishart classifier \cite{Lee_1999_TGRS}.
-It is defined \cite{Lee_1994_IJRS_2299} as;
+It is defined \cite{Lee_1994_IJRS_2299} as:
 \begin{equation}
   d(C_x,C_y) = \ln|C_y| + tr(C_xC_y^{-1})
-\end{equation}
+\end{equation},
+where $tr(C)$ denotes the trace of the matrix C. 
 As a measure of distance, its main disadvantage is that $d(C_y,C_y) = \ln|C_y| \neq 0$.
 
-Recent works have suggested alternative dissimilarity measures including the asymmetric and symmetric refined Wishart distance \cite{Anfinsen_2007_ESA_POLINSAR},
+Recent works have suggested alternative dissimilarity measures including the symmetric and asymmetric refined Wishart distance \cite{Anfinsen_2007_ESA_POLINSAR},
 \begin{align}
   d(C_x,C_y) &= \frac{1}{2} tr(C_x^{-1}C_y + C_y^{-1}C_x) - d \\
     d(C_x,C_y) &= \ln|C_x| - \ln|C_y| + tr(C_xC_y^{-1}) - d
@@ -308,27 +249,14 @@ and the Wishart Statistical test distance \cite{Cao_2007_TGRS_3454}
 \begin{equation}
   d(C_x,C_y) = (L_x + L_y) \ln|C| - L_x \ln|C_x| - L_y\ln|C_y|
 \end{equation}
-.
 
-%%***IVM: Hai, you haven't introduced the notation for these!! What is tr() (in eqn. 3), what is Lx, Ly.... I changed your A_{i,j} to C_{i,j} above, just after eqn.2
-
-
-%In comparison to these formulae, the distance measures for two covariance matrices proposed in this paper can be written as:
-%\begin{equation}
-%  d(C_x,C_y) =  \ln|C_x| - \ln|C_y| 
-%\end{equation}
-%At first glance, while the propose formula may be a lot simpler, it still operates in a similar way to others in making use of the log-determinant.
-
-Closer investigation of these dis-similarity measures reveals that most are related in some way. %to each other.
+Closer examination of these dissimilarity measures reveals that most of them are related in some ways. %to each other.
 The Bhattacharyya distance is easily shown to be related to the Barlett distance.
 At the same time the Barlett distance can be considered a special case of the Wishart Statistical Test distance,
   when the two data sets have the same number of looks, i.e. $L_x=L_y$.
-%It is also intuitively trivial to arrive at the conclusion that the contrast measure of distance proposed in this paper has fixed statistical behaviour, by comparing the symmetric and asymmetric versions of the refined Wishart distance, assuming that they are shown to follow fixed distributions.
 The close relation among the measures is further supported by the fact that
-  all of their proposing papers referenced the same statistical model developed in \cite{Conradsen_2003_TGRS_4} as a foundation.
-%Interestingly, the change detection model in \cite{Conradsen_2003_TGRS_4} also make use of determinant ratio and log determinant in its derivation.  
-%The next sub-section will illustrate how the log-determinant model presented in this paper can offer an alternative and simple derivation for the change-detection statistics.
-In \cite{Conradsen_2003_TGRS_4}, to determine if the two scaled multi-look POLSAR covariance matrix $Z_x$ and $Z_y$,
+  all of their publications refered the same statistical model developed in \cite{Conradsen_2003_TGRS_4} as the foundation.
+In \cite{Conradsen_2003_TGRS_4}, to determine if the two scaled multi-look POLSAR covariance matrixes $Z_x$ and $Z_y$,
   which have $L_x$ and $L_y$ as the corresponding number of looks,
   come from the same underlying stochastic process,
 the likelihood ratio statistics for POLSAR covariance matrix is considered:  
@@ -336,38 +264,30 @@ the likelihood ratio statistics for POLSAR covariance matrix is considered:
   Q = \frac{(L_x+L_y)^{d \cdot (L_x+L_y)}}{L_x^{d \cdot L_x} L_y^{d \cdot L_y}} \frac{|Z_x|^{L_x} |Z_y|^{L_y} }{|Z_x+Z_y|^{(L_x+L_y)}}
 \end{equation*}
 
-Taking the log-transformation of the above statistics, and note that $C_{vx} = Z_x / L_x$, $C_{vy} = Z_y / L_y$ and $C_{vxy} = (Z_x + Z_y)/(L_x + L_y)$ it becomes 
-\begin{eqnarray}
-  Q &=& \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} \\
-  \ln Q &=& L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
-\end{eqnarray}
+Taking the log-transformation of the above equation, and denoting $C_{vx} = Z_x / L_x$, $C_{vy} = Z_y / L_y$ and $C_{vxy} = (Z_x + Z_y)/(L_x + L_y)$ then:
+{\small
+\begin{align}
+  Q &= \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} \\
+  \ln Q &= L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
+\end{align}
+}
 
-To detect changes, a test statistic is developed based on this measure of distance.
+To detect changes, a test statistic is developed for this discrimination measure.
 This means a distribution is to be derived for the dissimilarity measure.
-However, in the original work \cite{Conradsen_2003_TGRS_4}, only an asymptotic distribution has been proposed.
-%In this sub-section, a statistical model is developed for this measure of distance.
-%Since both $Z_x$ and $Z_y$ follow a complex Wishart distribution with $L_x$ and $L_y$ degrees of freedom,
-%  $Z_x+Z_y$ also follows the complex Wishart distribution with $(L_x + L_y)$ degrees of freedom.
-%In view of the models for $|C_v|$ and $\ln|C_v|$ developed in this paper (Eqns. \ref{eqn:determinant_distribution} \& \ref{eqn:log_determinant_distribution}),
-%  it is evident that not only the bound for $\ln Q$, or equivalently $Q$, can be derived
-%  but the whole statistical distribution for it can be simulated as well.
+However, in the original work \cite{Conradsen_2003_TGRS_4}, only an asymptotic distribution was used.
+This paper proposes a statistical model for the determinant of the POLSAR covariance matrix $|C_v|$
+  which is capable of providing an exact distribution for the test.
 
-\section{Scalar Statistical Models for POLSAR}  
+\section{The Generic Scalar Statistical Model for POLSAR}  
 \label{sec:theoretical_model}
 
-In this section, several scalar statistical models for POLSAR are presented.
-After section \ref{sec:model_basic} briefly introduces the basic foundations, concepts and notation of this paper, %reviews related work in published literature,
-  section \ref{sec:polsar_heterosked_model_and_log_transform}
-  presents the theoretical models together with mathematical evidence for two related points.
-The first point is that the POLSAR data is multiplicative and heteroskedastic in its original domain.
-And the second conclusion states that log-transformation converts it into an additive and homoskedastic model.
-Some consistent measures of distance are then derived and presented in section \ref{sec:distance_measure}.
-
-\subsection{Basics of POLSAR Statistical Analysis}
-\label{sec:model_basic}
+%In this section, the generic scalar statistical model for POLSAR is presented.
+In this section, after the basic foundations of POLSAR statistical analysis are introduced,
+  the generic scalar statistical model for the multi-dimensional POLSAR will be presented.
+%  this section presents the theoretical model for multi-dimensional POLSAR data. 
 
 In this paper, the POLSAR scattering vector is denoted as $s$.
-In the case of partial polarimetric SAR (single polarization in transmit and dual polarization in receipt),
+For partial polarimetric SAR (single polarization in transmit and dual polarization in receipt),
   the vector is two-dimensional ($d=2$) and is normally written as: 
 \begin{equation}
 s_{part}=\begin{bmatrix}
@@ -375,7 +295,7 @@ S_h\\
 S_v
 \end{bmatrix}
 \end{equation}
-In the case of full and monostatic POLSAR data,
+For full and monostatic POLSAR data,
   the vector is three-dimensional ($d=3$) and is presented as:
 \begin{equation}
 s_{full}=\begin{bmatrix}
@@ -395,16 +315,14 @@ Assuming %all the elements in $s$ are independent and
 \end{equation}
 where $||$ denotes the matrix determinant.
 
-%As the covariance matrix is only defined on multiple data points,
-%  sample POLSAR covariance matrices are commonly presented in ``ensemble'' format.
 The sample POLSAR covariance matrix is formed as the mean of Hermitian outer product of independent single-look scattering vectors,
 \begin{equation}
   C_v = \langle ss^{*T} \rangle = \frac{1}{L} \sum^L_{i=1}s_is_i^{*T}
 \end{equation}
-where $s_i$ denotes the single-look scattering vector,
+where $L$ is the number of looks
+  and $s_i$ denotes the single-look scattering vector,
   which equals $s_{part}$ for the case of partial POLSAR or
-  $s_{full}$ for the case of full polarimetry,
-and $L$ is the number of looks.
+  $s_{full}$ for the case of full polarimetry.
 
 Complex Wishart distribution statistics are normally used for the scaled covariance matrix
 $Z=LC_v$, whose PDF is given as:
@@ -415,162 +333,119 @@ with $\Gamma_d(L) = \pi^{d(d-1)/2} \prod^{d-1}_{i=0}\Gamma(L-i)$
 and $d$ is the dimensional number of the POLSAR covariance matrix.
 
 The approach taken in this paper differs by applying the homoskedastic log transformation  on a less-than-well-known result for the determinant of the covariance matrix.
-  %under the assumption of circular complex Gaussian distribution
-  %applicable for POLSAR data.
 Goodman \cite{Goodman_1963_AMS_178} proved
 that the ratio between the observable and expected values of the sample covariance matrix determinants
-  behave like a product of $d$ chi-squared random variables with different degrees of freedom: 
+  behaves like a product of $d$ chi-squared random variables with different degrees of freedom: 
 \begin{equation}
-\chi^d_L = (2L)^d \frac{|C_v|}{|\Sigma_v|} \sim \prod_{i=0}^{d-1} \chi^2 (2L-2i)
+\chi^d_L = (2L)^d \frac{|C_v|}{|\Sigma_v|} \sim \prod_{i=0}^{d-1} \chi (2L-2i)
 \label{eqn:prod_chi_squared_rv}  
 \end{equation}
 
-Its log-transformed variable consequently 
-  behaves like a summation of $d$ log-chi-squared random variables with the same degrees of freedom  
-\begin{equation}
-\Lambda^d_L = ln \left[ (2L)^d \frac{|C_v|}{|\Sigma_v|} \right] \sim \sum_{i=0}^{d-1} \Lambda^\chi (2L-2i)
-\label{eqn:sum_log_chi_squared_rv}
-\end{equation}
-with
-  $\Lambda^\chi (k) \sim \ln \left[ \chi^2 (k) \right]$.
-We will now use this result to develop log-transformed measures of distance.
-%***IVM added the sentence above... **Please check it's true!!!!
-
-
-
-\subsection{Original Hetoroskedastic Domain and the Homoskedastic Log-Transformation}
-\label{sec:polsar_heterosked_model_and_log_transform}
-
-In this section the multiplicative nature of POLSAR data is first illustrated.
- Log-transformation is used to convert  the data into a more familiar additive model.
-%Log-transformation is shown converting this into a more familiar additive model.
-Heteroskedasticity, which is defined as the dependence of variance upon the underlying signal,
-  is shown to be present in the original POLSAR data.
-In the log-transformed domain, a homoskedastic model is demonstrated,
-  where sample variance is fixed and thus independent of the underlying signal.
-%To keep the section flowing, the mathematical derivation is only presented here in major sketches.
-%For more detailed derivation, Appendix \ref{chap:appendix_a} should be referred to.
-Several intermediate mathematical steps are not shown here, but can be found in Appendix \ref{chap:appendix_a}.
-  
-From Eqns. \ref{eqn:prod_chi_squared_rv} and \ref{eqn:sum_log_chi_squared_rv}
-we can deduce the following relationships:
+%We will now use 
+This result is used here to develop the generic scalar statistical model for POLSAR. %log-transformed measures of distance.
+From Eqn. \ref{eqn:prod_chi_squared_rv} %and \ref{eqn:sum_log_chi_squared_rv}
+we have: %can deduce the following relationships:
 \begin{eqnarray}
-  |C_v| &\sim& |\Sigma_v| \cdot \frac{1}{(2L)^d} \cdot \prod_{i=0}^{d-1} \chi^2 (2L-2i) \label{eqn:determinant_distribution} \\
-  \ln|C_v| &\sim& \ln|\Sigma_v| - d \cdot \ln(2L) + \sum^{d-1}_{i=0} \Lambda(2L-2i)
-\label{eqn:log_determinant_distribution}  
+  |C_v| &\sim& |\Sigma_v| \cdot \frac{1}{(2L)^d} \cdot \prod_{i=0}^{d-1} \chi (2L-2i) \label{eqn:determinant_distribution} %\\
+%  \ln|C_v| &\sim& \ln|\Sigma_v| - d \cdot \ln(2L) + \sum^{d-1}_{i=0} \Lambda(2L-2i)
+%\label{eqn:log_determinant_distribution}  
 \end{eqnarray}
 
 In a given homogeneous POLSAR area, the parameters $\Sigma_v$, $d$ and $L$ can be considered constant.
-Thus Eqn. \ref{eqn:determinant_distribution} indicates that: 
+Thus Eqn. \ref{eqn:determinant_distribution} indicates that 
   in the original POLSAR domain, a multiplicative speckle noise pattern is present.
-At the same time, Eqn. \ref{eqn:log_determinant_distribution} shows that
-  the logarithmic transformation has converted this to the more familiar additive noise.  
 
-Since chi-squared random variables $X\ \sim\ \chi^2(k)\ $ follow a known PDF:
-\begin{equation}
-pdf(x;2L) =
-  \frac{x^{L-1} e^{-x/2}}{2^L \Gamma\left(L\right)}
-\label{eqn:chi_squared_dist_pdf:chap4}
-\end{equation}
-applying the variable change theorem, 
-  its log-transformed variable follows the PDF of:
-\begin{equation}
-  pdf(x;2L=k) = \frac{e^{Lx-e^x/2}}{2^{L}\Gamma(L)}
-\end{equation}
-
-Using these PDFs, the characteristic functions (CF) of both the chi-squared and log-chi-squared random variables
-  can be written as:
-  \begin{eqnarray}
-    CF_\chi(t) &=& (1-2it)^{−L} \\ 
-    CF_\Lambda(t) &=& 2^{it} \frac{\Gamma(L+it)}{\Gamma(L)} \label{eqn:log_chi_squared_characteristic_function}
-  \end{eqnarray}
-%Subsequently their means and variances can be computed from the given characteristic functions.
-%They are:
- Their means and variances can subsequently be computed from these  characteristic functions, leading to the following relationships:  
-  \begin{eqnarray}
-    avg \left[ \chi(2L) \right]&=&2L \\
-var \left[ \chi(2L) \right]&=&4L \\
-avg \left[ \Lambda(2L) \right] &=& \psi^0(L) + \ln2 \\
-var \left[ \Lambda(2L) \right] &=& \psi^1(L)
-  \end{eqnarray}
-  where $\psi^0()$ and $\psi^1()$ represent the digamma and trigamma functions respectively.
-
-Since the average and variance of both chi-squared distribution and log-chi-squared distribution are constant,
-  the product and summation of these random variables also has fixed summary statistics.
+Moreover, since the average and variance of these chi-squared distributions %and log-chi-squared distribution
+  are known to be constant, i.e. $avg \left[ \chi(2L) \right] = 2L$ and $var \left[ \chi(2L) \right] = 4L$,
+  the product and summation of these random variables also have fixed summary statistics.
 Specifically:
+{\footnotesize
 \begin{align*}
-  avg \left[ \prod^{d-1}_{i=0} \chi^2(2L-2i) \right] &= 2^d \cdot \prod^{d-1}_{i=0} (L-i), \\
-  var \left[ \prod^{d-1}_{i=0} \chi^2(2L-2i) \right] &= \prod^{d-1}_{i=0} 4(L-i)(L-i+1) - \prod^{d-1}_{i=0} 4(L-i)^2, \\
-  avg \left[ \sum^{d-1}_{i=0} \Lambda(2L-2i) \right] &= d \cdot \ln{2} + \sum^{d-1}_{i=0} \psi^0(L-i), \\
-  var \left[ \sum^{d-1}_{i=0} \Lambda(2L-2i) \right] &= \sum^{d-1}_{i=0} \psi^1(L-i)
+  avg \left[ \prod^{d-1}_{i=0} \chi(2L-2i) \right] &= 2^d \cdot \prod^{d-1}_{i=0} (L-i), \\
+  var \left[ \prod^{d-1}_{i=0} \chi(2L-2i) \right] &= \prod^{d-1}_{i=0} 4(L-i)(L-i+1) - \prod^{d-1}_{i=0} 4(L-i)^2, %\\
+%  avg \left[ \sum^{d-1}_{i=0} \Lambda(2L-2i) \right] &= d \cdot \ln{2} + \sum^{d-1}_{i=0} \psi^0(L-i), \\
+%  var \left[ \sum^{d-1}_{i=0} \Lambda(2L-2i) \right] &= \sum^{d-1}_{i=0} \psi^1(L-i)
 \end{align*}
+}
 
-Combining these results with Eqns. \ref{eqn:determinant_distribution} and \ref{eqn:log_determinant_distribution}, we have:
-%\begin{eqnarray}
-%\end{eqnarray}
+Combining these results with Eqn. \ref{eqn:determinant_distribution} %and \ref{eqn:log_determinant_distribution}
+  , we have:
+{\footnotesize
 \begin{align}
   avg \left[ |C_v| \right]  &= \frac{|\Sigma_v|}{L^d} \prod^{d-1}_{i=0} (L-i)\\
-  var \left[ |C_v| \right]  &=   \frac{|\Sigma_v|^2 \left[ \prod^{d-1}_{i=0} (L-i)(L-i+1) - \prod^{d-1}_{i=0} (L-i)^2 \right] }{L^{2d}} \label{eqn:var_det_is_heteroskedastic}\\
-  avg \left[ \ln |C_v| \right] &= \ln |\Sigma_v| - d \cdot \ln{L}  + \sum^{d-1}_{i=0} \psi^0(L-i) \label{eqn:avg_log_det} \\
-  var \left[ \ln |C_v| \right] &=  \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:var_log_det_is_homoskedastic}
+  var \left[ |C_v| \right]  &=   \frac{|\Sigma_v|^2 \left[ \prod^{d-1}_{i=0} (L-i)(L-i+1) - \prod^{d-1}_{i=0} (L-i)^2 \right] }{L^{2d}} \label{eqn:var_det_is_heteroskedastic}%\\
+%  avg \left[ \ln |C_v| \right] &= \ln |\Sigma_v| - d \cdot \ln{L}  + \sum^{d-1}_{i=0} \psi^0(L-i) \label{eqn:avg_log_det} \\
+%  var \left[ \ln |C_v| \right] &=  \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:var_log_det_is_homoskedastic}
 \end{align}
+}
 
 For a real world captured image, while the parameters $d$ and $L$ do not change for the whole image,
-%Over a real and captured image, while the parameters $d$ and $L$ do not change for the whole image,
   the underlying $\Sigma_v$ is expected to differ from one region to the next.
 Thus over a heterogeneous scene, the stochastic process for $|C_v|$ and $\ln |C_v|$ vary depending on the underlying signal $\Sigma_v$. 
 In such context, Eqn. \ref{eqn:var_det_is_heteroskedastic} implies that the variance of $|C_v|$ also differs depending on the underlying signal $\Sigma_v$ (i.e. it is   heteroskedastic).
-At the same time, in the log-transformed domain, Eqn. \ref{eqn:var_log_det_is_homoskedastic} reveals that
-  the variance of $\ln |C_v|$ is invariant and independent of $\Sigma_v$ (i.e. it is homoskedastic).
 
-\subsection{Consistent Measures of Distance for POLSAR}
-\label{sec:distance_measure}
+Similar to the way intensity-ratio is proposed as the discrimination measure for the multiplicative and heteroskedastic SAR intensity \cite{Rignot_1993_TGRS_896},
+in this paper, the determinant-ratio and the change-ratio are also proposed as a discrimination measure for the POLSAR data.
+  which is shown above to also suffer from the multiplicative and heteroskedastic phenomena.
+%Similar to the way dispersion and contrast is defined for one-dimensional SAR \cite{Le_2010_ACRS},
+%  this section introduces the consistent sense of distance for POLSAR.
 
- This section introduces the consistent sense of distance from different perspectives \cite{Le_2010_ACRS}.
-Assuming, on the one hand, that the true value of the underlying signal $\Sigma_v$ is known \textit{a priori},
-random variables,
-  ratio ($\mathbb{R}$) and log-distance ($\mathbb{L}$),
-  are observable according to the following definitions:
+%Assuming, on the one hand,
+For cases where the true value of the underlying signal $\Sigma_v$ is known \textit{a priori},
+then the determinant-ratio of the signal random variable ($\mathbb{R}_{\Sigma}$) %and log-distance ($\mathbb{L}$)
+%  are observable according to the following definitions:
+  is defined as:
 %Eqns. \ref{eqn:prod_chi_squared_rv} and \ref{eqn:sum_log_chi_squared_rv} lead straight to the definition of the following random variables, which is the :
 \begin{eqnarray}
-  \mathbb{R} &=& \frac{|C_v|}{|\Sigma_v|} \label{eqn:determinant_ratio_observables}\\
-  \mathbb{L} &=& \ln|C_v| - \ln|\Sigma_v| \label{eqn:log_distance_observables} 
+  \mathbb{R}_{\Sigma} &=& \frac{|C_v|}{|\Sigma_v|} \label{eqn:determinant_ratio_observables}%\\
+%  \mathbb{L} &=& \ln|C_v| - \ln|\Sigma_v| \label{eqn:log_distance_observables} 
 \end{eqnarray}
-
-On the other hand, under a looser assumption %From another perspective
-  where the POLSAR data is known to have come from a homogeneous area, but the true value of the underlying signal $\Sigma_v$ is \textit{unknown},
-  the dispersion ($\mathbb{D}$) and contrast ($\mathbb{C}$) random variables are the observables defined as:
+%On the other hand, under a looser assumption %From another perspective
+For cases where the POLSAR data is known to have come from a homogeneous area, but the true value of the underlying signal $\Sigma_v$ is \textit{unknown},
+ then a random variable called the change-ratio ($\mathbb{R}_{C}$)  is defined as:
 \begin{eqnarray}
-  \mathbb{D} &=& \ln{|C_v|} - avg(\ln{|C_v|}) \label{eqn:dispersion_observable}\\
-  \mathbb{C} &=& \ln(|C_{v1}|) - \ln(|C_{v2}|) \label{eqn:contrast_observable}
+  \mathbb{R}_{C} &=& \frac{|C_1|}{|C_2|} \label{eqn:determinant_ratio_samples_observables}%\\
+%  \mathbb{L} &=& \ln|C_v| - \ln|\Sigma_v| \label{eqn:log_distance_observables} 
 \end{eqnarray}
+where $C_1$ and $C_2$ are samples of the covariance matrix determinant in an assumed homogeneous area. 
 
-Using the results from Eqns. \ref{eqn:determinant_distribution}, \ref{eqn:log_determinant_distribution} and \ref{eqn:avg_log_det} we have
+%  the dispersion ($\mathbb{D}$) and contrast ($\mathbb{C}$) random variables are the observables defined as:
+%\begin{eqnarray}
+%  \mathbb{D} &=& \ln{|C_v|} - avg(\ln{|C_v|}) \label{eqn:dispersion_observable}\\
+%  \mathbb{C} &=& \ln(|C_{v1}|) - \ln(|C_{v2}|) \label{eqn:contrast_observable}
+%\end{eqnarray}
+
+Using the results from Eqn. \ref{eqn:determinant_distribution}, %\ref{eqn:log_determinant_distribution} and \ref{eqn:avg_log_det}
+  we have
 \begin{eqnarray}
-\mathbb{R} &\sim& \frac{1}{(2L)^d} \cdot \prod_{i=0}^{d-1} \chi^2 (2L-2i) \label{eqn:determinant_ratio_distribution} \\
-\mathbb{L} &\sim&  \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln(2L)
-\label{eqn:log_determinant_distance_distribution} \\ 
- \mathbb{D} &\sim& \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2} + k
-\label{eqn:dispersion_distribution} \\ 
- \mathbb{C} &\sim& \sum^{d-1}_{i=0} \Delta(2L-2i)
-\label{eqn:contrast_distribution}  
+\mathbb{R}_{\Sigma} &\sim& \frac{1}{(2L)^d} \cdot \prod_{i=0}^{d-1} \chi (2L-2i) \label{eqn:determinant_ratio_distribution} \\
+\mathbb{R}_{C} &\sim& \prod_{i=0}^{d-1} \frac{\chi(2L-2i)}{\chi(2L-2i)} \label{eqn:change_ratio_distribution}
+%\mathbb{L} &\sim&  \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln(2L)
+%\label{eqn:log_determinant_distance_distribution} \\ 
+% \mathbb{D} &\sim& \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2} + k
+%\label{eqn:dispersion_distribution} \\ 
+% \mathbb{C} &\sim& \sum^{d-1}_{i=0} \Delta(2L-2i)
+%\label{eqn:contrast_distribution}  
 \end{eqnarray}
-with $\Delta(2L) \sim \Lambda(2L) - \Lambda(2L)$
-and $k=\sum^{d-1}_{i=0} \psi^0(L-i)$
+%with $\Delta(2L) \sim \Lambda(2L) - \Lambda(2L)$
+%and $k=\sum^{d-1}_{i=0} \psi^0(L-i)$
 
-%Also using the characteristic functions for the elementary components $\Lambda(2L)$ expressed in Eqn. \ref{eqn:log_chi_squared_characteristic_function}, 
-Thus the characteristic functions for the summative random variables is derived in Appendix \ref{sec:appendix_b} as:
-\begin{align}
-  CF_{\Lambda^d_L}(t) &= \frac{2^{idt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
-  CF_{\mathbb{L}}(t) &= \frac{1}{L^{idt} \Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
-  CF_{\mathbb{D}}(t) &= \frac{e^{ikt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
-  CF_{\Delta(2L)} &= \frac{\Gamma(2L) B(L-it,L+it)}{\Gamma(L)^2} \\
-  CF_{\mathbb{C}}(t) &=  \prod^{d-1}_{j=0} \frac{\Gamma(2L-2j) B(L-j-it,L-j+it)}{\Gamma(L-j)^2}
-\end{align}
+%Thus the characteristic functions for the summative random variables is derived in Appendix \ref{sec:appendix_b} as:
+%\begin{align}
+%  CF_{\Lambda^d_L}(t) &= \frac{2^{idt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
+%  CF_{\mathbb{L}}(t) &= \frac{1}{L^{idt} \Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
+%  CF_{\mathbb{D}}(t) &= \frac{e^{ikt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
+%  CF_{\Delta(2L)} &= \frac{\Gamma(2L) B(L-it,L+it)}{\Gamma(L)^2} \\
+%  CF_{\mathbb{C}}(t) &=  \prod^{d-1}_{j=0} \frac{\Gamma(2L-2j) B(L-j-it,L-j+it)}{\Gamma(L-j)^2}
+%\end{align}
 
-Since each elementary component follows fixed distributions (i.e. $\chi^2(2L), \Lambda(2L), ... $),
-  it is natural that these variables also follow fixed distributions.
-Moreover, note that they are independent of the underlying signal $\Sigma_v$.
+Since each elementary component follows fixed distributions (i.e. $\chi^2(2L)$),
+  it is natural that this variable also follows fixed distributions.
+Moreover, it is independent of the underlying signal $\Sigma_v$,
+  indicating its statistically consistent properties and hence its applicability as a POLSAR discrimination measure.
+This claim is extrapolated from the widely-used intensity-ratio as a SAR discrimination measure
+  and will be further discussed in the next sections.
+%is further strengthened in the next section which shows that the generic models for POLSAR presented in this paper also include the commonly-used models for SAR as its special 1-dimensional case. 
 %This result shows how
 %In short, these random variables are shown to follow consistent and fixed distributions,
 %  regardless of the underlying signal $\Sigma_v$.
@@ -578,1678 +453,660 @@ Moreover, note that they are independent of the underlying signal $\Sigma_v$.
 \section{SAR as a one-dimensional case of POLSAR}
 \label{sec:sar_special_case_of_polsar}
 
-%The previous section has introduced the theoretical model for 3-dimensional $d=3$ full polarimetric and two dimensional $d=2$ partial polarimetry cases.
-%In this section, the model is shown to be also applicable for the 1-dimensional $d=1$ case.
-%Physically this means the multi-dimensional POLSAR dataset is collapsed into one-dimensional conventional SAR data.
-%Mathematically, the sample covariance matrix is reduced to the sample variance
-%%The prevous section has validated the use of our models for 3-dimensional $d=3$ full polarimetric and two dimensional $d=2$ partial polarimetry cases.
-%%In this section, the focus is on the case where the dimensional number is reduced to 1 $d=1$.
-%%Physically this means the multi-dimensional POLSAR dataset is collapsed into the one-dimensional and classical SAR data.
-%%Mathmatically, the sample covariance matrix is reduced to the sample variance
-%  and the determinant equates the scalar value.
-%On the other hand, it is well known that for SAR data, variance equals intensity.
-%Thus the special case of our result is investigated carefully and is shown to be consistent with previous results for SAR intensity data.
-%This can be thought of 
-%  either as a cross-validation evidence for the proposed POLSAR models
-%  or alternatively as having SAR as the special case of POLSAR. 
-%%  with well known results for SAR intensity is presented.
-
-The previous section  introduced  theoretical models for 3-dimensional, d=3 full polarimetric and 2-dimensional, d=2 partial polarimetry, cases.
-This section will show that the model is equally  applicable to the 1-dimensional d=1 case,
+%The previous sections have introduced and validated the theoretical models for 3-dimensional ($d=3$) full polarimetric and 2-dimensional ($d=2$) partial polarimetry, cases.
+This section shows that the proposed generic model is equally  applicable to the 1-dimensional ($d=1$) case,
   which is physically equivalent to  collapsing the multi-dimensional POLSAR dataset  into conventional single dimensional SAR data.
-Mathematically, the sample covariance matrix is reduced to the sample variance while the determinant is equivalent to  the scalar value.
-As variance is equal to intensity for SAR data, our result is consistent with previous results for SAR intensity data.
-Hence this derivation can be considered as cross-validation evidence for the proposed POLSAR models
-  as well as reminding us that SAR is a special case of POLSAR.
+Mathematically, the sample covariance matrix $C_v$ is reduced to the sample variance while the determinant $|C_v|$ is equivalent to  the scalar variance value.
+As variance is equal to intensity $I$ for SAR data, our result is consistent with previous results for SAR intensity data.
+Thus the proposed generic model for POLSAR, collapsed into one dimension will be shown to map to the traditional model for SAR intensity in its natural coverage.
+%****IVM: Hai, by "natural coverage" above do you mean non-built-up areas, or are you using this as a figure of speech?  Note: this sentence needs additional correction to include the word 'confidence'.. I'll do that once you can confirm the meaning of 'natural coverage'.
+%  as well as reminding us that SAR is a special case of POLSAR.
   
-%The results so far for our models can be summarized as:
 The results for our models can be summarized using the following equations:
-\begin{align}
-  \mathbb{R} &= \frac{|C_v|}{|\Sigma_v|} \sim \frac{1}{(2L)^d} \prod^{d-1}_{i=0} \chi^2(2L-2i) \\% \label{eqn:polsar_ratio_det_cov_dist} \\
-  \mathbb{L} &= \ln{|C_v|} - \ln{|\Sigma_v|} \sim \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \\ %\label{eqn:polsar_dispersion_log_det_cov_dist} \\
-  \mathbb{D} &= \ln{|C_v|} - avg(\ln{|C_v|}) \sim \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \ln{2} + k\\
-  \mathbb{C} &= \ln{|C_{1v}|} - \ln{|C_{2v}|} \sim \sum^{d-1}_{i=0} \Delta(2L-2i) \\
-  \mathbb{A} &= avg(\mathbb{L}) = \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \\ %\label{eqn:polsar_dispersion_averages} \\
-  \mathbb{V} &= var(\mathbb{L}) = \sum^{d-1}_{i=0} \psi^1(L-i) \\ %\label{eqn:polsar_dispersion_variance} \\
-  \mathbb{E} &= mse(\mathbb{L}) =\left[ \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \right]^2 +  \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:polsar_dispersion_mse} 
-\end{align}
+\begin{align*}
+  |C_v| &\sim |\Sigma_v| \cdot \frac{1}{(2L)^d} \cdot \prod_{i=0}^{d-1} \chi (2L-2i) \\ %\label{eqn:determinant_distribution} %\\
+  \mathbb{R}_{\Sigma} = \frac{|C_v|}{|\Sigma_v|} &\sim \frac{1}{(2L)^d} \prod^{d-1}_{i=0} \chi(2L-2i) \\ %\label{eqn:polsar_ratio_det_cov_dist} \\
+\mathbb{R}_{C} = \frac{C_1}{C_2} &\sim \prod_{i=0}^{d-1} \frac{\chi(2L-2i)}{\chi(2L-2i)}
+%  \mathbb{L} &= \ln{|C_v|} - \ln{|\Sigma_v|} \sim \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \\ %\label{eqn:polsar_dispersion_log_det_cov_dist} \\
+%  \mathbb{D} &= \ln{|C_v|} - avg(\ln{|C_v|}) \sim \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \ln{2} + k\\
+%  \mathbb{C} &= \ln{|C_{1v}|} - \ln{|C_{2v}|} \sim \sum^{d-1}_{i=0} \Delta(2L-2i) \\
+%  \mathbb{A} &= avg(\mathbb{L}) = \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \\ %\label{eqn:polsar_dispersion_averages} \\
+%  \mathbb{V} &= var(\mathbb{L}) = \sum^{d-1}_{i=0} \psi^1(L-i) \\ %\label{eqn:polsar_dispersion_variance} \\
+%  \mathbb{E} &= mse(\mathbb{L}) =\left[ \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \right]^2 +  \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:polsar_dispersion_mse} 
+\end{align*}
 
 Upon setting $d=1$ into the above equations,
-  Appendix \ref{sec:appendix_sar_special_case_of_polsar} shows that the reduced results are consistent with the following two cases.
-First is the following results obtained from our previous work on single-look SAR \cite{Le_2010_ACRS} , i.e. $d=L=1$,
-%Upon setting $d=1$ into the above models,
-%  Appendix \ref{sec:appendix_sar_special_case_of_polsar} shows that the reduced results are consistent with
-%not only the following results from the our previous works on single-look SAR \cite{Le_2013_TGRS_SAR_MSE}, i.e. $d=L=1$,
+  the equations become:
 \begin{align*}
-  I &\sim \bar{I} \cdot pdf \left[ e^{-R} \right] \\
-  \log_2{I} &\sim \log_2{\bar{I}} + pdf \left[ 2^xe^{-2^x}\ln2 \right] \\
-  \mathbb{R} &= \frac{I}{\bar{I}} \sim pdf \left[ e^{-x} \right]  \\
-  \mathbb{L} &= \log_2{I} - \log_2{\bar{I}} \sim pdf \left[ 2^xe^{-2^x}\ln2 \right]\\
-  \mathbb{D} &= \log_2{I} - avg(\log_2{I}) \sim pdf \left[ e^{-(2^xe^{-\gamma})} 2^xe^{-\gamma} \ln2 \right] \\
-  \mathbb{C} &= \log_2{I_1} - \log_2{I_2} \sim pdf \left[ \frac{2^x}{(1+2^x)^2} \ln2 \right] \\
-  \mathbb{A} &= avg(\mathbb{L}) = -\gamma / \ln{2} \\
-  \mathbb{V} &= var(\mathbb{L}) = \frac{\pi^2}{6} \frac{1}{ \ln^2{2}} \\
-  \mathbb{E} &= mse(\mathbb{L}) = \frac{1}{\ln^2{2}}( \gamma^2 + \pi^2/6 ) = 4.1161 
+  |C_v| &\sim  \frac{|\Sigma_v|}{(2L)} \cdot \chi (2L) \\ %\label{eqn:determinant_distribution} %\\
+  \mathbb{R}_{\Sigma} = \frac{|C_v|}{|\Sigma_v|} &\sim \frac{1}{(2L)} \cdot \chi(2L) \\ %\label{eqn:polsar_ratio_det_cov_dist} \\
+\mathbb{R}_{C} = \frac{C_1}{C_2} &\sim \prod_{i=0}^{d-1} \frac{\chi(2L-2i)}{\chi(2L-2i)}
 \end{align*}
-The second is the following well-known results for multi-look SAR, i.e. $d=1,L>1$:
-%but also the following well-known results for multi-look SAR, i.e. $d=1,L>1$:
+
+Since the PDF of chi-squared distribution can be written as:
+\begin{align*}
+\chi(2L) \sim pdf \left[ \frac{\chi^{L-1}e^{-\chi/2}}{2^L\Gamma(L)} \right]
+\end{align*}
+Applying variable change theorem into the above equations results in:
+\begin{align*}
+  |C_v| &\sim  pdf \left[ \frac{L^L x^{L-1} e^{-Lx/|\Sigma_v|}}{\Gamma(L) |\Sigma_v|^L} \right] \\ %\label{eqn:determinant_distribution} %\\
+  \mathbb{R}_{\Sigma} = \frac{|C_v|}{|\Sigma_v|} &\sim pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \right] \\ %\label{eqn:polsar_ratio_det_cov_dist} \\
+  \mathbb{R}_{C} = \frac{C_1}{C_2} &\sim pdf \left[ \frac{\Gamma(2L-1) x^{L-1}}{\Gamma^2(L-1) (1+x)^{2L}} \right]
+\end{align*}
+These equations match exactly with the following traditional model for multi-look SAR intensity:
   \begin{eqnarray}
 I &\sim& pdf \left[ \frac{L^L x^{L-1} e^{-Lx/\bar{I}}}{\Gamma(L) \bar{I}^L} \right] \\
-N = \ln{I} &\sim& pdf \left[ \frac{L^L}{\Gamma(L)} e^{L(x-\bar{N})-Le^{x-\bar{N}}} \right]
+\mathbb{R}_{\bar{I}} = \frac{I}{\bar{I}} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \label{eqn:multi_look_SAR_ratio_dist} \right] \\
+  \mathbb{R}_{I} = \frac{I_1}{I_2} &\sim& pdf \left[ \frac{\Gamma(2L-1) x^{L-1}}{\Gamma^2(L-1) (1+x)^{2L}} \right]
   \end{eqnarray}
-Furthermore, the following derivations for multi-look SAR data
-   show that it can be considered 
-    either as extensions of the corresponding single-look SAR results
-    or as simple cases of the POLSAR results:
-%  Furthermore, the following results for multi-look SAR data,
-%  which can be thought of 
-%    either as extensions of the corresponding single-look SAR results
-%    or as simple cases of the POLSAR results
-%  are also derived as:
-  \begin{align*}
-    \mathbb{R} &= \frac{I}{\bar{I}} \sim pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \label{eqn:multi_look_SAR_ratio_dist} \right]\\
-    \mathbb{L} &= \ln{I} - \ln{\bar{I}} \sim pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right] \\
-    \mathbb{D} &= \ln{I} - avg(\ln{I}) \sim pdf \left[ \frac{e^{L[x-\psi^0(L)]-e^{[x-\psi^0(L)]}}}{\Gamma(L)} \right] \\
-    \mathbb{C} &= \ln{I_1} - \ln{I_2} \sim pdf \left[ \frac{e^{x}}{(1+e^x)^{2}} \right] \\
-    \mathbb{A} &= avg(\mathbb{L}) = \psi^0(L) - \ln{L} \\
-    \mathbb{V} &= var(\mathbb{L}) = \psi^1(L) \\
-    \mathbb{E} &= mse(\mathbb{L}) = \left[ \psi^0(L) - \ln{L} \right]^2 + \psi^1(L)
-  \end{align*}
+considering that $|C_v| \mapsto I$ and $|\Sigma_v| \mapsto \bar{I}$ as multi-dimensional POLSAR collapses into single-dimensional SAR.
 
-     
-\section{Validating the proposed models against real-life data}
-\label{sec:polsar_models_validation}
+\section{Unifying the different discrimination measures proposals for both SAR and POLSAR}
+\label{sec:link_sar_polsar}
 
-This section aims to verify the theoretical models against practical data.
-Since we have shown that the model for the case of $d=1$ matches exactly with the traditional model for SAR intensity,
-  only a simple validation is presented for this case.
+Statistical models have always been the foundation for deriving discrimination measures.
+This is true for both fields of SAR and POLSAR.
+For SAR, where the field is more or less settled on the issue,
+  the statistical model for SAR intensity has been used to derive the most widely used intensity-ratio discrimination measure \cite{Rignot_1993_TGRS_896}.
+For POLSAR, where the research field is much less mature,
+  the same case should apply, 
+  except that so far only asymptotic distributions have been derived for the most common foundation, i.e. the likelihood test statistics \cite{Conradsen_2003_TGRS_4}.
 
-%These newly derived models for multi-look SAR data can also be validated using real-life data.
-Fig. \ref{fig:verify_multi_look_SAR_dispersion_contrast_models} presents the results of an experiment carried out for the stated purpose.
-In the experiment, the intensity of single-channel SAR data (HH) for a homogeneous area in the AIRSAR Flevoland dataset is extracted.
-The histograms for the log-distance and contrast are then plotted against the theoretical PDF given above.
- The plot is obtained with ENL set to the nominal number of 4, and a good visual match is apparent, providing us a simple validation of the result.
-%Then the histograms for the log-distance and and contrast is plotted against the theoretical PDF given above.
-%The ENL is set to the nominal number of 4.
-%And good visual match is apparent in the final results.
+With the insight gained from section \ref{sec:sar_special_case_of_polsar}, this section presents a few results.
+%  it should be clear that the proposed model can also be used to derive discrimination measures for POLSAR.
+First, similar to the way that the statistical model for SAR intensity has been used to provide the foundation for SAR discrimination measures, e.g. intensity-ratio \cite{Rignot_1993_TGRS_896},
+  the statistical model proposed for POLSAR covariance matrix determinant is to be reviewed as providing the foundation for POLSAR discrimination measures, i.e. the likelihood test statistics.
+And second, new discrimination measures for POLSAR may be derived by learning from the existing SAR discrimination measures.
 
-%ifdef FINAL
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-	\subfloat[multi-look SAR dispersion]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_multi_look_sar_dispersion_pdf.eps} 	
-		 \label{multi_look_dispersion}
-	} 
-	\hfill	
-	\subfloat[multi-look SAR contrast]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_multi_look_sar_contrast_pdf.eps} 	
-		 \label{multi_look_contrast}
-	}
-\end{tabular}
-\caption{Multi-Look SAR dispersion and contrast: modelled response matches very well with real-life captured data.}
-\label{fig:verify_multi_look_SAR_dispersion_contrast_models}
-\end{figure}
-%endif
-%ifdef REVIEW
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[multi-look SAR log-distance]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_multi_look_sar_dispersion_pdf.eps} 	
-		 \label{multi_look_dispersion}
-	} 
-	\hfill	
-	\subfloat[multi-look SAR contrast]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_multi_look_sar_contrast_pdf.eps} 	
-		 \label{multi_look_contrast}
-	}
-\end{tabular}
-\caption{Multi-Look SAR dispersion and contrast: modelled response matches very well with real-life captured data.}
-\label{fig:verify_multi_look_SAR_dispersion_contrast_models}
-\end{figure}
-%endif
-
-The remainder of this section now focuses on validating the models for both partial ($d=2$) and full ($d=3$) POLSAR.
-Specifically, subsection \ref{sec:valid_nominal_enl} demonstrates a naive validation, where the nominal ENL is used for the model.
-While the match appears to be reasonably good, it can be further improved.
-Subsection \ref{sec:improve_the_match_bw_theory_practice} discusses why the nominal look-number given by (POL)SAR processors may not be accurate,
-  while subsection \ref{sec:valid_enl_estimation} proposes a new technique in estimating the Effective Number of Looks (ENL) using the consistent variance found in a homoskedastic model.
-With the newly estimated ENL, subsection \ref{sec:valid_improve_practice} demonstrates that the match between the theoretical model and the practical data is indeed further improved.
-
-%Specifically the first sub-section provides a naive validation, where the nominal ENL is used for the model.
-%While the match appears to be reasonably good, it can be further improved.
-%After the second sub-section discusses why the nominal look-number given by (POL)SAR processors may not be very accurate,
-%  the third sub-section proposes a new technique in estimating the Effective Number of Looks (ENL) using the consistent variance found in homoskedastic model.
-%With the newly estimated ENL, the final sub-section shows that the match between the theoretical model and the practical data is indeed further improved.  
-
-\subsection{Using the nominal ENL to validate the theoretical models} 
-\label{sec:valid_nominal_enl}
-
-The stochastic models derived in the previous sections can be visualised  using histograms of the simulated data.
-Their accuracy can be verified by comparing to  histograms from real-life data samples extracted over a homogeneous area.
-
-%This sub-section describes an experiment to validate the models presented earlier against real-life captured data,
-%  which can be performed in a rather straightforward manner.
-%The stochastic models derived in the previous sections can be graphically visualized as histogram plots of the simulated data.
-%%This section describes an experiment to validate the models above against real-life captured data.
-%%The validation procedure is quite straightforward.
-%%Given that the stochastic models have been derived in the previous sections, 
-%%  they can be graphically visualized by the histogram plots of the simulated data.
-%At the same time, the form of the real-life practical data is also observable via the histogram plots of the data samples extracted from an homogeneous area.
-%Therefore, the theoretical models can be validated 
-%  if for the same parameters 
-%  the two plots match each other reasonably well.
-
-For this purpose, a homogeneous sample area was chosen from the AIRSAR Flevoland POLSAR data.
-Both the the determinant and the log-transformed models are to be validated together with the associated dissimilarity measures, namely the determinant ratio, log-distance, dispersion and contrast.
-These are closely related in that the determinant and determinant ratio are simply scaled versions of each other.
-Meanwhile, the log-determinant, log-distance and dispersion are simply shifted versions of each other.
-Nevertheless, all will be separately evaluated in this experiment in order to reveal an interesting phenomenon.
-
-%For this purpose, a homogeneous area was chosen from the AIRSAR Flevoland POLSAR data as experimental data samples.
-%Then theoretical models are used  to explain the data.
-%%As a demonstration, a homogeneous area was chosen from the AIRSAR Flevoland POLSAR data as experimental data samples.
-%%Then theoretical models are employed in an attempt to explain the data.
-%All the newly proposed models is to be validated.
-%They include:
-%  the determinant and its log-transformed models, together with the dissimilarity measures namely: the determinant ratio, log-distance, dispersion and the contrast measures of distance.
-%  
-%These models are closely related.
-%For  the same parameter set, the determinant and determinant ratio are simply scaled versions of each other.
-%Meanwhile, the log-determinant, log-distance and dispersion are also just shifted versions of each other.
-%Hence one could expect that 
-%  once a model is validated, the other models in the set will follow suit, 
-%  assuming that all the parameters of the image are known.% exactly.
-%Nevertheless, all the models will be separately evaluated in this experiment to describe an interesting phenomenon.
-%%The models are closely related.
-%%Given the same parameter set, the determinant and determinant ratio are just scaled version of each other.
-%%Meanwhile, the log-determinant, the log-distance and the dispersion are also just shifted version of each other.
-%%Thus ideally speaking
-%%  if one model is validated all the other models will also be,
-%%  assuming that all the parameters of the image are known exactly.
-%%Still in this section, all the models will be made subject to investigation.
-
-The least-assumed stochastic processes for dispersion and contrast are validated first.
-For each pixel in the region, the determinant of the covariance matrix is computed and the log-transformation applied.
-Then the average log-determinant of the POLSAR covariance matrix, i.e. $avg(ln|C_v|)$, is measured for dispersion.
-Subsequently the observable samples of dispersion and contrast are computed according to Eqns. \ref{eqn:dispersion_observable} and \ref{eqn:contrast_observable} in order to plot their histograms.
-
-At the same time, theoretical simulations according to Eqns. \ref{eqn:dispersion_distribution} and \ref{eqn:contrast_distribution} are carried out.
-Here a nominal look-number L=4 is used
-  while the dimensional number is set to either 3 or 2 for a full or partial polarimetric SAR dataset respectively.
-The plots, presented in Fig.
-  \ref {fig:verify_polsar_2x2_simulation_dispersion_contrast} show a good  visual match between the model and real data, validating the theoretical models for dispersion and contrast.
-%Here the nominal look-number is employed $L=4$ for this experiment,
-%  while the dimensional number is set to either 3 or 2 depending on whether a full or partial polarimetric SAR dataset is being investigated.
-%The plots are presented in Fig. 
-%\ref {fig:verify_polsar_2x2_simulation_dispersion_contrast} showing an evidentlt and visually match between the model and real data,
-%  effectively validating the theoretical models for dispersion and contrast.
-
-%ifdef FINAL
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-	\subfloat[part-pol (2x2) dispersion]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-                 \epsffile{images/verify_polsar_2x2_dispersion_distribution.eps} 
-		 \label{dispersion_2x2}
-	} 
-	\hfill	
-	\subfloat[part-pol (2x2) contrast]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_polsar_2x2_contrast_distribution.eps} 	
-		 \label{contrast_2x2}
-	} \\
-	\subfloat[full-pol (3x3) dispersion]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-                 \epsffile{images/verify_polsar_3x3_dispersion_distribution.eps} 
-		 \label{dispersion_3x3}
-	} 
-	\hfill	
-	\subfloat[full-pol (3x3) contrast]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_polsar_3x3_contrast_distribution.eps} 	
-		 \label{contrast_3x3}
-	}
-\end{tabular}
-\caption{Validating the dispersion and contrast models against both partial and full polarimetric AIRSAR Flevoland data.}
-\label{fig:verify_polsar_2x2_simulation_dispersion_contrast}
-\end{figure}
-%endif
-%ifdef REVIEW
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[part-pol (2x2) dispersion]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-                 \epsffile{images/verify_polsar_2x2_dispersion_distribution.eps} 
-		 \label{dispersion_2x2}
-	} 
-	\hfill	
-	\subfloat[part-pol (2x2) contrast]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_polsar_2x2_contrast_distribution.eps} 	
-		 \label{contrast_2x2}
-	} \\
-	\subfloat[full-pol (3x3) dispersion]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-                 \epsffile{images/verify_polsar_3x3_dispersion_distribution.eps} 
-		 \label{dispersion_3x3}
-	} 
-	\hfill	
-	\subfloat[full-pol (3x3) contrast]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_polsar_3x3_contrast_distribution.eps} 	
-		 \label{contrast_3x3}
-	}
-\end{tabular}
-\caption{Validating the dispersion and contrast models against both partial and full polarimetric AIRSAR Flevoland data.}
-\label{fig:verify_polsar_2x2_simulation_dispersion_contrast}
-\end{figure}
-%endif
-
-Apart from dispersion and contrast,
-  the other four models to be verified require an estimation of the ``ground truth'' underlying signal $|\Sigma_v|$.
-There are two ways to estimate this quantity over an homogeneous area.
-The traditional way is to simply set the ground truth signal equal to the average of the POLSAR covariance matrix in its original domain, i.e. $\Sigma_v = avg(C_v)$.
-Another approach is to estimate the true signal from the average of the log-determinant of the POLSAR covariance matrix (i.e. $avg[\ln|C_v|]$) using Eqn. \ref{eqn:avg_log_det}.
-Both approaches will be presented in this section.
-As the log-determinant average has already been computed, the second approach is hence used first for the validation of determinant-ratio and log-distance.
-
-%Apart from dispersion and contrast,
-%the other four models to be investigated require an estimation of the ``true'' underlying signal $|\Sigma_v|$. 
-%There are two ways to estimate this quantity over an homogeneous area.
-%The traditional way is to simply set the true signal equal to the average of the POLSAR covariance matrix in its original domain, i.e. $\Sigma_v = avg(C_v$).
-%Another approach is to estimate the true signal from the average of the log-determinant of the POLSAR covariance matrix (i.e. $avg[ln|C_v|]$) using Eqn. \ref{eqn:avg_log_det}.
-%Both approaches will be presented in this section.
-%As the log-determinant average has already been computed earlier, 
-%  the second approach is hence used first for the validation of determinant-ratio and log-distance.
-%%Both approaches will be explored in this section.
-%%However, given that the log-determinant average has already been computed earlier, 
-%%  the second approach is used first for the validation of determinant-ratio and log-distance.
-
-Fig. \ref{fig:verify_polsar_2x2_simulation_det_ratio_log_distance} plots the determinant-ratio and log-distance models against real-life data.
-In this experiment, the theoretical models are simulated using Eqns \ref{eqn:determinant_ratio_distribution} 
-  and \ref{eqn:log_determinant_distance_distribution},
-  while the observable samples are computed using Eqns \ref{eqn:determinant_ratio_observables} and \ref{eqn:log_distance_observables}
-  with the true signal estimated from the log-determinant average, i.e. $avg(\ln|C_v|)$.
-%Again a reasonable match is observed which validates the models for log-distance and determinant ratio.  
-A close match is again observed, validating the models for log-distance and determinant ratio.   
-
-%ifdef FINAL
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-	\subfloat[part-pol (2x2) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-                 \epsffile{images/verify_polsar_2x2_determinant_ratio_distribution.eps} 
-		 \label{determinant_ratio_2x2}
-	} 
-	\hfill	
-	\subfloat[part-pol (2x2) log distance]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_polsar_2x2_log_distance_distribution.eps} 	
-		 \label{log_distance_2x2}
-	} \\
-	\subfloat[full-pol (3x3) determinant ratio]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-                 \epsffile{images/verify_polsar_3x3_determinant_ratio_distribution.eps} 
-		 \label{determinant_ratio_3x3}
-	} 
-	\hfill	
-	\subfloat[full-pol (3x3) log distance]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_polsar_3x3_log_distance_distribution.eps} 	
-		 \label{log_distance_3x3}
-	}
-\end{tabular}
-\caption{Validating determinant-ratio and log-distance models with $|\Sigma_v|$ is computed using $avg(\ln|C_v|)$}
-\label{fig:verify_polsar_2x2_simulation_det_ratio_log_distance}
-\end{figure}
-%endif
-%ifdef REVIEW
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[part-pol (2x2) determinant ratio]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-                 \epsffile{images/verify_polsar_2x2_determinant_ratio_distribution.eps} 
-		 \label{determinant_ratio_2x2}
-	} 
-	\hfill	
-	\subfloat[part-pol (2x2) log distance]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_polsar_2x2_log_distance_distribution.eps} 	
-		 \label{log_distance_2x2}
-	} \\
-	\subfloat[full-pol (3x3) determinant ratio]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-                 \epsffile{images/verify_polsar_3x3_determinant_ratio_distribution.eps} 
-		 \label{determinant_ratio_3x3}
-	} 
-	\hfill	
-	\subfloat[full-pol (3x3) log distance]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_polsar_3x3_log_distance_distribution.eps} 	
-		 \label{log_distance_3x3}
-	}
-\end{tabular}
-\caption{Validating determinant-ratio and log-distance models with $|\Sigma_v|$ is computed using $avg(\ln|C_v|)$}
-\label{fig:verify_polsar_2x2_simulation_det_ratio_log_distance}
-\end{figure}
-%endif
-
-Since the models for the determinant and log-determinant are just scaled or shifted versions of the models for determinant-ratio and log-distance, similar validation results are to be expected. 
-%And if the  true signals are computed in the same manner as described before then in fact similar match can be easily observed. 
-However, an interesting phenomena is observed during the validation process for the determinant and its log-transformed model,
-%However, a more interesting  phenomena is to be described.
-%It happens in the validation process for determinant and its log-transformed model,
-  where the theoretical behaviour is simulated by Eqns. \ref{eqn:determinant_distribution} and \ref{eqn:log_determinant_distribution}.
-%For such simulation, an estimation of  the true signal is needed.
-The phenomena occurs when the true signal is estimated using the average of the sample covariance matrix in its original domain.
-%Interestingly, this approach results in a different estimation for the true signal with reference to the method described earlier.
-Subsequently in the validation plots presented in Fig \ref{fig:verify_polsar_2x2_simulation_det}, some small translation and scaling discrepancies are observed.% -- which are
-% easier to observe in the log-determinant plots. Despite this, the curve shapes are quite similar.
-
-%ifdef FINAL
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[polsar (2x2) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-                 \epsffile{images/verify_polsar_2x2_determinant_distribution.eps} 
-		 \label{determinant_2x2}
-	} 
-	\hfill	
-	\subfloat[polsar (2x2) log-determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_polsar_2x2_log_det_distribution.eps} 	
-		 \label{log_det_2x2}
-	} \\ 
-	\subfloat[polsar (3x3) determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-                 \epsffile{images/verify_polsar_3x3_determinant_distribution.eps} 
-		 \label{determinant_3x3}
-	} 
-	\hfill	
-	\subfloat[polsar (3x3) log-determinant]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/verify_polsar_3x3_log_det_distribution.eps} 	
-		 \label{log_det_3x3}
-	} 
-\end{tabular}
-\caption{Validating determinant and log-determinant models with $\Sigma_v = avg(C_v)$}
-\label{fig:verify_polsar_2x2_simulation_det}
-\end{figure}
-%endif
-%ifdef REVIEW
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[polsar (2x2) determinant]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-                 \epsffile{images/verify_polsar_2x2_determinant_distribution.eps} 
-		 \label{determinant_2x2}
-	} 
-	\hfill	
-	\subfloat[polsar (2x2) log-determinant]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_polsar_2x2_log_det_distribution.eps} 	
-		 \label{log_det_2x2}
-	} \\ 
-	\subfloat[polsar (3x3) determinant]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-                 \epsffile{images/verify_polsar_3x3_determinant_distribution.eps} 
-		 \label{determinant_3x3}
-	} 
-	\hfill	
-	\subfloat[polsar (3x3) log-determinant]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/verify_polsar_3x3_log_det_distribution.eps} 	
-		 \label{log_det_3x3}
-	} 
-\end{tabular}
-\caption{Validating determinant and log-determinant models with $\Sigma_v = avg(C_v)$}
-\label{fig:verify_polsar_2x2_simulation_det}
-\end{figure}
-%endif
-
-In summary the dispersion and contrast measures of distance are shown to match reasonably well with the practical data.
-The same can be stated for the other four models, namely: determinant, log-determinant, determinant ratio and log-distance,
-  if the underlying parameters can be estimated reasonably well for the given image.   
-However as described above a single ``true signal'' $|\Sigma_v|$ can have two different estimated values,
-  depending on which estimation method was being used.
-The discrepancy between these two values suggests that at least one parameter for the models was inaccurately estimated.
-This is discussed in the next subsection.
-%The discrepancy suggests that at least one parameter for the models was inaccurately estimated.
-%In fact, the next sub-section specifically indicates that the nominal look-number given by the (POL)SAR processor may not accurately reflect the true nature of the captured data.
-
-%But what model parameter were used wrongly, and even if that can be corrected, would a better match become observable?
-%The question is answered in Section \ref{sec:improve_the_match_bw_theory_practice}, 
-%  where not only the look number is shown to be misused
-%  but also the match of between the theoretical model and the practical data is shown to improve as well once a better look number (ENL) is estimated.
-%As will be shown in Section \ref{sec:improve_the_match_bw_theory_practice}, 
-%  the reason is due to the inappropriate look number being used.
-%Furthermore, the match between the theoretical model and the practical data will also be shown to improve once a more accurate look number (ENL) is estimated.  
-%For now, let us simply observe that
-%  using appropriate estimation of the parameters, 
-%  the proposed models match reasonably well with the practical data.
-
-%\section{Handling certain discrepancy between the theoretical model and pratical data}
-\subsection{Difference between the theoretical assumptions and the conditions found in practice}  
-\label{sec:improve_the_match_bw_theory_practice}
-
-Even though the assumptions made in developing this theory have intentionally been kept minimal, 
-%Even though the initial assumptions for the proposed theory is intentionally kept to minimal, 
-in common with other similar derivations the proposed model in this paper is built upon certain presumptions.
-However, practical conditions may not always satisfy these prerequisites, thus we find a common and observable gap between the conditions found in practical real-life data and the theoretical assumptions.
-%And it is shown that: the theoretical model proposed can apply to the practical data, even when this ``imperfection'' is taken into account.
-%In this section, certain gaps between the conditions found in practical real-life data and the theoretical assumptions are discussed.
-%And it is shown that: the theoretical model proposed can apply to the practical data, even when these ``imperfections''  are taken into account.
-%And it is shown that: the theoretical model proposed can handle the practical data, even when these ``imperfections''  are taken into account.
-
-%There are two main ``imperfections'' that are usually found in practical POLSAR data with reference to the theoretical model.
-%The first is the mutually independent assumption for each component in the POLSAR target vector $s$.
-%However high correlation is routinely observed in practice between the POLSAR data components,
-%%Practically however high correlation is routinely observable between the POLSAR data components,
-%  specifically between $S_{hh}$ and $S_{vv}$.
-%This phenomena also presents in our AIRSAR dataset, where {\scriptsize $\Sigma_v = avg(C_v) = \begin{vmatrix} 0.0084 & 1 \cdot 10^{-6} + 4 \cdot 10^{-4} i & 0.0071 - 0.0017 i \\ 1 \cdot 10^{-6} - 4 \cdot 10^{-4} i & 0.0017 & -3 \cdot 10^{-4} - 2 \cdot 10^{-4} i \\ 0.0071 + 0.0017 i & -3 \cdot 10^{-4} + 2 \cdot 10^{-4} i & 0.0122 \end{vmatrix}$}.
-%Despite the mismatch,
-%  astute reader would have noticed that the proposed model apparently still valid under such condition as evidenced by the part-pol (HH-VV) and full-pol plots in Figs. \ref{fig:verify_polsar_2x2_simulation_dispersion_contrast} to \ref{fig:verify_polsar_2x2_simulation_det}.
-%This suggests that the proposed model is also applicable on correlated POLSAR components,
-%  although a full explanation for thisis outside the scope of this paper. 
-%%This suggests that the proposed model is also applicable on correlated POLSAR components,
-%%  eventhough a full explaination for this, however, is outside the scope of this paper.
-
-The assumption of statistical independence between samples (for both SAR and POLSAR data) is reasonable given that 
-  the transmission and receipt of analogue signals is independent for each radar pulse, i.e. for each resolution cell.
-%Thus, theoretically speaking, adjacent pixels in an image can be assumed to be statistically independent.
-However, the actual imaging mechanism in a real-life (POL)SAR processor is of a digital nature,
-%where the analogue signal is to be converted into a digital data-set. 
-%Specifically, the analogue SAR signal, 
-%  which is characterised by the pulse bandwidth measurement,
-  employing an analogue-to-digital (ADC) sampling and conversion process.  
-%  which is characterised by its sampling rate.
-Theoretically it is possible to define a sampling rate so that each digital pixel corresponds exactly to an separate analogue physical cell.
-Practically however, to ensure ``perfect reconstruction'', the sampling rate is normally set at a slightly higher value than the Nyquist rate. 
-%  resulting in a higher number of samples or pixels than the number of physical cells available in the scene.  
-
-Thus in practical images, each physical radar cell may be spread over more than a single pixel,
-% resulting in potentially high correlation between neighbouring pixels.
-resulting in both %This results in 
-  a higher correlation between neighbouring pixels \cite{Raney_1988_TGRS_666} %that may be related within a single physical cell resolution,
-  %Then the correlation found between pairs of pixels that are further away and hence having less physical relation to each other will increase.
-%It also results in
-  and a reduced effective number of looks\cite{Lee_1994_TGRS_1017} \cite{Anfinsen_2009_TGRS_3795}. 
-%  for example within a window of 3$\times$3 pixels of a single-look image, it actually contains less than 9 physical analogue cells. 
-%It also results in reduced effective number of look, 
-%  in which say a window of 3x3 pixel actually contains less than 9 physical analog cells. 
-%The former phenomena is partially explained in \cite{Raney_1988_TGRS_666} for SAR,
-%  while the later is experimental observed for POLSAR data in \cite{Lee_1994_TGRS_1017} and \cite{Anfinsen_2009_TGRS_3795}.
-The oversampling practice is also documented by the producers of SAR processors.
-For AIRSAR, the sampling rate and pulse bandwidth combinations are either 90/40MHz or 45/20MHz \cite{JPL_2013_Web_AIRSAR_Impl}.
-While for RadarSat2, the pixel resolution and range - azimuth resolution combination for SLC fine-quad mode is advertised as $(4.7 \cdot 5.1)m^2/(5.2 \cdot 7.7)m^2$ \cite{MDA_2013_Web_RadatSat2_Description}.
-In short, while the independent sample assumption is made out of necessity in theory,
-  due to over-sampling practice in capturing systems, significant correlation is routinely observed among neighbouring samples. % are actually correlated
-This documented imperfection also leads to the rise of effective number-of-look concept (ENL),
-  which is almost always smaller than the nominal look-number. 
-
-%The proposed model can handle this imperfection that is available in pratical data.
-The proposed model apparently can handle this imperfection. %that is found in practical data.
-The handling process, however, is slightly more complex.
-Instead of adopting the nominal Number of Looks given by the SAR processor,
-  an ENL must first be estimated from the given data.
-This is discussed in the next subsection.
-  %  an ENL estimation procedure is first undertaken, and subsequently the obtained ENL is then used. %the model validation can make use of the Effective Number of Looks that is manually estimated from a given practical dataset.
-%The next sub-section details a simple ENL estimation technique for POLSAR data.
-%While the final sub-section demonstrates how the practical imperfection can be handled in a RADARSAT2 dataset.
-%It also illustrates how the match shown in the first sub-section for the AIRSAR Flevoland dataset can be improved using ENL estimation.
-
-\subsection{ENL Estimation for POLSAR data}
-\label{sec:valid_enl_estimation}
-
-%This sub-section describes a few techniques that can be used to estimate the Effective Number of Look (ENL) for a given POLSAR dataset.
-%This sub-section describes a few technique to estimate the Effective Number of Look (ENL) for a given POLSAR dataset.
-The common approach in ENL estimation is to investigate the summary statistics of a known homogeneous area in the given data
-  before making inferences about the inherent ENL.
-The summary statistics for $|C_v|$ and $\ln|C_v|$ have been derived in Section \ref{sec:polsar_heterosked_model_and_log_transform},
-  where Eqn. \ref{eqn:avg_log_det} indicates that there is a relationship among $|avg(C_v)|,avg(\ln|C_v|),d,L$.
-%Recall that in carrying out the validation process using AIRSAR Flevoland data with nominal value $L=4$, the relationship was shown to be broken.
-%The reason is believed to be in the use of inexact value for $L$.
-In a given POLSAR datasat, since all values of $|avg(C_v)|,avg(\ln|C_v|),d$ are known,
-  it is possible to estimate the ``effective'' number of looks, by finding an $L$ that ensures the above relationship is valid.
-This approach was taken in \cite{Anfinsen_2009_TGRS_3795},
-  where an equation of exactly the same form as Eqn.  \ref{eqn:avg_log_det} was used to estimate the ENL.
-However, the only known way to solve the equation for unknown $L$ requires the use of an ``iterative numerical method''.
-
-We will instead propose an alternative approach making use of variance statistics in the homoskedastic log-domain.
-%Instead of relying on the equations for statistical mean to find ENL,
-%  we propose an approach that makes used of variance statistics in the homoskedastic log-domain to find ENL.
-%Since the determinant of the POLSAR covariance matrix can be considered as the equivalence of the intensity in SAR data,
-%  this approach is a generic extension of our previous work on SAR ENL estimation \cite{Le_2013_TGRS_SAR_MSE} for POLSAR data.
-Specifically, Eqn. \ref{eqn:var_log_det_is_homoskedastic} can be rewritten as: 
-\begin{equation}
-  var \left[ ln|C_v| \right] = f(L) = \sum^{d-1}_{i=0} \psi^1(L-i)
-  \label{eqn:expected_sample_var_log_as_function_of_enl}
-\end{equation}
-where $\psi^1()$ again denotes the tri-gamma function.
-
-Thus theoretically, given some measurable value for $var  \left[ ln|C_v| \right]$, one could solve the above equation for unknown $L$,
-  although it would also require some iterative computation.
-Practically however, the shape of the right-hand-side can be pre-computed
-  and for each computed value of $var  \left[ ln|C_v| \right]$, a corresponding value for $L$ can be found by referencing the variance value on the pre-computed graph, or from the following equation:%, which is extended from a simpler SAR version \cite{Le_2013_TGRS_SAR_MSE} for POLSAR as:  
-%And if a graph is too tedious to be carried around an approximation can be made using a back-of-the-envolope calculation given as:
-  \begin{equation}
-    \hat{L} = d \left( \frac{1}{var(\ln{|C_v|})} + 0.5 \right)
-    \label{eqn:enl_estimation_formula}
-  \end{equation}
-Fig. \ref{fig:plot_enl_var_relation_1x1_and_2x2}
-  shows the shapes of the function defined in Eqn. \ref{eqn:expected_sample_var_log_as_function_of_enl} for SAR and partial-POLSAR data $f_{d=1}(L)$ and $f_{d=2}(L)$
-  as well as illustrating the simplified approximation formula (Eqn. \ref{eqn:enl_estimation_formula}).
-  
-%ifdef FINAL
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-	\subfloat[ENL and variance log-intensity relations for SAR data]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-                 \epsffile{images/plot_enl_var_relation_1x1.eps} 
-		 \label{plot_enl_var_relation_1x1}
-	} 
-	\hfill	
-	\subfloat[ENL and var(log-det) relations for partial POLSAR data]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/plot_enl_var_relation_2x2.eps} 	
-		 \label{plot_enl_var_relation_2x2}
-	} 
-\end{tabular}
-\caption{The relation between ENL and sample variance for log-determinant/log-intensity plots.}
-\label{fig:plot_enl_var_relation_1x1_and_2x2}
-\end{figure}
-%endif
-%ifdef REVIEW
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[ENL and variance log-intensity relations for SAR data]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-                 \epsffile{images/plot_enl_var_relation_1x1.eps} 
-		 \label{plot_enl_var_relation_1x1}
-	} 
-	\hfill	
-	\subfloat[ENL and var(log-det) relations for partial POLSAR data]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/plot_enl_var_relation_2x2.eps} 	
-		 \label{plot_enl_var_relation_2x2}
-	} 
-\end{tabular}
-\caption{The relation between ENL and sample variance of log-determinant/log-intensity.}
-\label{fig:plot_enl_var_relation_1x1_and_2x2}
-\end{figure}
-%endif
-
-\subsection{Using estimated ENL to better explain practical data}
-\label{sec:valid_improve_practice}
-
-To demonstrate the improvement obtained using this ENL estimation, a single-look complex fine-quad RADARSAT2 dataset is used as illustration. 
-%For this experiment an example single-look complex fine-quad RADARSAT2 dataset is used.
-Nine-look processing is first applied, followed by calculation of the dispersion histogram in the log-transformed domain for an homogeneous area.
-The histograms for both one-dimensional SAR and two-dimensional partial POLSAR data are plotted in Fig. \ref{fig:handling_radarsat2_oversampling_practice}
-  against the theoretical models for the nominal ENL value of 9.
-As expected the match is evidently not very close.
-
-We now compare this to the estimated ENL approach.
-First, an ENL estimate is obtained from the observable variance of the log-determinant. 
-%A better match can be achieved by first estimating ENL from the observable variance of the log-determinant,
-%  and the theoretical model is then simulated for the estimated ENL.
-Then the new sample histogram is overlaid on the same figure,
-  showing a much better consistency.
-This procedure can always be carried out for a given dataset,
-  as long as a homogeneous area can be defined and extracted.
-  
-%ifdef FINAL
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-	\subfloat[Handling over-sampling practice in Radarsat2 one-dimensional SAR data (HH)]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/handling_radarsat2_oversampling_practice.sar.eps} 	
-		 \label{sar}
-	} 
-	\hfill	
-	\subfloat[Handling over-sampling practice in Radarsat2 partial POLSAR data (HH-HV)]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/handling_radarsat2_oversampling_practice.part_pol.eps} 	
-		 \label{part_pol}
-	}   
-\end{tabular}
-\caption{Nine-look processed Radarsat2 data does not always exhibit nine-look data characteristics. However the homoskedastic model in the log-transformed domain can successfully estimate an effective ENL which matches the data much more closely.}
-\label{fig:handling_radarsat2_oversampling_practice}
-\end{figure}
-%endif
-%ifdef REVIEW
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[Handling over-sampling practice in Radarsat2 one-dimensional SAR data (HH)]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/handling_radarsat2_oversampling_practice.sar.eps} 	
-		 \label{sar}
-	} 
-	\hfill	
-	\subfloat[Handling over-sampling practice in Radarsat2 partial POLSAR data (HH-HV)]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/handling_radarsat2_oversampling_practice.part_pol.eps} 	
-		 \label{part_pol}
-	}   
-\end{tabular}
-\caption{9-look processed Radarsat2 data do not exactly exhibit 9-look data characteristics. Homoskedastic model in log-transformed domain can successfully estimate the effective ENL and then explain the data reasonably well.}
-\label{fig:handling_radarsat2_oversampling_practice}
-\end{figure}
-%endif
-
-The same approach can be applied on the AIRSAR Flevoland data to improve the validation described earlier.
-Fig. \ref{fig:handling_airsar_oversampling_practice_full_pol} shows that the over-sampling issue is also present in the AIRSAR Flevoland dataset,
-  even though it is to a much lesser extent. %with the nominal 4-look data actually have an effective number-of-look around 3.22 only.
-Still, the ``corrected'' ENL offers an evidently better match between the model and real-life data.
-%The mis-match problem appears to depend upon how much over-sampling was used to generate the dataset as well as upon the data dimension.
-
-%ifdef FINAL
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-	\subfloat[Handling over-sampling practice in AIRSAR part-pol dataset]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/handling_airsar_oversampling_practice_part_pol_log_distance.eps} 	
-		 \label{sar}
-	} 
-	\hfill	
-	\subfloat[Handling over-sampling practice in AIRSAR full-pol dataset]{
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{images/handling_airsar_oversampling_practice_full_pol_log_distance.eps} 	
-		 \label{part_pol}
-	}   
-\end{tabular}
-\caption{AIRSAR Flevoland also exhibits phenomena of over-sampling practice, through to a lesser extent than the RADARSAT2 data.}
-\label{fig:handling_airsar_oversampling_practice_full_pol}
-\end{figure}
-%endif
-%ifdef REVIEW
-\begin{figure}[h!]
-\centering
-\begin{tabular}{c}
-	\subfloat[Handling over-sampling practice in AIRSAR part-pol dataset ]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/handling_airsar_oversampling_practice_part_pol_log_distance.eps} 	
-		 \label{sar}
-	} 
-	\hfill	
-	\subfloat[Handling over-sampling practice in AIRSAR full-pol dataset]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/handling_airsar_oversampling_practice_full_pol_log_distance.eps} 	
-		 \label{part_pol}
-	}   
-\end{tabular}
-\caption{AIRSAR Flevoland also exhibits phenomena of over-sampling practice, through at a lesser extend than the RADARSAT 2 data.}
-\label{fig:handling_airsar_oversampling_practice_full_pol}
-\end{figure}
-%endif
-
-%\section{Evaluating POLSAR Speckle Filters using the consistent measures of distance}
-%%\section{Visually Evaluating POLSAR Speckle Filters over Heterogeneous Areas}
-%\label{sec:evaluating_polsar_filters}
-%
-%Previous sections have developed a model for POLSAR, which is also shown to be applicable to SAR.
-%In this section, the use of consistent measures of distance in the context of POLSAR speckle filtering are explored briefly.
-%It has been found \cite{Rignot_1993_TGRS_896} that for SAR data in its original domain,  
-%   ratio is a better evaluation than standard subtractive residual. 
-%However, ratio residual is argued as not being natural for digital display \cite{Medeiros_2003_IJRS}.
-%Our previous work in the context of SAR speckle filtering found that
-%  in the log-transformed domain, this ratio is transformed into a subtractive residual that is homoskedastic.
-%  
-%The variance of sample log-determinant is shown to be linked to the ENL index.
-%This forms the basis for evaluating POLSAR speckle filters over homogeneous areas.
-%The procedure is simple:
-%To evaluate a given POLSAR speckle filter over homogeneous areas,
-%  the filter is applied over a known homogeneous area and the sample variance of log-determinant is measured.
-%The Equivant Number of Looks (ENL) is then estimated
-%  either by referencing prepared graphs from Eqn. \ref{eqn:expected_sample_var_log_as_function_of_enl} 
-%  or alternatively by setting the measured variance value to $var[\ln{|C_v|}]$ in Eqn. \ref{eqn:enl_estimation_formula}.
-%
-%In order for such a procedure to be generic,
-%  it is important that the given POLSAR speckle filter preserve the consistency property in the log-transformed domain.
-%That can be tested by applying the POLSAR filter into different sets of homogeneous areas and investigating the plots of the dissimilarity measures presented above.
-%Fig. \ref{fig:boxcar_3x3_preserves_consistency} presents two example plots to show that
-%  the 3$\times$3 POLSAR boxcar filter preserves the consistency property.
-%In this case, the boxcar filter is applied to 2 sets of part-pol AIRSAR data over Flevoland (HH-HV and VH-VV).
-%Log-determinant and the contrast measures are computed for the input and output filtered POLSAR data,
-%  and their plots are presented.
-%In fact, the test procedure can be applied on any of the models presented above.  
-%
-%%ifdef FINAL
-%\begin{figure}[h]
-%\centering
-%\begin{tabular}{c}
-%	\subfloat[Log-determinant histograms of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{images/boxcar_3x3_preserves_consistency.log_determinant.eps} 	
-%		 \label{log_determinant}
-%	} 
-%	\hfill	
-%	\subfloat[Contrast histograms of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{images/boxcar_3x3_preserves_consistency.contrast.eps} 	
-%		 \label{contrast}
-%	}   
-%\end{tabular}
-%\caption{POLSAR 3$\times$3 boxcar filter preserves the consistency property. Consistency means: as long as the area is homogeneous, regardless of the underlying signal $\Sigma_v$, the shapes of the histograms should match.}
-%\label{fig:boxcar_3x3_preserves_consistency}
-%\end{figure}
-%%endif
-%%ifdef REVIEW
-%\begin{figure}[h!]
-%\centering
-%\begin{tabular}{c}
-%	\subfloat[Log-determinants histograms of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{images/boxcar_3x3_preserves_consistency.log_determinant.eps} 	
-%		 \label{log_determinant}
-%	} 
-%	\hfill	
-%	\subfloat[Contrast histograms of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{images/boxcar_3x3_preserves_consistency.contrast.eps} 	
-%		 \label{contrast}
-%	}   
-%\end{tabular}
-%\caption{POLSAR 3$\times$3 boxcar filter preserves the consistency property. Consistency means: as long as the area is homogeneous, regardless of the underlysing signal $\Sigma_v$ the shapes of the histograms should be the same.}
-%\label{fig:boxcar_3x3_preserves_consistency}
-%\end{figure}
-%%endif
-%
-%The consistency property of a POLSAR speckle filter is important
-%  not only to make the estimation of ENL become general enough.
-%It is also to ensure that any classification / detection algorithm
-%    which is based on the scalar and consistent measures of distance will work on both pre-filtered and post-filtered data.
-%Otherwise if a POLSAR speckle filter gives different plots for different homogeneous areas,
-%  then not only its ENL estimation will be dependent on the underlying signal, 
-%  but its output also shall not follow the statistical distribution family that characterises multi-look POLSAR.
-%Thus the preservation of this consistency is believed to be an important consideration for POLSAR speckle filters
-%  if we want many general detection and classification algorithms to work on the filtered data output.
-%
-%In evaluation over heterogeneous area, the consistent measures of distance may also be an invaluable tool.
-% %in helping to evaluate POLSAR speckle filters.
-%Firstly, since the model for log-determinant is additive and homoskedastic,
-%  log-determinant images may naturally be better suited for gray-level digital display.
-%Specifically for evaluation of statistical estimators, it is both important and convenient to investigate the estimators' error / residual image. %plays an important role.
-%
-%For further analysis, the residual is defined here as the distance between the log-determinants of the filtered outputs and the original input. 
-%Ideally speaking, under the context of an additive model,
-%  a perfect estimators residual should consist only of random noise.
-%And under the assumption of homoskedasticity, 
-%  the Gauss Markov theorem becomes applicable.
-%Thus the optimal estimator is expected to exhibit minimal Mean Squared Error (MSE).
-%Over a homogeneous scene, this is reflected in the expectation of minimal bias and variance (hence maximal ENL).
-%Over a heterogeneous scene, where the underlying signal is not known \textit{a priori},
-%  the second best gauge is possibly to have the residual MSE being as close as possible to the MSE of the inherent noise.
-%  
-%To illustrate the above analysis, an experiment is carried out to evaluate the performance of 3$\times$3 and5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
-%A square 700$\times$700 pixel patch is extracted from the AIRSAR dataset,
-%  and the two POLSAR speckle filters applied to the patch.
-%Then the log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
-%At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
-%Assuming the quantitative evaluation of SAR speckle filters can also be extended to POLSAR speckle filters,
-%  the Mean Squared Error (MSE) of the filters residuals are computed and compared with the ``optimal'' value.
-%This optimal value is computed   
-%by setting $d=2,L=4$ into Eqn. \ref{eqn:polsar_dispersion_mse} making the expected MSE being $mse(\mathbb{L})=1.0132$.
-%
-%%ifdef FINAL
-%\begin{figure}[h]
-%\centering
-%\begin{tabular}{c}
-%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
-%		 \label{multi_look_contrast}
-%	} \\
-%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter (MSE=1.5594)]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_3.residual.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter (MSE=2.1420)]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_5.residual.eps} 	
-%		 \label{multi_look_contrast}
-%	} 
-%\end{tabular}
-%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. }
-%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
-%\end{figure}
-%%endif
-%%ifdef REVIEW
-%\begin{figure}[h!]
-%\centering
-%\begin{tabular}{c}
-%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
-%		 \label{multi_look_contrast}
-%	} \\
-%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter (MSE=1.5594)]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_3.residual.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter (MSE=2.1420)]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{images/visual_eval_part_pol_boxcar_5.residual.eps} 	
-%		 \label{multi_look_contrast}
-%	} 
-%\end{tabular}
-%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSAR Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. }
-%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
-%\end{figure}
-%%endif
-%%Note if the picture does not look convincing enough
-%%another option here is to show 7x7 filter with more pronouced blurring MSE=2.5
-%
-%Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
-%  but also the distortion impact of the filter can also be made visible by the residual image.
-%In visual evaluation, while it is quite hard to observe the worsening blurring-effects of the boxcar 5$\times$5 speckle filter as compared to the 3$\times$3 filter
-%in the additive log-determinant image of the filtered output, 
-%  such a conclusion can be made relatively easier by visualising the residual image.
-%
-%When quantified evaluation is carried out
-%  where the residual MSE is compared with the expected level of noise to be removed,
-%  the excessive blurring effects of the 5$\times$5 filter become clearly evident.
-%%IVM: [cut this]In fact, even the 3$\times$3 boxcar filter itself might be also a bit blurry.
-%%,  as suggested by its relatively high residual values.
-%%A conclusion which is hard to make
-%It may be hard to make such a conclusion just by looking at the filtered imagery.
-%However, by investigating the residual between the unfiltered input and the filtered results in the additive and homoskedastic model, both visual and quantitative evaluations offer more conclusive evidence.
-%
-%Further discussion on the specific topic of evaluating SAR speckle filters is given in our work that focused specifically on SAR \cite{Le_2013_TGRS_SAR_MSE}.
-%However, due to space restriction, only a brief and critical exploration is explored here for POLSAR speckle filters (i.e. extending the previous SAR approach).
-%
-%Specifically, this is an illustration of how the proposed theoretical model can possibly be applied to a practical scenario, rather than a full evaluation procedure and methodology.
-%%IVM [cut this],  as it is not as a full proposal for such an evaluation procedure for POLSAR speckle filters.
-
-%\section{Discussion and Conclusion}
-%\label{sec:discussion_conclusion}
- 
-%\subsection{The Likelyhood Test Statistics for POLSAR}
-
-%\begin{eqnarray}
-%  Q &\sim& \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y} \cdot (2(L_x+L_y))^{d (L_x + L_y)}}{(2 L_x)^{d \cdot L_x} \cdot (2 L_y)^{d \cdot L_y} (\chi^d_{L_x + L_y})^{L_x + L_y}} \\
-%    &=& \frac{(L_x+L_y)^{d (L_x + L_y)}}{(L_x)^{d \cdot L_x} \cdot (L_y)^{d \cdot L_y} } \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}} \\
-%\end{eqnarray}
-
-\section{Discussion}
-\label{sec:discussion}
-
-Let us begin by noting a few theoretical properties of the proposed statistical model.
-First, the use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the POLSAR covariance matrices.
-In fact, the log-determinant can also be computed as the sum of log-eigenvalues.
-Specifically $\ln{|M|} = \sum \ln{\lambda_M}$ where $\lambda_M$ denotes all the eigenvalues of M.
-Thus similar to other eigenvalue based approach (e.g. entropy/anisotropy, ...),
-  the models presented here are invariant to polarization basis transformations.
-
-Second, the model is developed for the POLSAR covariance matrix.
-However, since the POLSAR coherency matrix is related to the covariance matrix via a unitary transformation which preserves the determinant,
-  the model should also be applicable to the coherency matrix.
-
-The model is far from complete.
- It reduces the multi-dimensional POLSAR data to a scalar value.
-While this is probably desirable for a wide range of application,
-  such a reduction is unlikely to be lossless.
-Thus %to better understand POLSAR data
-the use of this technique could be complemented with some high-dimensional POLSAR target-decomposition techniques (e.g. the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar).
-
-However the proposed model is promising.
-Even though initially developed for partial and monostatic POLSAR data,
-  it was shown to be applicable to traditional SAR data as well.
-Since the models assumptions are quite minimal, they may also be found to apply to bi-static and interferometric data, although that would require significant further investigation.
-%Other interesting phenomena which may warrant more study include the applicability of the model on correlated polsar channels ($S_{hh},S_{vv}$) as well as a better explanation in the use of mse to evaluate polsar speckle filters.
-
-The theoretical models may also provide an alternative derivation for the widely used likelihood test statistics in POLSAR.
-In view of the models given in Eqns \ref{eqn:determinant_distribution} \& \ref{eqn:log_determinant_distribution},
-  the likelihood test statistics exposed in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:ori_likelyhood_stats} \& \ref{eqn:log_likelyhood_stats}
-can be simulated as:
+As for the first matter, in view of the models given in Eqn \ref{eqn:determinant_distribution},
+  the likelihood test statistics presented in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:ori_likelyhood_stats} \& \ref{eqn:log_likelyhood_stats}
+can be expressed as:
 \begin{align*}
   \ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
   Q &\sim e^k \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}   
 \end{align*}
 where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
-As a by-product of this exact derivation, the current paper also proposed several simpler discrimination measures for the common case of $L_x=L_y$.
+This, in essence, derives an exact statistical distribution for the likelihood test statistics,
+  as opposed to the asymptotic distribution derived in \cite{{Conradsen_2003_TGRS_4}}.
 
-Similar to the way that other measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
-new detection, classification, clustering or speckle filtering algorithms can be derived using the models presented in this paper.
-%***IVM remove this single sentence, it detracts from the argument...
-%Moreover many of the existing techniques in SAR may be adaptable for POLSAR data, such as visual evaluation of speckle filters.
+As a by-product of this exact derivation,
+  several discrimination measures for the common case of $L_x=L_y$ are further proposed.
+They are the determinant-ratio and the change-ratio presented in Section \ref{sec:theoretical_model}.
+Compared to existing discrimination measures for POLSAR reviewed in Section \ref{sec:lit_review}, 
+  the proposed dissimilarity measures are simpler in both concept and computation.
+They, at the same time, are multi-dimensional extensions of the intensity-ratio discrimination measure widely used in SAR.
 
-%Here a quick example is provided.
-%Since extensive examples have been shown to support the use of MSE for SAR data,
-%  it is reasonable to expect the relevance of MSE to also be demonstrated for POLSAR data.
-%If that is the case, a large number of existing algorithms can become applicable to the POLSAR model in this log-transformed domain,
-%  which has been shown to be both additive and homoskedastic.   
-%
-In evaluating SAR speckle filters, the intensity ratio is widely used.
-Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
-Assuming a perfect filtering condition, the ratio image should only contain random noise.
-Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
+In short, with the newly gained insight,
+  the approach proposed in this paper provides a new bridge between the two fields of SAR and POLSAR.
+This invites the adaptation of many established SAR data processing techniques towards POLSAR data,
+  where this Section has just described a few examples.
+However, before further discussion ensues, 
+  it is necessary to validate the presented theoretical model with real-life practical data.
 
-%We will now show that this technique is easily applicable in the problem of evaluating POLSAR speckle filters.
-%We will now show that this technique can be equally applied for  evaluating POLSAR speckle filters.
-%Such an adaptation maps the SAR intensity ratio to the POLSAR determinant-ratio.
-Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
-  this technique can be equally applied to evaluate POLSAR speckle filters.
-In fact better results can be achieved.
-In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
-  which is linear and additive in nature.
-Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
+\section{Validating the proposed models against real-life data}
+\label{sec:polsar_models_validation}
 
-To briefly evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV),
-  a square 700$\times$700 pixel patch is extracted from the AIRSAR dataset,
-  and the two POLSAR speckle filters are then applied to the patch. 
- \footnote{While the boxcar filters may not be the state-of-the-art POLSAR speckle filters, they are workable here since the purpose of this experiment is not to find the best POLSAR speckle filters. Rather its focus is to show how an existing SAR data processing technique can be adapted for POLSAR data.} 
-%To illustrate the above analysis, an experiment is carried out to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR speckle filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
-%A square 700$\times$700 pixel patch is extracted from the AIRSAR dataset,
-%  and the two POLSAR speckle filters applied to the patch.
-The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
-At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
-%Assuming the quantitative evaluation of SAR speckle filters can also be extended to POLSAR speckle filters,
-%  the Mean Squared Error (MSE) of the filters residuals are computed and compared with the ``optimal'' value.
-%This optimal value is computed   
-%by setting $d=2,L=4$ into Eqn. \ref{eqn:polsar_dispersion_mse} making the expected MSE being $mse(\mathbb{L})=1.0132$.
+This section aims to verify the theoretical models given in Eqns. \ref{eqn:determinant_distribution}, \ref{eqn:determinant_ratio_distribution} and \ref{eqn:change_ratio_distribution} against practical data.
+All of these models require the estimation of two parameters from the captured data.
+These are (i) the dimensional number $d$ and (ii) the look number $L$.
+The dimensional number $d$ is related to the type of (POL)SAR data captured,
+  with $d=1,2,3$ corresponding to the cases of SAR, partial and full polarimetric SAR data, respectively.
+The look-number $L$ can be taken either as nominally stated by the data provider,
+  or it can be estimated using the technique proposed by \cite{Anfinsen_2009_TGRS_3795}.
+
+To show the robustness of the proposed models, 
+  their validations are also put to test on different types of POLSAR sensors.
+Specifically in this paper, the air-borne four-look ($L=4$) AIRSAR image of Flevoland and
+  a fine-quad single-look complex RADARSAT2 image ($L=1$) are used.
+Since the determinant of the covariance matrix is only significant on multi-look data,
+  nine-look processing is first applied on the single-look RADARSAT2 data ($L=9$).
+
+\subsection{The Traditional case of SAR ($d=1$)}
+
+Since it has been shown in Section \ref{sec:sar_special_case_of_polsar} that the model for the case of $d=1$ matches exactly with the traditional model for SAR intensity,
+  the validation of the proposed $d=1$ model is quite straightforward. %only a simple validation is presented for this case.  
+Fig. \ref{fig:verify_POLSAR_model_1D} presents the results of a test performed for the stated purpose.
+In the test, the intensity of single-channel SAR data (HH) for sample homogeneous areas in both datasets is extracted.
+The histograms for both the intensity and intensity ratio %the log-distance and contrast
+  are then plotted against the theoretical PDF given above.
+%Also presented are the plots of the same test applied on a homogeneous patch inside the nine-look processed RADARSAT2 image.
+The plots are obtained having set ENL to an estimated value obtained using the technique presented in \cite{Anfinsen_2009_TGRS_3795}.
+In all cases, the good visual match between the actual data and model distribution tends to validate the proposed model. %providing us a simple validation of the result.
 
 %ifdef FINAL
 \begin{figure}[h]
 \centering
 \begin{tabular}{c}
-	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
+	\subfloat[AIRSAR (HH) determinant]{
 		 \epsfxsize=1.5in
 		 \epsfysize=1.5in
-		 \epsffile{images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
-		 \label{multi_look_dispersion}
+		 \epsffile{../images/verify_determinant_model_on_AIRSAR_1d.eps} 	
+		 \label{AIRSAR_1D_determinant}
 	} 
 	\hfill	
-	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
+	\subfloat[RADARSAT2 (HH) determinant]{
 		 \epsfxsize=1.5in
 		 \epsfysize=1.5in
-		 \epsffile{images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
-		 \label{multi_look_contrast}
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_determinant}
 	} \\
-	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
+	\subfloat[AIRSAR (HH) determinant ratio]{
 		 \epsfxsize=1.5in
 		 \epsfysize=1.5in
-		 \epsffile{images/visual_eval_part_pol_boxcar_3.residual.eps} 	
-		 \label{multi_look_dispersion}
+		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_1d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
+	\subfloat[RADARSAT2 (HH) determinant ratio]{
 		 \epsfxsize=1.5in
 		 \epsfysize=1.5in
-		 \epsffile{images/visual_eval_part_pol_boxcar_5.residual.eps} 	
-		 \label{multi_look_contrast}
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	} \\
+	\subfloat[AIRSAR (HH) change ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_1d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
 	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH) change ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	}
 \end{tabular}
-\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. }
-\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+\caption{The specific d=1 models are validated for both RADARSAT2 and AIRSAR dataset homogeneous patches}
+\label{fig:verify_POLSAR_model_1D}
 \end{figure}
 %endif
 %ifdef REVIEW
 \begin{figure}[h!]
 \centering
 \begin{tabular}{c}
-	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
-		 \label{multi_look_dispersion}
+	\subfloat[AIRSAR (HH) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_AIRSAR_1d.eps} 	
+		 \label{AIRSAR_1D_determinant}
 	} 
 	\hfill	
-	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
-		 \label{multi_look_contrast}
-	} \\
-	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/visual_eval_part_pol_boxcar_3.residual.eps} 	
-		 \label{multi_look_dispersion}
-	} 
+	\subfloat[AIRSAR (HH) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_1d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
+	}
 	\hfill	
-	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
-		 \epsfxsize=3in
-		 \epsfysize=3in
-		 \epsffile{images/visual_eval_part_pol_boxcar_5.residual.eps} 	
-		 \label{multi_look_contrast}
-	} 
+	\subfloat[AIRSAR (HH) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_1d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
+	}  \\
+	\subfloat[RADARSAT2 (HH) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_determinant}
+	}
+        \hfill
+        \subfloat[RADARSAT2 (HH) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	}
+        \hfill
+        \subfloat[RADARSAT2 (HH) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	}
 \end{tabular}
-\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSAR Flevoland part-pol data (HH-HV) with expected MSE=1.0312 at ENL=4. }
-\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+\caption{The specific d=1 models are validated on both RADARSAT2 and AIRSAR datasets}
+\label{fig:verify_POLSAR_model_1D}
 \end{figure}
 %endif
 
-Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
-  the distortion impact of the filter can also be made visible by the residual image.
-In a visual evaluation, while it is quite hard to observe the increased blurring due to the 5$\times$5 filter compared to the 3$\times$3 filter
-in the additive log-determinant image of the filtered output, 
-  such an observation can be made relatively easier by inspecting the residual image.
+\subsection{The Multi-dimensional case of POLSAR ($d=2,3$)}
 
-There are many similar SAR data processing techniques such as  the usage of  the mean and variance of the ratio image to quantitatively evaluate speckle filters.
-Evidently these techniques can also be adapted for POLSAR.
-Other examples of such techniques include existing SAR speckle filters, target detectors, land-cover classifiers and edge detectors.
-In fact, since the POLSAR models have been shown to be a multi-dimensional extension of the traditional SAR intensity models,
-many more adaptations may be possible.
+The remainder of this section now focuses on validating the models for both partial ($d=2$) and full ($d=3$) POLSAR.
+Similar tests %like the one described for SAR data 
+  are carried out
+  for both types of polarimetric SAR
+  on both AIRSAR and RADARSAT2 datasets.
+The look-number is estimated for each type of data and for each image using the technique described in \cite{Anfinsen_2009_TGRS_3795}. %and is also noted in the plots.
+The practical and predicted distributions are again plotted to determine whether their visual match is close in each case. Fig. \ref{fig:verify_det_ratio_model_2D} shows the $d=2$ plots for determinant, determinant ratio and change ratio for both datasets. It is very clear that the model histogram matches the data well, in fact appearing similar to a smoothed data response. Evidently the match is good for $d=2$.
 
-%There are also many algorithms developed from existing POLSAR discrimination measures which can also be adapted for the dis-similarity measures proposed in this paper. 
+Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for the same data, same model parameters. Again, although the histogram is much tighter, the match is visually obvious in all cases, apart from Fig. Fig. \ref{fig:verify_det_ratio_model_3D}e plotting the AIRSAR (HH-HV-VV) change ratio. This match is poorer becasue.... %***IVM**** Hai, you had better find a good reason to explain this!!!
+%ifdef FINAL
+\begin{figure}[h]
+\centering
+\begin{tabular}{c}
+	\subfloat[AIRSAR (HH-HV) determinant]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_determinant_model_on_AIRSAR_2d.eps} 	
+		 \label{AIRSAR_2D_determinant}
+	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV) determinant]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
+		 \label{RADARSAT2_2D_determinant}
+	} \\
+	\subfloat[AIRSAR (HH-HV) determinant ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_2d.eps} 	
+		 \label{AIRSAR_2D_det_ratio}
+	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV) determinant ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
+		 \label{RADARSAT2_2D_det_ratio}
+	} \\
+	\subfloat[AIRSAR (HH-HV) change ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
+		 \label{AIRSAR_2D_det_ratio}
+	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV) change ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps} 	
+		 \label{RADARSAT2_2D_det_ratio}
+	}
+\end{tabular}
+\caption{The specific $d=2$ models are validated on both RADARSAT2 and AIRSAR datasets}
+\label{fig:verify_det_ratio_model_2D}
+\end{figure}
+%endif
+%ifdef REVIEW
+\begin{figure}[h!]
+\centering
+\begin{tabular}{c}
+	\subfloat[RADARSAT2 (HH-HV) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
+		 \label{RADARSAT2_2D_determinant}
+	}
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	}
+ 	\hfill	
+	\subfloat[RADARSAT2 (HH-HV) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
+		 \label{RADARSAT2_2D_determinant}
+	} \\
+	\subfloat[AIRSAR (HH-HV) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_AIRSAR_2d.eps} 	
+		 \label{AIRSAR_2D_determinant}
+	} 
+	\hfill	
+	\subfloat[AIRSAR (HH-HV) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_2d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
+	} 
+	\hfill	
+	\subfloat[AIRSAR (HH-HV) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
+	} 
+\end{tabular}
+\caption{The specific $d=2$ models are validated on both  RADARSAT2 and AIRSAR datasets}
+\label{fig:verify_det_ratio_model_2D}
+\end{figure}
+%endif
 
+%ifdef FINAL
+\begin{figure}[h]
+\centering
+\begin{tabular}{c}
+	\subfloat[AIRSAR (HH-HV-VV) determinant]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_determinant_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_3D_determinant}
+	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV-VV) determinant]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_3d.eps} 	
+		 \label{RADARSAT2_3D_determinant}
+	} \\
+	\subfloat[AIRSAR (HH-HV-VV) determinant ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_2D_det_ratio}
+	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV-VV) determinant ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps} 	
+		 \label{RADARSAT2_2D_det_ratio}
+	} \\
+	\subfloat[AIRSAR (HH-HV-VV) change ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_2D_change_ratio}
+	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV-VV) change ratio]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps} 	
+		 \label{RADARSAT2_2D_change_ratio}
+	}
+\end{tabular}
+\caption{The specific $d=3$ models are validated on both practical RADARSAT2 and AIRSAR datasets}
+\label{fig:verify_det_ratio_model_3D}
+\end{figure}
+%endif
+%ifdef REVIEW
+\begin{figure}[h!]
+\centering
+\begin{tabular}{c}
+	\subfloat[AIRSAR (HH-HV-VV) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_3D_determinant}
+	} 
+	\hfill	
+	\subfloat[AIRSAR (HH-HV-VV) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_1D_det_ratio}
+	}
+	\hfill	
+ 	\subfloat[AIRSAR (HH-HV-VV) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_3d.eps} 	
+		 \label{AIRSAR_3D_change_ratio}
+	} \\
+	\subfloat[RADARSAT2 (HH-HV-VV) determinant]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_3d.eps} 	
+		 \label{RADARSAT2_3D_determinant}
+	}
+        \hfill
+	\subfloat[RADARSAT2 (HH-HV-VV) determinant ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps} 	
+		 \label{RADARSAT2_1D_det_ratio}
+	} 
+	\hfill	
+	\subfloat[RADARSAT2 (HH-HV-VV) change ratio]{
+		 \epsfxsize=2in
+		 \epsfysize=2in
+		 \epsffile{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps} 	
+		 \label{RADARSAT2_1D_change_ratio}
+	}
+\end{tabular}
+\caption{The specific $d=3$ models are validated on both practical RADARSAT2 and AIRSAR datasets}
+\label{fig:verify_det_ratio_model_3D}
+\end{figure}
+%endif
 
+%\subsection{Theoretical Implications of This Proposal}
+\section{Discussion}
+\label{sec:discussion}
+
+%Let us begin by noting
+To begin, a few theoretical properties of the proposed statistical models are discussed.
+First, the use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the POLSAR covariance matrices.
+In fact, the log-determinant can also be computed as the sum of log-eigenvalues.
+Specifically $\ln{|M|} = \sum \ln{\lambda_M}$ where $\lambda_M$ denotes all the eigenvalues of $M$.
+Thus, similar to other eigenvalue based approaches (e.g. entropy/anisotropy, ...),
+  the models presented here are invariant to polarization basis transformations.
+
+Second, the models are developed for the POLSAR covariance matrix.
+However, since the POLSAR coherency matrix is related to the covariance matrix via a unitary transformation which preserves the determinant,
+  the model is also applicable to the coherency matrix.
+
+It should be noted that despite these advantages, the model descriptions are far from complete.
+While it is desirable to reduce the multi-dimensional POLSAR data to a scalar value for many applications,
+  such a reduction is unlikely to be lossless.  
+Ideally %to better understand POLSAR data
+the use of this technique could be complemented by some high-dimensional POLSAR target-decomposition techniques, such as the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar.
+
+Nevertheless the proposed models are promising.
+Even though initially developed for partial and monostatic POLSAR data,
+  it was shown to be applicable to traditional SAR data as well.
+Since the model assumptions are quite minimal, they may potentially be applicable to bi-static and interferometric data, although that would require further study.
+
+Intuitively, the concept of the determinant being representative of the POLSAR data can be thought of as being similar to the concept of using the magnitude to represent a complex number
+(in a sense this is also why intensity is widely considered representative of the complex SAR data).
+Similar to the determinant, the magnitude observable is also scalar and is not lossless, but it is undeniably useful.
+To fully represent the complex number, another observable would needed besides the magnitude, for example a polar representation.
+Magnitude is, of course, widely used as it can be shown to be invariant to a change in the reference frame.
+Similarly, the determinant of the POLSAR covariance matrix is also scalar and invariant to a change of polarization basis.
+Thus while it may not be \textit{fully} representative of the POLSAR data, it can be said to be \textit{highly} representative of it.
+The important point is that it can provide a scalar comparison of the multi-dimensional data.
+%**IVM removed this This is similar to the most commonly used magnitude to compare two or more complex numbers. %, most of the times the magnitude is to be used. 
+
+Besides the above properties, the theoretical models may also provide an alternative derivation for the likelihood test statistics widely used in POLSAR.
+Similar to the way that different measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
+new detection, classification, clustering or speckle filtering algorithms can be derived using the models presented in this paper.
+These applications however are not included in this paper, but rather left as a suggestion for future investigations.
+%There are a few reasons for this decision.
+%The first is that the advantages of the proposed models have been demonstrated through a few applications in this paper:
+%  the first being a faster ENL evaluation for POLSAR data and
+%  the second being the visual evaluation of POLSAR speckle filters.
+%The second reason is that such an application would be quite big in scope, and as such would easily distract the reader from the main proposal of this paper.
+%Last but not least, this paper focuses on the proposal of several scalar and representative statistical models for POLSAR, which results in associated statistical models and discrimination measures.
+%It does not, technically speaking, focuses on proposing new discrimination measures.
+
+%The advantages of this proposal are thus to be compared against other published models for POLSAR.
+%Consequently, the methodology to evaluate the result of this proposal is a bit unusual.
+%While quantitative evaluation is normally employed, in this theoretical model proposal only qualitative evaluation are shown.
+%This is because compared to existing published observables for POLSAR, the advantage of the proposed observables are qualitative which does not requires numerical quantitative comparisons.
+%Instead a straightforward binary evaluation would be sufficient.
+%In comparison to other scalar models for POLSAR, the proposed models for determinant and its log-transformed version are representative are highly representative of the POLSAR data.
+%This is because these models collapses into the representative SAR intensity when the multi-dimensional data is collapsed into the traditional one-dimensional SAR data.
+%This is proven in section \ref{sec:sar_special_case_of_polsar}.
+%No other existing models for POLSAR is known to have this property.
+%
+%Other advantage is that compared to other proposed scalar models for POLSAR, only these proposed statistical models lead to existing discrimination measures.
+%This argument is supported by an extensive literature survey in section \ref{sec:lit_review}.
+%There not only existing published scalar models for POLSAR are reviewed to show that none of them lead to discrimination measure,
+%  existing discrimination measures for POLSAR are also extensively surveyed leaving virtually no chance of there exists an existing scalar statistical model for POLSAR which leads to existing discrimination measures.
+
+%\section{Extending SAR data processing techniques towards POLSAR}
+%
+%Currently while the field of SAR is much more developed than the field of POLSAR,
+%  the two fields however are quite separated.
+%Hence many techniques applicable to SAR are not directly applicable to POLSAR.
+%With the newly gained, the current proposal provide the bridge between these two separated fields,
+%  inviting potential extension of various SAR processing techniques to POLSAR data.
+%%For instance the earlier example illustrate that while intensity ratio was commonly used to carry out visually evaluation of SAR speckle filters,
+%%  the newly proposed determinant ratio and its log-transformed version (i.e. contrast) are shown capable of visually evaluating POLSAR speckle filters.
+%%We believe there are many more unexplored possibilities for such applications.
+%  
+%There are many beneficial implications for this proposal.
+%One of the main benefits is that:
+%  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
+%One example has already been presented in this paper, 
+%  where existing SAR discrimination measures are extended towards POLSAR.
+%Another example can be illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
+%
+%In evaluating SAR speckle filters, the intensity ratio is widely used.
+%Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
+%Assuming a perfect filtering condition, the ratio image should only contain random noise.
+%Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
+%
+%Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
+%  this technique can be equally applied to evaluate POLSAR speckle filters.
+%In fact better results can be achieved.
+%In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
+%  which is linear and additive in nature.
+%Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
+%NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
+%
+%To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
+%  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
+%  and the two POLSAR speckle filters are then applied to the patch.
+%\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
+%  they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
+%  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.} 
+%The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
+%At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
+%
+%%ifdef FINAL
+%\begin{figure}[h]
+%\centering
+%\begin{tabular}{c}
+%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
+%		 \label{multi_look_contrast}
+%	} \\
+%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
+%		 \label{multi_look_contrast}
+%	} 
+%\end{tabular}
+%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV).}
+%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+%\end{figure}
+%%endif
+%%ifdef REVIEW
+%\begin{figure}[h!]
+%\centering
+%\begin{tabular}{c}
+%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
+%		 \label{multi_look_contrast}
+%	} \\
+%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
+%		 \label{multi_look_dispersion}
+%	} 
+%	\hfill	
+%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
+%		 \epsfxsize=3in
+%		 \epsfysize=3in
+%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
+%		 \label{multi_look_contrast}
+%	} 
+%\end{tabular}
+%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSAR Flevoland part-pol data (HH-HV).}
+%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+%\end{figure}
+%%endif
+%
+%Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
+%  the distortion impact of the filter can also be made visible by the residual image.
+%In this visual evaluation, while it is quite hard to observe the worsen blurring-effects of the boxcar 5$\times$5 speckle filter compared to the 3$\times$3 filter
+%in the additive log-determinant image of the filtered output, 
+%  such an observation can be made relatively easier by inspecting the residual image.
+%  
 %There are many similar SAR data processing technique that may be adaptable to POLSAR.
-%Examples include the use of the mean and variance of the ratio image to quantitatively evaluate POLSAR speckle filters.
-%For example in the very same context of evaluating speckle filters,
-%  the mean and variance of the ratio image are also routinely used to provide quantitative evaluation.
-%Evidently these techniques can also be adapted to evaluate POLSAR speckle filters, without much difficulties in foresight.
-%In fact, we believe a list of such techniques would take pages.
-%Here due to space restriction, only a simple example is described to highlight the beneficial implications of the proposed models.
+%Examples in the same topic of evaluating speckle filters include
+%  the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
+%Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
 
-  
 \section{Conclusion}
 \label{sec:conclusion}
 
-A number of scalar statistical models for the determinant of the POLSAR covariance matrix are proposed and validated in this paper,
-  resulting in several consistent discrimination measures for POLSAR applications.
-The theoretical models are shown to be powerful in that
-  not only can they provide alternative and simple explanations to a range of theoretical concepts such as POLSAR test statistics or ENL estimation,
-  but they can also be considered multi-dimensional extensions of traditional models for one-dimensional SAR data.
-%The theoretical model is shown to be useful in providing alternative and  simpler explanations to a range of theoretical concepts such as POLSAR test statistics and ENL estimation.
-%Furthermore, the statistical model proposed in this paper is based on the determinant of the POLSAR covariance matrix which,
-%  when converted into one-dimensional data, is gracefully transformed into traditional SAR intensity.
-They are also practically useful in that they lead to several consistent discrimination measures.
-Moreover, compared to other scalar statistical models for POLSAR, the proposed models are excellent representations of the multi-dimensional POLSAR data.
-Consequently, the derived dissimilarity measures may be employed in a wide range of applications where a scalar number is required to represent the complex multi-dimensional POLSAR data.
-The models may also form a bridge that allows the adaptation of many existing SAR data processing techniques for POLSAR data.
-
-%In conclusion, a couple of scalar statistical models for the determinant of the POLSAR covariance matrix,
-%  which result in several consistent discrimination measures for POLSAR, are proposed and validated in this paper.
-%The theoretical model is shown to be comprehensive in that:
-%  not only it can provide alternative and sometimes simpler explanations to a range of theoretical concepts such as POLSAR test statistics or ENL estimation,
-%  it also can be considered as the multi-dimensional extension of the traditionally used models for one-dimensional SAR data.
-%Compared to other scalar statistical models for POLSAR, the proposed models are highly representative of the multi-dimensional POLSAR data.
-%%These properties lead to the derivation of several statistically consistent discrimination measures for POLSAR.
-%%Compared with other discrimination measure proposals, this paper suggests an exact distribution for the POLSAR likelihood statistical test.
-%%As a by-product of this exact modelling, simpler dis-similarity measures, i.e. contrast and determinant-ratio, are proposed for the common case of $Lx=Ly$.
-%
-
-%An additive and homoskedastic model, 
-%  which results in several scalar and consistent measures-of-distance for multi-variate POLSAR data
-%  is proposed in this paper.
-%The theoretical model is shown to be comprehensive:
-%not only it can provide alternative and sometimes simpler explanations to a range of theoretical concepts such as POLSAR test statistics or ENL estimation, 
-%it also potentially makes several well-known models for traditional SAR become applicable for POLSAR processing.  %IVM: <- changed this sentence, please check.
-%
-%The statistical model proposed in this paper is based on the determinant of the POLSAR covariance matrix  which, when converted into one-dimensional data,
-%  is gracefully transformed into traditional SAR intensity.
-%Consequently, the derived dissimilarity measures may be employed in a wide range of applications where a scalar number is required to represent the complex multi-dimensional POLSAR data.
-%%The model is also shown to be practically versatile and capable of handling two common imperfections found in practical data.   As an application of the model,
-%%  as well as an extension of our previous work on evaluating SAR speckle filters\cite{Le_2010_ACRS},
-%%  the application of these additive and homoskedastic distances in the context of evaluating POLSAR speckle filters is briefly explored with promising initial results presented.  
-%The models may also form a bridge, allowing the adaptation of many existing SAR data processing technique for POLSAR data,
-%  a quick example of this is briefly described in this paper.
-%This paper 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\appendices
-\section{Homoskedastic Model for the Log-Determinant}
-\label{chap:appendix_a}
-
-\subsection{Log-Chi-Square Distribution and its Derivatives}
-%\section{Log-Chi-Square Distribution}
-\renewcommand{\theequation}{\thesection.\arabic{equation}}
-\setcounter{equation}{0}
-
-This section provides the mathematical derivations for the log-transformed version of chi-squared random variables.
-
-Chi-squared random variables $\chi\ \sim\ \chi^2(k)\ $ follows the pdf:
-\begin{equation}
-pdf(\chi;\,k) =
-  \frac{\chi^{(k/2)-1} e^{-\chi/2}}{2^{k/2} \Gamma\left(\frac{k}{2}\right)}  
-\label{eqn:chi_squared_dist_pdf:appdixA}
-\end{equation}
-
-Setting L=k/2 into Eqn. \ref{eqn:chi_squared_dist_pdf:appdixA}
-\begin{equation}
-pdf(\chi) = \frac{\chi^{L-1}e^{-\chi/2}}{2^L\Gamma(L)}
-\end{equation}
-
-Applying the variable change theorem, which states that: if $y=\phi(x)$ with $\phi(c)=a$ and $\phi(d)=b$, then:
-\begin{equation}
- \int_a^b \! f(y) \, dy = \int_c^d \! f[\phi(x)] \frac{d\phi}{dx} dx
-\end{equation}
-into the log-transformation, which changes the random variables $\Lambda=ln(\chi)$, we have:
-\begin{eqnarray*}
-  d\chi &=& e^\Lambda d\Lambda \\
-  \frac{\chi^{L-1}e^{-\chi/2}}{2^L\Gamma(L)} d\chi &=&  \frac{(e^\Lambda)^{L-1}e^{-e^\Lambda/2}}{2^L\Gamma(L)} e^\Lambda d\Lambda
-\end{eqnarray*}
-In other words, we have:
-\begin{equation}
-pdf(\Lambda;L) = \frac{e^{L \Lambda -e^\Lambda/2}}{2^L\Gamma(L)}
-\label{eqn:log_chi_square_dist_pdf}
-\end{equation}
-
-From the PDF given in Eqn. \ref{eqn:log_chi_square_dist_pdf}, a characteristic function can be computed.
-By definition, the characteristic function (CF) $\varphi_X(t)$ for a random variable $X$ is computed as:
-\begin{eqnarray*}
-\varphi_X(t) = \operatorname{E}\big[e^{itX}\big] 
-      &=& \int_{-\infty}^\infty e^{itx}\,dF_X(x) \\ 
-      &=& \int_{-\infty}^\infty e^{itx} f_X(x)\,dx 
-\end{eqnarray*}
-with $\varphi_x(t)$ is the characteristic function,
-     $F_X(x)$ is the CDF function of X and
-     $f_X(x)$ is the PDF function of X.
-Thus the characteristic function for the log-chi-squared distribution is defined as: 
-\begin{equation}
-\varphi_\Lambda(t)=\int_0^\infty e^{itx} \frac{e^{Lx-e^x/2}}{2^L \Gamma(L)}\,dx 
-\end{equation}
-
-The Gamma function is defined over the complex domain as:
-$\Gamma(z) = \int_0^\infty  e^{-x} x^{z-1} dx .$
-Thus $\Gamma(L+it) = \int_0^\infty  e^{-x} x^{L+it-1} dx .$
-Set $x=e^z/2$ then $dx=e^z/2dz$, we have $\Gamma(L+it)= \int_0^\infty  e^{itz} \frac{e^{Lz-e^z/2}}{2^{L+it}} dz$
-%  \begin{eqnarray*}
-%\Gamma(L+it)&=&\int_0^\infty  e^{-e^z/2} (e^z/2)^{L+it-1} e^z/2 dz \\
-%  &=& \int_0^\infty  e^{-e^z/2} \frac{e^{z(L+it-1)}}{2^{L+it-1}} e^z/2 dz \\
-%  &=& \int_0^\infty  e^{itz} \frac{e^{Lz-e^z/2}}{2^{L+it}} dz
-%  \end{eqnarray*}
-
-%Thus the characteristic function becomes
-That is:
-\begin{equation}
-\varphi_\Lambda(t) = 2^{it} \frac{\Gamma(L+it)}{\Gamma(L)}  
-\end{equation}
-
-Consequently, the first and second derivative of the log-chi-squared distribution can be computed.
-The first derivative is given as:
-\begin{equation}
-  \frac{\partial \varphi_\Lambda(t)}{\partial t} = \frac{i 2^{it} \Gamma(L+it)}{\Gamma(L)} \left[ \ln{2} + \psi^0(L+it) \right]
-\end{equation}
-due to
-\begin{eqnarray*}
-  \frac{\partial \Gamma(x)}{\partial x} &=& \Gamma(x)\psi^0(x), \\
-  \frac{\partial \Gamma(L+it)}{\partial t} &=& i\Gamma(L+it)\psi^0(L+it), \\
-  \frac{\partial 2^{it}}{\partial t} &=& i2^{it}\ln(2), \\
-  \partial (u \cdot v) / \partial t &=& u \cdot \partial v /\partial t + v \cdot \partial u/\partial t, 
-\end{eqnarray*}
-where $\psi^0()$ denotes the di-gamma function.
-
-Meanwhile, the second derivative can be written as:
-\begin{equation}
-  \frac{\partial ^2 \varphi_\Lambda(t)}{\partial t^2} = \frac{i^2 2^{it} \Gamma(L+it)}{\Gamma(L)} \left( \left[ \ln{2} + \psi^0(L+it) \right] ^ 2 + \psi^1(L+it) \right)
-\end{equation}
-due to:
-\begin{eqnarray*}
-  \frac{d 2^{it} \Gamma(L+it)}{dt} &=& i 2^{it} \Gamma(L+it) \left[ \ln{2} + \psi^0(L+it) \right], \\
-  \frac{d \psi^0(t)}{dt} &=& \psi^1(t), \\
-  \frac{d \psi^0(L+it)}{dt} &=& i \psi^1(L+it), \\
-  \partial (u \cdot v) / \partial t &=& u \cdot \partial v /\partial t + v \cdot \partial u/\partial t,
-\end{eqnarray*}
-with $\psi^1()$ denotes the tri-gamma function.
-
-The $n^{th}$ moments of random variable $X$ can be computed from the derivatives of its characteristic function as:
-\begin{equation}
-\operatorname{E}\left(\Lambda^n\right) = i^{-n}\, \varphi_\Lambda^{(n)}(0)
-  = i^{-n}\, \left[\frac{d^n}{dt^n} \varphi_\Lambda(t)\right]_{t=0} \,\!
-\end{equation}
-
-Thus
-\begin{eqnarray*}
- \operatorname{E}\left(\Lambda\right) &=& i^{-1}\, \left[\frac{d\varphi_\Lambda(t)}{dt} \right]_{t=0} \,\! \\
-  &=& i^{-1} \left[ \frac{i 2^{it} \Gamma(L+it)}{\Gamma(L)} \left[ \ln{2} + \psi^0(L+it) \right] \right]_{t=0}
-% &=& 1/i \left[ \frac{d2^{it} \frac{\Gamma(L+it)}{\Gamma(L)} }{dt} \right]_{t=0} \\
-% &=& \frac{1}{\Gamma(L)i} \left[ \Gamma(L+it) \frac{d 2^{it}}{dt} + 2^{it}\frac{d\Gamma(L+it)}{dt} \right]_{t=0} \\
-% &=& \left[ \frac{\Gamma(L+it)}{\Gamma(L)i}i2^{it}\ln(2) \right]_{t=0} + \left[ \frac{2^{it}}{\Gamma(L)i}i\Gamma(L+it)\psi^0(L+it) \right]_{t=0} 
-\end{eqnarray*}
-That gives the result:
-\begin{equation}
-  avg(\Lambda) = \psi^0(L) + ln(2)
-\end{equation}
-
-Similarly, for the second moment,
-\begin{eqnarray*}
- \operatorname{E}\left(\Lambda^2\right) &=& i^{-2}\, \left[\frac{d^2\varphi_\Lambda(t)}{dt^2} \right]_{t=0} \,\! \\
-  &=& \left[ \frac{2^{it} \Gamma(L+it)}{\Gamma(L)} \left( \left[ \ln{2} + \psi^0(L+it) \right] ^ 2 + \psi^1(L+it) \right) \right]_{t=0}  
-% &=& -1i \left[ \frac{d \left( \frac{2^{it}\Gamma(L+it)}{\Gamma(L)} (ln2 + \psi^0(L+it)) \right) }{dt}  \right]_{t=0} \\
-% &=& \frac{-1i}{\Gamma(L)} \left[ \ln(2) \frac{d 2^{it}\Gamma(L+it)}{dt} + \frac{d 2^{it}\Gamma(L+it)\psi^0(L+it)}{dt}  \right]_{t=0} \\
-% &=& + \ln(2) (\psi^0(L)+\ln(2)) - \frac{i}{\Gamma(L)} \left[ \frac{d 2^{it}\Gamma(L+it)}{dt} \psi^0(L+it) + 2^{it}\Gamma(L+it) \frac{d \psi^0(L+it)}{dt} \right]_{t=0}
-\end{eqnarray*}
-That is equivalent to saying that
-\begin{equation}
-  E(\Lambda^2) = \left[ \psi^0(L)+\ln(2) \right]^2 + \psi^1(L)
-\end{equation}
-%since $\frac{d\psi^0(x)}{dx}=\psi^1(x)$ then
-%$E(X^2) = (\psi^0(L)+\ln(2))(\psi^0(L)+\ln(2)) + \psi^1(L)$.
-
-Thus we can state that
-\begin{equation}
-var(\Lambda)=E(\Lambda^2)-E^2(\Lambda)=\psi^1(L)
-\end{equation}
-
-\subsection{Averages and Variances of POLSAR Covariance Matrix Determinant and Log-Determinant}
-
-In this section, the expected value and variance value of these mixture of random variables are derived
-\begin{eqnarray}
-\chi^d_L &\sim& \prod_{i=0}^{d-1} \chi (2L-2i) \\
-\Lambda^d_L &\sim& \sum_{i=0}^{d-1} \Lambda (2L-2i)
-\end{eqnarray}
-given the averages and variances of individual components.
-\begin{eqnarray}
-avg \left[ \chi(2L) \right]&=&2L \\
-var \left[ \chi(2L) \right]&=&4L \\
-avg \left[ \Lambda(2L) \right] &=& \psi^0(L) + \ln2 \\
-var \left[ \Lambda(2L) \right] &=& \psi^1(L)
-\end{eqnarray}
-
-Making use of the mutual independence property of each component $X_i$,
-  the variance and expectation of the summation and product of random variables can be written as:
-\begin{eqnarray*}
-avg \left( \sum^n_{i=1} X_i \right) &=& \sum^n_{i=1} avg(X_i), \\
-var \left( \sum^n_{i=1} X_i \right) &=& \sum^n_{i=1} var(X_i), \\
-avg \left( \prod^n_{i=1} X_i \right) &=& \prod^n_{i=1} avg(X_i), \\ 
-var \left( \prod^n_{i=1} X_i \right) &=& \prod^n_{i=1} \left[ avg^2(X_i) + var(X_i) \right] - \prod^n_{i=1} avg^2(X_i).    
-\end{eqnarray*}
-
-Thus they can be rewritten more usefully as:
-\begin{eqnarray*}
-  avg \left[ \chi^d_L \right] &=& 2^d \cdot \prod^{d-1}_{i=0} (L-i), \\
-  var \left[ \chi^d_L \right] &=& \prod^{d-1}_{i=0} 4(L-i)(L-i+1) - \prod^{d-1}_{i=0} 4(L-i)^2, \\
-  avg \left[ \Lambda^d_L \right] &=& d \cdot \ln{2} + \sum^{d-1}_{i=0} \psi^0(L-i), \\
-  var \left[ \Lambda^d_L \right] &=& \sum^{d-1}_{i=0} \psi^1(L-i)
-\end{eqnarray*}
-
-\section{Deriving the Characteristic Functions for the Consistent Measures of Distance}
-\label{sec:appendix_b}
-
-Given that the characteristic function (CF) of the elementary log-chi square distributions can be written as
-\begin{eqnarray}
- CF_{\Lambda(2L)}(t) &=& 2^{it}\Gamma(L+it)/\Gamma(L) \nonumber
-\end{eqnarray}
-  then the CF for the following random variables,
-  which are combinations of the above elementary random variables, can be derived
-\begin{eqnarray*}
-   \Lambda^d_L &\sim&  \sum^{d-1}_{i=0} \Lambda(2L-2i) \\
-  \mathbb{L} &\sim&  \Lambda^d_L -d \cdot \ln(2L) \\
-  \mathbb{D} &\sim& \mathbb{L} - d \cdot \ln{L} + \sum^{d-1}_{i=0} \psi^0(L-i) \\
-  \mathbb{C} &\sim&  \sum^{d-1}_{i=0} \left[ \Lambda(2L-2i) - \Lambda(2L-2i) \right]
-\end{eqnarray*}
-
-Since we can state that
-\begin{eqnarray*}
- CF_{\sum X_i}(t)   &=& \prod CF_{X_i}(t) \\
- CF_{x+k}(t) &=& e^{itk}CF_x(t)
-\end{eqnarray*}
-then we have:
-%\begin{eqnarray}
-%\end{eqnarray}
-\begin{align}
-  CF_{\Lambda^d_L}(t) &= \frac{2^{idt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
-   CF_{\mathbb{L}} &= \frac{1}{L^{idt} \Gamma(L)^d}  \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
-   CF_{\mathbb{D}} &= \frac{ 1 }{\Gamma(L)^d} \prod^{d-1}_{j=0} e^{idt \psi^0(L-j)} \Gamma(L-j+it)  
-\end{align}
-
-%The CF for the contrast random variable can also be written as
-Also due to
-\begin{eqnarray*}
-  CF_{-\Lambda(2L)}(t) &=& 2^{-it}\frac{\Gamma(L-it)}{\Gamma(L)} \\ 
-  \Delta(2L) &\sim& \Lambda(2L) - \Lambda(2L) \\
-  \Gamma(L-it) \Gamma(L+it) &=&  \Gamma(2L)B(L-it,L+it) \\
-   CF_{\Delta(2L)}(t) &=& \frac{\Gamma(2L)B(L-it,L+it)}{\Gamma^2(L)} 
-\end{eqnarray*}
-then we arrive at:
-\begin{align}
-  CF_{\mathbb{C}} &=&  \prod^{d-1}_{j=0} \frac{\Gamma(2L-2j)B(L-j-it,L-j+it)}{\Gamma^2(L-j)} 
-\end{align}
-with $\Gamma()$ and $B()$ denoting Gamma and Beta functions respectively.
-
-\section{SAR intensity as a special case of POLSAR covariance matrix determinant}
-\label{sec:appendix_sar_special_case_of_polsar}
-
-In this appendix, the following results for SAR intensity $I$ are shown to be special cases of the results given in this paper for the determinant of the POLSAR covariance matrix $det|C_v|$.
-Specifically, the following results extend from the authors previous work on single-look SAR \cite{Le_2013_TGRS_SAR_MSE}, i.e. $d=L=1$, which is considerd a special case. We can state the following:
-\begin{eqnarray}
-  I &\sim& \bar{I} \cdot pdf \left[ e^{-R} \right] \\
-  \log_2{I} &\sim& \log_2{\bar{I}} + pdf \left[ 2^{D-2^D} \right] \\
-  \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ e^{-R} \right]  \\
-  \log_2{I} - \log_2{\bar{I}} = \mathbb{D} &\sim& pdf \left[ 2^De^{-2^D}\ln2 \right]\\
-  \log_2{I_1} - \log_2{I_2} = \mathbb{C} &\sim& pdf \left[ \frac{2^c}{(1+2^c)^2} \ln2 \right] \\
-  avg(\mathbb{D}) &=& -\gamma / \ln{2} \\
-  var(\mathbb{D}) &=& \frac{\pi^2}{6} \frac{1}{ \ln^2{2}} \\
-  mse(\mathbb{D}) &=& \frac{1}{\ln^2{2}}( \gamma^2 + \pi^2/6 ) = 4.1161 
-\end{eqnarray}
-but also the following well-known results are considered for multi-look SAR, i.e. $d=1,L>1$:
-  \begin{eqnarray}
-I &\sim& pdf \left[ \frac{L^L I^{L-1} e^{-LI/\bar{I}}}{\Gamma(L) \bar{I}^L} \right] \\
-N = \ln{I} &\sim& pdf \left[ \frac{L^L}{\Gamma(L)} e^{L(N-\bar{N})-Le^{N-\bar{N}}} \right]
-  \end{eqnarray}
-It will be shown that all of these results are special cases of the result derived previously and rewritten below:
-\begin{eqnarray}
-  |C_v| &\sim& \frac{|\Sigma_v|}{(2L)^d} \prod^{d-1}_{i=0} \chi^2(2L-2i)  \label{eqn:polsar_det_cov_dist} \\
-  \ln{|C_v|} &\sim& \ln{|\Sigma_v|} + \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \label{eqn:polsar_log_det_cov_dist} 
-\end{eqnarray}
-\begin{eqnarray}
-  \frac{|C_v|}{|\Sigma_v|} = \mathbb{R} &\sim& \frac{1}{(2L)^d} \prod^{d-1}_{i=0} \chi^2(2L-2i) \label{eqn:polsar_ratio_det_cov_dist} \\
-  \ln{|C_v|} - \ln{|\Sigma_v|} = \mathbb{D} &\sim& \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \label{eqn:polsar_dispersion_log_det_cov_dist} \\ 
-  \ln{|C_{1v}|} - \ln{|C_{2v}|} = \mathbb{C} &\sim& \sum^{d-1}_{i=0} \Delta(2L-2i)
-\end{eqnarray}
-\begin{eqnarray}
-  avg(\mathbb{D}) &=& \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \label{eqn:polsar_dispersion_averages} \\
-  var(\mathbb{D}) &=& \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:polsar_dispersion_variance} \\
-  mse(\mathbb{D}) &=& \left[ \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \right]^2 +  \sum^{d-1}_{i=0} \psi^1(L-i) \label{eqn:polsar_dispersion_mse}
-\end{eqnarray}
-
-This appendix also derives new results for multi-look SAR data,
-  which can be thought of 
-    either as extensions of the corresponding single-look SAR results
-    or as simple cases of the POLSAR results presented above.
-They are:
-  \begin{eqnarray}
-    \frac{I}{\bar{I}} = \mathbb{R} &\sim& \frac{1}{2L} \chi^2(2L) \\
-    \ln{I} - \ln{\bar{I}} = \mathbb{D} &\sim& \Lambda(2L) - \ln{2L} \\
-    \ln{I_1} - \ln{I_2} = \mathbb{C} &\sim& \Delta(2L) \\
-    avg(\mathbb{D}) &=& \psi^0(L) - \ln{L} \\
-    var(\mathbb{D}) &=& \psi^1(L) \\
-    mse(\mathbb{D}) &=& \left[ \psi^0(L) - \ln{L} \right]^2 + \psi^1(L)
-  \end{eqnarray}
-
-The derivation process detailed below consists of two-phases.
-The first phase collapses the generic multi-dimensional POLSAR results into the classical one-dimensional SAR domain.
-Mathematically this means setting the dimensional number in POLSAR to  $d=1$
-  and collapsing the POLSAR covariance matrix into the variance measure in SAR, which also equals the SAR intensity i.e. $|C_v|=I,|\Sigma_v|=\bar{I}$.
-
-The output of the first phase, in the general case, is applicable to multi-look SAR data, where $d=1$ but $L>1$.
-The second phase simplifies the multi-look results into single-look results, which will match those presented in our previous work \cite{Le_2013_TGRS_SAR_MSE}.
-Mathematically, it means setting $L=1$ in the multi-look result
-  and converting from the natural logarithmic domain used in this paper to the base-2 logarithm used in \cite{Le_2013_TGRS_SAR_MSE} (base-2 was chosen in the previous paper to simplify the computation).
-
-\subsection{Original Domain: SAR Intensity and its ratio}
-
-Setting $d=1$, $|C_v|=I$ and $|\Sigma_v|=\bar{I}$ into Eqns. \ref{eqn:polsar_det_cov_dist} and \ref{eqn:polsar_ratio_det_cov_dist}
-we find that:
-\begin{eqnarray*}
-  I &\sim& \frac{\bar{I}}{2L} \chi^2(2L)  \\
-  \frac{I}{\bar{I}} = \mathbb{R} &\sim& \frac{1}{2L}  \chi^2(2L)   
-\end{eqnarray*}
-Or in PDF forms, and applying the variable change theorem,:
-\begin{eqnarray*}
-    \frac{2L I}{\bar{I}} &\sim& pdf \left[ \frac{x^{L-1}e^{-x/2}}{2^L \Gamma(L)} \right] \\
-  \frac{I}{\bar{I}} &\sim& pdf \left[ \frac{x^{L-1}e^{-x/2}}{2^L \Gamma(L)} \cdot dx/dt \right]_{x=2L \cdot t} \\
-%    &\sim& pdf \left[ \frac{(2L)^{L-1} t^{L-1} e^{-Lt}}{2^L \Gamma(L)}  \cdot 2L \right] \\
-    &\sim& pdf \left[ \frac{ L^{L} t^{L-1} e^{-Lt}}{ \Gamma(L)} \right] \\
-  I &\sim& pdf \left[ \frac{ L^{L} t^{L-1} e^{-Lt}}{ \Gamma(L)} \cdot dt/dx \right]_{t=x/\bar{I}}  \\
-%    &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{I}}}{ \bar{I}^{L-1}\Gamma(L)} \cdot \frac{1}{\bar{I}} \right] \\
-    &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{I}}}{ \bar{I}^{L}\Gamma(L)} \right]
-\end{eqnarray*}
-
-Thus we have the following results for multi-look SAR:
-\begin{eqnarray}
-    I &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{x}}}{ \bar{I}^{L}\Gamma(L)} \right] \label{eqn:multi_look_SAR_intensity_dist} \\
-    \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \label{eqn:multi_look_SAR_ratio_dist} \right] 
-\end{eqnarray}
-
-Now setting $L=1$, these results become:
-\begin{eqnarray}
-    I &\sim& pdf \left[ \frac{ e^{x/\bar{I}}}{ \bar{I}} \right] \\
-    \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ e^{-x} \right] 
-\end{eqnarray}
-which is the same as stated in \cite{Le_2013_TGRS_SAR_MSE}, demonstrating that the previous work is a special case of the more generic POLSAR forms.
-
-\subsection{Log-transformed domain: SAR log-intensity and the log-distance}
-
-The result for multi-look SAR data written in the log-transformed domain can be derived from two different approaches.
-The first is to follow a simplification method, where the results for log-transformed POLSAR data are simplified into log-transformed multi-look SAR results.
-
-The second approach is to apply log-transformation to the results derived in the previous section. In this section, it is shown that both approaches would result in identical results.
-
-Setting $d=1$, $|C_v|=I$ and $|\Sigma_v|=\bar{I}$ into Eqns. \ref{eqn:polsar_log_det_cov_dist} and \ref{eqn:polsar_dispersion_log_det_cov_dist}
-we have
-\begin{eqnarray*}
-  \ln{I} &\sim& \ln{\bar{I}} + \Lambda(2L) - \ln{2L}  \\
-  \ln{I} - \ln{\bar{I}} = \mathbb{L} &\sim& \Lambda(2L) - \ln{2L} 
-\end{eqnarray*}
-
-Or in PDF form, and applying the variable change theorem we have:
-\begin{eqnarray*}
-  \ln{I} - \ln{\bar{I}} + \ln{2L} &\sim& pdf \left[ \frac{e^{Lx-e^x/2}}{2^L \Gamma(L)} \right] \\
-  \ln{I} - \ln{\bar{I}} &\sim& pdf \left[ \frac{e^{Lx-e^x/2}}{2^L \Gamma(L)} \cdot dx/dt \right]_{x=t+\ln{2L}} \\
-%   &\sim& pdf \left[ \frac{e^{L(t+\ln{2L})-e^{t+\ln{2L}}/2}}{2^L \Gamma(L)}  \right] \\ 
-   &\sim& pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right] \\
-  \ln{I} &\sim&  pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)} \cdot dt/dx \right]_{t=x-\ln{\bar{I}}} \\
- &\sim&  pdf \left[ \frac{L^Le^{L(x-\bar{N})-Le^{x-\bar{N}}}}{ \Gamma(L)} \right] 
-\end{eqnarray*}
-with $\bar{N} = \ln{\bar{I}}$. Thus the first approach arrives at
-\begin{eqnarray}
-   \ln{I} = \mathbb{N} &\sim&  pdf \left[ \frac{L^Le^{L(x-\bar{N})-Le^{x-\bar{N}}}}{ \Gamma(L)} \right] \\
-   \ln{I} - \ln{\bar{I}} = \mathbb{L} &\sim& pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right]  
-\end{eqnarray}
-
-In the second approach, log-transformation is applied on previous results for multi-look SAR intensity and its ratio in the original domain (Eqns. \ref{eqn:multi_look_SAR_ratio_dist} and \ref{eqn:multi_look_SAR_intensity_dist}).
-This also arrives at the same results shown above, however the detailed working is omitted for brevity.
-
-%\begin{eqnarray*}
-%    I &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{x}}}{ \bar{I}^{L}\Gamma(L)} \right] \\
-%    \frac{I}{\bar{I}} = \mathbb{R} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \right] 
-%\end{eqnarray*}
-%Thus
-%\begin{eqnarray*}
-%  \ln{I} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx/\bar{I}}}{ \bar{I}^{L}\Gamma(L)} \right]_{x=e^t} \\
-%      &\sim& pdf \left[ \frac{ L^{L} e^{t(L-1)} e^{-Le^t/\bar{I}}}{ \bar{I}^{L}\Gamma(L)} \cdot e^t \right]_{\bar{I}=e^{\bar{N}}} \\
-%      &\sim& pdf \left[ \frac{ L^{L} e^{L(t-\bar{N})} e^{-Le^{t-\bar{N}}}}{ \Gamma(L)}  \right] \\
-%  \ln{I} - \ln{\bar{I}} = \mathbb{D} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \cdot dx/dt \right]_{x=e^t} \\
-%      &\sim& pdf \left[ \frac{ L^{L} e^{t(L-1)} e^{-Le^t}}{ \Gamma(L)} \cdot e^t \right] \\ 
-%      &\sim& pdf \left[ \frac{ L^{L} e^{tL-Le^t} }{ \Gamma(L)}  \right] 
-%\end{eqnarray*}
-%
-%Thus the second approach also arrives at
-%\begin{eqnarray}
-%   \ln{I} = \mathbb{N} &\sim&  pdf \left[ \frac{L^Le^{L(x-\bar{N})-Le^{x-\bar{N}}}}{ \Gamma(L)} \right] \\
-%   \ln{I} - \ln{\bar{I}} = \mathbb{D} &\sim& pdf \left[ \frac{L^Le^{Lx-Le^x}}{ \Gamma(L)}  \right]  
-%\end{eqnarray}
-
-To compute summary statistics for the multi-look SAR dispersion,
-  set $d=1$ into Eqns. \ref{eqn:polsar_dispersion_mse}, \ref{eqn:polsar_dispersion_averages} and \ref{eqn:polsar_dispersion_variance}
-we have:
-  \begin{eqnarray*}
-    avg(\mathbb{L}) &=& \psi^0(L) - \ln{L} \\
-    var(\mathbb{L}) &=& \psi^1(L) \\
-    mse(\mathbb{L}) &=& \left[ \psi^0(L) - \ln{L} \right]^2 + \psi^1(L)
-\end{eqnarray*}
-
-This completes the first phase of the derivation process.
-The second phase of simplification involves setting $L=1$ into the above results for multi-look SAR data,
-  and converting natural logarithm into base-2 logarithm.
-First, setting $L=1$ makes the above results become:
-\begin{eqnarray*}
-   \ln{I} = \mathbb{N} &\sim&  pdf \left[ e^{(x-\bar{N})-e^{x-\bar{N}}} \right] \\
-   \ln{I} - \ln{\bar{I}} = \mathbb{L} &\sim& pdf \left[ e^{x-e^x}  \right] \\ 
-    avg(\mathbb{L}) &=& \psi^0(1) = -\gamma \\
-    var(\mathbb{L}) &=& \psi^1(1) = \pi^2 / 6 \\  
-    mse(\mathbb{L}) &=& \left[ \psi^0(1) \right]^2 + \psi^1(1) = \gamma^2 + \pi^2 / 6
-\end{eqnarray*}
-with $\gamma$ denoting the Euler-Mascharoni constant.
-Then to convert to base-2 logarithm from natural logarithmic transformation,
-  we again use the variable change theorem.
-  That is:
-  \begin{eqnarray*}
-   \log_2{I}  = \mathbb{N}_2    &\sim&  pdf \left[ e^{(x-\bar{N})-e^{x-\bar{N}}} \cdot dx/dt \right]_{x=t\cdot \ln{2}} \\
-   \mathbb{N} / \ln{2} = \mathbb{N}_2 &\sim&  pdf \left[ e^{(t\cdot \ln{2}-\bar{N})-e^{t\cdot \ln{2}-\bar{N}}} \ln{2} \right]_{\bar{N}_2 = \bar{N} \cdot \ln{2}} \\
-       &\sim&  pdf \left[ 2^{t-\bar{N}_2}e^{2^{t-\bar{N}_2}} \ln{2} \right] 
-  \end{eqnarray*}
-\begin{eqnarray*}
-   \log_2{I} - \log_2{\bar{I}} = \mathbb{L} / \ln{2} = \mathbb{L}_2 &\sim& pdf \left[ e^{x-e^x}  \right]_{x=t \cdot \ln{2}} \\  
-%       &\sim& pdf \left[ e^{t \cdot \ln{2}-e^{t \cdot \ln{2}}} \ln{2}  \right] \\
-       &\sim& pdf \left[ 2^t e^{2^t} \ln{2}  \right] 
-\end{eqnarray*}
-\begin{eqnarray*}
-  avg(\mathbb{L}_2) &=& avg(\mathbb{L})/ \ln{2} = -\gamma / \ln{2} \\
-  var(\mathbb{L}_2) &=& var(\mathbb{L})/ \ln^2{2} = \frac{\pi^2}{6} \frac{1}{ \ln^2{2}} \\
-  mse(\mathbb{L}_2) &=& mse(\mathbb{L})/ \ln^2{2} = \frac{1}{\ln^2{2}}( \gamma^2 + \pi^2/6 ) = 4.1161 
-\end{eqnarray*}
-
-\subsection{Deriving the PDF for SAR dispersion and contrast}
-
-The PDF for SAR dispersion can be easily derived from
-  the PDF for the log-distance given above as:
-  \begin{equation}
-   \ln{I} - avg(\ln{I}) =  \mathbb{D} \sim pdf \left[ \frac{e^{L[x+\psi^0(L)]-Le^{x+\psi^0(L)-\ln{L}}}}{\Gamma(L)} \right]
-  \end{equation}
-due to $d=1$ and
-\begin{eqnarray*}
-  \mathbb{D} &\sim& \mathbb{L} - avg(\mathbb{L}) \\
-  avg(\mathbb{L}) &=& \psi^0(L) - \ln{L} \\
-  \mathbb{L} &\sim& pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right]
-\end{eqnarray*}
-
-Setting $L=1$ for Single-Look SAR we have
-\begin{equation}
-  \mathbb{D} \sim pdf \left[ e^{x-\gamma-e^{x-\gamma}} \right]
-\end{equation}
-due to: $\psi^0(1)=-\gamma$ and $\Gamma(1)=1$
-with $\gamma$ being the Euler Mascheroni constant (which equals $0.5772$). 
-In base-2 logarithm domain, invoking the variable change theorem:
-\begin{eqnarray*}
-  \mathbb{D}_2 &=& \log_2{I} - avg(\log_2{I}) = \mathbb{D}/\ln{2} \\
-  \mathbb{D}_2 &\sim& pdf \left[ e^{x-\gamma-e^{x-\gamma}} \cdot \frac{dx}{dt} \right]_{x=t \cdot \ln2}
-\end{eqnarray*}
-Thus we have
-\begin{equation}
-  \mathbb{D}_2 \sim pdf \left[ e^{-(2^xe^{-\gamma})} (2^xe^{-\gamma}) \ln2 \right]
-\end{equation}
-which is consistent with the results found in our previous work \cite{Le_2013_TGRS_SAR_MSE}.
-
-Setting $d=1$ into Eqn. for contrast results in
-\begin{equation}
-  \ln{I_1} - \ln{I_2} = \mathbb{C} \sim \Delta(2L)
-\end{equation}
-The characteristic function would then be
-\begin{equation}
-  CF_\mathbb{C} =  \frac{\Gamma(2L) B(L-it,L+it)}{\Gamma(L)^2} 
-\end{equation}
-Thus the PDF can be written as
-\begin{equation}
-  \mathbb{C} \sim pdf \left[ \frac{\Gamma(2L) }{\Gamma(L)^2} \frac{e^{Lx}}{(1+e^x)^{2L}} \right] \label{eqn:multi_look_SAR_contrast_pdf}
-\end{equation}
-due to
-\begin{eqnarray*}
-  CF_{\mathbb{C}}(x) &=& \frac{\Gamma(2L) }{\Gamma(L)^2} B(1/(1+e^x),L-it,L+it)  \\
-       &=& \frac{\Gamma(2L) }{\Gamma(L)^2} \int^{1/(1+e^x)}_0 z^{L-it-1}(1-z)^{L+it-1} dz \\
-  \frac{\partial }{\partial x} CF_{\mathbb{C}}(x) &=&  \frac{\partial CF_{\mathbb{C}}(x) }{\partial 1/(1+e^x)} \cdot \frac{\partial 1/(1+e^x)}{\partial x} \\
-%       &=& \frac{\Gamma(2L) }{\Gamma(L)^2} \frac{1}{(1+e^x)^{L-it-1}} \left( \frac{e^x}{1+e^x} \right)^{L+it-1} \frac{1}{(1+e^x)^2} e^x \\
-        &=&  e^{itx} \frac{\Gamma(2L) }{\Gamma(L)^2} \frac{e^{Lx}}{(1+e^x)^{2L}}   
-\end{eqnarray*}
-
-Setting $L=1$ into Eqn. \ref{eqn:multi_look_SAR_contrast_pdf} 
-we have the PDF for contrast of single-look SAR data:
-\begin{equation}
-  \mathbb{C} \sim pdf \left[ \frac{e^{x}}{(1+e^x)^{2}} \right]
-\end{equation}
-
-Converting to base-2 logarithm gives the following:
-\begin{eqnarray*}
-  \mathbb{C} / \ln{2} = \mathbb{C}_2 &\sim& pdf \left[ \frac{e^{x}}{(1+e^x)^{2}} \cdot dx/dt \right]_{x=t \cdot \ln{2}} \\
-%     &\sim& pdf \left[ \ln{2} \frac{e^{t \cdot \ln{2}}}{(1+e^{t \cdot \ln{2}})^{2}}  \right] \\
-     &\sim& pdf \left[ \ln{2} \frac{2^t}{(1+2^t)^{2}}  \right] 
-\end{eqnarray*}
-which is also consistent to the results shown in our previous work \cite{Le_2013_TGRS_SAR_MSE}.
+%What has been done?
+This paper has proposed a generic statistical model  for the POLSAR covariance matrix determinant based on the complex Wishart POLSAR target vector distribution.%***IVM: Hai pls check this sentence!
+This model has been validated for specific ($d=2$) and ($d=3$) using real-life partial and full polarimetric SAR data.
+The paper also establishes a few POLSAR discrimination measures: the determinant-ratio and the change-ratio,  which essentially are the generic version of the SAR intensity-ratio.
+At the same time, we have also shown a near-perfect match between the specific $d=1$ model and that for traditional SAR intensity,
+  effectively bringing the existing SAR theories under the umbrella of this new model.
+
+%What are the results? What are their advantages over others' results?
+The main emphasis of this paper is the proposal to consider the POLSAR covariance matrix determinant as a scalar and representative observable for the multi-dimensional POLSAR data.
+Compared to other published scalar observables, the determinant is highly representative of the multi-dimensional data.
+Its representative power is justified for the following reasons.
+Firstly, the covariance matrix determinant, when collapsed into one-dimensional case, transforms neatly into the representative SAR intensity.
+Secondly, the statistical model for this observable is shown to be the generic multi-dimensional extension of the traditional model for the one dimensional SAR intensity.
+Finally, this observable also leads to the establishment of the determinant-ratio discrimination measure for POLSAR data, which should increase the usability of this proposal.
+
+%What are their benefit?
+There are several beneficial implications of the proposed approach presented in this paper.
+Currently while the field of SAR is much more developed than the field of POLSAR,  the two fields remain  quite separated.
+Hence many techniques applicable to SAR can not be directly translated to POLSAR.
+Since the scalar and representative model for POLSAR generalizes the traditional model for SAR intensity,
+  its main benefit is that it enables the convenient adaptation of many existing SAR data processing techniques for POLSAR data.
+One example has already been presented in this paper, 
+  where existing SAR discrimination measures are extended towards POLSAR.
+At the same time, it provides a consistent theory unifying the seemingly disparate discrimination measure proposals for SAR and POLSAR data.  
+
+%What are their limitations? What problems this appears to solve, but actually is not?
+Of course, the models proposed in this article also have their own limitations.
+Firstly, they are based on the complex Wishart distribution
+%Thus its applicability is also limited by that of its foundation,
+%  that is the proposed theoretical model 
+  which is only guaranteed to work for homogeneous areas.
+Secondly, while it is desirable for a large number of applications to reduce the multi-dimensional POLSAR data to a scalar value, such a reduction is unlikely to be lossless in the general case.
+
+In this paper, the theoretical model has only been validated for partial ($d=2$) and full ($d=3$) monostatic POLSAR data,
+%and hence What can be done next?
+  leaving the test of its validity for other datasets such as bistatic POLSAR data ($d=4$) or interferrometric POLSAR data ($d=6$) as possible future work.
+Other possible future work includes
+  an investigation on the applicability of this observables into POLSAR heterogeneous areas,
+  as well as further studies to explore the use of these generic models in conjunction with other target decomposition techniques
+    such as the Freeman-Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68}.
 
 % references section
 \bibliographystyle{IEEEtran}
