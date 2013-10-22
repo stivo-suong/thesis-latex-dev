@@ -28,7 +28,7 @@
           \begin{pspicture}[showgrid=false](\column,\row)% set showgrid=false for the final
 	    \rput[bl](0,0){\includegraphics[width=1.5in,height=1.5in]{#1}}% \usebox\IBoxCRThreeR
 	    \rput(5,1.5){\footnotesize{#2}}
-	    \rput{90}(1.5,5){\footnotesize{pdf/histogram}}
+	    \rput{90}(1.5,5){\footnotesize{pdf / histogram}}
 	    \psline[linecolor=plot](5,8)(6,8)
 	    \psline[linestyle=dashed](5,9)(6,9)%another line style: dotted
 	    \rput(8,8){\footnotesize{model}}
@@ -622,7 +622,7 @@ In all cases, the good visual match between the actual data and model distributi
 		 \label{RADARSAT2_1D_determinant}
 	} \\
 	\subfloat[AIRSAR (HH) determinant ratio]{
-          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_1d.eps}{determinant-ratio}
+          \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_1d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_det_ratio_model_on_AIRSAR_1d.eps} 	
@@ -753,10 +753,10 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{RADARSAT2_2D_det_ratio}
 	} \\
 	\subfloat[AIRSAR (HH-HV) change ratio]{
-%          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_2d.eps}{change-ratio}
-		 \epsfxsize=1.5in
-		 \epsfysize=1.5in
-		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
+          \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_2d.eps}{change-ratio}
+%		 \epsfxsize=1.5in
+%		 \epsfysize=1.5in
+%		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_2d.eps} 	
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
