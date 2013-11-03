@@ -26,8 +26,8 @@
 	    %\rput{90}(1.5,5){\footnotesize{pdf / histogram}}
 	    \psline[linecolor=plot](5,8)(6,8)
 	    \psline[linestyle=dashed](5,9)(6,9)%another line style: dotted
-	    \rput(8,8){\footnotesize{model}}
-	    \rput(8,9){\footnotesize{data}}            
+	    \rput(8,8){\scriptsize{model}}
+	    \rput(8,9){\scriptsize{data}}            
           \end{pspicture}
 }
 
@@ -42,7 +42,7 @@
 \usepackage{epsfig} %for figures
 
 \usepackage[center]{caption}%for captions
-\usepackage[caption=false,font=footnotesize]{subfig} %for subfigures
+\usepackage[caption=false,font=scriptsize]{subfig} %for subfigures
 
 %opening
 \title{
@@ -598,9 +598,10 @@ The plots are obtained having set ENL to an estimated value obtained using the t
 In all cases, the good visual match between the actual data and model distribution tends to validate the proposed model. %providing us a simple validation of the result.
 
 \begin{figure}[h]
+%\captionsetup{justification=centering}
 \centering
 \begin{tabular}{c}
-	\subfloat[AIRSAR (HH) determinant]{
+	\subfloat[][AIRSAR (HH) \\ determinant]{
           \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_1d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -608,14 +609,14 @@ In all cases, the good visual match between the actual data and model distributi
 		 \label{AIRSAR_1D_determinant}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH) determinant]{
+	\subfloat[][RADARSAT2 (HH) \\ determinant]{
           \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_1d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
 		 \label{RADARSAT2_1D_determinant}
 	} \\
-	\subfloat[AIRSAR (HH) determinant ratio]{
+	\subfloat[][AIRSAR (HH) \\ determinant ratio]{
           \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_1d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -623,22 +624,22 @@ In all cases, the good visual match between the actual data and model distributi
 		 \label{AIRSAR_1D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH) determinant ratio]{
+	\subfloat[][RADARSAT2 (HH) \\ determinant ratio]{
           \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
 		 \label{RADARSAT2_1D_det_ratio}
 	} \\
-	\subfloat[AIRSAR (HH) change ratio]{
+	\subfloat[][AIRSAR (HH) \\ change ratio]{
           \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_1d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_change_ratio_model_on_AIRSAR_1d.eps} 	
 		 \label{AIRSAR_1D_det_ratio}
-	} 
+	}
 	\hfill	
-	\subfloat[RADARSAT2 (HH) change ratio]{
+	\subfloat[][RADARSAT2 (HH) \\ change ratio]{
 
 \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
@@ -647,8 +648,8 @@ In all cases, the good visual match between the actual data and model distributi
 		 \label{RADARSAT2_1D_det_ratio}
 	}
 \end{tabular}
-\caption{The specific d=1 models are validated for both RADARSAT2 and AIRSAR datasets.
-Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis).}
+\caption{\scriptsize{The specific d=1 models are validated for both RADARSAT2 and AIRSAR datasets.
+Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis).}}
 \label{fig:verify_POLSAR_model_1D}
 \end{figure}
 
@@ -666,7 +667,7 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 \begin{figure}[h]
 \centering
 \begin{tabular}{c}
-	\subfloat[AIRSAR (HH-HV) determinant]{
+	\subfloat[][AIRSAR (HH-HV) \\ determinant]{
           \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_2d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -674,14 +675,14 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{AIRSAR_2D_determinant}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV) determinant]{
+	\subfloat[][RADARSAT2 (HH-HV) \\ determinant]{
           \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_2d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
 		 \label{RADARSAT2_2D_determinant}
 	} \\
-	\subfloat[AIRSAR (HH-HV) determinant ratio]{
+	\subfloat[][AIRSAR (HH-HV) \\ determinant ratio]{
           \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_2d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -689,14 +690,14 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV) determinant ratio]{
+	\subfloat[][RADARSAT2 (HH-HV) \\ determinant ratio]{
           \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
 		 \label{RADARSAT2_2D_det_ratio}
 	} \\
-	\subfloat[AIRSAR (HH-HV) change ratio]{
+	\subfloat[][AIRSAR (HH-HV) \\ change ratio]{
           \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_2d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -704,7 +705,7 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV) change ratio]{
+	\subfloat[][RADARSAT2 (HH-HV) \\ change ratio]{
           \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps}{change-ratio}
 %\newsavebox\IBoxCRTwoR
 %\savebox\IBoxCRTwoR{\includegraphics[width=1.5in,height=1.5in]{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps}}
@@ -723,15 +724,15 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{RADARSAT2_2D_det_ratio}
 	}
 \end{tabular}
-\caption{The specific $d=2$ models are validated on both RADARSAT2 and AIRSAR datasets.
-Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis).}
+\caption{\scriptsize{The specific $d=2$ models are validated on both RADARSAT2 and AIRSAR datasets.
+Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis).}}
 \label{fig:verify_det_ratio_model_2D}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \begin{tabular}{c}
-	\subfloat[AIRSAR (HH-HV-VV) determinant]{
+	\subfloat[][AIRSAR (HH-HV-VV) \\ determinant]{
           \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_3d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -739,14 +740,14 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 		 \label{AIRSAR_3D_determinant}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV-VV) determinant]{
+	\subfloat[][RADARSAT2 (HH-HV-VV) \\ determinant]{
           \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_3d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_3d.eps} 	
 		 \label{RADARSAT2_3D_determinant}
 	} \\
-	\subfloat[AIRSAR (HH-HV-VV) determinant ratio]{
+	\subfloat[][AIRSAR (HH-HV-VV) \\ determinant ratio]{
           \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_3d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -754,14 +755,14 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV-VV) determinant ratio]{
+	\subfloat[][RADARSAT2 (HH-HV-VV) \\ determinant ratio]{
           \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps} 	
 		 \label{RADARSAT2_2D_det_ratio}
 	} \\
-	\subfloat[AIRSAR (HH-HV-VV) change ratio]{
+	\subfloat[][AIRSAR (HH-HV-VV) \\ change ratio]{
           \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_3d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -769,7 +770,7 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 		 \label{AIRSAR_2D_change_ratio}
 	} 
 	\hfill	
-	\subfloat[RADARSAT2 (HH-HV-VV) change ratio]{
+	\subfloat[][RADARSAT2 (HH-HV-VV) \\ change ratio]{
           \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}{change-ratio}
 %          \begin{pspicture}[showgrid=false](\column,\row)% set showgrid=false for the final
 %	    \rput[bl](0,0){\includegraphics[width=1.5in,height=1.5in]{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}}% \usebox\IBoxCRThreeR
@@ -786,8 +787,8 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 		 \label{RADARSAT2_2D_change_ratio}
 	}
 \end{tabular}
-\caption{The specific $d=3$ models are validated on both RADARSAT2 and AIRSAR datasets.
-Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis).}
+\caption{\scriptsize{The specific $d=3$ models are validated on both RADARSAT2 and AIRSAR datasets.
+Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis).}}
 \label{fig:verify_det_ratio_model_3D}
 \end{figure}
 

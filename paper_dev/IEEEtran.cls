@@ -1819,7 +1819,7 @@
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
-\def\fnum@figure{\figurename~\thefigure}
+\def\fnum@figure{\scriptsize{\figurename~\thefigure}}
 \def\figure{\@float{figure}}
 \def\endfigure{\end@float}
 \@namedef{figure*}{\@dblfloat{figure}}
