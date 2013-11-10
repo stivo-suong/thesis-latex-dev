@@ -1118,7 +1118,7 @@
 % DIMENSION OF TEXT:
 %
 \setlength\textwidth{32.65pc}
-\setlength\textheight{670pt}
+\setlength\textheight{700pt}%670 Hai hack to reduce to 10 pages
 
 %
 %\if@landscape
