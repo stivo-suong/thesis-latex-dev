@@ -1,12 +1,12 @@
 final:
 	FINAL=1 ./texpp.awk < article_pp.tex > article.tex
-	./cygwin_setup.sh
-	#latex 'article.tex'
-	#bibtex article
-	#latex 'article.tex'
-	#latex 'article.tex'
+	#./cygwin_setup.sh
+	latex 'article.tex'
+	bibtex article
+	latex 'article.tex'
+	latex 'article.tex'
 	dvips article.dvi
-	#ps2pdf article.ps
+	ps2pdf article.ps
 review:
 	REVIEW=1 ./texpp.awk < article_pp.tex > article.tex
 	./cygwin_setup.sh

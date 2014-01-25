@@ -607,7 +607,7 @@ In all cases, the good visual match between the actual data and model distributi
 %\captionsetup{justification=centering}
 \centering
 \begin{tabular}{c}
-	\subfloat[][AIRSAR (HH) \\ determinant]{
+	\subfloat[][AIRSAR (HH) \\ determinant (p-value=0.9322)]{
           \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_1d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -615,14 +615,14 @@ In all cases, the good visual match between the actual data and model distributi
 		 \label{AIRSAR_1D_determinant}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH) \\ determinant]{
+	\subfloat[][RADARSAT2 (HH) \\ determinant (p-value=0.9994)]{
           \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_1d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_1d.eps} 	
 		 \label{RADARSAT2_1D_determinant}
 	} \\
-	\subfloat[][AIRSAR (HH) \\ determinant ratio]{
+	\subfloat[][AIRSAR (HH) \\ determinant ratio (p-value=0.9322)]{
           \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_1d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -630,14 +630,14 @@ In all cases, the good visual match between the actual data and model distributi
 		 \label{AIRSAR_1D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH) \\ determinant ratio]{
+	\subfloat[][RADARSAT2 (HH) \\ determinant ratio (p-value=0.9994)]{
           \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_1d.eps} 	
 		 \label{RADARSAT2_1D_det_ratio}
 	} \\
-	\subfloat[][AIRSAR (HH) \\ change ratio]{
+	\subfloat[][AIRSAR (HH) \\ change ratio (p-value=0.8425)]{
           \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_1d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -645,7 +645,7 @@ In all cases, the good visual match between the actual data and model distributi
 		 \label{AIRSAR_1D_det_ratio}
 	}
 	\hfill	
-	\subfloat[][RADARSAT2 (HH) \\ change ratio]{
+	\subfloat[][RADARSAT2 (HH) \\ change ratio (p-value=0.9923)]{
 
 \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_1d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
@@ -655,7 +655,8 @@ In all cases, the good visual match between the actual data and model distributi
 	}
 \end{tabular}
 \caption{\scriptsize{The specific d=1 models are validated for both RADARSAT2 and AIRSAR datasets.
-Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis).}}
+Each histogram plots the signal under investigation (along the x-axis) against its probabilistic distribution across the patch (on the y-axis),
+with p-value being the significant level of the Kolmogorov–Smirnov goodness-of-fit test between the two histograms}}
 \label{fig:verify_POLSAR_model_1D}
 \end{figure}
 %endif
@@ -719,12 +720,17 @@ Similar tests %like the one described for SAR data
 The look-number is estimated for each type of data and for each image using the technique described in \cite{Anfinsen_2009_TGRS_3795}. %and is also noted in the plots.
 The practical and predicted distributions are again plotted to determine whether their visual match is close in each case. Fig. \ref{fig:verify_det_ratio_model_2D} shows the $d=2$ plots for determinant, determinant ratio and change ratio for both datasets. It is very clear that the model histogram matches the data well, in fact appearing similar to a smoothed data response. Evidently the match is good for $d=2$.
 
-Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for the same data, same model parameters. Again, although the histogram is much tighter, the match is visually obvious in all cases.
+Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for the same data, same model parameters.
+Again, although the histogram is much tighter, the match is visually obvious in all cases.
+This qualitative observation is further supported by high significance level (or p-value) of the standard KS goodness-of-fit test.
+While a good p-value does not mean automatic acceptance of the model,
+  consistently high p-value readings suggest that the proposed model should not be ignored.
+
 %ifdef FINAL
 \begin{figure}[h]
 \centering
 \begin{tabular}{c}
-	\subfloat[][AIRSAR (HH-HV) \\ determinant]{
+	\subfloat[][AIRSAR (HH-HV) \\ determinant (p-value=0.9998)]{
           \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_2d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -732,14 +738,14 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{AIRSAR_2D_determinant}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH-HV) \\ determinant]{
+	\subfloat[][RADARSAT2 (HH-HV) \\ determinant (p-value=0.8899)]{
           \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_2d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_2d.eps} 	
 		 \label{RADARSAT2_2D_determinant}
 	} \\
-	\subfloat[][AIRSAR (HH-HV) \\ determinant ratio]{
+	\subfloat[][AIRSAR (HH-HV) \\ determinant ratio (p-value=0.9998)]{
           \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_2d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -747,14 +753,14 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH-HV) \\ determinant ratio]{
+	\subfloat[][RADARSAT2 (HH-HV) \\ determinant ratio (p-value=0.8899)]{
           \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_2d.eps} 	
 		 \label{RADARSAT2_2D_det_ratio}
 	} \\
-	\subfloat[][AIRSAR (HH-HV) \\ change ratio]{
+	\subfloat[][AIRSAR (HH-HV) \\ change ratio (p-value=0.9182)]{
           \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_2d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -762,7 +768,7 @@ Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for 
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH-HV) \\ change ratio]{
+	\subfloat[][RADARSAT2 (HH-HV) \\ change ratio (p-value=0.9824)]{
           \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps}{change-ratio}
 %\newsavebox\IBoxCRTwoR
 %\savebox\IBoxCRTwoR{\includegraphics[width=1.5in,height=1.5in]{../images/verify_change_ratio_model_on_RADARSAT2_2d.eps}}
@@ -840,7 +846,7 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 \begin{figure}[h]
 \centering
 \begin{tabular}{c}
-	\subfloat[][AIRSAR (HH-HV-VV) \\ determinant]{
+	\subfloat[][AIRSAR (HH-HV-VV) \\ determinant (p-value=0.8905)]{
           \plotWithLegend{../images/verify_determinant_model_on_AIRSAR_3d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -848,14 +854,14 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 		 \label{AIRSAR_3D_determinant}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH-HV-VV) \\ determinant]{
+	\subfloat[][RADARSAT2 (HH-HV-VV) \\ determinant (p-value=0.8896)]{
           \plotWithLegend{../images/verify_determinant_model_on_RADARSAT2_3d.eps}{determinant}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_determinant_model_on_RADARSAT2_3d.eps} 	
 		 \label{RADARSAT2_3D_determinant}
 	} \\
-	\subfloat[][AIRSAR (HH-HV-VV) \\ determinant ratio]{
+	\subfloat[][AIRSAR (HH-HV-VV) \\ determinant ratio (p-value=0.8905)]{
           \plotWithLegend{../images/verify_det_ratio_model_on_AIRSAR_3d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -863,14 +869,14 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 		 \label{AIRSAR_2D_det_ratio}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH-HV-VV) \\ determinant ratio]{
+	\subfloat[][RADARSAT2 (HH-HV-VV) \\ determinant ratio (p-value=0.8896)]{
           \plotWithLegend{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps}{determinant-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
 %		 \epsffile{../images/verify_det_ratio_model_on_RADARSAT2_3d.eps} 	
 		 \label{RADARSAT2_2D_det_ratio}
 	} \\
-	\subfloat[][AIRSAR (HH-HV-VV) \\ change ratio]{
+	\subfloat[][AIRSAR (HH-HV-VV) \\ change ratio (p-value=0.9254)]{
           \plotWithLegend{../images/verify_change_ratio_model_on_AIRSAR_3d.eps}{change-ratio}
 %		 \epsfxsize=1.5in
 %		 \epsfysize=1.5in
@@ -878,7 +884,7 @@ Each histogram plots the signal under investigation (along the x-axis) against i
 		 \label{AIRSAR_2D_change_ratio}
 	} 
 	\hfill	
-	\subfloat[][RADARSAT2 (HH-HV-VV) \\ change ratio]{
+	\subfloat[][RADARSAT2 (HH-HV-VV) \\ change ratio (p-value=0.8883)]{
           \plotWithLegend{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}{change-ratio}
 %          \begin{pspicture}[showgrid=false](\column,\row)% set showgrid=false for the final
 %	    \rput[bl](0,0){\includegraphics[width=1.5in,height=1.5in]{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}}% \usebox\IBoxCRThreeR
@@ -1037,104 +1043,104 @@ These applications however are not included in this paper, but rather left as a 
 %Assuming a perfect filtering condition, the ratio image should only contain random noise.
 %Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
 %
-%Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
-%  this technique can be equally applied to evaluate POLSAR speckle filters.
-%In fact better results can be achieved.
-%In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
-%  which is linear and additive in nature.
-%Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
-%NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
-%
-%To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
-%  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
-%  and the two POLSAR speckle filters are then applied to the patch.
-%\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
-%  they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
-%  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.} 
-%The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
-%At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
-%
-%%ifdef FINAL
-%\begin{figure}[h]
-%\centering
-%\begin{tabular}{c}
-%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
-%		 \label{multi_look_contrast}
-%	} \\
-%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
-%		 \epsfxsize=1.5in
-%		 \epsfysize=1.5in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
-%		 \label{multi_look_contrast}
-%	} 
-%\end{tabular}
-%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV).}
-%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
-%\end{figure}
-%%endif
-%%ifdef REVIEW
-%\begin{figure}[h!]
-%\centering
-%\begin{tabular}{c}
-%	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
-%		 \label{multi_look_contrast}
-%	} \\
-%	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
-%		 \label{multi_look_dispersion}
-%	} 
-%	\hfill	
-%	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
-%		 \epsfxsize=3in
-%		 \epsfysize=3in
-%		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
-%		 \label{multi_look_contrast}
-%	} 
-%\end{tabular}
-%\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSAR Flevoland part-pol data (HH-HV).}
-%\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
-%\end{figure}
-%%endif
-%
-%Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
-%  the distortion impact of the filter can also be made visible by the residual image.
-%In this visual evaluation, while it is quite hard to observe the worsen blurring-effects of the boxcar 5$\times$5 speckle filter compared to the 3$\times$3 filter
-%in the additive log-determinant image of the filtered output, 
-%  such an observation can be made relatively easier by inspecting the residual image.
-%  
-%There are many similar SAR data processing technique that may be adaptable to POLSAR.
-%Examples in the same topic of evaluating speckle filters include
-%  the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
-%Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
+Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
+  this technique can be equally applied to evaluate POLSAR speckle filters.
+In fact better results can be achieved.
+In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
+  which is linear and additive in nature.
+Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
+NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
+
+To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
+  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
+  and the two POLSAR speckle filters are then applied to the patch.
+\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
+  they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
+  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.} 
+The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
+At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
+
+%ifdef FINAL
+\begin{figure}[h]
+\centering
+\begin{tabular}{c}
+	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
+		 \label{multi_look_dispersion}
+	} 
+	\hfill	
+	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
+		 \label{multi_look_contrast}
+	} \\
+	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
+		 \label{multi_look_dispersion}
+	} 
+	\hfill	
+	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
+		 \epsfxsize=1.5in
+		 \epsfysize=1.5in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
+		 \label{multi_look_contrast}
+	} 
+\end{tabular}
+\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSA Flevoland part-pol data (HH-HV).}
+\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+\end{figure}
+%endif
+%ifdef REVIEW
+\begin{figure}[h!]
+\centering
+\begin{tabular}{c}
+	\subfloat[Log-determinant Image of boxcar 3$\times$3 speckle filter]{
+		 \epsfxsize=3in
+		 \epsfysize=3in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_3.filtered.eps} 	
+		 \label{multi_look_dispersion}
+	} 
+	\hfill	
+	\subfloat[Log-determinant Image of boxcar 5$\times$5 speckle filter]{
+		 \epsfxsize=3in
+		 \epsfysize=3in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_5.filtered.eps} 	
+		 \label{multi_look_contrast}
+	} \\
+	\subfloat[Image of Log-determinant Residual for 3$\times$3 filter]{
+		 \epsfxsize=3in
+		 \epsfysize=3in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_3.residual.eps} 	
+		 \label{multi_look_dispersion}
+	} 
+	\hfill	
+	\subfloat[Image of Log-determinant Residual for 5$\times$5 filter]{
+		 \epsfxsize=3in
+		 \epsfysize=3in
+		 \epsffile{../images/visual_eval_part_pol_boxcar_5.residual.eps} 	
+		 \label{multi_look_contrast}
+	} 
+\end{tabular}
+\caption{Visually Evaluating POLSAR Boxcar 3$\times$3 vs. 5$\times$5 Speckle Filters on AIRSAR Flevoland part-pol data (HH-HV).}
+\label{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}
+\end{figure}
+%endif
+
+Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
+  the distortion impact of the filter can also be made visible by the residual image.
+In this visual evaluation, while it is quite hard to observe the worsen blurring-effects of the boxcar 5$\times$5 speckle filter compared to the 3$\times$3 filter
+in the additive log-determinant image of the filtered output, 
+  such an observation can be made relatively easier by inspecting the residual image.
+  
+There are many similar SAR data processing technique that may be adaptable to POLSAR.
+Examples in the same topic of evaluating speckle filters include
+  the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
+Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
 
 \section{Conclusion}
 \label{sec:conclusion}
