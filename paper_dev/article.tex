@@ -980,28 +980,31 @@ Other topics that may also be connected include: speckle filtering, target detec
 \label{sec:conclusion}
 
 %What has been done?
-This paper has proposed a generic statistical model  for the POLSAR covariance matrix determinant based on the complex Wishart POLSAR target vector distribution.%***IVM: Hai pls check this sentence!
-This model has been validated for specific ($d=2$) and ($d=3$) using real-life partial and full polarimetric SAR data.
-The paper also establishes a few POLSAR discrimination measures: the determinant-ratio and the change-ratio,  which essentially are the generic version of the SAR intensity-ratio.
-At the same time, we have also shown a near-perfect match between the specific $d=1$ model and that for traditional SAR intensity,
+This paper has proposed a generic statistical model  for the POLSAR covariance matrix determinant based on the complex Wishart POLSAR target vector distribution. %***IVM: Hai pls check this sentence!
+The model has been validated for specific $d=2$ and $d=3$ cases using real-life partial and full POLSAR data.
+The paper also establishes two new POLSAR discrimination measures: the determinant-ratio and the change-ratio,  which essentially are the generic version of the SAR intensity-ratio.
+We have also shown an excellent match between the specific $d=1$ model and that for traditional SAR intensity,
   effectively bringing the existing SAR theories under the umbrella of this new model.
 
 %What are the results? What are their advantages over others' results?
-The main emphasis of this paper is the proposal to consider the POLSAR covariance matrix determinant as a scalar and representative observable for the multi-dimensional POLSAR data.
+The main emphasis of this paper is to consider the POLSAR covariance matrix determinant, and its derivatives, as scalar and representative observables for the multi-dimensional POLSAR data.
 Compared to other published scalar observables, the determinant is highly representative of the multi-dimensional data.
 Its representative power is justified for the following reasons.
-Firstly, the covariance matrix determinant, when collapsed into one-dimensional case, transforms neatly into the representative SAR intensity.
+Firstly, the covariance matrix determinant, when collapsed into 1-D, transforms neatly into the representative SAR intensity.
 Secondly, the statistical model for this observable is shown to be the generic multi-dimensional extension of the traditional model for the one dimensional SAR intensity.
-Finally, this observable also leads to the establishment of the determinant-ratio discrimination measure for POLSAR data, which should increase the usability of this proposal.
+Thirdly, this observable also leads to the establishment of new discrimination measures for POLSAR data, which should increase the usability of this proposal.
+Finally, similar to the eigen-values, the determinant of the POLSAR covariance matrix is invariant to a change of polarization basis.
 
 %What are their benefit?
 There are several beneficial implications of the proposed approach presented in this paper.
 Currently while the field of SAR is much more developed than the field of POLSAR,  the two fields remain  quite separated.
-Hence many techniques applicable to SAR can not be directly translated to POLSAR.
+Hence many techniques applicable to SAR cannot be directly extended to POLSAR.
+There lies the different beneficial implications of the proposed approach presented in this paper.
 Since the scalar and representative model for POLSAR generalizes the traditional model for SAR intensity,
   its main benefit is that it enables the convenient adaptation of many existing SAR data processing techniques for POLSAR data.
-One example has already been presented in this paper, 
-  where existing SAR discrimination measures are extended towards POLSAR.
+Two example application have already been presented in this paper. 
+  In the first instance, existing SAR discrimination measures are extended towards POLSAR.
+  While in the second case, existing technique to evaluate SAR speckle filters is also shown extensible towards POLSAR.
 At the same time, it provides a consistent theory unifying the seemingly disparate discrimination measure proposals for SAR and POLSAR data.  
 
 %What are their limitations? What problems this appears to solve, but actually is not?
@@ -1015,13 +1018,18 @@ Secondly, while it is desirable for a large number of applications to reduce the
 In this paper, the theoretical model has only been validated for partial ($d=2$) and full ($d=3$) monostatic POLSAR data,
 %and hence What can be done next?
   leaving the test of its validity for other datasets such as bistatic POLSAR data ($d=4$) or interferrometric POLSAR data ($d=6$) as possible future work.
-Other possible future work includes
-  an investigation on the applicability of this observables into POLSAR heterogeneous areas,
-  as well as further studies to explore the use of these generic models in conjunction with other target decomposition techniques
-    such as the Freeman-Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68}.
+Other possible extensions include
+  investigating the applicability of the observables into POLSAR heterogeneous areas,
+  as well as exploring the use of these generic models in conjunction with other target decomposition techniques
+    such as the Freeman-Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68}.  
+%Other possible future work includes
+%  an investigation on the applicability of this observables into POLSAR heterogeneous areas,
+%  as well as further studies to explore the use of these generic models in conjunction with other target decomposition techniques
+%    such as the Freeman-Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68}.
 
 % references section
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,article}
 
 \end{document}
+
