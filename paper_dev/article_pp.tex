@@ -220,7 +220,8 @@ After section \ref{sec:sar_special_case_of_polsar} illustrates the match between
   section \ref{sec:link_sar_polsar} links the disparate discrimination measure proposals for the traditional SAR and the more recent POLSAR data.
 %Section \ref{sec:polsar_models_validation} then validates the specific one, two and three dimensional versions of the proposed model against real-life captured data.
 The applicability of these models against practical data is illustrated in section \ref{sec:polsar_models_validation}.
-Section \ref{sec:discussion} presents a high-level discussion of the results presented before
+%Section \ref{sec:discussion} presents a high-level discussion of the results presented before
+Then section \ref{sec:application} presents a simple demonstration where an existing technique of SAR processing is extended for POLSAR data before
   section \ref{sec:conclusion} finally concludes the paper.
 
 \section{Related Work in Literature}
@@ -592,10 +593,20 @@ Compared to existing discrimination measures for POLSAR reviewed in Section \ref
   the proposed dissimilarity measures are simpler in both concept and computation.
 They, at the same time, are multi-dimensional extensions of the intensity-ratio discrimination measure widely used in SAR.
 
+In retrospective, intuitively, the concept of the determinant being representative of the POLSAR data can be thought of as being similar to the concept of using the magnitude to represent a complex number
+(in a sense this is also why intensity is widely considered representative of the complex SAR data).
+Similar to the determinant, the magnitude observable is also scalar and is not lossless, but it is undeniably useful.
+To fully represent the complex number, another observable would needed besides the magnitude, for example a polar representation.
+Magnitude is, of course, widely used as it can be shown to be invariant to a change in the reference frame.
+Similarly, the determinant of the POLSAR covariance matrix is also scalar and invariant to a change of polarization basis.
+Thus while it may not be \textit{fully} representative of the POLSAR data, it can be said to be \textit{highly} representative of it.
+The important point is that it can provide a scalar comparison of the multi-dimensional data.
+%**IVM removed this This is similar to the most commonly used magnitude to compare two or more complex numbers. %, most of the times the magnitude is to be used. 
+
 In short, with the newly gained insight,
   the approach proposed in this paper provides a new bridge between the two fields of SAR and POLSAR.
 This invites the adaptation of many established SAR data processing techniques towards POLSAR data,
-  where this Section has just described a few examples.
+  where Section \ref{sec:application} will describe an example demonstration.
 However, before further discussion ensues, 
   it is necessary to validate the presented theoretical model with real-life practical data.
 
@@ -986,53 +997,31 @@ with p-value being the significant level of the Kolmogorov-Smirnov goodness-of-f
 %endif
 
 %\subsection{Theoretical Implications of This Proposal}
-\section{Discussion}
-\label{sec:discussion}
+%\section{Extending Existing SAR Processing Techniques To POLSAR: A Simple Demo}
+%\label{sec:discussion}
 
-%Let us begin by noting
-To begin, a few theoretical properties of the proposed statistical models are discussed.
-First, the use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the POLSAR covariance matrices.
-In fact, the log-determinant can also be computed as the sum of log-eigenvalues.
-Specifically $\ln{|M|} = \sum \ln{\lambda_M}$ where $\lambda_M$ denotes all the eigenvalues of $M$.
-Thus, similar to other eigenvalue based approaches (e.g. entropy/anisotropy, ...),
-  the models presented here are invariant to polarization basis transformations.
-
-Second, the models are developed for the POLSAR covariance matrix.
-However, since the POLSAR coherency matrix is related to the covariance matrix via a unitary transformation which preserves the determinant,
-  the model is also applicable to the coherency matrix.
-
-It should be noted that despite these advantages, the model descriptions are far from complete.
-While it is desirable to reduce the multi-dimensional POLSAR data to a scalar value for many applications,
-  such a reduction is unlikely to be lossless.  
-Ideally %to better understand POLSAR data
-the use of this technique could be complemented by some high-dimensional POLSAR target-decomposition techniques, such as the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar.
-
-Nevertheless the proposed models are promising.
-Even though initially developed for partial and monostatic POLSAR data,
-  it was shown to be applicable to traditional SAR data as well.
-Since the model assumptions are quite minimal, they may potentially be applicable to bi-static and interferometric data, although that would require further study.
-
-Intuitively, the concept of the determinant being representative of the POLSAR data can be thought of as being similar to the concept of using the magnitude to represent a complex number
-(in a sense this is also why intensity is widely considered representative of the complex SAR data).
-Similar to the determinant, the magnitude observable is also scalar and is not lossless, but it is undeniably useful.
-To fully represent the complex number, another observable would needed besides the magnitude, for example a polar representation.
-Magnitude is, of course, widely used as it can be shown to be invariant to a change in the reference frame.
-Similarly, the determinant of the POLSAR covariance matrix is also scalar and invariant to a change of polarization basis.
-Thus while it may not be \textit{fully} representative of the POLSAR data, it can be said to be \textit{highly} representative of it.
-The important point is that it can provide a scalar comparison of the multi-dimensional data.
-%**IVM removed this This is similar to the most commonly used magnitude to compare two or more complex numbers. %, most of the times the magnitude is to be used. 
-
-Besides the above properties, the theoretical models may also provide an alternative derivation for the likelihood test statistics widely used in POLSAR.
-Similar to the way that different measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
-new detection, classification, clustering or speckle filtering algorithms can be derived using the models presented in this paper.
-These applications however are not included in this paper, but rather left as a suggestion for future investigations.
-%There are a few reasons for this decision.
-%The first is that the advantages of the proposed models have been demonstrated through a few applications in this paper:
-%  the first being a faster ENL evaluation for POLSAR data and
-%  the second being the visual evaluation of POLSAR speckle filters.
-%The second reason is that such an application would be quite big in scope, and as such would easily distract the reader from the main proposal of this paper.
-%Last but not least, this paper focuses on the proposal of several scalar and representative statistical models for POLSAR, which results in associated statistical models and discrimination measures.
-%It does not, technically speaking, focuses on proposing new discrimination measures.
+%%Let us begin by noting
+%To begin, a few theoretical properties of the proposed statistical models are discussed.
+%First, the use of covariance matrix log-determinant may be related to the standard eigen-decomposition method of the POLSAR covariance matrices.
+%In fact, the log-determinant can also be computed as the sum of log-eigenvalues.
+%Specifically $\ln{|M|} = \sum \ln{\lambda_M}$ where $\lambda_M$ denotes all the eigenvalues of $M$.
+%Thus, similar to other eigenvalue based approaches (e.g. entropy/anisotropy, ...),
+%  the models presented here are invariant to polarization basis transformations.
+%
+%Second, the models are developed for the POLSAR covariance matrix.
+%However, since the POLSAR coherency matrix is related to the covariance matrix via a unitary transformation which preserves the determinant,
+%  the model is also applicable to the coherency matrix.
+%
+%It should be noted that despite these advantages, the model descriptions are far from complete.
+%While it is desirable to reduce the multi-dimensional POLSAR data to a scalar value for many applications,
+%  such a reduction is unlikely to be lossless.  
+%Ideally %to better understand POLSAR data
+%the use of this technique could be complemented by some high-dimensional POLSAR target-decomposition techniques, such as the Freeman Durden decomposition \cite{Freeman_1998_TGRS_963} or the entropy/anisotropy decomposition \cite{Cloude_1997_TGRS_68} or similar.
+%
+%Nevertheless the proposed models are promising.
+%Even though initially developed for partial and monostatic POLSAR data,
+%  it was shown to be applicable to traditional SAR data as well.
+%Since the model assumptions are quite minimal, they may potentially be applicable to bi-static and interferometric data, although that would require further study.
 
 %The advantages of this proposal are thus to be compared against other published models for POLSAR.
 %Consequently, the methodology to evaluate the result of this proposal is a bit unusual.
@@ -1049,9 +1038,10 @@ These applications however are not included in this paper, but rather left as a 
 %There not only existing published scalar models for POLSAR are reviewed to show that none of them lead to discrimination measure,
 %  existing discrimination measures for POLSAR are also extensively surveyed leaving virtually no chance of there exists an existing scalar statistical model for POLSAR which leads to existing discrimination measures.
 
-%\section{Extending SAR data processing techniques towards POLSAR}
-%
-%Currently while the field of SAR is much more developed than the field of POLSAR,
+\section{Extending SAR data processing techniques towards POLSAR: A Short Example}
+\label{sec:application}
+
+%5Currently while the field of SAR is much more developed than the field of POLSAR,
 %  the two fields however are quite separated.
 %Hence many techniques applicable to SAR are not directly applicable to POLSAR.
 %With the newly gained, the current proposal provide the bridge between these two separated fields,
@@ -1059,18 +1049,19 @@ These applications however are not included in this paper, but rather left as a 
 %%For instance the earlier example illustrate that while intensity ratio was commonly used to carry out visually evaluation of SAR speckle filters,
 %%  the newly proposed determinant ratio and its log-transformed version (i.e. contrast) are shown capable of visually evaluating POLSAR speckle filters.
 %%We believe there are many more unexplored possibilities for such applications.
-%  
-%There are many beneficial implications for this proposal.
-%One of the main benefits is that:
-%  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
-%One example has already been presented in this paper, 
-%  where existing SAR discrimination measures are extended towards POLSAR.
-%Another example can be illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
 %
-%In evaluating SAR speckle filters, the intensity ratio is widely used.
-%Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
-%Assuming a perfect filtering condition, the ratio image should only contain random noise.
-%Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
+
+There are many beneficial implications for this proposal.
+One of the main benefits is that:
+  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
+One example has already been presented in this paper, 
+  where existing SAR discrimination measures are extended towards POLSAR.
+Another example can be illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
+%
+In evaluating SAR speckle filters, the intensity ratio is widely used.
+Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
+Assuming a perfect filtering condition, the ratio image should only contain random noise.
+Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
 %
 Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
   this technique can be equally applied to evaluate POLSAR speckle filters.
@@ -1170,6 +1161,18 @@ There are many similar SAR data processing technique that may be adaptable to PO
 Examples in the same topic of evaluating speckle filters include
   the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
 Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
+
+Besides the above properties, the theoretical models may also provide an alternative derivation for the likelihood test statistics widely used in POLSAR.
+Similar to the way that different measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
+new detection, classification, clustering or speckle filtering algorithms can be derived using the models presented in this paper.
+These applications however are not included in this paper, but rather left as a suggestion for future investigations.
+%There are a few reasons for this decision.
+%The first is that the advantages of the proposed models have been demonstrated through a few applications in this paper:
+%  the first being a faster ENL evaluation for POLSAR data and
+%  the second being the visual evaluation of POLSAR speckle filters.
+%The second reason is that such an application would be quite big in scope, and as such would easily distract the reader from the main proposal of this paper.
+%Last but not least, this paper focuses on the proposal of several scalar and representative statistical models for POLSAR, which results in associated statistical models and discrimination measures.
+%It does not, technically speaking, focuses on proposing new discrimination measures.
 
 \section{Conclusion}
 \label{sec:conclusion}
