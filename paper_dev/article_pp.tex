@@ -593,14 +593,14 @@ Compared to existing discrimination measures for POLSAR reviewed in Section \ref
   the proposed dissimilarity measures are simpler in both concept and computation.
 They, at the same time, are multi-dimensional extensions of the intensity-ratio discrimination measure widely used in SAR.
 
-In retrospective, intuitively, the concept of the determinant being representative of the POLSAR data can be thought of as being similar to the concept of using the magnitude to represent a complex number
-(in a sense this is also why intensity is widely considered representative of the complex SAR data).
-Similar to the determinant, the magnitude observable is also scalar and is not lossless, but it is undeniably useful.
-To fully represent the complex number, another observable would needed besides the magnitude, for example a polar representation.
-Magnitude is, of course, widely used as it can be shown to be invariant to a change in the reference frame.
-Similarly, the determinant of the POLSAR covariance matrix is also scalar and invariant to a change of polarization basis.
-Thus while it may not be \textit{fully} representative of the POLSAR data, it can be said to be \textit{highly} representative of it.
-The important point is that it can provide a scalar comparison of the multi-dimensional data.
+%In retrospective, intuitively, the concept of the determinant being representative of the POLSAR data can be thought of as being similar to the concept of using the magnitude to represent a complex number
+%(in a sense this is also why intensity is widely considered representative of the complex SAR data).
+%Similar to the determinant, the magnitude observable is also scalar and is not lossless, but it is undeniably useful.
+%To fully represent the complex number, another observable would needed besides the magnitude, for example a polar representation.
+%Magnitude is, of course, widely used as it can be shown to be invariant to a change in the reference frame.
+%Similarly, the determinant of the POLSAR covariance matrix is also scalar and invariant to a change of polarization basis.
+%Thus while it may not be \textit{fully} representative of the POLSAR data, it can be said to be \textit{highly} representative of it.
+%The important point is that it can provide a scalar comparison of the multi-dimensional data.
 %**IVM removed this This is similar to the most commonly used magnitude to compare two or more complex numbers. %, most of the times the magnitude is to be used. 
 
 In short, with the newly gained insight,
@@ -1051,32 +1051,58 @@ with p-value being the significant level of the Kolmogorov-Smirnov goodness-of-f
 %%We believe there are many more unexplored possibilities for such applications.
 %
 
-There are many beneficial implications for this proposal.
-One of the main benefits is that:
-  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
-One example has already been presented in this paper, 
+%There are many beneficial implications for this proposal.
+%One of the main benefits is that:
+%  this proposal allows the extension of many of existing SAR data processing technique toward POLSAR.
+%One example has already been presented in this paper, 
+%  where existing SAR discrimination measures are extended towards POLSAR.
+%Another example can be illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
+
+%section introduction
+One of the main beneficial implications for this proposal is that:
+  it allows the extension of many of existing SAR data processing technique toward POLSAR.
+One example has already been presented in this paper,
   where existing SAR discrimination measures are extended towards POLSAR.
-Another example can be illustrated through an example which extends the SAR speckle filters evaluation technique towards POLSAR.  
-%
-In evaluating SAR speckle filters, the intensity ratio is widely used.
-Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
-Assuming a perfect filtering condition, the ratio image should only contain random noise.
-Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
-%
+This section illustrates another example for a common technique in SAR speckle filters evaluation. 
+
+%In evaluating SAR speckle filters, the intensity ratio is widely used.
+%Specifically, in its original multiplicative domain, the ratio of the filtered output and the noisy input image represents the noise being removed.
+%Assuming a perfect filtering condition, the ratio image should only contain random noise.
+%Thus a commonly used visual evaluation is to simply plot the ratio image and determine if any image features have also been removed.
+%%
+%Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
+%  this technique can be equally applied to evaluate POLSAR speckle filters.
+%In fact better results can be achieved.
+%In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
+%  which is linear and additive in nature.
+%Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
+%NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
+
+%describe the technique
+In SAR, the intensity ratio is routinely used in evaluating speckle filters.
+Specifically, the ratio of the filtered output to the noisy input image represents the amount of noise removed.
+The multiplicative ratio, however, is not well suited to digital image presentation, which is linear and additive in nature\cite{Medeiros_2003_IJRS}. 
+Thus logarithmic transformation is applied to convert the multiplicative intensity-ratio into linear subtractive residuals.  
+Apparently if the speckle filter is perfect, the ratio or residual images should only contain random noise.
+Thus the evaluation method is simply confirming that the speckle filter has not removed any image features.
+
+%To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
+%  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
+%  and the two POLSAR speckle filters are then applied to the patch.
+%\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
+%  they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
+%  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.} 
+%The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
+%At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
+
+%describe the experiment
 Since the POLSAR determinant ratio has been shown to be equivalent to the SAR intensity ratio,
   this technique can be equally applied to evaluate POLSAR speckle filters.
-In fact better results can be achieved.
-In \cite{Medeiros_2003_IJRS}, it has been shown that the multiplicative ratio is not  well suited to digital image presentation,
-  which is linear and additive in nature.
-Thus logarithmic transformation can be applied to convert the multiplicative determinant-ratio into the linear subtractive contrast.  
-NOTE: The above paragraph is long winding, should shortened it. I noted that that it is also used in the conclusion. Suggest remove it if possible)
-
-To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters on the AIRSAR Flevoland partial polarimetric data (HH-HV).
-  A square 700$\times$700 pixel patch is first extracted from the AIRSAR dataset,
-  and the two POLSAR speckle filters are then applied to the patch.
-\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
+To demonstrate this feature, the technique is used to evaluate the performance of 3$\times$3 and 5$\times$5 boxcar POLSAR filters\footnote{While the boxcar filters may not stay in the frontier of POLSAR speckle filtering,
   they are workable here since the focus of this experiment is not on finding the best POLSAR speckle filters available.
-  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.} 
+  Rather its purpose is to show a quick example of how an existing technique in SAR data processing can be easily adapted for POLSAR data.}.
+  A square 700$\times$700 pixel patch is first extracted from the AIRSAR Flevoland data (partial polarimetry HH-HV),
+  and the two POLSAR speckle filters are then applied to the patch.
 The log-determinant images of the filtered outputs are displayed in Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5}.
 At the same time, the residual is computed for both filters, and the images are also displayed in the same figure.
 
@@ -1151,21 +1177,25 @@ At the same time, the residual is computed for both filters, and the images are 
 \end{figure}
 %endif
 
-Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
-  the distortion impact of the filter can also be made visible by the residual image.
-In this visual evaluation, while it is quite hard to observe the worsen blurring-effects of the boxcar 5$\times$5 speckle filter compared to the 3$\times$3 filter
-in the additive log-determinant image of the filtered output, 
-  such an observation can be made relatively easier by inspecting the residual image.
-  
-There are many similar SAR data processing technique that may be adaptable to POLSAR.
-Examples in the same topic of evaluating speckle filters include
-  the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
-Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
+%Fig. \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that not only does the log-determinant image offer a nice visualization of the scene, 
+%  the distortion impact of the filter can also be made visible by the residual image.
+%In this visual evaluation, while it is quite hard to observe the worsen blurring-effects of the boxcar 5$\times$5 speckle filter compared to the 3$\times$3 filter
+%in the additive log-determinant image of the filtered output, 
+%  such an observation can be made relatively easier by inspecting the residual image.
 
-Besides the above properties, the theoretical models may also provide an alternative derivation for the likelihood test statistics widely used in POLSAR.
-Similar to the way that different measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
-new detection, classification, clustering or speckle filtering algorithms can be derived using the models presented in this paper.
-These applications however are not included in this paper, but rather left as a suggestion for future investigations.
+%describe the result
+Fig \ref{fig:visual_eval_part_pol_boxcar_speckle_filters_3x3_vs_5x5} shows that the evaluation technique is also workable for POLSAR speckle filters.
+In particular, the residual images clearly show both POLSAR speckle filters'  distortion impact.
+
+%There are many similar SAR data processing technique that may be adaptable to POLSAR.
+%Examples in the same topic of evaluating speckle filters include
+%  the use of the mean and variance of the ratio image, or ENL evaluation to quantitatively evaluate POLSAR speckle filters.
+%Other topics that may also be connected include: speckle filtering, target detection, surface cover classification, edge detection ... and so on.
+%
+%Besides the above properties, the theoretical models may also provide an alternative derivation for the likelihood test statistics widely used in POLSAR.
+%Similar to the way that different measures of distance can be used to derive POLSAR classifiers \cite{Lee_1999_TGRS}, change detectors \cite{Conradsen_2003_TGRS_4}, edge detectors \cite{Schou_2003_TGRS_20} or other clustering and speckle filtering techniques \cite{Le_2010_ACRS} \cite{Le_2011_ACRS}, 
+%new detection, classification, clustering or speckle filtering algorithms can be derived using the models presented in this paper.
+%These applications however are not included in this paper, but rather left as a suggestion for future investigations.
 %There are a few reasons for this decision.
 %The first is that the advantages of the proposed models have been demonstrated through a few applications in this paper:
 %  the first being a faster ENL evaluation for POLSAR data and
@@ -1173,6 +1203,11 @@ These applications however are not included in this paper, but rather left as a 
 %The second reason is that such an application would be quite big in scope, and as such would easily distract the reader from the main proposal of this paper.
 %Last but not least, this paper focuses on the proposal of several scalar and representative statistical models for POLSAR, which results in associated statistical models and discrimination measures.
 %It does not, technically speaking, focuses on proposing new discrimination measures.
+
+%conclude the section
+There are many similar SAR data processing techniques that may be adaptable to POLSAR. 
+Due to space constraint, these applications, however, fall outside the scope of this paper.
+
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -1188,10 +1223,23 @@ We have also shown an excellent match between the specific $d=1$ model and that 
 The main emphasis of this paper is to consider the POLSAR covariance matrix determinant, and its derivatives, as scalar and representative observables for the multi-dimensional POLSAR data.
 Compared to other published scalar observables, the determinant is highly representative of the multi-dimensional data.
 Its representative power is justified for the following reasons.
-Firstly, the covariance matrix determinant, when collapsed into 1-D, transforms neatly into the representative SAR intensity.
-Secondly, the statistical model for this observable is shown to be the generic multi-dimensional extension of the traditional model for the one dimensional SAR intensity.
-Thirdly, this observable also leads to the establishment of new discrimination measures for POLSAR data, which should increase the usability of this proposal.
-Finally, similar to the eigen-values, the determinant of the POLSAR covariance matrix is invariant to a change of polarization basis.
+First, the covariance matrix determinant, when collapsed into 1-D, transforms neatly into the representative SAR intensity.
+Second, the statistical model for this observable is shown to be the generic multi-dimensional extension of the traditional model for the one dimensional SAR intensity.
+Third, this observable also leads to the establishment of new discrimination measures for POLSAR data.
+  %, which should increase the usability of this proposal.
+And finally, similar to the eigen-values, the determinant of the POLSAR covariance matrix is invariant to any changes in polarization basis.
+
+The detailed and mathematical explanation linking the SAR intensity and the POLSAR determinant has been presented in Section \ref{sec:sar_special_case_of_polsar}.
+This paragraph offers another high-level and intuitive linkage.
+That is the scalar determinant in POLSAR can be used to represent and compare the multi-dimensonal data,
+  much in the same way that the scalar magnitude is used to represent and compare complex numbers.
+Similar to the determinant, the magnitude observable is also scalar and is not lossless.
+Besides the magnitude, another observable would be needed to fully represent a complex number.
+For example, in a polar representation, an extra angle would be requried.
+Still, to compare complex numbers, the magnitude is widely used as it can be shown to be invariant to a change in the reference frame.
+Similar to the maginute, the determinant of the POLSAR covariance matrix is also scalar and invariant to a change of polarization basis.
+%while it may not be \textit{fully} representative of the POLSAR data, 
+Thus the scalar observable is proposed to represent and distinguish the multi-dimensional dataset.
 
 %What are their benefit?
 There are several beneficial implications of the proposed approach presented in this paper.
