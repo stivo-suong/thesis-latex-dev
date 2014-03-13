@@ -70,15 +70,16 @@ University of Science and Technology of China.
 
 \begin{abstract}
 %Problem statement  
-This paper proposes novel scalar and representative observables, including several statistically consistent discrimination measures, which should be useful in the interpretation and processing of multi-dimensional POLSAR data.
-% This paper proposes a scalar and representative observable for multi-dimensional POLSAR data,
-%  from which statistically consistent discrimination measures can be derived.
+This paper proposes novel scalar and representative observables, including several statistically consistent discrimination measures,
+  that would be useful in the interpretation and processing of multi-dimensional POLSAR data.
 %What actually were done? and As the result, what is learned?
 Specifically, the statistical behaviour of the POLSAR covariance matrix determinant is used
   to derive a scalar and generic statistical model for multi-dimensional POLSAR data,
   which is shown applicable to the two and three dimensional versions of partial and full monostatic polarimetric SAR data.
-As the POLSAR covariance matrix determinant generalizes the SAR intensity towards multiple dimensions,
-  the proposed model is able to subsume the traditional SAR intensity model under the umbrella of a unified model. 
+In addition, the proposed model is also able to subsume the traditional SAR intensity model under the umbrella of a unified model,
+  where the SAR intensity is shown to be a one dimension version of the multi-dimensional data.
+%As the POLSAR covariance matrix determinant generalizes the SAR intensity towards multiple dimensions,
+%  the proposed model is able to subsume the traditional SAR intensity model under the umbrella of a unified model. 
 %What are the larger implications of the findings presented in this paper?
 Consequently, the main beneficial implications of the proposed approach are that
   it provides a consistent theory unifying the currently disconnected proposals for SAR and POLSAR discrimination measures,
@@ -96,7 +97,7 @@ Polarimetric Synthetic Aperture Radar, Electromagnetic Modeling, Multidimensiona
 \section{Introduction}
 
 %What is the situation, the background context of your research? the BIG problem!
-Relentless growth in computing power has allowed the once computationally-demanding Synthetic Aperture Radar (SAR) to become now a feasible and preferred technique for earth observation.
+Relentless growth in computing power has allowed the once computationally-demanding Synthetic Aperture Radar (SAR) to now become a feasible and preferred technique for earth observation.
 The basic SAR technology has also been extended in a few directions, one of which is polarimetric SAR (POLSAR).
 POLSAR exploits the natural polarization property of Electro-Magnetic (EM) waves,
    encoded in multiple channels, compared to traditional one-channel SAR.
@@ -109,17 +110,18 @@ POLSAR exploits the natural polarization property of Electro-Magnetic (EM) waves
 
 %Research Motivation: Why it is important to solve this problem?
 %The POLSAR data, however, is multidimensional and stochastic.
-POLSAR data, like SAR, is stochastic.
-Moreover it is also multi-dimensional, making it even harder to interpret.
-It is therefore necessary to establish a simple and intuitive understanding of the data.
+%POLSAR data, like SAR, is stochastic.
+%Moreover it is also multi-dimensional, making it even harder to interpret.
+%It is therefore necessary to establish a simple and intuitive understanding of the data.
 %Like SAR data, POLSAR data is stochastic.
 %Moreover, it is multi-dimensional, making it even harder to interpret.
 %Under this context, it is therefore important to establish a simple and intuitive understanding of the data.
-Statistical models are undoubtedly crucial in understanding its stochastic nature.
-While several models have been proposed for POLSAR data, they tend to be complex and unintuitive due to the multidimensional nature of the data.
-%  unfortunately tend to be complex and not very intuitive due to the multidimensional nature of the data.
-Practical POLSAR data processing however, makes heavy use of scalar discrimination measures,
-  which should be based on statistically consistent (or signal-independent) models. %for scalar and representative observables of the multidimensional data.
+%Statistical models are undoubtedly crucial in understanding its stochastic nature.
+While several models have been proposed for POLSAR data, they tend to be complex and unintuitive due to the multidimensional and stochastic nature of the data.
+It is therefore necessary to establish a simple and intuitive model for the 
+understanding of the data, and statistical models are undoubtedly suitable due to its stochastic nature.
+Furthermore, practical POLSAR data processing also makes heavy use of scalar discrimination measures,
+  which should be based on statistically consistent (i.e. signal-independent) models. %for scalar and representative observables of the multidimensional data.
 It is thus important to establish scalar and representative observables for multi-dimensional POLSAR data.
   
 %Moreover, to provide theoretical foundation for discrimination measures proposal,
