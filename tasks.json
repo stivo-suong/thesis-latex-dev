@@ -1,16 +1,12 @@
 {
   "by chapter / section": {
     "Task:TODO": [
-      "handle the formating, print the format",
       "handle the reference list, read more and add more references"
     ],
     "all": {
       "univ": {
-        "margin": "3.7cm",
-        "order": "title page, acknowledgement, table of contents, summary",
         "cover page": "dark blue, gold 16 pts letters, NTU, thesis title, author's name, school, year",
         "spine": "abbreviation of thesis title, author name",
-        "title page": "thesis title, author's name, school, a thesis submitted ..., year"
       },
       "Reviewer 1": "anything in returned thesis!",
       "Reviewer 2": {
@@ -20,11 +16,9 @@
         "References": "Handle the list"
       },
       "Reviewer 3": {
-        "Abstract": "Addd Shortcomings",
+        "Abstract": "Add Shortcomings",
         "All": "Models plural? ",
-        "Glossary": "At the end",
         "Tables": "Table captions above not below",
-        "Src code": "No need",
         "Appendix": "Submitted papers, acrs papers."
       }
     },

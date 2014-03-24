@@ -148,7 +148,7 @@
  
   % The crest is a graphics file of the logo of your research institution.
   % Place it in ./0_frontmatter/figures and specify the width
-  \crest{\includegraphics[height=2.6cm,width=6.5cm]{Picture1}}
+  \crest{\includegraphics[height=4.3cm,width=12cm]{Picture1}}
 % 
 %% If you are not creating a PDF then use the following. The default is PDF.
 \else
@@ -156,12 +156,12 @@
 %%  \cityofbirth{born in XYZ}
   \collegeordept{{School of Computer Engineering}}
   \university{{Nanyang Technological University}}
-  \crest{\includegraphics[height=2.6cm,width=6.5cm]{Picture1}}
+  \crest{\includegraphics[height=4.3cm,width=12cm]{Picture1}}
 \fi
 
 \renewcommand{\submittedtext}{A thesis submitted to the Nanyang Technological University in partial fulfillment of the requirement for the degree of}
 \degree{Doctor of Philosophy (PhD)}
-\degreedate{Aug 2013}
+\degreedate{Apr 2014}
 
 % ----------------------------------------------------------------------
        
@@ -187,6 +187,8 @@
 
 \maketitle  % command to print the title page with above variables
 
+\begin{firstpage}
+\end{firstpage}  
 
 %: ----------------------- cover page back side ------------------------
 % Your research institution may require reviewer names, etc.
@@ -207,19 +209,6 @@
 
 
 
-%: ----------------------- abstract ------------------------
-
-% Your institution may have specific regulations if you need an abstract and where it is to be placed in the document. The default here is just after title.
-
-\include{0_frontmatter/abstract}
-%\pagenumbering{arabic}
-
-% The original template provides and abstractseparate environment, if your institution requires them to be separate. I think it's easier to print the abstract from the complete thesis by restricting printing to the relevant page.
-% \begin{abstractseparate}
-%   \input{Abstract/abstract}
-% \end{abstractseparate}
-
-
 %: ----------------------- tie in front matter ------------------------
 
 \frontmatter
@@ -233,10 +222,26 @@
 \setcounter{secnumdepth}{3} % organisational level that receives a numbers
 \setcounter{tocdepth}{3}    % print table of contents for level 3
 
+\renewcommand*\contentsname{Contents}
 \phantomsection
-\addcontentsline{toc}{chapter}{Content Tables}
+\addcontentsline{toc}{chapter}{Tables Of Contents}
 \tableofcontents            % print the table of contents
 % levels are: 0 - chapter, 1 - section, 2 - subsection, 3 - subsection
+
+%: ----------------------- abstract ------------------------
+
+% Your institution may have specific regulations if you need an abstract and where it is to be placed in the document. The default here is just after title.
+
+\include{0_frontmatter/abstract}
+\label{abstract} % target name for links to glossary
+\addcontentsline{toc}{section}{Abstract Summary}
+%\pagenumbering{arabic}
+
+% The original template provides and abstractseparate environment, if your institution requires them to be separate. I think it's easier to print the abstract from the complete thesis by restricting printing to the relevant page.
+% \begin{abstractseparate}
+%   \input{Abstract/abstract}
+% \end{abstractseparate}
+
 
 %: ----------------------- glossary ------------------------
 
@@ -256,29 +261,7 @@
 \chapter*{List of Symbols}
 \addcontentsline{toc}{section}{List of Symbols}
 
-\section*{1. Glossary}
-
-\begin{multicols}{2}
-  
-%Glossary: includes term: definition
-
-%Acronym: includes acronym: full term; definition?
-
-{\bf Polarimetric Synthetic Aperture Radar:} the extension of single-channel SAR imaging solution to multiple-channel imagary using polarimetric properties.\\
-
-{\bf POLSAR:} Polarimetric Synthetic Aperture Radar \\
-
-{\bf SAR:} Synthetic Aperture Radar\\
-
-{\bf Synthetic Aperture Radar:} an active side-looking-radar remote sensing solution based on doppler-effect\\
-
-\label{glossary} % target name for links to glossary
-
-\end{multicols}
-
-\newpage
-
-\section*{2. Nomenclature}
+\section*{Nomenclature}
 
 \begin{multicols}{2} % \begin{multicols}{#columns}[header text][space]  produces a 2 column page for a compact glossary
 %\begin{footnotesize} % scriptsize(7) < footnotesize(8) < small (9) < normal (10)
@@ -334,11 +317,11 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 \listoftables  % print list of tables
 \addcontentsline{toc}{section}{List of Tables}
 
-\newpage
-\renewcommand\lstlistlistingname{List of Source Code}
-%\renewcommand\lstlistingname{Algorithm}
-\lstlistoflistings
-\addcontentsline{toc}{section}{List of Source Code}
+%List of Source Code is removed
+%\newpage
+%\renewcommand\lstlistlistingname{List of Source Code}
+%\lstlistoflistings
+%\addcontentsline{toc}{section}{List of Source Code}
 
 %\chapter*{List of Mathematic Symbols}
 %\addcontentsline{toc}{section}{List of Mathematic Symbols}
@@ -397,7 +380,28 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 % the back matter: appendix and references close the thesis
 %\include{9_backmatter/appendix}
 
-        
+\chapter*{Glossary}
+
+\label{glossary} % target name for links to glossary
+\addcontentsline{toc}{chapter}{Glossary}
+
+\begin{multicols}{2}
+  
+%Glossary: includes term: definition
+
+%Acronym: includes acronym: full term; definition?
+
+{\bf Polarimetric Synthetic Aperture Radar:} the extension of single-channel SAR imaging solution to multiple-channel imagary using polarimetric properties.\\
+
+{\bf POLSAR:} Polarimetric Synthetic Aperture Radar \\
+
+{\bf SAR:} Synthetic Aperture Radar\\
+
+{\bf Synthetic Aperture Radar:} an active side-looking-radar remote sensing solution based on doppler-effect\\
+
+
+\end{multicols}
+
 %: ----------------------- bibliography ------------------------
 
 % The section below defines how references are listed and formatted

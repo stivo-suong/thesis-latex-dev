@@ -184,8 +184,8 @@
 %: Uncomment this secion for one-sided printing
 % taken from the original file, but with the first two lanes modified
 % ------------------------------
-\setlength{\evensidemargin}{1.9cm}  %was 1.96cm in original
-\setlength{\oddsidemargin}{1.54cm}  %was -0.54cm in original file
+\setlength{\evensidemargin}{1.16cm}  %was  1.96cm in original file => to match 3.7cm margin requirement @ NTU
+\setlength{\oddsidemargin} {1.16cm}  %was -0.54cm in original file => to match 3.7cm margin requirement @ NTU
 \setlength{\topmargin}{1mm}
 \setlength{\headheight}{1.36cm} %was 1.36cm
 \setlength{\headsep}{1.00cm} %was 1cm
@@ -261,26 +261,56 @@
   \begin{center}
     {{\@crest} \par}
 {\large \vspace*{25mm} { \Huge {\bfseries {\@title}} \par} \vspace*{25mm}}
-    {{\Large \@author} \par}
+	\vspace*{25mm}
+    {{\Large \bfseries \@author} \par}
 %	\vspace*{1ex}
 %	{{\@cityofbirth} \par}    
 {\large 
 	\vspace*{1ex}
-    {{\@collegeordept} \par}
+    {{\bfseries \@collegeordept} \par}
 %	\vspace*{1ex}
 %    {{\@university} \par}
+%	\vspace*{25mm}
+%    {{\submittedtext} \par}
+	\vspace*{1ex}
+%    {\it {\@degree} \par}
+	\vspace*{2ex}
+    {\bfseries \@degreedate}
+}%end large
+  \end{center}
+  \null\vfill
+\end{alwayssingle}
+}
+
+% page number for cover back side should have page number blanked
+ \newenvironment{firstpage}
+ {
+  \begin{center}
+    \renewcommand{\footnotesize}{\small}
+    \renewcommand{\footnoterule}{\relax}
+    \thispagestyle{empty}
+
+    {\large { \Huge {\bfseries {\@title}} \par} \vspace*{25mm}}
+\vspace*{25mm} 	\vspace*{25mm}
+    {{\Huge \bfseries \@author} \par}
+%	\vspace*{1ex}
+%	{{\@cityofbirth} \par}    
+{\large 
+	\vspace*{1ex}
+%    {{\bfseries \@collegeordept} \par}
+	\vspace*{1ex}
+%    {{\@university} \par}
+	\vspace*{25mm}
 	\vspace*{25mm}
     {{\submittedtext} \par}
 	\vspace*{1ex}
     {\it {\@degree} \par}
 	\vspace*{2ex}
-    {\@degreedate}
-}%end large
+    {\bfseries \@degreedate}
+  }
   \end{center}
   \null\vfill
-\end{alwayssingle}}
-
-% page number for cover back side should have page number blanked
+ }
 
 
 %:-------------------------- front matter layout -----------------------
@@ -343,7 +373,7 @@
 \newenvironment{abstracts} {\begin{alwayssingle} \pagestyle{empty}
   \begin{center}
   \vspace*{1.5cm}
-  {\Large \bfseries  Abstract}
+  {\Large \bfseries  Abstract Summary}
   \end{center}
   \vspace{0.5cm}
    \begin{quote}}
