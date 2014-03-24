@@ -14,9 +14,11 @@ if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
 
 fi
 
-  latex 'article.tex'
-  bibtex article
-  latex 'article.tex'
-  latex 'article.tex'
+  latex 'thesis.tex'
+  bibtex thesis
+  latex 'thesis.tex'
+  latex 'thesis.tex'
+  yap thesis.dvi
+  #dvipdf thesis.dvi
 
 
