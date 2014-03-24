@@ -1,0 +1,71 @@
+{
+  "by chapter / section": {
+    "Task:TODO": [
+      "handle the formating, print the format",
+      "handle the reference list, read more and add more references"
+    ],
+    "all": {
+      "univ": {
+        "margin": "3.7cm",
+        "order": "title page, acknowledgement, table of contents, summary",
+        "cover page": "dark blue, gold 16 pts letters, NTU, thesis title, author's name, school, year",
+        "spine": "abbreviation of thesis title, author name",
+        "title page": "thesis title, author's name, school, a thesis submitted ..., year"
+      },
+      "Reviewer 1": "anything in returned thesis!",
+      "Reviewer 2": {
+        "All": "Change theory to model",
+        "Novelty": "Needs justification. ",
+        "Equations": "Number all of them",
+        "References": "Handle the list"
+      },
+      "Reviewer 3": {
+        "Abstract": "Addd Shortcomings",
+        "All": "Models plural? ",
+        "Glossary": "At the end",
+        "Tables": "Table captions above not below",
+        "Src code": "No need",
+        "Appendix": "Submitted papers, acrs papers."
+      }
+    },
+    "chap 1": {
+      "Reviewer 2": {
+        "Sec 1.1 and 1.2": " justification of significant, citations of background works",
+        "Sec 1.3'para 1": "Remove or rewrite"
+      },
+      "Reviewer 3": {
+        "Sec 1.4": "add List of publications"
+      }
+    },
+    "chap 2": {
+      "Reviewer 2": {
+        "Sec 2.2": "More comprehensive Review of speckle filters, evaluation of filters "
+      },
+      "Reviewer 3": {
+        "Sec 2.1": "Too long shorten",
+        "Sec 2.2": "Add refs page 35"
+      }
+    },
+    "chap 3": {
+      "Reviewer 3": "Para 1,2"
+    },
+    "chap 4": {
+      "Reviewer 3": [
+        "Justify situations the model will not work well. ",
+        "Page 66 para 3, put in quantitative value. ",
+        "Heading 4.5.3. One model"
+      ]
+    },
+    "chap 5": {
+      "Reviewer 3": "Sec 5.2.2.2, figs 11,12,13,15"
+    },
+    "chap 6": {
+      "Reviewer 3": [
+        "Page 131 para 2",
+        "page 133 line 3",
+        "page 133 line 1",
+        "list achievements"
+      ]
+    }
+  }
+}

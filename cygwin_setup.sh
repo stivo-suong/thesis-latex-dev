@@ -18,7 +18,8 @@ fi
   bibtex thesis
   latex 'thesis.tex'
   latex 'thesis.tex'
-  yap thesis.dvi
-  #dvipdf thesis.dvi
+  #yap thesis.dvi
+  dvipdf thesis.dvi
+  cygstart.exe thesis.pdf
 
 
