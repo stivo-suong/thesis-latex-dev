@@ -1,3 +1,12 @@
+SYSNAME = $(shell uname -s)
+ifeq ($(SYSNAME),Linux)
+	EXE_NAME = 'latex answer_document.tex'
+else
+	EXE_NAME = './cygwin_setup.sh'
+endif
+
+default:
+	eval $(EXE_NAME)
 bdd:
 	latex answer_document.tex
 clean:

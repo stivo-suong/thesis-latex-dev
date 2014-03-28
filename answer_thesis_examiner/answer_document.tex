@@ -15,7 +15,8 @@
 \begin{tabular}{l l}
 \bf{Name of Student:} & Le Thanh Hai \\
 \bf{Degree:} & Doctor of Philosophy \\
-\bf{Thesis Title:} & Scalar \& Homoskedastic Models for SAR \& POLSAR data
+\bf{Thesis Title:} & Scalar \& Homoskedastic Models \\ 
+ & for SAR \& POLSAR data
 \end{tabular}  
 	\vspace*{10mm}
 }
@@ -25,8 +26,12 @@
 \begin{replyheader}
 \end{replyheader}  
 
-Examiner No 1 includes not only his comment but also his original thesis.
-There was no direct question in the comment, and followings are my replies to his questions in the returned thesis.
+First and foremost, I would like to express my appreciation towards Examiner No. 1 for his positive overall comments.
+I also appreciate the fact that examiner No 1 includes 
+  not only his comments in the examiner's report 
+  but also his corrective suggestions inside the original thesis.
+There was no direct question in the report, 
+  and followings are my replies to his comments in the returned thesis.
 
 
 \section*{Reply to Examiner No. 2}
@@ -55,10 +60,101 @@ Still, I wish to point out that MSE evaluation has two components: 1. bias evalu
 ( \textbf{ Hai note: }  the examiner suggests further clarifications to support the claim of novelty in Part II of his report.
 Unfortunately I do not have it at hand.
 It would be great if I can have a look at it!)
+
+The examiner also suggestion inclusion of several references into the literature review topics of ``relevant SAR/POLSAR speckle filters'' and  ``evaluation of SAR speckle filters''.
+I really appreciate the examiner effort in pointing out specific references.
+They, and some other articles, have been included in the thesis.
+I would like however to seek his empathy towards a couple of points.
+First, a number of the references cited has already been included into the original thesis (e.g Touzi (TODO:CITE) or 2-11-12.). 
+Some of them (for example Argenti (TODO:CITE)) are actually published (Sept 2013) after the submission of the original thesis (Aug 2013).
+Second, please also note that the topics of SAR/POLSAR speckle filters and to some extend, their evaluation, may be considered as part of the thesis's contribution.
+While they do results in published scientific articles, 
+  they are not, however, to be considered as the main contributions of the thesis.
+Rather they serves as application, or demonstration, of the benefits of the thesis's main proposal.
+As such, while I understand the need for comprehensive review, due to various constraint, I seek his understanding that they are probably not to be explored with the same depth and coverage as the main topic of the thesis.
+
+I appreciate the fact that the examiner also shares our thoughts and put it in a very concise sentence: ``the derivation of the statistical model for POLSAR data is the main contribution of the thesis''.
+As suggested, we have tried to extract portions of this thesis as scientific articles and submitted them for review.
+
+Last but not least, I have gone through the various errata exposed by Examiner No.2 and have updated the thesis accordingly.
+Finally, I wish to express my appreciation towards Examiner No.2 for his carefully and detailed review.
   
 \section*{Reply to Examiner No. 3}
 
 \begin{replyheader}
 \end{replyheader}  
+
+Since Examiner No. 3 presneted his comments and suggestions in the order of the thesis' chapters, 
+  I would follow his suite.
+
+\subsubsection*{1. Overall Organization and presentation}
+
+I appreciate the fact that the examiner noted: ``The overall organization of the thesis is appropriate''.
+Besides the issue of appropriate headings for chapter 3 and 4, which will be discussed in their respective section, minor editions have been included to address his other concerns.
+
+\begin{itemize}
+  \item \textbf{Page ii of Contents page is missing:} This is probably an administrative mistake and oversight from us. Please accept our appologies!
+  \item \textbf{Usually, a Glossary is put at the end of the document: } Updated (now the Glossary section stays at the end of the thesis)
+  \item \textbf{Some page number missing: } Updated (TODO: mostlikely this is an option that has been accidently turned on in the Latex Class file.)
+  \item \textbf{List of source codes: } Updated (now called ``List of Pseudocodes'' as suggested by the Examiner.)
+\end{itemize}
+
+\subsubsection*{2. Abstract}
+
+The abstract has been updated so that: 1. each of the proposed models have their own name and 2. not only the benefits are listed, but also their shortcomings.
+
+\subsubsection*{3. Chapter 1}
+
+The examiner suggests that ``Table captions appears at the top of a table, rather than below it'' and the chapter as well as the thesis has been updated accordingly.
+The chapter is also updated, so that new and existing references are added to provide direct support.
+The author's publication list is now also included in this, as well as in the final conclusion, chapter.
+
+At this juncture, I would also wish to address one of Examiner No. 3's main concern.
+It is termed as: ``it doesn't mean that by fitting a homoskedastic model to heteroskedastic data, these algorithm will give correct results''.
+The approach described in this thesis differs slightly from ``fitting a homoskedastic model to heteroskedastic data''.
+Here, I proposed to used log-transformation which has long been noted as converting the data from mutiplicative to additive domain.
+The model for the data in this additive domain has been derived and accepted in (TODO:CITE Arsenault).
+My work, in simple terms, suggests that in addition to additive properties, the transformed domain also exhibits homoskedastic properties as contrast to the heteroskedastic properties in the original domain.
+These properties are investigated in this thesis to show that it does offers several benefits (for example: in designing and evaluating speckle filters).
+It should be noted that the model for SAR used in this thesis is exactly the same as the additive model proposed by Arsenault (TODO:CITE) and is mathematically equivalent to the model multiplicative model for SAR data in its original domain.
+
+\subsubsection*{4. Chapter 2}
+
+Chapter 2 is also updated to address Examiner No. 3's concerns.
+In a bid of not confusing other examiners, I have decided not to move the theory section into a separate chapter.
+However, this chapter is heavily updated so that 1. Section 2.1 is shortened considerably and 2. Section 2.2 is extended significantly. 
+This I believe leads to a better balance between describing the nature of the data, and reviewing the related work.
+This also help growing the space dedicated to the discussion of ``Other approaches that have recently been pursued in the research community (SAR speckle filters)''.
+
+\subsubsection*{5. Chapter 3}
+
+There are apparently two main concerns from Examiner No. 3's comments.
+First, page 44 line 1 should be intepreted strictly in the context of the preceeding paragraph (page 43). 
+That is mathematically  speaking $\sigma$ is just a mathematical variables, thus making the statement true. 
+Any resemblence of it with the SAR signal is established in the next paragraph.
+The third line of the second paragraph in page 44 clearly indicated where $\sigma$ can be considered as constant (i.e. spatial homogeneous area or at each resolution cell).
+It is also acknowledged in the thesis, as the Examiner No. 3 pointed out precisely: ``Over heterogeneous area, ... $\sigma$ varies significantly ...''
+This is the assumption used in this analysis, 
+  and a portion of subsequent work is devoted to extend this early analysis into heterogeneous area.
+The very next section (i.e. Section 3.2) starts the discussion on this very topic.  
+
+In that very same vein, table 3.3 should be viewed under the assumption that $\sigma$ is constant (either in homogeneous area or in a single resolution cell).
+Under this condition, then the variances are independent of $\sigma$, i.e. it is homoskedastic.
+In fact, if the area is heterogeneous as reviewed in Chapter 2, there are many different ways to model $\sigma$ which in turns leads to many different models for the observable magnitude.
+This, of course, leads to different expression for the observable variances.
+In fact, it leads to heteroskedasticity, which the Examiner correctly pointed out ``$var(L_A)$ and $var(L_I)$ cannot be homoskedastic'', should we consider $var(L_I)$ as the variation of the observables in an area.
+It should be noted, however, that at the level of each radar physical resolution cell, the values measured in SAR are not deterministic.
+Then if we consider $var(L_A)$ as the deviation of the observables from its true signal, we will also have $var(L_A)$ as being constant (assuming that the effective number of looks or ENL is constant across the area)!
+
+The second point concerns the models and their names.
+This chapter has been updated and model names are given for each to clarify the concepts.
+The confusion is understandable, and partially my fault, in not highlighting the following points.
+First there are different models being proposed, in Section 3.4.
+And second, they are all however derived based on ONE basic model: the one based on ``the base-2 log-transformation of the SAR data.''
+Finally, there are differences in each of the models, even though, whether these differences are significant or not is, to be honest, rather subjective at my current state of understanding.
+
+\subsubsection*{6. Chapter 4}
+
+
 
 \end{document}
