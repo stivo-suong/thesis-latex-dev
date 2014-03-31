@@ -175,10 +175,32 @@ This restriction is clearly stated in the sentence that follows Equation 4.1: ``
 It is partially for the second concern that log-transformation is proposed.
 Since the original domain is multiplicative, the range of small values is, as also observed by Examiner No. 3, commonly found but extremely limited ($|\Sigma|$ ranges from $0+$ to $1$).
 Log transformed domain not only changes the nature from multiplicative to additive, but also give this ``small'' range $(0,1)$ a much widely space $(-\infty,0)$.
-In other words, it helps to expand the ``narrow'' distribution depicted in Equation 4.1 (when $|\Sigma|$ is small) to become another distribution whose shape does not dependent on $|\Sigma|$.
+In other words, it helps to expand the ``narrow'' distribution depicted in Equation 4.1 (when $|\Sigma|$ is small) to become another distribution whose shape does not dependent on $|\Sigma|$, as depicted by the Equation below.
 
 \begin{align*}
   pdf( \ln | \langle ss^{*T} \rangle|, \Sigma) = \ln |\Sigma| - \ln(2L)d + \sum^{d-1}_{i=0} \Lambda (2L-2i)
 \end{align*}  
+
+The Examiner also expresses his concern about the quality of the ``visual match'' on page 66.
+For this, I had updated the section to include a quantitative, and hence objective, measure of match instead of the current subjective evaluation.
+I believe, such a change should completely addresses his concerns.
+I also made other small updates, to addresses his other various minor concerns.
+
+\subsubsection*{7. Chapter 5}
+
+Page 94, section 5.2.2.2 is updated to indicate MSE as ``Mean Squared Error''.
+The reference for computation in the section is the ``true signal'' $\sigma$.
+
+Fig. 5.11 shows two curves that are essentially the same.
+One of them is ``simulated result'' and the other is ``analysis formula''.
+The difference is that the former is computed through a Monte-Carlo simulation and the other is a simple plotting of the mathematical calculated values.
+The purpose is to show that the heuristic formula given as
+
+\begin{align*}
+  MSE = \frac{1}{(ENL-0.5)\ln^2(2)}
+\end{align*}  
+
+closely tracks observable values.
+Readers should also note that this argument is presented in a much more detailed manner in Section 5.3.2.1.
 
 \end{document}
