@@ -5,6 +5,8 @@
 
 \usepackage{amsmath} %to have equation with no number
 
+\usepackage{chapterbib} %to have references in each chapter
+
 \title{Reply To Examiners}
 \date{\today}
 \author{Thanh-Hai Le}
@@ -14,6 +16,8 @@
 
 \newenvironment{replyheader}{
 	\vspace*{10mm}
+\setcounter{page}{1}
+
 \begin{tabular}{l l}
 \bf{Name of Student:} & Le Thanh Hai \\
 \bf{Degree:} & Doctor of Philosophy \\
@@ -23,219 +27,10 @@
 	\vspace*{10mm}
 }
 
-\section*{Reply to Examiner No. 1}
+\include{chap1}
 
-\begin{replyheader}
-\end{replyheader}  
+\include{chap2}
 
-First and foremost, I would like to express my appreciation towards Examiner No. 1 for his positive overall comments.
-I also appreciate the fact that examiner No 1 includes 
-  not only his comments in the examiner's report 
-  but also his corrective suggestions inside the original thesis.
-There was no direct question in the report, 
-  and followings are my replies to his comments in the returned thesis.
-
-
-\section*{Reply to Examiner No. 2}
-
-\begin{replyheader}
-\end{replyheader}  
-
-Examiner No. 2 suggests to review Section 1.1 and Section 1.2 so that the significance of the research motivation is highlighted.
-Similarly the conclusion chapter should also include the research objectives.
-These have been updated in the revised thesis,
-  even though for the latter point I would wish to point out that the research objectives have been clearly spelled out in the Introduction chapter.
-The examiner also suggested to change the word ``theory'' to ``model'', which has also been applied through out the thesis.
-
-The second main comment is to further highlight the novelty claim, which can be splitted into two parts.
-In the first part, the examiner suggests that ``the proposed model is derived based on the existing statistical models for SAR and extended to POLSAR''.
-Our main approach actually differs slightly and in a very subtle way.
-The proposed model is derived based on a generic result for multi-dimensional random-walk in mathematics (cite Goodman), which is applicable to POLSAR.
-Subsequently we pointed out that our model is actually an extension of existing statistical models for SAR,
-  since our multi-dimensional model, when collapsed into single-dimension, matches perfectly with existing SAR models.
-In the second part, the exminer express his doubt in ``the use of MSE (mean squared error) as the single unified evaluation criteria'',
-  as ``the proposed log-transform model will introduce an inevitable bias error''.
-While I have total empathy with the examiner, since it is ultimately tricky to evaluate evaluation criteria.
-Still, I wish to point out that MSE evaluation has two components: 1. bias evaluation and 2. variance evaluation,
-  which for SAR speckle filter equates to 1. radiometric preservation and 2. noise suppression capabilities.
-
-( \textbf{ Hai note: }  the examiner suggests further clarifications to support the claim of novelty in Part II of his report.
-Unfortunately I do not have it at hand.
-It would be great if I can have a look at it!)
-
-The examiner also suggestion inclusion of several references into the literature review topics of ``relevant SAR/POLSAR speckle filters'' and  ``evaluation of SAR speckle filters''.
-I really appreciate the examiner effort in pointing out specific references.
-They, and some other articles, have been included in the thesis.
-I would like however to seek his empathy towards a couple of points.
-First, a number of the references cited has already been included into the original thesis (e.g Touzi (TODO:CITE) or 2-11-12.). 
-Some of them (for example Argenti (TODO:CITE)) are actually published (Sept 2013) after the submission of the original thesis (Aug 2013).
-Second, please also note that the topics of SAR/POLSAR speckle filters and to some extend, their evaluation, may be considered as part of the thesis's contribution.
-While they do results in published scientific articles, 
-  they are not, however, to be considered as the main contributions of the thesis.
-Rather they serves as application, or demonstration, of the benefits of the thesis's main proposal.
-As such, while I understand the need for comprehensive review, due to various constraint, I seek his understanding that they are probably not to be explored with the same depth and coverage as the main topic of the thesis.
-
-I appreciate the fact that the examiner also shares our thoughts and put it in a very concise sentence: ``the derivation of the statistical model for POLSAR data is the main contribution of the thesis''.
-As suggested, we have tried to extract portions of this thesis as scientific articles and submitted them for review.
-
-Last but not least, I have gone through the various errata exposed by Examiner No.2 and have updated the thesis accordingly.
-Finally, I wish to express my appreciation towards Examiner No.2 for his carefully and detailed review.
-  
-\section*{Reply to Examiner No. 3}
-
-\begin{replyheader}
-\end{replyheader}  
-
-Since Examiner No. 3 presneted his comments and suggestions in the order of the thesis' chapters, 
-  I would follow his suite.
-
-\subsubsection*{1. Overall Organization and presentation}
-
-I appreciate the fact that the examiner noted: ``The overall organization of the thesis is appropriate''.
-Besides the issue of appropriate headings for chapter 3 and 4, which will be discussed in their respective section, minor editions have been included to address his other concerns.
-
-\begin{itemize}
-  \item \textbf{Page ii of Contents page is missing:} This is probably an administrative mistake and oversight from us. Please accept our appologies!
-  \item \textbf{Usually, a Glossary is put at the end of the document: } Updated (now the Glossary section stays at the end of the thesis)
-  \item \textbf{Some page number missing: } Updated (TODO: mostlikely this is an option that has been accidently turned on in the Latex Class file.)
-  \item \textbf{List of source codes: } Updated (now called ``List of Pseudocodes'' as suggested by the Examiner.)
-\end{itemize}
-
-\subsubsection*{2. Abstract}
-
-The abstract has been updated so that: 1. each of the proposed models have their own name and 2. not only the benefits are listed, but also their shortcomings.
-
-\subsubsection*{3. Chapter 1}
-
-The examiner suggests that ``Table captions appears at the top of a table, rather than below it'' and the chapter as well as the thesis has been updated accordingly.
-The chapter is also updated, so that new and existing references are added to provide direct support.
-The author's publication list is now also included in this, as well as in the final conclusion, chapter.
-
-At this juncture, I would also wish to address one of Examiner No. 3's main concern.
-It is termed as: ``it doesn't mean that by fitting a homoskedastic model to heteroskedastic data, these algorithm will give correct results''.
-The approach described in this thesis differs slightly from ``fitting a homoskedastic model to heteroskedastic data''.
-Here, I proposed to used log-transformation which has long been noted as converting the data from mutiplicative to additive domain.
-The model for the data in this additive domain has been derived and accepted in (TODO:CITE Arsenault).
-My work, in simple terms, suggests that in addition to additive properties, the transformed domain also exhibits homoskedastic properties as contrast to the heteroskedastic properties in the original domain.
-These properties are investigated in this thesis to show that it does offers several benefits (for example: in designing and evaluating speckle filters).
-It should be noted that the model for SAR used in this thesis is exactly the same as the additive model proposed by Arsenault (TODO:CITE) and is mathematically equivalent to the model multiplicative model for SAR data in its original domain.
-
-\subsubsection*{4. Chapter 2}
-
-Chapter 2 is also updated to address Examiner No. 3's concerns.
-In a bid of not confusing other examiners, I have decided not to move the theory section into a separate chapter.
-However, this chapter is heavily updated so that 1. Section 2.1 is shortened considerably and 2. Section 2.2 is extended significantly. 
-This I believe leads to a better balance between describing the nature of the data, and reviewing the related work.
-This also help growing the space dedicated to the discussion of ``Other approaches that have recently been pursued in the research community (SAR speckle filters)''.
-
-\subsubsection*{5. Chapter 3}
-
-There are apparently two main concerns from Examiner No. 3's comments.
-First, page 44 line 1 should be intepreted strictly in the context of the preceeding paragraph (page 43). 
-That is mathematically  speaking $\sigma$ is just a mathematical variables, thus making the statement true. 
-Any resemblence of it with the SAR signal is established in the next paragraph.
-The third line of the second paragraph in page 44 clearly indicated where $\sigma$ can be considered as constant (i.e. spatial homogeneous area or at each resolution cell).
-It is also acknowledged in the thesis, as the Examiner No. 3 pointed out precisely: ``Over heterogeneous area, ... $\sigma$ varies significantly ...''
-This is the assumption used in this analysis, 
-  and a portion of subsequent work is devoted to extend this early analysis into heterogeneous area.
-The very next section (i.e. Section 3.2) starts the discussion on this very topic.  
-
-In that very same vein, table 3.3 should be viewed under the assumption that $\sigma$ is constant (either in homogeneous area or in a single resolution cell).
-Under this condition, then the variances are independent of $\sigma$, i.e. it is homoskedastic.
-In fact, if the area is heterogeneous as reviewed in Chapter 2, there are many different ways to model $\sigma$ which in turns leads to many different models for the observable magnitude.
-This, of course, leads to different expression for the observable variances.
-In fact, it leads to heteroskedasticity, which the Examiner correctly pointed out ``$var(L_A)$ and $var(L_I)$ cannot be homoskedastic'', should we consider $var(L_I)$ as the variation of the observables in an area.
-It should be noted, however, that at the level of each radar physical resolution cell, the values measured in SAR are not deterministic.
-Then if we consider $var(L_A)$ as the deviation of the observables from its true signal, we will also have $var(L_A)$ as being constant (assuming that the effective number of looks or ENL is constant across the area)!
-
-The second point concerns the models and their names.
-This chapter has been updated and model names are given for each to clarify the concepts.
-The confusion is understandable, and partially my fault, in not highlighting the following points.
-First there are different models being proposed, in Section 3.4.
-And second, they are all however derived based on ONE basic model: the one based on ``the base-2 log-transformation of the SAR data.''
-Finally, there are differences in each of the models, even though, whether these differences are significant or not is, to be honest, rather subjective at my current state of understanding.
-
-\subsubsection*{6. Chapter 4}
-
-Examiner No.3 expresses his doubt on two points.
-First, that ``the determinant $|\Sigma|$ will be very small, leading to a very narrow PDF in Equation 4.1''.
-And second that $\Sigma^{-1}$ is ill-defined.
-I wish to highlight that Equation 4.1 is the PDF for the circular complex Gaussian distribution, which is widely used in POLSAR.
-Its form, as repeated from equation 4.1, is written as:
-
-\begin{align*}
-  pdf(s;\Sigma)=\frac{1}{\pi^d |\Sigma|} e^{-s^{*T}\Sigma^{-1}s}
-\end{align*}  
-
-This equation is also ill-defined where $|\Sigma|=0$, which is also the only time that $\Sigma^{-1}$ is ``ill-defined''.
-In other words, the models proposed has the same assumption and validity with the widely-accepted circular complex Gaussian distribution model.
-In POLSAR, $|\Sigma|=0$ most commonly happens when the dataset is in Single-Look format.
-This restriction is clearly stated in the sentence that follows Equation 4.1: ``the covariance matrix is only defined on multiple data-points''.
-
-It is partially for the second concern that log-transformation is proposed.
-Since the original domain is multiplicative, the range of small values is, as also observed by Examiner No. 3, commonly found but extremely limited ($|\Sigma|$ ranges from $0+$ to $1$).
-Log transformed domain not only changes the nature from multiplicative to additive, but also give this ``small'' range $(0,1)$ a much widely space $(-\infty,0)$.
-In other words, it helps to expand the ``narrow'' distribution depicted in Equation 4.1 (when $|\Sigma|$ is small) to become another distribution whose shape does not dependent on $|\Sigma|$, as depicted by the Equation below.
-
-\begin{align*}
-  pdf( \ln | \langle ss^{*T} \rangle|, \Sigma) = \ln |\Sigma| - \ln(2L)d + \sum^{d-1}_{i=0} \Lambda (2L-2i)
-\end{align*}  
-
-The Examiner also expresses his concern about the quality of the ``visual match'' on page 66.
-For this, I had updated the section to include a quantitative, and hence objective, measure of match instead of the current subjective evaluation.
-I believe, such a change should completely addresses his concerns.
-I also made other small updates, to addresses his other various minor concerns.
-
-\subsubsection*{7. Chapter 5}
-
-Page 94, section 5.2.2.2 is updated to indicate MSE as ``Mean Squared Error''.
-The reference for computation in the section is the ``true signal'' $\sigma$.
-
-Fig. 5.11 shows two curves that are essentially the same.
-One of them is ``simulated result'' and the other is ``analysis formula''.
-The difference is that the former is computed through a Monte-Carlo simulation and the other is a simple plotting of the mathematical calculated values.
-The purpose is to show that the heuristic formula given as
-
-\begin{align*}
-  MSE = \frac{1}{(ENL-0.5)\ln^2(2)}
-\end{align*}  
-
-closely tracks observable values.
-Readers should also note that this argument is presented in a much more detailed manner in Section 5.3.2.1.
-
-Examiner No 3 also expresses his curiosity to see ``how the f-MLE filter will compare with other state-of-the-art-filters''.
-While, I am also eager to see, and to some extend to prove, the good results of my proposed f-MLE filter,
-  I have decided not to include it in the section 5.3, where the performance of many different filters are reviewed.
-There are a few reasons for such a decision.
-First, in the section I am proposing a new way to evaluate speckle filters.
-And instead of at the same time discussing the performance of f-MLE filter, I wish to focus on that topic exclusively.
-Second, assuming the performance of f-MLE filter is included and found to be superior than others,
-  such a result can be easily refuted.
-That is because I was proposing both new speckle filters and a new approach to evaluate speckle filters,
-  which I wish to, as much as possible, keeping them independently of each other.
-Last but not least, as noted by all Examiners and myself included, speckle filtering is not the main topic of the thesis.
-It is only the avenue to demonstrate the benefits of the proposed models for SAR \& POLSAR data of the thesis.
-
-\subsubsection*{8. Chapter 6}
-
-In this chapter, the Examiner wonder: ``if the proposed models are far from complete, how can it be an accurate representation of the data''.
-To clarify, the proposed models in this thesis do not aim to become accurate representation, or fully representative, of the data.
-Rather, they are proposed as highly representative, probably the most representative scalar models, for the multi-dimensional data.
-They are, however, useful as scalar models are needed quite often, when scalar decision are to be taken,
-  for example: what is the best speckle filter for the given data set?, or what type of surface does the region of interest belong to? ...
-
-The Examiner's next question center around this very point: ``.. definitely not full representative of the data''.
-He went on to ask: ``What kind of eror will it cause?''.
-To this the answer is that the model inherently suffers from loss of dimension
-  where the full data is multi-dimensional and the proposed models are scalar.
-
-Besides these main points, the chapter is updated to increase its pursuasive power.
-For example: the sentence in line 1, page 133, section 6.3 is removed.
-Or a list of achievements has been included in this chapter.
-
-\subsubsection*{9. Appendix}
-
-While the conference papers have been published and the journal paper submitted,
-  their copies have been removed from this section.
+\include{chap3}
 
 \end{document}
