@@ -10,8 +10,9 @@ default:
 bdd:
 	latex answer_document.tex
 clean:
-	mv answer_document.tex b.answer_document.tex
-	mv answer_document.bib b.answer_document.bib
-	rm answer_document.*
-	mv b.answer_document.tex answer_document.tex
-	mv b.answer_document.bib answer_document.bib
+	./clean.sh
+	#mv answer_document.tex b.answer_document.tex
+	#mv answer_document.bib b.answer_document.bib
+	#rm answer_document.*
+	#mv b.answer_document.tex answer_document.tex
+	#mv b.answer_document.bib answer_document.bib
