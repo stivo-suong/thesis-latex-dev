@@ -24,8 +24,7 @@ Still minor editions have been included to address his  other concerns:
 \subsubsection*{2. Abstract}
 
 The abstract has been updated so that:
-
-\begin{enumerate}
+\begin{enumerate}[topsep=0pt]
   \item Each of the proposed models have their own name and
   \item Not only the benefits of the proposed models are listed, but so are their shortcomings.
 \end{enumerate}
@@ -34,25 +33,44 @@ The abstract has been updated so that:
 
 The examiner suggests that ``Table captions appears at the top of a table, rather than below it''. 
 This suggestion has been updated in this chapter, as well as through out the whole thesis.
-The chapter is also updated, so that new and existing references are added to provide direct support.
-The author's publication list is now also included in this chapter, as well as in the final conclusion chapter.
+Also references are included to increase the persuasion power of the claims.
+The list of publication is also now included in this chapter, in addition to the existing one found in the final chapter.
 
 At this juncture, I would also wish to address one of Examiner No. 3's main concern.
-It is termed as: ``it doesn't mean that by fitting a homoskedastic model to heteroskedastic data, these algorithm will give correct results''.
-The approach described in this thesis differs slightly from ``fitting a homoskedastic model to heteroskedastic data''.
-Here, I proposed to used log-transformation which has long been noted as converting the data from mutiplicative to additive domain.
-The model for the data in this additive domain has been derived and accepted in (TODO:CITE Arsenault).
-My work, in simple terms, suggests that in addition to additive properties, the transformed domain also exhibits homoskedastic properties as contrast to the heteroskedastic properties in the original domain.
-These properties are investigated in this thesis to show that it does offers several benefits (for example: in designing and evaluating speckle filters).
-It should be noted that the model for SAR used in this thesis is exactly the same as the additive model proposed by Arsenault (TODO:CITE) and is mathematically equivalent to the model multiplicative model for SAR data in its original domain.
+He wonders: ``What makes you think that this model is appropriate?''.
+Before the answer is laid out , I wish to make a few points.
+First, I thank the Examiner to raise this question, which no doubt is an important one. 
+Second, while it is important to judge the end result, 
+  I am not quite sure that should be done at the very first chapter.
+In fact, a large portion of the final chapter is devoted towards such a discussion.
+
+To directly address the Examiner's concern, let me iterate a few points that has been noted in the thesis.
+First the generic model proposed in this thesis is applicable to multi-dimensional POLSAR data.
+Second, when the multi-dimensional data is collapsed into one dimensional, 
+  the specific case of the proposed model matches perfectly with the model proposed for SAR by Arsenault \cite{Arsenault_JOptSocAm_1976}. 
+Thus, I believe, the proposed generic model is at least as appropriate as the widely-accepted model cited above.
+
+%It is termed as: ``it doesn't mean that by fitting a homoskedastic model to heteroskedastic data, these algorithm will give correct results''.
+%The approach described in this thesis differs slightly from ``fitting a homoskedastic model to heteroskedastic data''.
+%Here, I proposed to used log-transformation which has long been noted as converting the data from mutiplicative to additive domain.
+%The model for the data in this additive domain has been derived and accepted in \cite{Arsenault_JOptSocAm_1976}.
+%My work, in simple terms, suggests that in addition to additive properties, the transformed domain also exhibits homoskedastic properties as contrast to the heteroskedastic properties in the original domain.
+%These properties are investigated in this thesis to show that it does offers several benefits (for example: in designing and evaluating speckle filters).
+%It should be noted that the model for SAR used in this thesis is exactly the same as the additive model proposed by Arsenault \cite{Arsenault_JOptSocAm_1976} and is mathematically equivalent to the model multiplicative model for SAR data in its original domain.
 
 \subsubsection*{4. Chapter 2}
 
-Chapter 2 is also updated to address Examiner No. 3's concerns.
-In a bid of not confusing other examiners, I have decided not to move the theory section into a separate chapter.
-However, this chapter is heavily updated so that 1. Section 2.1 is shortened considerably and 2. Section 2.2 is extended significantly. 
-This I believe leads to a better balance between describing the nature of the data, and reviewing the related work.
-This also help growing the space dedicated to the discussion of ``Other approaches that have recently been pursued in the research community (SAR speckle filters)''.
+For Chapter 2, Examiner No. 3's suggests: ``Perhaps the theory section can be moved to a separate chapter, so that more space can be dedicated to the discussion of related work''.
+In a bid of not confusing other examiners, however, I have decided not to move the theory section into a separate chapter.
+Still, this chapter is heavily updated so that: 
+\vspace{-3mm}
+\begin{enumerate}
+  \item Section 2.1 is shortened considerably and 
+  \item Section 2.2 is extended significantly. 
+\end{enumerate}
+
+This I believe leads to a better balance between describing the nature of the data and reviewing the related work.
+%This also help growing the space dedicated to the discussion of ``Other approaches that have recently been pursued in the research community (SAR speckle filters)''.
 
 \subsubsection*{5. Chapter 3}
 
@@ -164,3 +182,5 @@ Or a list of achievements has been included in this chapter.
 While the conference papers have been published and the journal paper submitted,
   their copies have been removed from this section.
 
+\bibliographystyle{apalike}
+\bibliography{answer_document}

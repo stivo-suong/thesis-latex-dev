@@ -4,8 +4,13 @@
 \newcommand{\sectionbreak}{\clearpage} %to give each section a new page
 
 \usepackage{amsmath} %to have equation with no number
-
 \usepackage{chapterbib} %to have references in each chapter
+%\usepackage{enumerate} %to enumerate with a,b,c instead of 1,2,3
+\renewcommand{\theenumi}{\alph{enumi}}%to enumerate with a,b,c instead of 1,2,3
+
+\usepackage{enumitem}
+%\setlist{nolistsep} % no space among items as well as around whole list
+\setlist{noitemsep} %leave space around whole list
 
 \title{Reply To Examiners}
 \date{\today}

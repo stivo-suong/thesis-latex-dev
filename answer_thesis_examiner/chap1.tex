@@ -9,3 +9,47 @@ I also appreciate the fact that Examiner No 1 includes
   but also helpful suggestions inside the original thesis.
 There was no direct question in the report, and followings are my replies to his comments in the returned thesis.
 
+In page 14 of the returned thesis, Examiner No. 1 wonders ``Does the intagration of the PDF given for $A_x, A, I$ sum up to 1?''.
+First I would like to thank Examiner No. 2 for raising such a question.
+By going through his question, I realized that a negative sign were missed in the equation for $pdf(A_x)$.
+With that corrected, let me repeat the Equations here
+
+\begin{align}
+pdf(A_x) = \frac{1}{\sqrt{\pi} \sigma} e^{- \frac{A_x^2}{\sigma^2}} \\
+pdf(A) = \frac{2A}{\sigma^2} e^{\frac{-A^2}{\sigma^2}} \\
+pdf(I) = \frac{1}{\sigma^2} e^{-\frac{I}{\sigma^2}}
+\end{align}
+
+For the first equation, consider the standard PDF equation for normal distribution centering around $\mu$ and having variance $\sigma$ given below
+
+\begin{align}
+pdf(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{- \frac{(x-\mu)^2}{2 \sigma^2}}
+\end{align}
+
+Clearly, $A_x$ follows the normal distribution with expectation $avg(A_x)=0$ and variance $var(A_x)=\frac{\sigma}{\sqrt{2}}$.
+
+Next consider the standard PDF equation for chi-square distribution with $k$ degree of freedom given below:
+
+\begin{align}
+pdf(x) = \frac{x^{\frac{k}{2}-1}e^{-x/2}}{\Gamma(k/2)2^{k/2}}
+\end{align}
+
+Set $k=2$, and thus $\Gamma(k/2)=\Gamma(1)=1$, then:
+
+\begin{align}
+pdf(x) = \frac{e^{-x/2}}{2} 
+\end{align}
+
+Set $\frac{x}{2} = \frac{A^2}{\sigma^2}$ or $x = \frac{2A^2}{\sigma^2}$, thus $\frac{dx}{dA} = \frac{4A}{\sigma^2}$.
+Variable change theorem give us:
+
+\begin{align}
+pdf(A) = \frac{e^{-A^2/\sigma^2}}{2} \frac{4A}{\sigma^2} = \frac{2A}{\sigma^2} e^{-\frac{A^2}{\sigma^2}}
+\end{align}
+
+
+For the $pdf(I)$, if we set $\lambda = \frac{1}{\sigma^2}$ then the equation turns out to be the standard PDF equation for the Exponential Distribution 
+
+\begin{align}
+pdf(x) = \lambda e^{- \lambda x}
+\end{align}
