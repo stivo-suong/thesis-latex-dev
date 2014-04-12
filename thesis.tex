@@ -43,7 +43,7 @@
 %\usepackage{caption,subcaption} 
 \usepackage[caption=false,font=footnotesize]{subfig} %for subfigures
 
-\usepackage{showframe} %to mark the margins 
+%\usepackage{showframe} %to mark the margins 
 
 %: ----------------------------------------------------------------------
 %:                 List of Equations 
@@ -222,6 +222,8 @@
 \setcounter{secnumdepth}{3} % organisational level that receives a numbers
 \setcounter{tocdepth}{3}    % print table of contents for level 3
 
+\pagenumbering{roman}
+\pagestyle{plain} % put headers/footers back on (page number is back on!)
 \renewcommand*\contentsname{Contents}
 \phantomsection
 \addcontentsline{toc}{chapter}{Tables Of Contents}
@@ -233,9 +235,6 @@
 % Your institution may have specific regulations if you need an abstract and where it is to be placed in the document. The default here is just after title.
 
 \include{0_frontmatter/abstract}
-\label{abstract} % target name for links to glossary
-\addcontentsline{toc}{section}{Abstract Summary}
-%\pagenumbering{arabic}
 
 % The original template provides and abstractseparate environment, if your institution requires them to be separate. I think it's easier to print the abstract from the complete thesis by restricting printing to the relevant page.
 % \begin{abstractseparate}
@@ -304,24 +303,27 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 
 %\pagenumbering{roman}
 \newpage
-\listofmyequations
+\phantomsection
 \addcontentsline{toc}{section}{List of Equations}
-%\phantomsection
+\listofmyequations
 %\addtocontents{toc}{List of Equations}
 
 \newpage
-\listoffigures	% print list of figures
+\phantomsection
 \addcontentsline{toc}{section}{List of Figures}
+\listoffigures	% print list of figures
 
 \newpage
-\listoftables  % print list of tables
+\phantomsection
 \addcontentsline{toc}{section}{List of Tables}
+\listoftables  % print list of tables
 
 %List of Source Code is removed
-%\newpage
-%\renewcommand\lstlistlistingname{List of Source Code}
-%\lstlistoflistings
-%\addcontentsline{toc}{section}{List of Source Code}
+\newpage
+\renewcommand\lstlistlistingname{List of PseudoCode}
+\phantomsection
+\addcontentsline{toc}{section}{List of PseudoCode}
+\lstlistoflistings
 
 %\chapter*{List of Mathematic Symbols}
 %\addcontentsline{toc}{section}{List of Mathematic Symbols}
@@ -358,27 +360,27 @@ $\Lambda(2L)$: denotes the {\bf Log-Chi-Square distribution} with $2L$ degrees o
 % But take care that the paths match. You can also change the order of appearance by moving the include commands.
 
 %turn \include on
-%\include{1_introduction/introduction}	% background information
+\include{1_introduction/introduction}	% background information
 %\chapter{Introducing The Research Question}
 
-%\include{2/literature_review}
+\include{2/literature_review}
 
-%\include{3/sar}
+\include{3/sar}
 
-%\include{4/polsar}	
+\include{4/polsar}	
 %\chapter{Consistent Measures of Distance for Multivariate POLSAR Data} %chapter 4
 
-%\include{5/applications}
+\include{5/applications}
 %\chapter{Using the Consistent Measures of Distance} %chapter 5
 
-%\include{6/conclusional_discussion}
+\include{6/conclusional_discussion}
 
 % --------------------------------------------------------------
 %:                  BACK MATTER: appendices, refs,..
 % --------------------------------------------------------------
 
 % the back matter: appendix and references close the thesis
-%\include{9_backmatter/appendix}
+\include{9_backmatter/appendix}
 
 \chapter*{Glossary}
 
