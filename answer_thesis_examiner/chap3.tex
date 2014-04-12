@@ -75,22 +75,42 @@ This I believe leads to a better balance between describing the nature of the da
 \subsubsection*{5. Chapter 3}
 
 There are apparently two main concerns from Examiner No. 3's comments.
-First, page 44 line 1 should be intepreted strictly in the context of the preceeding paragraph (page 43). 
-That is mathematically  speaking $\sigma$ is just a mathematical variables, thus making the statement true. 
-Any resemblence of it with the SAR signal is established in the next paragraph.
-The third line of the second paragraph in page 44 clearly indicated where $\sigma$ can be considered as constant (i.e. spatial homogeneous area or at each resolution cell).
-It is also acknowledged in the thesis, as the Examiner No. 3 pointed out precisely: ``Over heterogeneous area, ... $\sigma$ varies significantly ...''
-This is the assumption used in this analysis, 
-  and a portion of subsequent work is devoted to extend this early analysis into heterogeneous area.
-The very next section (i.e. Section 3.2) starts the discussion on this very topic.  
+The first is: ``how can the statement on page 44 line 1 ... be true?''.
+And second: ``why homoskedasticity is valid, and what are the assumption in this analysis?''
 
-In that very same vein, table 3.3 should be viewed under the assumption that $\sigma$ is constant (either in homogeneous area or in a single resolution cell).
-Under this condition, then the variances are independent of $\sigma$, i.e. it is homoskedastic.
-In fact, if the area is heterogeneous as reviewed in Chapter 2, there are many different ways to model $\sigma$ which in turns leads to many different models for the observable magnitude.
-This, of course, leads to different expression for the observable variances.
-In fact, it leads to heteroskedasticity, which the Examiner correctly pointed out ``$var(L_A)$ and $var(L_I)$ cannot be homoskedastic'', should we consider $var(L_I)$ as the variation of the observables in an area.
-It should be noted, however, that at the level of each radar physical resolution cell, the values measured in SAR are not deterministic.
-Then if we consider $var(L_A)$ as the deviation of the observables from its true signal, we will also have $var(L_A)$ as being constant (assuming that the effective number of looks or ENL is constant across the area)!
+First, the statement in page 44 line 1 should be intepreted strictly in the context of what preceeds it. 
+That is mathematically  speaking $\sigma$ is just a mathematical constant, which makes the statement true. 
+Any resemblence of it with the SAR signal is only established in the next paragraph onwards.
+In fact, the third line of the second paragraph in page 44 clearly indicated where $\sigma$ can be considered as constant (i.e. spatial homogeneous area or at each resolution cell).
+This is the assumption used in this analysis. 
+The assumption is acknowledged in the very next sentence, as the Examiner No. 3 pointed out precisely: ``Over heterogeneous area, ... $\sigma$ varies significantly ...''.
+If $\sigma$ is not a constant, then heteroskedastic ensues.
+The next section (i.e. Section 3.2) then outlines the effects of heteroskedasticity, 
+  which explains the needs for logarithmic transformation.  
+
+The assumption described above continues to hold in Section 3.3 and, of course, table 3.3.
+%In that very same vein, table 3.3 should be viewed under the assumption that $\sigma$ is constant (either in homogeneous area or in a single resolution cell).
+Under this condition, the variances of the log-transformed variables are then independent of $\sigma$.
+The point being made in the table is that: 
+  while variances are dependent on $\sigma$ in the original domain,
+  in the log transformed domain, they are independent of this value.
+
+The assumption actually is not very restrictive.
+It should be noted that at the level of each radar physical resolution cell, 
+  the value measured in SAR is not deterministic.
+For all practical purposes, the single measured value is to be considered as the result of a stochastic process, with one ``true'' signal $\sigma$.
+This model actually is applicable to both homogeneous and heterogeneous areas.
+
+Now, if the area is heterogeneous, then $\sigma$ is no longer a constant.
+In fact, as reviewed in Chapter 2, there are many different ways to model $\sigma$ which in turns leads to many different models for the observable magnitude.
+%This, of course, leads to different expression for the observable variances.
+This leads to heteroskedasticity, 
+  which the Examiner correctly pointed out ``$var(L_A)$ and $var(L_I)$ cannot be homoskedastic'', 
+  should we consider ``$var(L_A)$ and $var(L_I)$'' as the variation of the observables in an area.
+However, if we consider ``$var(L_A)$ and $var(L_I)$'' as the deviation of the observables from corresponding its ``true'' signal at each physical resolution cell level, 
+  then they will be independent of $\sigma$ (as described in Table 3.3).
+In fact they are constant, even as $sigma$ changes.
+This leads to homoskedasticity!
 
 The second point concerns the models and their names.
 This chapter has been updated and model names are given for each to clarify the concepts.
