@@ -15,25 +15,33 @@ By going through his question, I realized that a negative sign were missed in th
 With that corrected, let me repeat the Equations here
 
 \begin{align}
-pdf(A_x) = \frac{1}{\sqrt{\pi} \sigma} e^{- \frac{A_x^2}{\sigma^2}} \\
-pdf(A) = \frac{2A}{\sigma^2} e^{\frac{-A^2}{\sigma^2}} \\
-pdf(A_1) = 2A_1 e^{-A_1^2} \\
-pdf(I) = \frac{1}{\sigma^2} e^{-\frac{I}{\sigma^2}}
+pdf(A_x) &= \frac{1}{\sqrt{\pi} \sigma} e^{- \frac{A_x^2}{\sigma^2}} \\
+pdf(A)   &= \frac{2A}{\sigma^2} e^{\frac{-A^2}{\sigma^2}} \\
+pdf(A_1) &= 2A_1 e^{-A_1^2} \\
+pdf(I)   &= \frac{1}{\sigma^2} e^{-\frac{I}{\sigma^2}}
 \end{align}
 
 The integration of these becomes
 \begin{align}
-cdf(A_x) = \int_{-\infty}^{\infty} \frac{1}{\sqrt{\pi} \sigma} e^{- \frac{A_x^2}{\sigma^2}}  \; \mathrm{d}A_x = \frac{1}{2} erf \left( \frac{A_x}{\sigma} \right)  \Big|_{-\infty}^{\infty} = 1 \\
-cdf(A) = \int_0^{\infty} \frac{2A}{\sigma^2} e^{\frac{-A^2}{\sigma^2}}  \; \mathrm{d}A = -e^{-\frac{-A^2}{\sigma^2}} \Big|_0^{\infty} = 1\\
-cdf(A_1) = \int_0^{\infty} 2A_1 e^{-A_1^2} \; \mathrm{d}A_1 = -e^{-A_1^2} \Big|_0^{\infty} = 1\\
-cdf(I) = \int_0^{\infty} \frac{1}{\sigma^2} e^{-\frac{I}{\sigma^2}} \; \mathrm{d}A_1 = -e^{-\frac{I}{\sigma^2}}  \Big|_0^{\infty} = 1
+cdf(A_x) &= \int_{-\infty}^{\infty} \frac{1}{\sqrt{\pi} \sigma} e^{- \frac{A_x^2}{\sigma^2}}  \; \mathrm{d}A_x = \frac{1}{2} erf \left( \frac{A_x}{\sigma} \right)  \Big|_{-\infty}^{\infty} &= 1 \\
+cdf(A) &= \int_0^{\infty} \frac{2A}{\sigma^2} e^{\frac{-A^2}{\sigma^2}}  \; \mathrm{d}A = -e^{\frac{-A^2}{\sigma^2}} \Big|_0^{\infty} &= 1\\
+cdf(A_1) &= \int_0^{\infty} 2A_1 e^{-A_1^2} \; \mathrm{d}A_1 = -e^{-A_1^2} \Big|_0^{\infty} &= 1\\
+cdf(I) &= \int_0^{\infty} \frac{1}{\sigma^2} e^{-\frac{I}{\sigma^2}} \; \mathrm{d}A_1 = -e^{-\frac{I}{\sigma^2}}  \Big|_0^{\infty} &= 1
 \end{align}
 
 
 For the first equation, consider the standard PDF equation for normal distribution centering around $\mu$ and having variance $\sigma$ given below
 
 \begin{align}
-pdf(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{- \frac{(x-\mu)^2}{2 \sigma^2}}
+\textbf{Normal Distribution: } & pdf(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{- \frac{(x-\mu)^2}{2 \sigma^2}} \\
+\textbf{Chi-Squared Distribution (dof=2): } & pdf(x) = \frac{e^{-x/2}}{2} \\ %pdf(x) = \frac{x^{\frac{k}{2}-1}e^{-x/2}}{\Gamma(k/2)2^{k/2}} \\
+\textbf{Exponential Distribution: } & pdf(x) = \lambda e^{- \lambda x}
+\end{align}
+
+\begin{align}
+\textbf{Normal Distribution: } & cdf(x) = \frac{1}{2} \left[ 1 + erf \left( \frac{x-\mu}{\sqrt{2\sigma^2}} \right) \right] \\
+\textbf{Chi-Squared Distribution (dof=2): } & cdf(x) = 1 - e^{-x/2}\\
+\textbf{Exponential Distribution: } & cdf(x) = 1 - e^{- \lambda x}
 \end{align}
 
 Clearly, $A_x$ follows the normal distribution with expectation $avg(A_x)=0$ and variance $var(A_x)=\frac{\sigma}{\sqrt{2}}$.
