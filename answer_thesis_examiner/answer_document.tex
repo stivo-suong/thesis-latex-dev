@@ -12,6 +12,18 @@
 %\setlist{nolistsep} % no space among items as well as around whole list
 \setlist{noitemsep} %leave space around whole list
 
+\usepackage{tabularx}
+\newcommand{\replyToComment}[2]{
+  
+\noindent
+\begin{tabularx}{\textwidth}{r X}
+\textit{Comment:} & {#1} \\
+\textit{Reply:} & {#2}
+\end{tabularx}
+
+\vspace{5mm}
+}
+
 \title{Reply To Examiners}
 \date{\today}
 \author{Thanh-Hai Le}
