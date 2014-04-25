@@ -1,12 +1,11 @@
 {
   "Tien Sy": {
     "task:Next": [
-      "scrutinize wordings in answer document",
       "go through each chapter => make changes"
     ],
     "Thesis": {
       "task:Seq": [
-        "change in thesis"
+        "change in thesis, and answer document"
       ],
       "all": {
         "univ": {
@@ -94,45 +93,3 @@
   }
 }
 
-
-[1] H.H. Arsenault and M. Levesque, “Combined homomorphic and local-statistics processing for restoration of images degraded by signal dependent noise,” Appl. Opt., vol. 23, No. 6, pp. 845-850, Mar. 1984.
-
-[2] H. Xie, L.E. Pierce, and F.T. Ulaby, “Statistical properties of logarithmically transformed speckle,” IEEE Trans. Geosci.Remote Sensing, vol. 40, no. 3, pp.721-727, Mar 2002.
-
-[3] Nielsen, F. “k-MLE: A fast algorithm for learning statistical mixture models.” International Conference on Acoustics, Speech and Signal Processing, pp. 869–872 (2012)
-
-[4] J.S. Lee, “Digital image enhancement and noise filtering by use of local statistics,” IEEE Trans. Pattern Analysis and Machine Intelligence., vol. PAMI-2, no.2, pp.165-168, Feb. 1980.
-
-[5]D.T. Kuan, et. al., “Adaptive noise smoothing filter for images with signal-dependent noise,” IEEE Trans. Pattern Analysis and Machine Intelligence., vol. PAMI-7, no.2, pp.165-177, Feb. 1985.
-
-[6] V.S. Frost, et. al., “A model for radar images and its application to adaptive digital filtering of multiplicative noise,” IEEE Trans. Pattern Analysis and Machine Intelligence., vol. PAMI-4, no.2, pp.157-166, Feb. 1982.
-
-[7] A. Lopes, et. al., “Structure detection and statistical adaptive speckle filtering in SAR images,” Int. J/ Remote Sensing, vol.14 no.9, pp.1735-1758, June 1993.
-
-[8] A. Lopes, R. Touzi, and E. Nezry, “Adaptive speckle filters and scene heterogeneity,” IEEE Trans. Geosci. Remote Sensing, vol. 28, no.6, pp. 992-1000, Nov. 1990.
-
-[9]  Z. Wang, et. al., “Image quality assessment: From error visibility to structural similarity,” IEEE Trans. Image Processing, vol.13, no.4, pp.600-612, Apr. 2004.
-
-[10] S. Solbo and T. Eltoft, “ A Stationary wavelet-domain Wiener filter for correlated speckle,” IEEE Trans. Geosci. Remote Sensing, vol.46, no.4, pp.1219-1230, Apr. 2008.
-
-[11] M. Walessa and M. Datcu, “Model-based despeckling and information extraction from SAR images,” IEEE Trans. Geosci.Remote Sensing, vol.38, no.5, pp.2258-2269, Sep 2000.
-
-[12] A. Achim, et. al., “SAR image filtering based on the heavy-tailed Rayleigh model,” IEEE Trans. Image Processing, vol.15, no.9, pp.2686-2693, Sep. 2006.
-
-[13] F. Sattar, et. al., “Image enhancement based on a nonlinear multiscale method,” IEEE Trans. Image Processing, vol.6, no.6, pp.888-895, Jun 1997.
-
-[14] Y.Yu and S.T.Acton, “Automated annealing algorithm for SAR and MTI image cross section estimation,” Proc. SPIE SAR Data Processing for Remote Sensing 137, 1994, vol.2316, pp.339-360.
-
-[15] J.S. Lee, “Speckle analysis and smoothing of synthetic aperture radar images,” Computer Graphics and Image Processing, vol.17. no.1, pp.24-32, Sep. 1981.
-
-[16] C. Oliver and S. Quegan, Understanding Synthetic Aperture Radar Images, Boston, MA: ArtechHourse, 1998.
-
-[17] R. Touzi, “A review of speckle filtering in the context of estimation theory,” IEEE Trans. Geosci.Remote Sensing, vol.40, no.11, pp.2392-2404, Nov. 2002.
-
-[18] M. Cetin, et. al., “Evaluation of a regularized SAR imaging technique based on recognition-oriented features,” Proc. SPIE Algorithms for Synthetic Aperture Radar Imagery VII, 2000, vol. 4053, pp.40-51.
-
-[19] J.S. Lee, et. al., “Speckle filtering of synthetic aperture radar images: A review,” Remote Sensing Reviews, vol. 8, no. 4, pp.313-340, 1994.
-
-[20] R. Touzi, “A review of speckle filtering in the context of estimation theory,” IEEE Trans. Geosci. Remote Sensing, vol.40, no.11, pp.2392-2404, Nov. 2002.
-
-[21] F. Argenti, et. al., “A tutorial on speckle reduction in Synthetic Aperture Radar Images,” IEEE Geosci. And Remote Sensing Magazine, pp.6-35, Sep 2013.
