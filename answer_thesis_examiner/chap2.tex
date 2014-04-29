@@ -15,6 +15,28 @@
     {The achievement of objectives should (also) be stated in the conclusion chapter. }
     {These were added into the conclusion chapter (``with proper justfications based on experimental results and findings'').}
 
+\replyToComment
+    {Replace the word ``theory'' with ``model'' throughout the thesis}
+    {Search and replace operation done!}
+    
+\replyToComment
+    {The proposed model is derived based on the existing statistical models for SAR and extended to POLSAR}
+    {The main approach, as described in the thesis, differs in a subtle but important way.
+The proposed model is derived based on generic mathematical results for multi-dimensional random-walk \cite{Goodman_JOptSocAm_76, Goodman_Springer_1975}.
+That is: the proposed models by nature are applicable to multi-dimensional data and thus they are applicable to POLSAR data.
+To show that the proposed models are also applicable to SAR data, the dimension parameters in these models are collapsed into 1.
+The thesis subsequently shows that they match perfectly with existing SAR models.
+}
+
+\replyToComment
+    {The proposed log-transform model will introduce an inevitable bias error, which may not be able to measure by MSE.}
+    {
+      The thesis clearly recognizes that log-transformation will introduce bias.
+      It also shows that MSE evaluation does inherently include bias evaluation.
+      In fact, the thesis argues that MSE evaluation has two components: 1. bias evaluation and 2. variance evaluation, which for evaluating the performance of SAR speckle filters translates into 1. radiometric preservation and 2. noise suppression respectively.
+}
+
+   
 \rowcolors{2}{gray!25}{white}    
 \noindent
 \begin{longtable}[c]{p{0.1\textwidth}|p{0.1\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}}
@@ -55,12 +77,13 @@ ToC & - & missing page numbers & Rectified \\
 112 & 13 & these smaller requirements & these requirements \\
 132 & 9 & evaluation criteria & evaluation criterion
 \end{longtable}    
+\rowcolors{1}{white}{}
 
 \textbf{Overall Comments \& Replies}
 
 In general, I wish to express my appreciation towards Examiner No. 2 for his careful, detailed and concise review.
 I am amazed by the fact that the Examiner is able to precisely summarize the long thesis into a single sentence.
-I also feel indebted to the Examiner with his suggestion to extract out and submit portions of this thesis as scientific papers for peer review.
+I also feel encouraged by the Examiner's suggestion to extract out portions of this thesis as scientific papers for peer review, which has also been taken up and acted upon.
 
 =====
 
