@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -a ext=('tex' 'bib');
-f_name2='chap2'
+#f_name2='chap2'
 
 function e {
     echo $1
