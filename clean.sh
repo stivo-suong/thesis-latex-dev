@@ -32,7 +32,12 @@ function backup {
 
 backup './thesis' ext[@]
 backup '0_frontmatter/dedication' ext[@]
-
+backup '1_introduction/introduction' ext[@]
+backup '2/literature_review' ext[@]
+backup '3/sar' ext[@]
+backup '4/polsar' ext[@]
+backup '5/applications' ext[@]
+backup '6/conclusional_discussion' ext[@]
 
 #mv thesis.tex b.thesis.tex
 #mv thesis.bib b.thesis.bib
