@@ -49,68 +49,12 @@ There was no direct question in the report, and followings are my replies to his
 34 & 10 & how did you get this Eqn? & References are added for each Equation \\
 35 & 10 & which distribution is more appropriate & The most appropriate distribution is the distribution of the ``true signal'', which of course, is unknown \\
 43 & -3 & $pdf(A_1)=2A_1e^{A_1^2}$ & $pdf(A_1)=2A_1e^{-A_1^2}$ \\
+76 & -4 & chapter 2 & Chapter 2 \\
+129 & 1 & cahpter 5 & Chapter 5 \\
+129 & 6 & theoretical results & theoretical contributions \\
+129 & 21 & this thesis unite & this thesis unites \\
+130 & 1 & articles that has been & articles that have been \\
+132 & 14 & an important benefits & several important benefits \\
 \end{longtable}    
 \rowcolors{1}{white}{}
 
-%In page 14 of the returned thesis, Examiner No. 1 wonders ``Does the intagration of the PDF given for $A_x, A, I$ sum up to 1?''.
-%First I would like to thank Examiner No. 2 for raising such a question.
-%By going through his question, I realized that a negative sign were missed in the equation for $pdf(A_x)$.
-%With that corrected, let me repeat the Equations here
-%
-%\begin{align}
-%pdf(A_x) &= \frac{1}{\sqrt{\pi} \sigma} e^{- \frac{A_x^2}{\sigma^2}} \\
-%pdf(A)   &= \frac{2A}{\sigma^2} e^{\frac{-A^2}{\sigma^2}} \\
-%pdf(A_1) &= 2A_1 e^{-A_1^2} \\
-%pdf(I)   &= \frac{1}{\sigma^2} e^{-\frac{I}{\sigma^2}}
-%\end{align}
-%
-%The integration of these becomes
-%\begin{align}
-%cdf(A_x) &= \int_{-\infty}^{\infty} \frac{1}{\sqrt{\pi} \sigma} e^{- \frac{A_x^2}{\sigma^2}}  \; \mathrm{d}A_x = \frac{1}{2} erf \left( \frac{A_x}{\sigma} \right)  \Big|_{-\infty}^{\infty} &= 1 \\
-%cdf(A) &= \int_0^{\infty} \frac{2A}{\sigma^2} e^{\frac{-A^2}{\sigma^2}}  \; \mathrm{d}A = -e^{\frac{-A^2}{\sigma^2}} \Big|_0^{\infty} &= 1\\
-%cdf(A_1) &= \int_0^{\infty} 2A_1 e^{-A_1^2} \; \mathrm{d}A_1 = -e^{-A_1^2} \Big|_0^{\infty} &= 1\\
-%cdf(I) &= \int_0^{\infty} \frac{1}{\sigma^2} e^{-\frac{I}{\sigma^2}} \; \mathrm{d}A_1 = -e^{-\frac{I}{\sigma^2}}  \Big|_0^{\infty} &= 1
-%\end{align}
-%
-%
-%For the first equation, consider the standard PDF equation for normal distribution centering around $\mu$ and having variance $\sigma$ given below
-%
-%\begin{align}
-%\textbf{Normal Distribution: } & pdf(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{- \frac{(x-\mu)^2}{2 \sigma^2}} \\
-%\textbf{Chi-Squared Distribution (dof=2): } & pdf(x) = \frac{e^{-x/2}}{2} \\ %pdf(x) = \frac{x^{\frac{k}{2}-1}e^{-x/2}}{\Gamma(k/2)2^{k/2}} \\
-%\textbf{Exponential Distribution: } & pdf(x) = \lambda e^{- \lambda x}
-%\end{align}
-%
-%\begin{align}
-%\textbf{Normal Distribution: } & cdf(x) = \frac{1}{2} \left[ 1 + erf \left( \frac{x-\mu}{\sqrt{2\sigma^2}} \right) \right] \\
-%\textbf{Chi-Squared Distribution (dof=2): } & cdf(x) = 1 - e^{-x/2}\\
-%\textbf{Exponential Distribution: } & cdf(x) = 1 - e^{- \lambda x}
-%\end{align}
-%
-%Clearly, $A_x$ follows the normal distribution with expectation $avg(A_x)=0$ and variance $var(A_x)=\frac{\sigma}{\sqrt{2}}$.
-%
-%Next consider the standard PDF equation for chi-square distribution with $k$ degree of freedom given below:
-%
-%\begin{align}
-%pdf(x) = \frac{x^{\frac{k}{2}-1}e^{-x/2}}{\Gamma(k/2)2^{k/2}}
-%\end{align}
-%
-%Set $k=2$, and thus $\Gamma(k/2)=\Gamma(1)=1$, then:
-%
-%\begin{align}
-%pdf(x) = \frac{e^{-x/2}}{2} 
-%\end{align}
-%
-%Set $\frac{x}{2} = \frac{A^2}{\sigma^2}$ or $x = \frac{2A^2}{\sigma^2}$, thus $\frac{dx}{dA} = \frac{4A}{\sigma^2}$.
-%Variable change theorem give us:
-%
-%\begin{align}
-%pdf(A) = \frac{e^{-A^2/\sigma^2}}{2} \frac{4A}{\sigma^2} = \frac{2A}{\sigma^2} e^{-\frac{A^2}{\sigma^2}}
-%\end{align}
-%
-%
-%For the $pdf(I)$, if we set $\lambda = \frac{1}{\sigma^2}$ then the equation turns out to be the standard PDF equation for the Exponential Distribution 
-%
-%\begin{align}
-%pdf(x) = \lambda e^{- \lambda x}
-%\end{align}
