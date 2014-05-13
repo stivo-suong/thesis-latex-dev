@@ -313,23 +313,14 @@ closely tracks observable values.
 The argument is presented in a much more detailed manner in Section 5.3.2.1.
 }
 
-Page 94, section 5.2.2.2 is updated to indicate MSE as ``Mean Squared Error''.
-The reference for computation in the section is the ``true signal'' $\sigma$.
+\replyToComment
+    {Fig 5.12: shows the MSE and speckle suppression power of your f-MLE filters for homogeneous area. How does it compare with the other state-of-the-art speckle filters?}
+    {
+      It should be noted that the f-MLE filters are iterative filters, where the number of iteration is configurable.
+      Thus assuming prior knowledge of homogeneous area, by increasing the iteration number, the speckle suppression power can go arbitrarily better!
+      But of course, such a knowledge is only theoretical and it is impossible to hold true in real-life scenarios.
 
-Fig. 5.11 shows two curves that are essentially the same.
-One of them is ``simulated result'' and the other is ``analysis formula''.
-The difference is that the former is computed through a Monte-Carlo simulation and the other is a simple plotting of the mathematical calculated values.
-The purpose is to show that the heuristic formula given as
-
-\begin{align*}
-  MSE = \frac{1}{(ENL-0.5)\ln^2(2)}
-\end{align*}  
-
-closely tracks observable values.
-Readers should also note that this argument is presented in a much more detailed manner in Section 5.3.2.1.
-
-Examiner No 3 also expresses his curiosity to see ``how the f-MLE filter will compare with other state-of-the-art-filters''.
-While, I am also eager to see, and to some extend to prove, the good results of my proposed f-MLE filter,
+While, I am also eager to see, and to some extend to prove, the good results of my proposed f-MLE filter in rigorious manner,
   I have decided not to include it in the section 5.3, where the performance of many different filters are reviewed.
 There are a few reasons for such a decision.
 First, in the section I am proposing a new way to evaluate speckle filters.
@@ -340,6 +331,28 @@ That is because I was proposing both new speckle filters and a new approach to e
   which I wish to, as much as possible, keeping them independently of each other.
 Last but not least, as noted by all Examiners and myself included, speckle filtering is not the main topic of the thesis.
 It is only the avenue to demonstrate the benefits of the proposed models for SAR \& POLSAR data of the thesis.
+    }
+
+\replyToComment
+    {Please label the two curves in Fig. 5.13}
+    {The labels are added into the figure.}    
+    
+%Page 94, section 5.2.2.2 is updated to indicate MSE as ``Mean Squared Error''.
+%The reference for computation in the section is the ``true signal'' $\sigma$.
+%
+%Fig. 5.11 shows two curves that are essentially the same.
+%One of them is ``simulated result'' and the other is ``analysis formula''.
+%The difference is that the former is computed through a Monte-Carlo simulation and the other is a simple plotting of the mathematical calculated values.
+%The purpose is to show that the heuristic formula given as
+%
+%\begin{align*}
+%  MSE = \frac{1}{(ENL-0.5)\ln^2(2)}
+%\end{align*}  
+%
+%closely tracks observable values.
+%Readers should also note that this argument is presented in a much more detailed manner in Section 5.3.2.1.
+%
+%Examiner No 3 also expresses his curiosity to see ``how the f-MLE filter will compare with other state-of-the-art-filters''.
 
 \subsubsection*{8. Chapter 6}
 
