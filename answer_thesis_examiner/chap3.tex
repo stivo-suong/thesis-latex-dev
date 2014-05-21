@@ -3,14 +3,13 @@
 \begin{replyheader}
 \end{replyheader}  
 
-Since Examiner No. 3 presented his comments and suggestions in the order of the thesis' chapters, 
-  I would follow his suite.
+I would like to thank Examiner No. 3 for the constructive comments and suggestions. Since these were presented in the order of the thesis' chapters, I will follow this sequence in my responses below:
 
 \subsubsection*{1. Overall Organization and presentation}
 
 \replyToComment
     {Page ii of the Contents section is missing}
-    {Page numbers are added for Contents section}
+    {Page numbers have been added for the Contents section}
 
 \replyToComment
     {Usually, a Glossary is put at the end of the document}
@@ -37,11 +36,11 @@ Since Examiner No. 3 presented his comments and suggestions in the order of the 
 
 \replyToComment
     {Since these models are the key contributions of the thesis, it would be good to give a separate name to each of these models}
-    {The models' names are added into the abstract}
+    {The models' names have been added into the abstract}
 
 \replyToComment
     {The abstract lists the benefits of these models but not the shortcomings.}
-    {The shortcomings have also been included into the abstract.}
+    {The shortcomings have also been included into the abstract now.}
 
 %The abstract has been updated so that:
 %\begin{enumerate}[topsep=0pt]
@@ -53,25 +52,26 @@ Since Examiner No. 3 presented his comments and suggestions in the order of the 
 
 \replyToComment
     {Table captions appears at the top of a table, rather than below it}
-    {The suggestion has been updated in this chapter, as well as through out the whole thesis}
+    {This is typical of IEEE publications, so we adopted it in the thesis. However we tried this stylistic suggestion and it looks good, so it has been adopted for the revied thesis.}
 
 \replyToComment
     {No references throughout this chapter.}
-    {References have been included in this chapter to increase its persuasion power.}
+    {References have been included in this chapter, increasing its persuasive power.}
 
 \replyToComment
-    {you are trying to propose an additive and homoskedastic model for the data. What makes you think that thsi model is appropriate?}
+    {you are trying to propose an additive and homoskedastic model for the data. What makes you think that this model is appropriate?}
     {Before an answer is laid out, I wish to make a few points.
-First, I thank the Examiner to raise this question, which no doubt is an important one. 
-Second, while it is important to judge the end result, 
-  I am not quite sure that should be done at the very first chapter.
-In fact, a large portion of the final chapter is devoted towards such a discussion.
+Firstly, I do think that the Examiner has raise a good and important question here.
+However the goodness of the models are, at the end of the day, judged mainly by their performance in practice. In turn, the performance is found from the outcome of various experimental evaluations and after developing some mathematics. But the experiments and mathematics require quite a lot of theoretical explanation and background discussion before they are presented -- and this is what forms the main bulk of the thesis. 
+Because of this necessary sequence, I don't think that the demonstration of the models appropriateness can be tackled in the very first chapter, although the thesis can (and does) reveal early on that the models will (later) be shown to work well.
+%**IVM: Hai, I rewrote this quite a lot. Can you please ensure that somewhere at the front of the thesis it says something like "this model will be shown, by experimental evaluation presented later in this thesis, to be an appropriate and useful model"
 
-To directly address the Examiner's concern, let me iterate a few points that has been noted in the thesis.
+To directly address the Examiner's concern, let me mention a few points that have been noted earlier in the thesis.
 First the generic model proposed in this thesis is applicable to multi-dimensional POLSAR data.
-Second, when the multi-dimensional data is collapsed into one dimensional, 
+Second, when the multi-dimensional data is collapsed into one dimension, 
   the specific case of the proposed model matches perfectly with the model proposed for SAR by Arsenault \cite{Arsenault_JOptSocAm_1976}. 
-Thus, I believe, the proposed generic model is at least as appropriate as the widely-accepted model cited above.
+Thus -- even before performing a detailed evaluation -- there is good evidence that the proposed generic model is at least as appropriate as the widely-accepted model cited above.
+All of this discussion is in the revised thesis.
 }
 
 \replyToComment
@@ -109,14 +109,16 @@ Thus, I believe, the proposed generic model is at least as appropriate as the wi
 
 \replyToComment
     {Perhaps the theory section can be moved to a separate chapter, so that more space can be dedicated to the discussion of related work}
-    {In a bid of not confusing other examiners, however, I have decided not to move the theory section into a separate chapter.
-Still, this chapter is heavily updated so that: 
+    { %In a bid of not confusing other examiners, however, I have decided not to move the theory section into a separate chapter.
+    In the end I could not move the theory section away from a discussion of related work, because so much of the theory comes from the related work (i.e. it is not possible to cleanly separate these topics). 
+    But actually I believe the examiners request is really that "more space can be dedicated to the discussion of related work". So instead I heavily updated the chapter to do exactly what the examiner requests. For example: 
 \vspace{-3mm}
 \begin{enumerate}
-  \item Section 2.1 is shortened considerably and 
-  \item Section 2.2 is extended significantly. 
+  \item Section 2.1 (basic theory about the data and older related work) is shortened to 12 pages and 
+  \item Section 2.2 (newer related work and extended theory) is extended significantly to 13 pages. 
 \end{enumerate}
-These editions, I believe, lead to a better balance between describing the nature of the data and reviewing the related work.
+%**IVM: Hai, can you please check that what I wrote in the brackets () on the above 2 lines is correct?
+I believe that this rewriting leads to a better balance between describing the nature of the data and reviewing the related work.
 }
 
 %For Chapter 2, Examiner No. 3's suggests: ``Perhaps the theory section can be moved to a separate chapter, so that more space can be dedicated to the discussion of related work''.
@@ -135,31 +137,29 @@ These editions, I believe, lead to a better balance between describing the natur
 
 \replyToComment
     {how can the statement on page 44 line 1 ``... intensity are equal to a scaled version of these unit variables, specifically $A=\sigma A_1$ and $I=\sigma^2 I_1$'' be true?}
-    {the statement in page 44 line 1 should be intepreted strictly in the context of what preceeds it. 
-That is mathematically  speaking $\sigma$ is just a mathematical constant, which makes the statement true. 
-Any resemblence of it with the SAR signal is only established in the next paragraph onwards.
-In fact, line 7 page 44 clearly indicated where $\sigma$ can be considered as constant (i.e. spatial homogeneous area).
+    {the statement in page 44 line 1 should be interpreted strictly in the context that precedes it. 
+Mathematically speaking, $\sigma$ is just a constant, which makes the statement true.
+Any resemblance of this to the SAR signal will only established in the next paragraph onwards.
+In fact, line 7 page 44 clearly indicates under what circumstances that $\sigma$ can be considered constant (i.e. namely across spatially homogeneous areas).
 }
 
 \replyToComment
     {why homoskedasticity is valid, and what are the assumption in this analysis?}
     {Spartial homogeneity is the assumption used in the analysis thus far. 
-Its limitation is acknowledged in the very next sentence, as the Examiner No. 3 pointed out precisely: ``Over heterogeneous area, ... $\sigma$ varies significantly ...''.
+Its limitation is acknowledged in the very next sentence, as the Examiner No. 3 pointed out: ``Over heterogeneous areas, ... $\sigma$ varies significantly ...''.
 
-This assumption actually is not very restrictive.
-It should be noted that at the level of each radar physical resolution cell, 
-  the value measured in SAR is not deterministic.
-For all practical purposes, the single measured value is to be considered as the result of a stochastic process, with one ``true'' signal $\sigma$.
-In that sense, the assumption is actually applicable to both homogeneous and heterogeneous areas.
+This assumption is actually not very restrictive.
+It should be noted that at the level of each physical radar resolution cell, the value measured in SAR is not deterministic.
+For all practical purposes, the single measured value is considered to be the result of a stochastic process, which has one ``true'' signal, namely $\sigma$.
+In that sense, the assumption is actually applicable to both homogeneous and heterogeneous areas. %**IVM: Hai I'm not sure I follow your final sentence - if the assumption is homoskedacity, how can that also be applicable to heterogeneous areas? Or do you mean another assuption - the assumption of a stochastic process?
 }
 
 \replyToComment
     {If $\sigma$ is not a constant, then $var(L_A)$ and $var(L_I)$ cannot be homoskedastic}
-    {In general, the imaging area is heterogeneous, then $\sigma$ is no longer a constant from one resolution pixel to the next.
+    {If the imaging area is heterogeneous, then $\sigma$ is no longer a constant from one resolution pixel to the next.
 That much is clear.
 Then, as reviewed in Chapter 2, there are many different ways to model $\sigma$ which in turns leads to many different models for the observable magnitude.
-This changing $\sigma$ also leads to heteroskedasticity, 
-  which the Examiner correctly pointed out in his comment
+This non-constant $\sigma$ also leads to heteroskedasticity,  which the Examiner correctly pointed out in his comment
 %``$var(L_A)$ and $var(L_I)$ cannot be homoskedastic'', 
   should we consider ``$var(L_A)$ and $var(L_I)$'' as the variation of the observables in an area.
 However, if we consider ``$var(L_A)$ and $var(L_I)$'' as the deviation of the observables from their corresponding ``true signal'' at each physical resolution cell level, 
@@ -170,7 +170,7 @@ In fact they are constant, which leads to homoskedasticity!
 
 \replyToComment
     {If there are different models, the author should give a name to each of his models ...}
-    {Yes there are several models proposed and the thesis is updated with names for each of them!}
+    {Yes there are several models proposed and the thesis has been updated with names for each of them!}
 
 %There are apparently two main concerns from Examiner No. 3's comments.
 %The first is: ``how can the statement on page 44 line 1 ... be true?''.
@@ -232,14 +232,14 @@ Its form, as repeated from equation 4.1, is written as:
 \end{center}
 %\end{align}  
 
-The equation is also ill-defined where $|\Sigma|=0$, which is also the same time that $\Sigma^{-1}$ is ``ill-defined''.
-In other words, the models proposed has the same assumption and validity with the widely-accepted circular complex Gaussian distribution model.
+The equation is also ill-defined where $|\Sigma|=0$, which is also the same time that $\Sigma^{-1}$ is ill-defined.
+In other words, the proposed model has the same assumption and validity of the widely-accepted circular complex Gaussian distribution model.
 In POLSAR, $|\Sigma|=0$ most commonly happens when the dataset is in Single-Look format.
-This restriction is clearly stated in the sentence that follows Equation 4.1: ``the covariance matrix is only defined on multiple data-points''.
+Actually, this restriction is clearly stated in the sentence that follows Equation 4.1: ``the covariance matrix is only defined on multiple data-points''. %**IVM: Hai, maybe you can change the sentence in the thesis to say something like ``in common with other models based on complex Gaussian distribution, the model will be ill-defined where $|\Sigma|=0$''.
 
-It is partially for the ``narrow PDF and large errors'' concern that log-transformation is proposed.
-Since the original domain is multiplicative, the range of small values is, as also observed by Examiner No. 3, commonly found but extremely limited ($|\Sigma|$ ranges from $0+$ to $1$).
-Log transformed domain not only changes the nature from multiplicative to additive, but also give this ``small'' range $(0,1)$ a much widely space $(-\infty,0)$.
+In fact, it was partially for the ``narrow PDF and large errors'' concern that I originally proposed the use of log-transformation.
+Since the original domain is multiplicative, the range of small values is, as also observed by Examiner No. 3, commonly found to be extremely limited ($|\Sigma|$ ranges from $0+$ to $1$).
+The log transformed domain not only changes the nature of the noise from multiplicative to additive, but also give this ``small'' range $(0,1)$ a much wider space $(-\infty,0)$.
 In other words, it helps to expand the ``narrow'' distribution depicted in Equation 4.1 (when $|\Sigma|$ is small) to become another distribution whose shape does not dependent on $|\Sigma|$, as depicted by the Equation below:
 
 %\begin{align*}
@@ -253,8 +253,8 @@ In other words, it helps to expand the ``narrow'' distribution depicted in Equat
     {On page 66, $3^{rd}$ paragraph, last sentence, the author declares that ``A visual match is clearly observable ...''.
 However, in Fig 4.2(a) ...}
     {I understand that the Examiner is concerned about the subjective quality of the ``visual match'' claim. 
-For this, the section have been updated to include now a quantitative, and hence objective, measure of match.
-These objective numbers should completely addresses his concerns, I believe.}
+Because of this, the section has now been updated so that every `visual match' also includes a quantitative, and hence objective, measure of similarity.
+These objective scores -- which do indicate good matches -- should completely addresses these concerns, I believe.}
 
 \replyToComment
     {The section heading 4.5.3 should be ``Effective Number-of-Looks'' instead of ``Effect Number-of-Looks''}
@@ -316,26 +316,26 @@ The argument is presented in a much more detailed manner in Section 5.3.2.1.
 \replyToComment
     {Fig 5.12: shows the MSE and speckle suppression power of your f-MLE filters for homogeneous area. How does it compare with the other state-of-the-art speckle filters?}
     {
-      It should be noted that the f-MLE filters are iterative filters, where the number of iteration is configurable.
-      Thus assuming prior knowledge of homogeneous area, by increasing the iteration number, the speckle suppression power can go arbitrarily better!
-      But of course, such a knowledge is only theoretical and it is impossible to hold true in real-life scenarios.
+      It should be noted that the f-MLE filters are iterative filters, where the number of iterations is configurable.
+      Thus assuming prior knowledge of a homogeneous area, by increasing the iteration number, the speckle suppression power can be improved.
+      But of course, such knowledge is only theoretical and may be difficult to obtain for real-life scenarios.
 
-While, I am also eager to see, and to some extend to prove, the good results of my proposed f-MLE filter in rigorious manner,
-  I have decided not to include it in the section 5.3, where the performance of many different filters are reviewed.
+While, I am also eager to see, and to some extent to prove, the good results of my proposed f-MLE filter in a rigorous manner,
+  I have decided not to include this in the section 5.3, where the performance of many different filters are reviewed.
 There are a few reasons for such a decision.
-First, in the section I am proposing a new way to evaluate speckle filters.
-And instead of at the same time discussing the performance of f-MLE filter, I wish to focus on that topic exclusively.
-Second, assuming the performance of f-MLE filter is included and found to be superior than others,
-  such a result can be easily refuted.
-That is because I was proposing both new speckle filters and a new approach to evaluate speckle filters,
-  which I wish to, as much as possible, keeping them independently of each other.
-Last but not least, as noted by all Examiners and myself included, speckle filtering is not the main topic of the thesis.
-It is only the avenue to demonstrate the benefits of the proposed models for SAR \& POLSAR data of the thesis.
+First, the focus of this section is to propose a new way to evaluate speckle filters, \textbf{not} to propose any new speckle filter.
+Instead of discussing the performance of one particular filter (f-MLE), I wish to focus more exclusively on the topic of \textit{how} to evaluate such filters.
+Second, assuming the performance of the f-MLE filter is included and found to be superior than others,
+  then such a result would be highly suspect
+because I would in effect be proposing both a speckle filter as well as a new approach to evaluate speckle filters.
+As much as possible, I would like to keep these issues independently of each other.
+Last but not least, as noted by all Examiners and myself (in the thesis abstract, introduction and conclusion), speckle filtering is not the main topic of the thesis.
+It is only one avenue to demonstrate the benefits of the proposed models for SAR \& POLSAR data.
     }
 
 \replyToComment
     {Please label the two curves in Fig. 5.13}
-    {The labels are added into the figure.}    
+    {The labels have now been added into the figure.}    
     
 %Page 94, section 5.2.2.2 is updated to indicate MSE as ``Mean Squared Error''.
 %The reference for computation in the section is the ``true signal'' $\sigma$.
@@ -358,10 +358,10 @@ It is only the avenue to demonstrate the benefits of the proposed models for SAR
 
 \replyToComment
     {If the proposed models are ``far from complete'', how can it be an accurate representation of the data.}
-    {the proposed models in this thesis do not aim to become accurate representation, or fully representative, of the data.
-Rather, they are proposed as highly representative, probably the most representative scalar models, for the multi-dimensional data.
-They are, however, useful as scalar models are needed quite often, when scalar decision are to be taken,
-  for example: what is the best speckle filter for the given data set?, or what type of surface does the region of interest belong to? ...
+    {The proposed models in this thesis do not aim to become accurate representations of all data, or to be fully representative of all data.
+Rather, they are proposed as being highly representative (and possibly the \textit{most representative} scalar models) for the multi-dimensional POLSAR data.
+Despite not being perfect, the models are very useful, since scalar models are often needed when scalar decisions are required,
+  for example, in answering the question: what is the best speckle filter for the given data set?, or what type of surface does the region of interest belong to? ...
 }
 
 %In this chapter, the Examiner wonder: ``if the proposed models are far from complete, how can it be an accurate representation of the data''.
@@ -375,11 +375,12 @@ They are, however, useful as scalar models are needed quite often, when scalar d
       %Page 133, line 3: ``it is definitely not fully representative of the data.''.
       %So what kind of error it cause?
       %How will it affects the use of your model?
-      It is neccessary to point out what are the shortcomings and how it affects the use of your model!
+      It is necessary to point out what are the shortcomings and how it affects the use of your model!
     }
     {
-      The thesis clearly indicated that the proposed models inherently suffer from loss of dimension where the full data is multi-dimensional and the proposed models are scalar.
-      This restrict the use of the model to a class of problem where a single scalar decision, probability, distance or number is required to represent the complex dataset.
+      The thesis very clearly states %**IVM: Hai, can you remember where? Good to put a referene here
+       that the proposed models inherently suffer from loss of dimension where the full data is multi-dimensional and the proposed models are scalar.
+      This restricts the use of the model to a class of problems where a single scalar decision, probability, distance or number is required to represent the complex dataset.
     }
 
 \replyToComment
@@ -388,14 +389,21 @@ They are, however, useful as scalar models are needed quite often, when scalar d
       How can you expect others to believe in you, when you don't know what most of what it is supposed to do?
     }
     {
-     To persuade people into believing its proposed models, the thesis follows rigorous scientific methodologies. 
-     They include theoretical mathematics transformations and realistic hypothesis-testing experiments.
-      The thesis also includes a chapter detailing several different applications of the proposed models.
-      These applications, due to the various practical constraint, are unlikely to be exhaustive over all future applications.
+     To persuade people into believing its proposed models, this thesis tries to maintain and follow a very rigorous scientific methodology. 
+     This includes theoretical mathematical transformations and realistic hypothesis-testing experiments.
+     The theory, mathematics, objective analysis and subjective evaluations all agree, and demonstrate the validity of the models.
+      The thesis also includes a chapter detailing several different applications for the proposed models, but with the disclaimer that the examiner has taken exception to.
+      
+      To explain this, firstly it is completely impossible for one thesis to include a discussion on \textit{all possible uses} of something as general as a model such as this. Therefore, the thesis concentrates on what are likely to be the most important uses. These also happen to coincide with the applications that the author was working on when he originally derived the models.
+      Secondly, if other researchers find these models to be useful, they will apply them in many different situations. Maybe more than we can imagine at present. Therefore it is only being honest to acknowledge this fact in the thesis.
 
-In fact, the two topics of 1) what else the proposed models can be applied on and 2) if the proposed models are to be taken as true, I feel, are not much related.
-      In the end, Einstein probably did not foresee that his theories were used to create atomic bombs and killed thousands of people.
-This lack of foresight however does not cast any doubt on his contribution to our scientific progress.
+Actually, the two questions of (1) what else can the proposed models be used for and (2) should the proposed models be taken as true, are not really related.
+%      In the end, Einstein probably did not foresee that his theories were used to create atomic bombs and killed thousands of people.
+%This lack of foresight however does not cast any doubt on his contribution to our scientific progress.
+%**IVM: Hai, best not to bring up Einstein here...
+
+In summary, the thesis contains a thorough investigation of the models, and presents results that are both consistent, positive and indicative. This should be highly persuasive.
+At the same time, the thesis makes an effort to evaluate the application of the models in the most important usage domains that the author has identified, as well as to address the use of the models beyond that.
     }
 
 \replyToComment
@@ -404,7 +412,7 @@ This lack of foresight however does not cast any doubt on his contribution to ou
       However, in the conclusion chapter, there is no corresponding list of achievements ...
     }
     {
-      A corresponding list of achievement has been included showing that all set-out objectives are met.
+      A corresponding list of achievements has been included in the conclusion, showing that all objectives were met.
     }
     
 %The Examiner's next question center around this very point: ``.. definitely not full representative of the data''.
@@ -419,8 +427,8 @@ This lack of foresight however does not cast any doubt on his contribution to ou
 \subsubsection*{9. Appendix}
 
 \replyToComment
-    {It is not ususal to attach copies of academic papers in the Appendix.}
-    {The attached papers were removed from the Appendix.}
+    {It is not usual to attach copies of academic papers in the Appendix.}
+    {They were included for the convenience of the examiners and other readers. They have now been removed from the Appendix.}
 
 %While the conference papers have been published and the journal paper submitted,
 %  their copies have been removed from this section.

@@ -3,54 +3,57 @@
 \begin{replyheader}
 \end{replyheader}  
 
+I would like to thank Examiner 2 for examining the thesis carefully. I have listed the comments below, and responded to each one. I have also rectified all of the items in the errata.
+
 \replyToComment
     {Sec 1.1 and 1.2 should be reviewed again ... with proper citations on the background studies.}
-    {The sections were reviewed and several citations were added}
+    {This has been done: both sections have been reviewed with several new citations added}
 
 \replyToComment
     {Paragraph 1 of Sec 1.3.3 should be removed or rewritten}
     {The paragraph were removed?}
-    
+%**IVM: why the question mark??
 \replyToComment
     {The achievement of objectives should (also) be stated in the conclusion chapter. }
-    {These were added into the conclusion chapter (``with proper justfications based on experimental results and findings'').}
+    {These have now been added into the conclusion chapter (with proper justfications based on experimental results and findings).}
 
 \replyToComment
     {Replace the word ``theory'' with ``model'' throughout the thesis}
-    {Search and replace operation done!}
+    {This has been done.}
+%**IVM better not use humour... not all examiners have a sense of humour!!    {Search and replace operation done!}
     
 \replyToComment
     {The proposed model is derived based on the existing statistical models for SAR and extended to POLSAR}
     {The main approach, as described in the thesis, differs in a subtle but important way.
 The proposed model is derived based on generic mathematical results for multi-dimensional random-walk \cite{Goodman_JOptSocAm_76, Goodman_Springer_1975}.
-That is: the proposed models by nature are applicable to multi-dimensional data and thus they are applicable to POLSAR data.
-To show that the proposed models are also applicable to SAR data, the dimension parameters in these models are collapsed into 1.
-The thesis subsequently shows that they match perfectly with existing SAR models.
+That is: the proposed models by nature are applicable to multi-dimensional data and thus to POLSAR data.
+To show that the proposed (multidimensional) models are also applicable to SAR data, the dimension parameters in these models are collapsed into 1. The thesis subsequently shows that they match perfectly with existing SAR models.
 }
 
 \replyToComment
     {The proposed log-transform model will introduce an inevitable bias error, which may not be able to measure by MSE.}
     {
-      The thesis clearly recognizes that log-transformation will introduce bias.
-      It also shows that MSE evaluation does inherently include bias evaluation.
-      In fact, the thesis argues that MSE evaluation has two components: 1. bias evaluation and 2. variance evaluation, which for evaluating the performance of SAR speckle filters translates into 1. radiometric preservation and 2. noise suppression respectively.
+      It is true. In fact, the thesis does say that log-transformation will introduce bias. %**IVM
+      It also shows that MSE evaluation does inherently include a bias evaluation.
+      In fact, the thesis argues that MSE evaluation has two components: 1. bias evaluation and 2. variance evaluation, which, for evaluating the performance of SAR speckle filters translates into two criteria: 1. radiometric preservation and 2. noise suppression respectively.
 }
 
 \replyToComment
     {A more comprehensive review of the relevant SAR/POLSAR speckle filters should be included.}
-    {The most recent review \cite{Argenti_GRSM_2013} has been included together with several other publications \cite{Lee_RSReviews_1994, Cetin_ProcSPIE_2000, White_ProcSPIE_1994, Sattar_TIP_1997, Wang_TIP_2004, Nielsen_2012_ICASSP}}
+    {The most recent review \cite{Argenti_GRSM_2013} has been included together with several other publications \cite{Lee_RSReviews_1994, Cetin_ProcSPIE_2000, White_ProcSPIE_1994, Sattar_TIP_1997, Wang_TIP_2004, Nielsen_2012_ICASSP}, all discussed within the thesis.}
 
 \replyToComment
-    {Whereever possible, samples of SAR/POLSAR images with these three types of features (i.e. homogeneous, textured and strong scatterer) should be used to evaluate the effectiveness of the proposed models.}
-    {In the section to evaluate speckle filters, various different patterns had been studied. Also the MSE evaluation which includes bias and variance evaluation are shown to be able to evaluate the effectiveness of different speckle filters in terms of radiometric preservation and speckle noise reduction respectively.}
+    {Wherever possible, samples of SAR/POLSAR images with these three types of features (i.e. homogeneous, textured and strong scatterer) should be used to evaluate the effectiveness of the proposed models.}
+    {In the section on evaluating speckle filters, various different patterns have been studied. Also the MSE evaluation which includes bias and variance evaluation are shown to be able to evaluate the effectiveness of different speckle filters in terms of radiometric preservation and speckle noise reduction respectively.}
+%**IVM: Hai - do you think that this answers the examiners question? Maybe he is looking for visual examples?
     
 \replyToComment
     {The work done has great potential to be published in high impact factor journals such as JSTAR, IJRS and PIER}
-    {I appreciate the Examiner's vote of confidence. Portions of the thesis has been extracted out as academic papers and submitted for peer-review.}    
+    {I appreciate the Examiner's vote of confidence. Portions of the work in this thesis have been written up as academic papers and submitted for peer-review.}    
 
 \replyToComment
     {Define terms heteroskedastic and homoskedastic in the context of SAR imagery.}
-    {Heteroskedastic and homoskedastic are terms defined in statistical context to respectively denote the fact that different sub-populations of a given samples can have different or similar variabilities. In the context of SAR (and POLSAR) imagery they denote the fact that different areas in a given image can have different or the same variances.}
+    {Heteroskedastic and homoskedastic are terms defined in a statistical context to respectively denote the fact that different sub-populations of given samples can have different or similar variabilities. In the context of SAR (and POLSAR) imagery they denote the fact that different areas in a given image can have different or similar sample variance.}  %**IVM added the word 'sample'
 
 \replyToComment
     {Add references to the following statement: ``for example speckle filtering, target detection, image segmentation and other cluster, classification techniques''}
@@ -58,7 +61,7 @@ The thesis subsequently shows that they match perfectly with existing SAR models
 
 \replyToComment
     {Add references to the following statement: ``most of these data processing techniques are traditionally designed for additive and homoskedastic data.''}
-    {Reference added: most of these data processing techniques are traditionally designed for additive and homoskedastic data \cite{Dutch_LNCS_2004}.}
+    {Reference added: \cite{Dutch_LNCS_2004}.}
 
 \replyToComment
     {Add references to the following statement: ``Such use, however, is known to be not very robust for these so-called heavy detailed distributions.''}
@@ -78,7 +81,7 @@ The thesis subsequently shows that they match perfectly with existing SAR models
 
 \replyToComment
     {It would be easier to read and refer if all the Equations are labelled accordingly.}
-    {All equations in the thesis has been updated with labels.}
+    {All equations in the thesis have been updated with labels. Originally I had used labels only for equations which were important or were referred to later.}
 
 
 \textbf{Errata Sheet}
@@ -104,10 +107,10 @@ ToC & - & missing page numbers & Rectified \\
 24 & 14 & SVM & SVM (Support Vector Machine) \\
 35 & 6-7 & Rician distribution [48]... & Rician distribution [48]. \\
 35 & 11 & back scattering & backscattering \\
-36 & 10 & literatured & literatures \\
+36 & 10 & literatured & literature \\   %**IVM: Hai, please change the thesis to "literature" instead of "literatures"
 37 & -2 & Proposed bu & proposed by \\
 39 & 4 & dependence & dependency \\
-44 & -1 & The nature of SAR is ... heteroskedastic heterogeneously & the sentence is rephrased \\
+44 & -1 & The nature of SAR is ... heteroskedastic heterogeneously & the sentence has been rephrased \\
 46 & 4 & most known common & most commonly known \\
 56 & 6 & POLSAR And & POLSAR. And \\
 65 &5,7 & an homogeneous area & a homogeneous area \\
@@ -115,10 +118,10 @@ ToC & - & missing page numbers & Rectified \\
 77 & 5,6 & it has already been proven & it has already been proven [?] \\
 87 & -1 & Fig 5.6a & Fig 5.6. \\
 89 & - & Figure 5.6 - subtitle (a) & (a) is removed \\
-91 & - & Figure 5.8: Legends are too small to read & They are enlarged \\
+91 & - & Figure 5.8: Legends are too small to read & They have been enlarged \\
 95 & - & Figure 5.12 & Use the same scale for  y axis (i.e MSE 0:1) across all the plots \\
 103 & 22 & related to the ENL index. over & related to the ENL index over \\
-104 & 13 & Equation 5.3.2.1 & The number is corrected to (?) \\
+104 & 13 & Equation 5.3.2.1 & The number is corrected to (?) \\  %**IVM: something missing here??
 109 & 8 & Figs. 5.21c and 5.21d allows & Fig 5.21(a) and Fig 5.21(d) allow \\
 112 & 13 & these smaller requirements & these requirements \\
 132 & 9 & evaluation criteria & evaluation criterion
@@ -128,7 +131,7 @@ ToC & - & missing page numbers & Rectified \\
 \textbf{Overall Comments \& Replies}
 
 In general, I wish to express my appreciation towards Examiner No. 2 for his careful, detailed and concise review.
-I am amazed by the fact that the Examiner is able to precisely summarize the long thesis into a single sentence.
+%**IVM: I would skip this-> I am amazed by the fact that the Examiner is able to precisely summarize the long thesis into a single sentence.
 I also feel encouraged by the Examiner's suggestion to extract out portions of this thesis as scientific papers for peer review, which has also been taken up and acted upon.
 
 %=====
