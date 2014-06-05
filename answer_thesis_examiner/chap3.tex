@@ -34,12 +34,18 @@ I would like to thank Examiner No. 3 for the constructive comments and suggestio
 \subsubsection*{2. Abstract}
 
 \replyToComment
-    {Since these models are the key contributions of the thesis, it would be good to give a separate name to each of these models}
-    {The models' names have been added into the abstract}
+    {
+      Since these models are the key contributions of the thesis, it would be good to give a separate name to each of these models.
+      Also a short description of what each of them is suitable for should also be included in the abstract.
+    }
+    {The models' names and descriptions have been added into the abstract}
 
 \replyToComment
-    {The abstract lists the benefits of these models but not the shortcomings.}
-    {The shortcomings have also been included into the abstract now.}
+    {The abstract lists the benefits of these models but not the shortcomings. Why?}
+    {
+      The shortcomings were discussed in the final chapters of the thesis.
+      They have also been included into the abstract now.
+    }
 
 \subsubsection*{3. Chapter 1}
 
@@ -55,7 +61,8 @@ I would like to thank Examiner No. 3 for the constructive comments and suggestio
     {you are trying to propose an additive and homoskedastic model for the data. What makes you think that this model is appropriate?}
     {Before an answer is laid out, I wish to make a few points.
 Firstly, I do think that the Examiner has raise a good and important question here.
-However the goodness of the models are, at the end of the day, judged mainly by their performance in practice. In turn, the performance is found from the outcome of various experimental evaluations and after developing some mathematics. But the experiments and mathematics require quite a lot of theoretical explanation and background discussion before they are presented -- and this is what forms the main bulk of the thesis. 
+However %the goodness of
+the models are, at the end of the day, judged mainly by their performance in practice. In turn, the performance is found from the outcome of various experimental evaluations and after developing some mathematics. But the experiments and mathematics require quite a lot of theoretical explanation and background discussion before they are presented -- and this is what forms the main bulk of the thesis. 
 Because of this necessary sequence, I don't think that the demonstration of the models appropriateness can be tackled in the very first chapter, although the thesis can (and does) reveal early on that the models will (later) be shown to work well.
 %**IVM: Hai, I rewrote this quite a lot. Can you please ensure that somewhere at the front of the thesis it says something like "this model will be shown, by experimental evaluation presented later in this thesis, to be an appropriate and useful model"
 
@@ -161,6 +168,18 @@ Because of this, the section has now been updated so that every `visual match' a
 These objective scores -- which do indicate good matches -- should completely addresses these concerns, I believe.}
 
 \replyToComment
+    {
+      In fact, at x-axis value, the real data has a value that is a sharp dip from its neighboring values.
+      Perhaps, it is important to exaplain why the real data behaves in such a way?
+    }
+    {
+      It is observable that the chart for the real data (AIRSAR case) is not behaving as good in comparison to other dataset (e.g. RADARSAT2 or simulated data).
+      This is because the AIRSAR data set is much smaller in size than the other dataset (50x50 for AIRSAR vs. 300x300 for RADARSAT2).
+      Naturally, real data sets have natural fluctuation in comparison to perfect theoretical assumptions, (e.g. the area is assumed to be homogeneous while such a fact is not known for sure, in practice).
+      In small dataset (i.e. the AIRSAR dataset) these fluctuations are expected to be more pronouced than others.
+    }
+    
+\replyToComment
     {The section heading 4.5.3 should be ``Effective Number-of-Looks'' instead of ``Effect Number-of-Looks''}
     {Updated accordingly!}
 
@@ -194,7 +213,19 @@ The argument is presented in a much more detailed manner in Section 5.3.2.1.
       It should be noted that the f-MLE filters are iterative filters, where the number of iterations is configurable.
       Thus assuming prior knowledge of a homogeneous area, by increasing the iteration number, the speckle suppression power can be improved.
       But of course, such knowledge is only theoretical and may be difficult to obtain for real-life scenarios.
+      Concerning the comparison with other state-of-the-art filters, please see my answer below.
+    }
 
+\replyToComment
+    {Please label the two curves in Fig. 5.13}
+    {The labels have now been added into the figure.}    
+
+\replyToComment
+    {
+      In Fig 5.15 you show a comparison between f-MLE filter and the box-car filter for heterogeneous patterns ...
+      I am still curious about how f-MLE filter will compare with other state-of-the-art filters for heterogeneous area as well.
+    }
+    {
 While, I am also eager to see, and to some extent to prove, the good results of my proposed f-MLE filter in a rigorous manner,
   I have decided not to include this in the section 5.3, where the performance of many different filters are reviewed.
 There are a few reasons for such a decision.
@@ -209,9 +240,14 @@ It is only one avenue to demonstrate the benefits of the proposed models for SAR
     }
 
 \replyToComment
-    {Please label the two curves in Fig. 5.13}
-    {The labels have now been added into the figure.}    
-
+    {
+      Look at Fig 5.13 again, ... can I assume that (b) and (d) are the results of the boxcar filter for homogeneous area?
+      Can these results be compared to the f-MLE results for homogeneous area in Fig 5.12?
+    }
+    {
+      TODO:
+    }    
+    
 \subsubsection*{8. Chapter 6}
 
 \replyToComment
@@ -224,10 +260,10 @@ Despite not being perfect, the models are very useful, since scalar models are o
 
 \replyToComment
     {
-      %Page 133, line 3: ``it is definitely not fully representative of the data.''.
-      %So what kind of error it cause?
-      %How will it affects the use of your model?
-      It is necessary to point out what are the shortcomings and how it affects the use of your model!
+      Page 133, line 3: ``it is definitely not fully representative of the data.''.
+      So what kind of error it cause?
+      How will it affects the use of your model?
+      %It is necessary to point out what are the shortcomings and how it affects the use of your model!
     }
     {
       The thesis very clearly states %**IVM: Hai, can you remember where? Good to put a referene here
@@ -237,6 +273,9 @@ Despite not being perfect, the models are very useful, since scalar models are o
 
 \replyToComment
     {
+      Page 133, line 1: ``... its potential still mostly stays undiscovered''.
+      So what have you done with your thesis?
+      Do 10\% of the work and leave the other 90\% for other people to do it for you?
       A thesis is supposed to persuade others to believe what you have proposed and to use it.
       How can you expect others to believe in you, when you don't know what most of what it is supposed to do?
     }
