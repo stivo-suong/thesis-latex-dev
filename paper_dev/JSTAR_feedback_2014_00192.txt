@@ -1,0 +1,58 @@
+Dear Mr. Le:
+
+I am sorry to inform you that your manuscript
+
+Scalar and Representative Observables, and Their Associated Statistical Model, for Polarimetric SAR Data
+JSTARS-2014-00192
+
+has been carefully reviewed by the J-STARS Editorial Review Board and has not
+been recommended for publication at this time.  However, the Editors do
+feel that with significant effort and revisions this paper could hold
+enough merit to publish.  Therefore you are encouraged to review all
+comments submitted by the reviewers and resubmit this paper as a new
+manuscript in the future.  Please use the "Submit a Resubmission" link in
+your author center if you do choose to submit this paper for re-review.
+
+Below are summary comments from the Editorial Review Board for your
+information. Any attached files that may be referenced with these comments
+can be accessed in a copy of this decision letter located in your Author
+Center on ScholarOne Manuscripts.
+
+Thank you for submitting your manuscript to J-STARS.
+
+Sincerely,
+
+Prof. Jocelyn Chanussot
+Editor in Chief, Journal of Selected Topics in Applied Earth Observations and Remote Sensing
+
+Associate Editor Comments:
+Associate Editor
+Comments to the Author:
+Dear Dr Le:
+Your manuscript entitled " Scalar and Representative Observables, and Their Associated Statistical
+Model, for Polarimetric SAR Data", which you submitted to IEEE JSTARS, has been reviewed. The referee
+comments are included at the bottom of this letter.
+The referee(s) think that the manuscript cannot be published as it is. Therefore, I invite you to revise
+your paper according to the referee(s)' comments and resubmit it once all the referee concerns have
+been properly addressed.
+
+Reviewer's Comments:
+Reviewer: 1
+
+Comments to the Author
+this paper investigates various statistical models for the ratio of the determinant of covariance matrices. Overall it is an interesting paper but some elements are missing in order to ensure a good repeatability of the results.
+
+I'm a little bit sceptical about the derivation of the pdf for the ratio (21) in order to get (23), are you just showing a ratio of chi-squared distributed random variables without actually computing the ratio pdf? usually the derivation of the pdf of the ratio of independent random variables implies an integration using a Jacobian, therefore some details or a reference would be appreciated.
+
+The pdf[] notations could be removed on page 4, we know that we are dealing with pdfs.
+
+p4L55, second column: please define the notation \Lambda in ln(Q), is it the  Wilks's lambda distribution?
+
+Section VI: I'm little surprised that the authors chose to look immediately at real data, I would have expected some Monte-Carlo simulations where the parameter values for the various pdfs are perfectly known (in particular L which is estimated here) and uncertainties about sample homogeneity are also absent. The various histograms are maybe easier to display in a log-probability axis especially for the tail behavior. Also, the various sample sizes should be given as well as the estimated L values.
+
+In Section VI.B, in the multi-dimensional case, it is not clear what analytical relation (if any) similar to (26) was used for computing the model pdfs for R_\Sigma (22) and R_C (23) (related to my first comment).
+
+Reviewer: 2
+
+Comments to the Author
+See attached comments
