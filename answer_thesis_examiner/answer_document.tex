@@ -16,45 +16,50 @@
 %\usepackage{lipsum}
 %\newcommand{\LongText}{This is a long text.} 
 %\lipsum[1-3]
-\newenvironment{mylist}[1]% #1 is widest label
-{ \list{}%
-  {
-    \settowidth\labelwidth{{#1}}%
-    \leftmargin\labelwidth
-    \advance\leftmargin\labelsep
-  }%
-}{\endlist}
-
-\newcommand{\replyToComments}[2]{
-  \begin{mylist}{abc}
-    \item[\textit{Comment:}]  {#1} 
-    \item[\textit{Reply:}] {#2} 
-  \end{mylist}
-}
+%\newenvironment{mylist}[1]% #1 is widest label
+%{ \list{}%
+%  {
+%    \settowidth\labelwidth{{#1}}%
+%    \leftmargin\labelwidth
+%    \advance\leftmargin\labelsep
+%  }%
+%}{\endlist}
+%
+%\newcommand{\replyToComments}[2]{
+%  \begin{mylist}{abc}
+%    \item[\textit{Comment:}]  {#1} 
+%    \item[\textit{Reply:}] {#2} 
+%  \end{mylist}
+%}
 
 %http://tex.stackexchange.com/questions/56374/left-margin-flush-for-itemizes-item-labels-in-latex
 \usepackage{enumitem}
 \newcommand{\replyToComment}[2]{
+\vspace{2mm}
 \begin{description}
-    [align=left,style=nextline,leftmargin=*,labelsep=\parindent,font=\normalfont]
+    [
+      align=left,
+      style=nextline,
+      leftmargin=*,
+      labelsep=\parindent,
+      font=\normalfont
+    ]
     \item[\textit{Comment:}]  {#1} 
     \item[\textit{Reply:}] {#2} 
-%  \item[FIRST ITEM] Note that my list definition is not indented
-%  \item[SECOND ITEM] This one is also not indented and the description    is long enough to span two lines.
 \end{description} 
 }
     
-\usepackage{tabularx}
-\newcommand{\replyToCommentss}[2]{
-  
-\noindent
-\begin{tabularx}{\textwidth}{r X}
-\textit{Comment:} & {#1} \\
-\textit{Reply:} & {#2}
-\end{tabularx}
-
-\vspace{5mm}
-}
+%\usepackage{tabularx}
+%\newcommand{\replyToCommentss}[2]{
+%  
+%\noindent
+%\begin{tabularx}{\textwidth}{r X}
+%\textit{Comment:} & {#1} \\
+%\textit{Reply:} & {#2}
+%\end{tabularx}
+%
+%\vspace{5mm}
+%}
 
 \usepackage{longtable}
 \usepackage[table]{xcolor}
