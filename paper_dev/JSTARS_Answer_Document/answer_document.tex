@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage} %to give each section a new page
+
+\usepackage{amsmath} %to have equation with no number
+\usepackage{chapterbib} %to have references in each chapter
+%\usepackage{enumerate} %to enumerate with a,b,c instead of 1,2,3
+\renewcommand{\theenumi}{\alph{enumi}}%to enumerate with a,b,c instead of 1,2,3
+
+\usepackage{enumitem}
+%\setlist{nolistsep} % no space among items as well as around whole list
+\setlist{noitemsep} %leave space around whole list
+
+%http://tex.stackexchange.com/questions/56374/left-margin-flush-for-itemizes-item-labels-in-latex
+\usepackage{enumitem}
+\newcommand{\replyToComment}[2]{
+\vspace{2mm}
+\begin{description}
+    [
+      align=left,
+      style=nextline,
+      leftmargin=*,
+      labelsep=\parindent,
+      font=\normalfont
+    ]
+    \item[\textit{Comment:}]  {#1} 
+    \item[\textit{Reply:}] {#2} 
+\end{description} 
+}
+    
+%\usepackage{tabularx}
+%\newcommand{\replyToCommentss}[2]{
+%  
+%\noindent
+%\begin{tabularx}{\textwidth}{r X}
+%\textit{Comment:} & {#1} \\
+%\textit{Reply:} & {#2}
+%\end{tabularx}
+%
+%\vspace{5mm}
+%}
+
+\usepackage{longtable}
+\usepackage[table]{xcolor}
+
+\title{Reply To JSTARS Reviewers' Comments}
+\date{\today}
+\author{Thanh-Hai Le}
+
+\begin{document}
+\maketitle
+
+\newenvironment{replyheader}{
+	\vspace*{10mm}
+\setcounter{page}{1}
+
+\begin{tabular}{l l}
+\bf{Name of Student:} & Le Thanh Hai \\
+\bf{Degree:} & Doctor of Philosophy \\
+\bf{Thesis Title:} & Scalar \& Homoskedastic Models \\ 
+ & for SAR \& POLSAR data
+\end{tabular}  
+	\vspace*{10mm}
+}
+
+\subsection*{Reviewer No 1}
+
+\replyToComment
+    {blah}
+    {blah}
+
+%\include{chap1}
+
+%\include{chap2}
+
+%\include{chap3}
+
+\end{document}

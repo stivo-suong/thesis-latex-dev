@@ -14,11 +14,17 @@ if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
 
 fi
 
-  latex 'thesis.tex'
-  bibtex thesis
-  latex 'thesis.tex'
-  latex 'thesis.tex'
-  #yap thesis.dvi
+  latex 'answer_document.tex'
+  for auxfile in chap*.aux
+  do
+      bibtex `basename $auxfile .aux`
+  done
+  latex 'answer_document.tex'
+  latex 'answer_document.tex'
+  #bibtex thesis
+  #latex 'thesis.tex'
+  #latex 'thesis.tex'
+  #yap answer_document.dvi
   #dvipdf thesis.dvi
   #cygstart.exe thesis.pdf
 
