@@ -13,8 +13,7 @@ remote surveillance solutions.
 
 As state-of-the-art technology, the SAR technique has been extended in a few directions, one of which is Polarimetric SAR (POLSAR).
 POLSAR is the natural extension of SAR, exploiting the natural polarization property of Electromagnetic (EM) waves.
-It extends the SAR acquisition information from the traditional single
-SAR channel to multi-channel POLSAR data, corresponding to a different combination of transmitted and received polarizations. Similar to the extension from black-and-white images to colour photography, the polarimetric extension brought about
+It extends the SAR acquisition information from the traditional single-channel SAR to multi-channel POLSAR data, corresponding to a different combination of transmitted and received polarizations. Similar to the extension from black-and-white images to colour photography, the polarimetric extension brought about
 multi-channel POLSAR data as compared to the traditional one-channel SAR data.
 
 With both SAR and POLSAR data becoming cheaper and more readily available, the recent research emphasis is on understanding and developing applications using these data. However, both SAR 
@@ -75,9 +74,9 @@ This leads to the fact that a lot of times, existing statistical or computationa
 An example is the use of mean, variance and squared error criteria, which are linear by nature and work excellently on additive and homoskedastic models, being applied on multiplicative and heteroskedastic distribution such as the gamma distribution.
 Such use, however, is known to be not very robust for these so-called heavy tailed distributions.
 
-Similarly speaking, heteroskedasticity poses numerous negative impacts on the usual framework of statistical estimation, which most of the time makes use of various different techniques and criteria known to work very well on the usual models.
+Similarly, heteroskedasticity poses numerous negative impacts on the usual framework of statistical estimation, which most of the time makes use of various different techniques and criteria known to work very well on the usual models.
 For example, in modelling, it is very common to use subtractive differences to discriminate and to make decisional inferences. However, for heteroskedastic SAR, it is known that such use should be avoided in preference to a ratio-based discrimination measure.
-Another example is in the normal performance evaluation stage of statistical estimators, where the Ordinary Least Square (OLS) is widely used as the best evaluation criteria which is probably due to the Gauss Markov theorem.
+Another example is in the normal performance evaluation stage of statistical estimators, where the Ordinary Least Square (OLS) is widely used as the best evaluation criterion which is probably due to the Gauss Markov theorem.
 For SAR data, however, its heteroskedasticity directly violates the homoskedastic assumption of the theorem and thus many different ways to evaluate SAR speckle filters were proposed.
 
 Furthermore, since POLSAR can be considered as the multi-dimensional extension of
@@ -145,7 +144,7 @@ For
                 consistent for SAR data, the ratio is proposed as its
                 discrimination measure \cite{Rignot_1993_TGRS_896}.
 Or
-                when the MMSE criteria is not very suitable to evaluate
+                when the MMSE criterion is not very suitable to evaluate
                 SAR speckle filters, other criteria likes radiometric
                 preservation and speckle suppression power evaluation
                 are employed. 
@@ -156,7 +155,7 @@ Unfortunately,
 
 %In what way is your solution different ? What is the novelty in your approach and hence solution?
 Some of the problems described above have been studied using different approaches in the literature.
-However, they have not been presented in a systematic manner nor with a strong underlying foundational theory.
+However, they have not been presented in a systematic manner nor with precise closed-form mathematical models.
 %precise problem statement
 Hence the \textbf{main problem statement} of this thesis arises. %it is important to emphasize again the main problem statement of this thesis.
 That is,
@@ -236,7 +235,7 @@ For the problem of target detection or classification,
   it is the estimation of the likelihood that the target belongs to a certain category.
 
 Thus a significant portion of this research effort focuses on developing a computational framework for simulation, evaluation, processing and classification of target polarimetric signatures.
-The benefits of such a framework are many fold.
+The benefits of such a framework are manyfold.
 Firstly, simulation allows one to quickly carry out experiments on small synthesized and well-designed scenarios, without the need for highly expensive satellite imagery.
 Secondly, simulation provides ground-truth, without which quantitative evaluation of estimators would have been impossible.
 Last but certainly not least, such a framework allow one to apply estimators repeatedly, and results from different estimators can be statistically and reliably compared. For example, this would allow different authors to compare results quantitatively.
@@ -309,14 +308,14 @@ NASA-JPL AirSar & Full Quad Pol & 2001 \\
 \subsection{Result Interpretation and Evaluation}
 
 %How do you evaluate your solution? 
-The
-                achievement of the research objectives stated above not only provides
-                novel solutions to the stated problem, it also
-                illustrates the advantages and beneficial implications
-                of the proposed theory.  
+%The
+%                achievement of the research objectives stated above not only provides
+%                novel solutions to the stated problem, it also
+%                illustrates the advantages and beneficial implications
+%                of the proposed theory.  
 Compared
                 to existing published techniques, the advantage of the
-                proposed theory is qualitative, which does not require
+                proposed models is qualitative, which does not require
                 direct quantitative comparisons.
 Instead
                 a straightforward binary evaluation would be sufficient.
@@ -476,11 +475,31 @@ To combine these two seemingly disconnected threads of research, the results for
 %The 3 paragraphs are collapsed into 1: to address Prof Vun's comment:
 %(comment: you are stating the objectives repetitively so far – I counted three time so far, and confuse the results obtained with the objectives. There is no need to re-emphasize the objective if the write-up is clear)
 
+The work in this research results in the following list of articles that has been prepared for public communication: 
+
+\begin{enumerate}
+\item \textbf{Neural network-assisted reconstruction of full polarimetric SAR information.}
+  Thanh-Hai Le, I. McLoughlin, Ken Yoong Lee, and T. Bretschneider.
+  In \textit{Communications, Control and Signal Processing (ISCCSP), 2010 4th International Symposium on}, pages 1–5, 2010.  \cite{Le_2010_ISCCSP} 
+\item \textbf{SLC SAR speckle filtering using homoskedastic features of logarithmic transformation.}
+  T. H. Le, I. V. McLoughlin, K. Y. Lee, and T. Brestchneider.
+  In \textit{Proceedings of the 31st Asian Conference on Remote Sensing (ACRS)}, Hanoi, Vietnam, Nov 2010. \cite{Le_2010_ACRS}
+\item  \textbf{SAR Fuzzy-MLE Speckle Filter using the Distance Consistency Property in Homoskedastic Log-Transformed Domain.}
+  T. H. Le and I. V. McLoughlin. 
+  In \textit{Proceedings of the 32nd Asian Conference on Remote Sensing (ACRS)}, Taipei, Taiwan, Nov 2011 \cite{Le_2011_ACRS}
+\item \textbf{Scalar and Representative Models for Polarimetric SAR Data.}
+  T. H. Le, I. V. McLoughlin, and C. H. Vun,
+  re-submitted to \textit{IEEE Journal on Selected Topic in Applied Earth Observation and Remote Sensing.}
+\item \textbf{Using MSE to evaluate SAR speckle filters.}
+  T. H. Le, I. V. McLoughlin, and C. H. Vun.
+  submitted to \textit{IET Radar, Sonar \& Navigation}
+\end{enumerate}
+  
 
 \section{Organisation of the Thesis}
 The rest of this thesis is organized into five chapters as follows.
 
-Chapter \ref{chap:lit_survey} will survey the related publications
+Chapter \ref{chap:lit_survey} surveys the related publications
   and the state-of-the-art techniques in modelling, processing, filtering and evaluating (POL)SAR speckle filter. %will be presented.
 It will also discuss the different measures of distance for both SAR and POLSAR data, together with their extensive applications. 
 Through these discussions, the need for a homoskedastic and scalar model for the multivariate and heteroskedastic POLSAR is brought forward.
@@ -504,7 +523,7 @@ Through these discussions, the need for a homoskedastic and scalar model for the
 %Specifically,
 
 %The heart of is thesis contains several contributions which meet the stated objectives.
-                Chapter \ref{chap:sar} begins by by highlighting that SAR
+                Chapter \ref{chap:sar} begins by highlighting that SAR
                 data are heteroskedastic in the original domain, whereas
                 logarithmic transformation converts this into a
                 homoskedastic model. 
