@@ -19,7 +19,8 @@ SAR speckle phenomena are explained as the interference of many coherent but dep
 The random nature of the SAR data arises
   due to the unknown and varying location, height and thus distance of each elementary scatterer;
   which, in turn, generates random phases in their back-scattering responses.
-Assuming the number of these elementary back scatterers is sufficiently large,
+%Assuming the number of these elementary back scatterers is sufficiently large,
+Assuming these elementary back-scatterers are large in number and independent in nature,  
   then the Central Limit Theorem is applicable \cite{Goodman_Springer_1975}.
 Consequently the interference of these randomly phased responses can be considered as
   a random walk on the 2D complex plane \cite{Goodman_JOptSocAm_76}.  
@@ -783,221 +784,221 @@ Compared with full polarimetric data, the better spatial resolution of dual chan
 %In our planned approach, we are prepared to study the performance improvement through using partial polarimetry data in comparison to normal single-channel SAR approaches.
 %Ground truth for such study will also be using synchronized AIS data.
 
-\subsubsection{The Polarization Basis Transformation}
-
-Assuming that the polarization states are known, the wave representation can be given in terms of $\xi_x$ and $\xi_y$ as:%****IVM, you need to mention A_0.... as well as \phi
-\begin{equation*}
-\left( 
-\begin{array}{c}
- \xi_x \\
- \xi_y
-\end{array}
-\right) 
-= A_0 e^{-i \phi_0} \left(
-\begin{array}{c c}
- \cos(\Psi) & -\sin(\Psi) \\
- \sin(\Psi) & \cos(\Psi)
-\end{array}
-\right) 
-\left(
-\begin{array}{c}
- \cos(\chi) \\
- i \sin(\chi)
-\end{array}
-\right) 
-\end{equation*}
-The representation of a wave, however, depends on the choice of orthogonal reference frame basis.
-
-Consider two different orthogonal basis, $\{ x,y \}$ and $\{ h,v \}$.
-A given Jones vector can be measured in both basis as:
-$J_{xy}= 
-\left(
-\begin{array}{c}
- \xi_x \\
- \xi_y
-\end{array}
-\right) $ and 
-$J_{hv}
-= \left(
-\begin{array}{c}
- \xi_h \\
- \xi_v
-\end{array}
-\right)$ê
-.
-The transformation from $\{h,v\}$ to $\{x,y\}$ is governed by a unitary transformation matrix $U_2$, which is given as:
-\begin{equation*}
-\left(
-\begin{array}{c}
- \xi_x \\
- \xi_y
-\end{array}
-\right)
-= U_2
-\left(
-\begin{array}{c}
- \xi_h \\
- \xi_v
-\end{array}
-\right)
-\end{equation*}
-
-Boerner \cite{Boerner_1991_ProcsIEEE} has given $U_2$ as:
-\begin{equation*}
-U_2 = \frac{1}{\sqrt{1+\rho\rho^*}}
-\left(
-\begin{array}{c c}
- 1 & -\rho^* \\
- \rho & 1
-\end{array}
-\right)
-\left(
-\begin{array}{c c}
- e^{-i\delta} & 0 \\
- 0 & e^{i\delta}
-\end{array}
-\right)
-\end{equation*}
-where
-	$\rho$ is the complex polarisation ratio of the Jones vector for the first new basis, and
-	$\delta = \tan^{-1}(\tan(\Psi) \tan(\chi)) - \phi_0$ is the phase reference for the new basis, 
-	and $\delta$ is required for the determination of the initial phase of the Jones vector in the new reference basis.
-
-In the same vein, \cite{Pottier_2008_IGARSS} gives %****IVM pls change this to a proper \cite{}
-\begin{equation*}
-U_2 = \left(
-\begin{array}{c c}
- \cos(\Psi) & -\sin(\Psi) \\
- \sin(\Psi) & \cos(\Psi)
-\end{array}
-\right)
-\left(
-\begin{array}{c c}
- \cos(\chi) & i\sin(\chi) \\
- i\sin(\chi) & \cos(\chi)
-\end{array}
-\right)
-\left(
-\begin{array}{c c}
- e^{-i \phi_0} & 0 \\
- 0 & e^{i \phi_0}
-\end{array}
-\right)    
-\end{equation*}
-
-From these results, it is then possible to derive equations for the transformation of the scattering matrix.
-Noting that by definition, $J_{xy}^r=S_{xy} J_{xy}^t$, $J_{hv}^r=S_{hv} J_{hv}^t$ 
-and that $J_{xy}^*= U_2 J_{hv}^*$, also that $(U_2)^{-1} = (U_2)^T$,
-it is then trivial to show that:
-\begin{equation*}
-S_{xy} = U_2 S_{hv} U_2^T
-\end{equation*}
-
-%***IVM: again, I think you need to introduce some of the variables below, like delta, rho. Is rho* the complex conjugate? Better to mention that too....
-Using the result above, we then have:
-\begin{equation*}
-S_{xx} = \frac{1}{1+\rho \rho^*} 
-\left( 
-S_{HH} e^{-2i\delta} - \rho^* (S_{HV}+S_{VH}) + (\rho^*)^2 S_{VV} e^{2i\delta}
-\right)
-\end{equation*}
-\begin{equation*}
-S_{xy} = \frac{1}{1+\rho \rho^*} 
-\left( 
-\rho S_{HH} e^{-2i\delta} + S_{HV} -\rho \rho^* S_{VH} - \rho^* S_{VV} e^{2i\delta}
-\right)
-\end{equation*}
-\begin{equation*}
-S_{yx} = \frac{1}{1+\rho \rho^*} 
-\left( 
-\rho S_{HH} e^{-2i\delta} - \rho \rho^* S_{HV} + S_{VH} - \rho^* S_{VV} e^{2i\delta}
-\right)
-\end{equation*}
-\begin{equation*}
-S_{yy} = \frac{1}{1+\rho \rho^*} 
-\left( 
-\rho^2 S_{HH} e^{-2i\delta} + \rho (S_{HV} + S_{VH}) + S_{VV} e^{2i\delta}
-\right)
-\end{equation*}
-
-In the case of mono-static POLSAR, i.e. $S_{HV}=S_{VH}=S_{XX}$ and $S_{xy}=S_{yx}$, the equations become
-\begin{equation*}
-S_{xx} = \frac{1}{1+\rho \rho^*} 
-\left( 
-S_{HH} e^{-2i\delta} - 2 \rho^* S_{XX} + (\rho^*)^2 S_{VV} e^{2i\delta}
-\right)
-\end{equation*}
-\begin{equation*}
-S_{yx} = S_{xy}= \frac{1}{1+\rho \rho^*} 
-\left( 
-\rho S_{HH} e^{-2i\delta} + (1-\rho \rho^*) S_{XX} - \rho^* S_{VV} e^{2i\delta}
-\right)
-\end{equation*}
-\begin{equation*}
-S_{yy} = \frac{1}{1+\rho \rho^*} 
-\left( 
-\rho^2 S_{HH} e^{-2i\delta} + 2 \rho S_{XX} +  S_{VV} e^{2i\delta}
-\right)
-\end{equation*}
-
-The results here, together with Stokes Vector's formula, can be used to prove the following identity,
-  which can form the basis of a novel approach in POLSAR speckle filtering: %used throughout this thesis:
-\begin{equation*}
-S_t = 
-\left(
-	\begin{array} {c}
-		S_hS_h + S_vS_v \\
-		S_hS_h - S_vS_v \\
-		2 \Re{(S_hS_v^*)} \\
-		2 \Im{(S_hS_v^*)}
-	\end{array}
-\right)
-= 
-\left(
-	\begin{array} {c}
-		S_hS_h + S_vS_v \\
-		S_hS_h - S_vS_v \\
-		S_+S_+ - S_-S_- \\
-		S_lS_l - S_rS_r
-	\end{array}
-\right)
-\end{equation*}
-where $S_t$ is the Stokes vector and $S_+S_+$, $S_-S_-$, $S_rS_r$, $S_lS_l$ are the intensity of received signals in $+45^o$ linear, $-45^o$ linear, right circular and left circular polarization respectively.
-
-%The transformation from $\{h,v\}$ to $\{+\pi/4,-\pi/4\}$ as well as from $\{h,v\}$ to circular basis $\{l,r\}$ are special cases of the above formula.
-%Ignoring the determination of initial phases, we have: 
-%	the measured signal at $\pi/4$ linear polarizer / projection as: $\xi_+ = \frac{\xi_h + \xi_v}{\sqrt{2}}$,
-%	at $-\pi/4$ linear polarizer as: $\xi_- = \frac{\xi_h - \xi_v}{\sqrt{2}}$, 
-%	at left circular polarization as: $\xi_l = \frac{\xi_h + i \xi_v}{\sqrt{2}}$, 
-%	and at right circular polarization as $\xi_r = \frac{\xi_h - i \xi_v}{\sqrt{2}}$.
+%\subsubsection{The Polarization Basis Transformation}
 %
-%The Stokes vectors, when aligned at these transformed projections are given by the following well-known equations
-%\begin{equation}
-%S_t = \left(
+%Assuming that the polarization states are known, the wave representation can be given in terms of $\xi_x$ and $\xi_y$ as:%****IVM, you need to mention A_0.... as well as \phi
+%\begin{equation*}
+%\left( 
 %\begin{array}{c}
-% |\xi_h|^2 + |\xi_v|^2 \\
-% |\xi_h|^2 - |\xi_v|^2 \\
-% 2 \Re( \xi_h \xi_v^* ) \\
-% 2 \Im( \xi_h \xi_v^* ) 
+% \xi_x \\
+% \xi_y
 %\end{array}
-%\right)
+%\right) 
+%= A_0 e^{-i \phi_0} \left(
+%\begin{array}{c c}
+% \cos(\Psi) & -\sin(\Psi) \\
+% \sin(\Psi) & \cos(\Psi)
+%\end{array}
+%\right) 
+%\left(
+%\begin{array}{c}
+% \cos(\chi) \\
+% i \sin(\chi)
+%\end{array}
+%\right) 
+%\end{equation*}
+%The representation of a wave, however, depends on the choice of orthogonal reference frame basis.
+%
+%Consider two different orthogonal basis, $\{ x,y \}$ and $\{ h,v \}$.
+%A given Jones vector can be measured in both basis as:
+%$J_{xy}= 
+%\left(
+%\begin{array}{c}
+% \xi_x \\
+% \xi_y
+%\end{array}
+%\right) $ and 
+%$J_{hv}
 %= \left(
 %\begin{array}{c}
-% |\xi_+|^2 + |\xi_-|^2 \\
-% -2 \Re( \xi_+^* \xi_- ) \\
-% |\xi_+|^2 - |\xi_-|^2 \\
-% 2 \Im( \xi_+^* \xi_- ) 
+% \xi_h \\
+% \xi_v
+%\end{array}
+%\right)$ê
+%.
+%The transformation from $\{h,v\}$ to $\{x,y\}$ is governed by a unitary transformation matrix $U_2$, which is given as:
+%\begin{equation*}
+%\left(
+%\begin{array}{c}
+% \xi_x \\
+% \xi_y
 %\end{array}
 %\right)
-%= \left(
+%= U_2
+%\left(
 %\begin{array}{c}
-% |\xi_l|^2 + |\xi_r|^2 \\
-% 2 \Re( \xi_l^* \xi_r ) \\
-% -2 \Im( \xi_l^* \xi_r ) \\ 
-% |\xi_l|^2 - |\xi_r|^2 
+% \xi_h \\
+% \xi_v
 %\end{array}
-%\right)  
-%\end{equation}
+%\right)
+%\end{equation*}
+%
+%Boerner \cite{Boerner_1991_ProcsIEEE} has given $U_2$ as:
+%\begin{equation*}
+%U_2 = \frac{1}{\sqrt{1+\rho\rho^*}}
+%\left(
+%\begin{array}{c c}
+% 1 & -\rho^* \\
+% \rho & 1
+%\end{array}
+%\right)
+%\left(
+%\begin{array}{c c}
+% e^{-i\delta} & 0 \\
+% 0 & e^{i\delta}
+%\end{array}
+%\right)
+%\end{equation*}
+%where
+%	$\rho$ is the complex polarisation ratio of the Jones vector for the first new basis, and
+%	$\delta = \tan^{-1}(\tan(\Psi) \tan(\chi)) - \phi_0$ is the phase reference for the new basis, 
+%	and $\delta$ is required for the determination of the initial phase of the Jones vector in the new reference basis.
+%
+%In the same vein, \cite{Pottier_2008_IGARSS} gives %****IVM pls change this to a proper \cite{}
+%\begin{equation*}
+%U_2 = \left(
+%\begin{array}{c c}
+% \cos(\Psi) & -\sin(\Psi) \\
+% \sin(\Psi) & \cos(\Psi)
+%\end{array}
+%\right)
+%\left(
+%\begin{array}{c c}
+% \cos(\chi) & i\sin(\chi) \\
+% i\sin(\chi) & \cos(\chi)
+%\end{array}
+%\right)
+%\left(
+%\begin{array}{c c}
+% e^{-i \phi_0} & 0 \\
+% 0 & e^{i \phi_0}
+%\end{array}
+%\right)    
+%\end{equation*}
+%
+%From these results, it is then possible to derive equations for the transformation of the scattering matrix.
+%Noting that by definition, $J_{xy}^r=S_{xy} J_{xy}^t$, $J_{hv}^r=S_{hv} J_{hv}^t$ 
+%and that $J_{xy}^*= U_2 J_{hv}^*$, also that $(U_2)^{-1} = (U_2)^T$,
+%it is then trivial to show that:
+%\begin{equation*}
+%S_{xy} = U_2 S_{hv} U_2^T
+%\end{equation*}
+%
+%%***IVM: again, I think you need to introduce some of the variables below, like delta, rho. Is rho* the complex conjugate? Better to mention that too....
+%Using the result above, we then have:
+%\begin{equation*}
+%S_{xx} = \frac{1}{1+\rho \rho^*} 
+%\left( 
+%S_{HH} e^{-2i\delta} - \rho^* (S_{HV}+S_{VH}) + (\rho^*)^2 S_{VV} e^{2i\delta}
+%\right)
+%\end{equation*}
+%\begin{equation*}
+%S_{xy} = \frac{1}{1+\rho \rho^*} 
+%\left( 
+%\rho S_{HH} e^{-2i\delta} + S_{HV} -\rho \rho^* S_{VH} - \rho^* S_{VV} e^{2i\delta}
+%\right)
+%\end{equation*}
+%\begin{equation*}
+%S_{yx} = \frac{1}{1+\rho \rho^*} 
+%\left( 
+%\rho S_{HH} e^{-2i\delta} - \rho \rho^* S_{HV} + S_{VH} - \rho^* S_{VV} e^{2i\delta}
+%\right)
+%\end{equation*}
+%\begin{equation*}
+%S_{yy} = \frac{1}{1+\rho \rho^*} 
+%\left( 
+%\rho^2 S_{HH} e^{-2i\delta} + \rho (S_{HV} + S_{VH}) + S_{VV} e^{2i\delta}
+%\right)
+%\end{equation*}
+%
+%In the case of mono-static POLSAR, i.e. $S_{HV}=S_{VH}=S_{XX}$ and $S_{xy}=S_{yx}$, the equations become
+%\begin{equation*}
+%S_{xx} = \frac{1}{1+\rho \rho^*} 
+%\left( 
+%S_{HH} e^{-2i\delta} - 2 \rho^* S_{XX} + (\rho^*)^2 S_{VV} e^{2i\delta}
+%\right)
+%\end{equation*}
+%\begin{equation*}
+%S_{yx} = S_{xy}= \frac{1}{1+\rho \rho^*} 
+%\left( 
+%\rho S_{HH} e^{-2i\delta} + (1-\rho \rho^*) S_{XX} - \rho^* S_{VV} e^{2i\delta}
+%\right)
+%\end{equation*}
+%\begin{equation*}
+%S_{yy} = \frac{1}{1+\rho \rho^*} 
+%\left( 
+%\rho^2 S_{HH} e^{-2i\delta} + 2 \rho S_{XX} +  S_{VV} e^{2i\delta}
+%\right)
+%\end{equation*}
+%
+%The results here, together with Stokes Vector's formula, can be used to prove the following identity,
+%  which can form the basis of a novel approach in POLSAR speckle filtering: %used throughout this thesis:
+%\begin{equation*}
+%S_t = 
+%\left(
+%	\begin{array} {c}
+%		S_hS_h + S_vS_v \\
+%		S_hS_h - S_vS_v \\
+%		2 \Re{(S_hS_v^*)} \\
+%		2 \Im{(S_hS_v^*)}
+%	\end{array}
+%\right)
+%= 
+%\left(
+%	\begin{array} {c}
+%		S_hS_h + S_vS_v \\
+%		S_hS_h - S_vS_v \\
+%		S_+S_+ - S_-S_- \\
+%		S_lS_l - S_rS_r
+%	\end{array}
+%\right)
+%\end{equation*}
+%where $S_t$ is the Stokes vector and $S_+S_+$, $S_-S_-$, $S_rS_r$, $S_lS_l$ are the intensity of received signals in $+45^o$ linear, $-45^o$ linear, right circular and left circular polarization respectively.
+%
+%%The transformation from $\{h,v\}$ to $\{+\pi/4,-\pi/4\}$ as well as from $\{h,v\}$ to circular basis $\{l,r\}$ are special cases of the above formula.
+%%Ignoring the determination of initial phases, we have: 
+%%	the measured signal at $\pi/4$ linear polarizer / projection as: $\xi_+ = \frac{\xi_h + \xi_v}{\sqrt{2}}$,
+%%	at $-\pi/4$ linear polarizer as: $\xi_- = \frac{\xi_h - \xi_v}{\sqrt{2}}$, 
+%%	at left circular polarization as: $\xi_l = \frac{\xi_h + i \xi_v}{\sqrt{2}}$, 
+%%	and at right circular polarization as $\xi_r = \frac{\xi_h - i \xi_v}{\sqrt{2}}$.
+%%
+%%The Stokes vectors, when aligned at these transformed projections are given by the following well-known equations
+%%\begin{equation}
+%%S_t = \left(
+%%\begin{array}{c}
+%% |\xi_h|^2 + |\xi_v|^2 \\
+%% |\xi_h|^2 - |\xi_v|^2 \\
+%% 2 \Re( \xi_h \xi_v^* ) \\
+%% 2 \Im( \xi_h \xi_v^* ) 
+%%\end{array}
+%%\right)
+%%= \left(
+%%\begin{array}{c}
+%% |\xi_+|^2 + |\xi_-|^2 \\
+%% -2 \Re( \xi_+^* \xi_- ) \\
+%% |\xi_+|^2 - |\xi_-|^2 \\
+%% 2 \Im( \xi_+^* \xi_- ) 
+%%\end{array}
+%%\right)
+%%= \left(
+%%\begin{array}{c}
+%% |\xi_l|^2 + |\xi_r|^2 \\
+%% 2 \Re( \xi_l^* \xi_r ) \\
+%% -2 \Im( \xi_l^* \xi_r ) \\ 
+%% |\xi_l|^2 - |\xi_r|^2 
+%%\end{array}
+%%\right)  
+%%\end{equation}
 
 
 %\subsection{The Stochastics Nature of SAR and POLSAR}
