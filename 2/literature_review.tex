@@ -1340,13 +1340,36 @@ One of the additive and homoskedastic SAR model's benefits is the possible hypot
 Other approaches that have recently been actively pursued in the research community and in published literature include: 
 	%recently there has been an increase publications about the applicability of
 \begin{itemize}
-\item	wavelets \cite{Gagnon_SPIEProc_1997, VidalPantaleoni_2004_IJRS, Moulin_1993_JMathImageVision, Hervet_1998_SPIE, Hebar_2009_TGRS, Chen_2007_IET, Bianchi_TGRS_2008, Argenti_2006_TGRS}, 
-\item	curvelets \cite{Wang_2007_ICWAPR, Saevarsson_2003_IGARSS, Guo_2008_ICARCV}, 
-\item	contourlets \cite{Foucher_2006_IGARSS}, 
-\item	ridgelets \cite{Saevarsson_2004_IGARSS},
-\item	fuzzy logic \cite{Cheng_ETCS_2009}, 
-\item	anisotropic kernels \cite{DHondt_2006_TGRS}, 
-\item	and autoregressive conditional heteroskedasticity \cite{Amirmazlaghani_2009_DSPWorkshop}. 
+\item \textbf{multi-resolution methods:}
+ In this approach, speckle filtering is carried out in a scale-space representation.
+The homomorphic transformation is normally applied here.
+This transformation converts the original multiplicative model into a more familiar additive model.
+In this transformed domain, the assumption of linear-time invariant (LTI) system appears to hold.
+This simplifies the measurement and filtering of the speckle noise in each sub-band of the scale-space representation.
+\begin{itemize} 
+\item	\textbf{wavelets:} The wavelet analysis transforms a given signal / image into a new multi-resolution representation.
+The original signal / image can then be obtained using a synthesizing scheme symmetrical to that of the analysis \cite{Gagnon_SPIEProc_1997, VidalPantaleoni_2004_IJRS, Moulin_1993_JMathImageVision, Hervet_1998_SPIE, Hebar_2009_TGRS, Chen_2007_IET, Bianchi_TGRS_2008, Argenti_2006_TGRS}, 
+\item	\textbf{directional-lets:} Combining Laplacian pyramid decomposition and different schemes of directional filter banks results in the derivation of curvelets \cite{Wang_2007_ICWAPR, Saevarsson_2003_IGARSS, Guo_2008_ICARCV}, contourlets \cite{Foucher_2006_IGARSS} and ridgelets \cite{Saevarsson_2004_IGARSS},
+\item	\textbf{autoregressive conditional heteroskedasticity:} 
+ In this approach, the wavelet coefficient of SAR images are assumed to follow 2D GARCH models.
+GARCH is a term borrowed from the field of econometric. 
+It stands for Generalized Auto-Regressive Conditional Heteroskedasticity.
+The advantage of this approach is that it takes into account both SAR's heteroskedasticity and the relations among its wavelet coefficients \cite{Amirmazlaghani_2009_DSPWorkshop}. 
+\end{itemize}
+\item	\textbf{fuzzy logic:} The contribution of each neighboring pixel is weighed using a fuzzy probabilistic function \cite{Cheng_ETCS_2009}, 
+\item	\textbf{anisotropic kernels:} Speckle reducing anisotropic diffusion make uses of the local coefficient of variation ($C_v$). 
+In that sense, it has the same approach as that of the Frost or Lee filter.
+Yet, it has an interesting development.
+It shows that local $C_v$ is a function of the local gradient value and the applicable Laplacian operator \cite{DHondt_2006_TGRS},
+\item   \textbf{simulated annealing:} Simulated annealing (SA) is an optimization method.
+In SAR speckle filtering, it aims to find the global minimum of a multi-dimensional energy function.
+There, it is equal to finding the global MAP of a multi-variate distribution.
+The local maxima / minima is the common stumbling block of global optimization algorithms.
+SA overcomes this problem by introducing a temperature variable to control the optimization process.
+At first few iterations, the temperature is kept high allowing a  better chance of accepting configurations that results in an energy increase.
+This hopefully allows SA to get out of local minima.
+At the end of the minimization process, no further energy increases will be accepted.
+This ideally should leads to global minimal results \cite{White_ProcSPIE_1994},
 \end{itemize}
 %***IVM it might be good to make the above into an un-numbered list, I think it will look nicer!!	
 
@@ -1476,17 +1499,17 @@ On the one hand, speckle filters should preserve the underlying radiometric sign
 	preservation requirement).
 On the other hand, they should reduce the variation of the additive noise (i.e. speckle suppression power).
 One metric that can be used to detect radiometric distortion is the ratio between the estimated and the 
-	original value $r = X_{est} / X_{org}$ \cite{Oliver_2004_SciTech,Medeiros_2003_IJRS}.
-A somewhat similar metric is used in \cite{Wang_2005_MIPR} as $r_w = (X_{est} - X_{org} )/ X_{org}$.
+	original value $r = I_{est} / I_{org}$ \cite{Oliver_2004_SciTech,Medeiros_2003_IJRS}.
+A somewhat similar metric is used in \cite{Wang_2005_MIPR} as $r_w = (I_{est} - I_{org} )/ I_{org}$.
 %For homogeneous scenes, Shi et al. \cite{Shi_IGARSS_1994} found that 
 %	in the original domain the ``standard'' filters (boxcar, Lee \cite{Lee_PAMI_1980}, 
 %	Kuan \cite{Kuan_1985_PAMI}, Frost\cite{Frost_PAMI_1982}, 
 %	MAP\cite{Lopes_IGARSS_1990}) and the enhanced version \cite{Lopes_TGRS_1990} can achieve negligible bias. 
 %In this paper, %****IVM you need to search for the word "paper" in case you have more of these
 Several metrics have also been developed to evaluate speckle suppression power.
-The most common measure is the Equivalent Number of Looks (ENL) index 
-$ENL=avg(I)^2/var(I)$
-that was proposed by Lee \cite{Lee_1981_CGIP}.
+The most common measure are: the Equivalent Number of Looks (ENL) index 
+$ENL=avg(I)^2/var(I)$ \cite{Lee_1981_CGIP},
+and the Coefficient of Variation index $C_v = \frac{\sqrt{var(I)}}{avg(I)}$ \cite{Touzi_2002_TGRS}.
 Another very similar metric is the ratio of mean to standard deviation, $R=avg(I)/std(I)$ \cite{Gagnon_SPIEProc_1997} 
 %****IVM: the section reference below is not found (is displayed as ??)
 
@@ -1574,7 +1597,7 @@ Evaluation would then determine how closely related the two feature maps are.
 
 Various methods may be applied to extract features; examples of those that have been used are the 
 	Hough Transform \cite{Medeiros_2003_IJRS}, Robert gradient edge detector \cite{Gagnon_SPIEProc_1997} 
-	and edge map \cite{Frost_PAMI_1982}.
+	and edge map \cite{Frost_PAMI_1982} or edge-correlation index \cite{Sattar_TIP_1997}.
 While significant effort has been spent on these evaluations, serious doubts remain concerning the precision 
 of these methodologies.
 This is because feature extraction algorithms are only approximations,
@@ -1585,7 +1608,16 @@ Unfortunately, speckle filters invariably alter the noise characteristics.
 Thus, without a clear understanding of these dependencies and no absolute ground truth, 
 	using feature extraction algorithms to evaluate speckle filters would leave serious questions on 
 	how to interpret the results, especially in terms of accuracy.
-As such, the problem of establishing an single evaluation criteria to evaluate the overall performance of speckle filters remains open for improvement.
+
+There are also a variety of other approaches, which includes
+\begin{itemize}
+  \item The Target-To-Clutter ratio \cite{Cetin_ProcSPIE_2000}, whose applicability is limited to the special case of point-target preservation.
+  \item The Structural-Change-Index \cite{Aiazzi_ProcSPIE_2011_81790D}, whose authors also admits that it is unable to measure the overall effectiveness of SAR speckle filtering \cite{Argenti_GRSM_2013}.
+  \item The Mean Structural Similarity Index Measurement (MSSIM) \cite{Wang_TIP_2004}, where the proposed index is tuned for hypothesized overall functionalities of the Human Visual System (HVS) in a top-down manner.
+%\item the B-index \cite{}, where the proposed metric only focuses on one single evaluation of bias.
+\end{itemize}  
+        
+As reviewed above, the problem of establishing an single evaluation criteria to evaluate the overall performance of speckle filters remains open for improvement.
 
 %Thus we propose the use of MSE in the homoskedastic log-transformed domain to evaluate eps. 
 %This is similar to the investigation of residual image in log-transformed domain and also agrees with the log-transformed variance metric in homogeneous area (assuming that the filters have no problem preserving the mean). We also show experimentally that this MSE measure is inversely correlated with the AUC index mentioned earlier, suggesting that the lower the MSE index a filter can achieve, the better its feature preservation capability can be.

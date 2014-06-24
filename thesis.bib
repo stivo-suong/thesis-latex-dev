@@ -2077,8 +2077,7 @@ ISSN={0196-2892},}
 
 @ARTICLE{Cheng_ETCS_2009,
   author = {Hua Cheng and Jinwen Tian},
-  title = {Speckle Reduction of Synthetic Aperture Radar Images Based on Fuzzy
-	Logic},
+  title = {Speckle Reduction of Synthetic Aperture Radar Images Based on Fuzzy Logic},
   journal = {Education Technology and Computer Science, 2009. ETCS '09. First
 	International Workshop on},
   year = {2009},
@@ -6003,4 +6002,101 @@ url = {http://www.opticsinfobase.org/abstract.cfm?URI=josa-62-1-55},
 }
 
 
+@ARTICLE{White_ProcSPIE_1994,
+author = {White, Richard G.},
+title = {Simulated annealing algorithm for {SAR and MTI} image cross section estimation},
+journal = {Proc. SPIE},
+volume = {2316},
+number = {},
+pages = {137-145},
+abstract = {In this paper we first review an algorithm which performs radar cross- section estimation by using techniques based on simulated annealing. Standard simulated annealing approaches to image restoration attempt to categorize each image element as belonging to one of a small number of predefined image states or values. This is restrictive for tasks such as radar cross-section estimation and we present here an algorithm which is capable of producing a real-valued output. This is achieved by introducing an edge detection stage into the simulated annealing process. This original cross-section estimation is based on a flat region model. This is extended here to include linear sloping regions. Results using this new model are given and a qualitative comparison drawn with the original flat region model approach.},
+year = {1994},
+doi = {10.1117/12.197533},
+URL = { http://dx.doi.org/10.1117/12.197533},
+eprint = {}
+}
 
+@ARTICLE{Sattar_TIP_1997,
+author={Sattar, F. and Floreby, L. and Salomonsson, G. and Lovstrom, B.},
+journal={Image Processing, IEEE Transactions on},
+title={Image enhancement based on a nonlinear multiscale method},
+year={1997},
+month={Jun},
+volume={6},
+number={6},
+pages={888-895},
+abstract={An image enhancement method that reduces speckle noise and preserves edges is introduced. The method is based on a new nonlinear multiscale reconstruction scheme that is obtained by successively combining each coarser scale image with the corresponding modified interscale image. Simulation results are included to demonstrate the performance of the proposed method},
+keywords={edge detection;filtering theory;image enhancement;image reconstruction;interference suppression;nonlinear filters;speckle;coarser scale image;edge preservation;image enhancement;modified interscale image;nonlinear multiscale method;nonlinear multiscale reconstruction scheme;speckle noise reduction;Acoustic imaging;Acoustic noise;Filters;Image edge detection;Image enhancement;Image reconstruction;Noise reduction;Signal processing;Signal resolution;Speckle},
+doi={10.1109/83.585239},
+ISSN={1057-7149}
+}
+
+@Article{Cetin_ProcSPIE_2000,
+author = {Cetin, Mujdat and Karl, William C. and Castanon, David A.},
+title = {Evaluation of a regularized SAR imaging technique based on recognition-oriented features},
+journal = {Proc. SPIE},
+volume = {4053},
+number = {},
+pages = {40-51},
+abstract = {One of the biggest challenges for automatic target recognition (ATR) methods is the accurate and efficient extraction of features from synthetic aperture radar (SAR) images. We have recently developed a new SAR image formation technique which is recognition-oriented in the sense that it enhances features in the scene which we believe are important for recognition purposes. In this paper, we evaluate the performance of the images produced by this technique in terms of preserving and enhancing these features. The findings of our analysis indicate that the new SAR image formation method provides images with higher resolution of scatterers, and better separability of different regions as compared to conventional SAR images.},
+year = {2000},
+doi = {10.1117/12.396369},
+URL = { http://dx.doi.org/10.1117/12.396369},
+eprint = {}
+}
+
+@proceeding{Aiazzi_ProcSPIE_2011_81790D,
+author = {Aiazzi, B. and Alparone, L. and Argenti, F. and Baronti, S. and Bianchi, T. and Lapini, A.},
+title = {An unsupervised method for quality assessment of despeckling: an evaluation on COSMO-SkyMed data},
+journal = {Proc. SPIE},
+volume = {8179},
+number = {},
+pages = {81790D-81790D-10},
+abstract = {Goal of this paper is the development and evaluation of a fully automatic method for quality assessment of despeckled synthetic aperture radar (SAR) images. The rationale of the new approach is that any structural perturbation introduced by despeckling, e.g. a local bias of mean or the blur of a sharp edge or the suppression of a point target, may be regarded either as the introduction of a new structure or as the suppression of an existing one. Conversely, plain removal of random noise does not change structures in the image. Structures are identified as clusters in the scatterplot of original to filtered image. Ideal filtering should produce clusters all aligned along the main diagonal. In practice clusters are moved far from the diagonal. Clusters' centers are detected through the mean shift algorithm. A structural change feature is defined at each pixel from the position and population of off-diagonal cluster, according to Shannon's information theoretic concepts. Results on true SAR images (COSMO-SkyMed) will be presented. Bayesian estimators (LMMSE: liner minimum mean squared error: MAP: maximum a-posteriori probability) operating in the undecimated wavelet domain have been coupled with segment-based processing. Quality measurements of despeckled SAR images carried out by means of the proposed method highlight the benefits of segmented MAP filtering.},
+year = {2011},
+doi = {10.1117/12.898534},
+URL = { http://dx.doi.org/10.1117/12.898534},
+eprint = {}
+}
+
+@ARTICLE{Argenti_GRSM_2013, 
+author={Argenti, F. and Lapini, A. and Bianchi, T. and Alparone, L.}, 
+journal={Geoscience and Remote Sensing Magazine, IEEE}, 
+title={A Tutorial on Speckle Reduction in Synthetic Aperture Radar Images}, 
+year={2013}, 
+month={Sept}, 
+volume={1}, 
+number={3}, 
+pages={6-35}, 
+abstract={Speckle is a granular disturbance, usually modeled as a multiplicative noise, that affects synthetic aperture radar (SAR) images, as well as all coherent images. Over the last three decades, several methods have been proposed for the reduction of speckle, or despeckling, in SAR images. Goal of this paper is making a comprehensive review of despeckling methods since their birth, over thirty years ago, highlighting trends and changing approaches over years. The concept of fully developed speckle is explained. Drawbacks of homomorphic filtering are pointed out. Assets of multiresolution despeckling, as opposite to spatial-domain despeckling, are highlighted. Also advantages of undecimated, or stationary, wavelet transforms over decimated ones are discussed. Bayesian estimators and probability density function (pdf) models in both spatial and multiresolution domains are reviewed. Scale-space varying pdf models, as opposite to scale varying models, are promoted. Promising methods following non-Bayesian approaches, like nonlocal (NL) filtering and total variation (TV) regularization, are reviewed and compared to spatial- and wavelet-domain Bayesian filters. Both established and new trends for assessment of despeckling are presented. A few experiments on simulated data and real COSMO-SkyMed SAR images highlight, on one side the costperformance tradeoff of the different methods, on the other side the effectiveness of solutions purposely designed for SAR heterogeneity and not fully developed speckle. Eventually, upcoming methods based on new concepts of signal processing, like compressive sensing, are foreseen as a new generation of despeckling, after spatial-domain and multiresolution-domain methods.}, 
+keywords={Bayes methods;estimation theory;filtering theory;radar imaging;speckle;synthetic aperture radar;wavelet transforms;Bayesian estimator;COSMO-SkyMed SAR image;SAR heterogeneity;SAR image despeckling method;homomorphic filter;multiplicative noise;multiresolution despeckling;multiresolution domain;nonBayesian methods;nonlocal filtering;probability density function model;scale space varying pdf model;scale varying model;spatial domain Bayesian filter;spatial domain despeckling;speckle reduction;stationary wavelet transform;synthetic aperture radar image;total variation regularization;undecimated wavelet transform;wavelet domain Bayesian filter;Image processing;Noise measurement;Signal resolution;Spatial resolution;Synthetic aperture radar;Tutorials}, 
+doi={10.1109/MGRS.2013.2277512}, 
+ISSN={2168-6831},}
+
+@ARTICLE{Wang_TIP_2004,
+author={Zhou Wang and Bovik, A.C. and Sheikh, H.R. and Simoncelli, E.P.},
+journal={Image Processing, IEEE Transactions on},
+title={Image quality assessment: from error visibility to structural similarity},
+year={2004},
+month={April},
+volume={13},
+number={4},
+pages={600-612},
+abstract={Objective methods for assessing perceptual image quality traditionally attempted to quantify the visibility of errors (differences) between a distorted image and a reference image using a variety of known properties of the human visual system. Under the assumption that human visual perception is highly adapted for extracting structural information from a scene, we introduce an alternative complementary framework for quality assessment based on the degradation of structural information. As a specific example of this concept, we develop a structural similarity index and demonstrate its promise through a set of intuitive examples, as well as comparison to both subjective ratings and state-of-the-art objective methods on a database of images compressed with JPEG and JPEG2000. A MATLAB implementation of the proposed algorithm is available online at http://www.cns.nyu.edu/∼lcv/ssim/.},
+keywords={data compression;image coding;visual perception;JPEG;JPEG2000;distorted image;error sensitivity;error visibility;human visual perception;human visual system;image compression;image database;perceptual image quality assessment;reference image;structural information;structural similarity index;Data mining;Degradation;Humans;Image quality;Indexes;Layout;Quality assessment;Transform coding;Visual perception;Visual system;Algorithms;Data Interpretation, Statistical;Hypermedia;Image Enhancement;Image Interpretation, Computer-Assisted;Information Storage and Retrieval;Models, Statistical;Pattern Recognition, Automated;Quality Control;Reproducibility of Results;Sensitivity and Specificity;Signal Processing, Computer-Assisted;Subtraction Technique},
+doi={10.1109/TIP.2003.819861},
+ISSN={1057-7149}
+}
+
+@INPROCEEDINGS{Nielsen_2012_ICASSP,
+author={Nielsen, F.},
+booktitle={Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE International Conference on},
+title={K-MLE: A fast algorithm for learning statistical mixture models},
+year={2012},
+month={March},
+pages={869-872},
+abstract={We present a fast and generic algorithm, k-MLE, for learning statistical mixture models using maximum likelihood estimators. We prove theoretically that k-MLE is dually equivalent to a Bregman k-means for the case of mixtures of exponential families (e.g., Gaussian mixture models). k-MLE is used to initialize appropriately the expectation-maximization algorithm. We also show experimentally that k-MLE outperforms the EM technique with standard initialization by considering modeling color images using high-dimensional Gaussian mixture models.},
+keywords={Gaussian processes;expectation-maximisation algorithm;learning (artificial intelligence);Bregman k-means;EM technique;expectation-maximization algorithm;exponential families;generic algorithm;high-dimensional Gaussian mixture models;k-MLE;learning;maximum likelihood estimators;statistical mixture models;Clustering algorithms;Color;Image color analysis;Maximum likelihood estimation;Signal processing algorithms;Bregman divergences;Gaussian mixtures;exponential families;maximum likelihood estimation},
+doi={10.1109/ICASSP.2012.6288022},
+ISSN={1520-6149}
+}
