@@ -209,6 +209,7 @@ At the same time, in the log-transformed domain, Eqn. \ref{eqn:var_log_det_is_ho
   the variance of $\ln |C_v|$ is invariant and independent of $\Sigma_v$, hence exhibiting its homoskedastic nature.
 
 \section{Consistent Measures of Distance for POLSAR data}
+\label{sec:consistent_measures_distance_polsar}
 
 This section introduces the consistent sense of distance from a few different perspectives.
 First assuming that the true value of the underlying signal $\Sigma_v$ is known \textit{a priori},
@@ -405,38 +406,43 @@ The nominal value of 4 was taken as the dataset's number of looks, $L$, while th
 dimensional number $d$ is set to 3 for the full polarimetric SAR dataset, and 2 for the partial polarimetric SAR dataset. 
 The histogram plots of the theoretical models and the real-life dataset are presented in Fig. \ref {fig:verify_polsar_2x2_simulation_dispersion_contrast}. A visual match is clearly observable which verifies the applicability of
 the theoretical models for the dispersion and contrast measures of distance.
+This qualitative observation is further supported by high significance level (or p-value) in the standard Kolmogorov-Smirnov goodness-of-fit test between curves \cite{Kolmogoroff_1941_AMS_461}, noted under each graph.
+While a good p-value may not lead to automatic acceptance of the model, high p-values lend a high level of confidence to the proposal.
 
 \begin{figure}[bth!]
 \centering
 \begin{tabular}{c}
-	\subfloat[part-pol (2x2) dispersion]{
+	\subfloat[part-pol (2x2) dispersion (p-value HH-HV=0.????)]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
                  \epsffile{images/verify_polsar_2x2_dispersion_distribution.eps} 
 		 \label{dispersion_2x2}
 	} 
 	\hfill	
-	\subfloat[part-pol (2x2) contrast]{
+	\subfloat[part-pol (2x2) contrast (p-value HH-HV=0.9182)]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
 		 \epsffile{images/verify_polsar_2x2_contrast_distribution.eps} 	
 		 \label{contrast_2x2}
 	} \\
-	\subfloat[full-pol (3x3) dispersion]{
+	\subfloat[full-pol (3x3) dispersion (p-value=0.????)]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
                  \epsffile{images/verify_polsar_3x3_dispersion_distribution.eps} 
 		 \label{dispersion_3x3}
 	} 
 	\hfill	
-	\subfloat[full-pol (3x3) contrast]{
+	\subfloat[full-pol (3x3) contrast (p-value=0.9254)]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
 		 \epsffile{images/verify_polsar_3x3_contrast_distribution.eps} 	
 		 \label{contrast_3x3}
 	}
 \end{tabular}
-\caption{Validating the dispersion and contrast models against both partial and full polarimetric AIRSAR Flevoland data.}
+\caption{Validating the dispersion and contrast models against both partial and full polarimetric AIRSAR Flevoland data.
+Each histogram plots the signal(s) under investigation against its probabilistic distribution across the patch,
+  with p-value being the significance level of the Kolmogorov-Smirnov goodness-of-fit test between the two histograms.  
+}
 \label{fig:verify_polsar_2x2_simulation_dispersion_contrast}
 \end{figure}
 

@@ -421,6 +421,7 @@ It excels by providing a theoretical proof for its k-MLE procedure in the case o
 Its drawback: it focuses only on the exponential distribution, which is just one special case of the work presented here.
 
 \section{SAR Speckle filtering using the consistent measures}
+\label{sec:f_mle}
 
 As mentioned earlier, speckle filters remove the stochastic noise by grouping data into homogeneous areas. 
 In the boxcar filter, the filtering process can be described via Eqn. \ref{eqn:boxcar}, 
@@ -601,26 +602,26 @@ Fig. \ref{fig:plot_incl_distance_pdf_by_iterations} illustrates the extra speckl
 \begin{figure}[H]
 \centering
 	\subfloat[f-MLE (incl): 123]{
-		 \epsfxsize=3.5cm
-		 \epsfysize=3.5cm
+		 \epsfxsize=6cm
+		 \epsfysize=6cm
 		 \epsffile{images/incl_distance_pdf_by_iterations.123.made.eps} 
 		 \label{fig:plot_incl_distance_pdf_by_iterations.123}
 	}
 	\subfloat[f-MLE (incl): 456]{
-		 \epsfxsize=3.5cm
-		 \epsfysize=3.5cm
+		 \epsfxsize=6cm
+		 \epsfysize=6cm
 		 \epsffile{images/incl_distance_pdf_by_iterations.345.made.eps} 
 		 \label{fig:plot_incl_distance_pdf_by_iterations.345}
-	} 
+	} \\ 
 	\subfloat[f-MLE (excl): 123]{
-		 \epsfxsize=3.5cm
-		 \epsfysize=3.5cm
+		 \epsfxsize=6cm
+		 \epsfysize=6cm
 		 \epsffile{images/excl_distance_pdf_by_iterations.123.made.eps} 
 		 \label{fig:plot_excl_distance_pdf_by_iterations.123}
 	}
 	\subfloat[f-MLE (excl): 456]{          
-		 \epsfxsize=3.5cm
-		 \epsfysize=3.5cm
+		 \epsfxsize=6cm
+		 \epsfysize=6cm
 		 \epsffile{images/excl_distance_pdf_by_iterations.345.made.eps} 
 		 \label{fig:plot_excl_distance_pdf_by_iterations.345}
 	}
@@ -984,6 +985,7 @@ The result suggests that lower MSE achievable by f-MLE filters does lead to bett
 %Should the fuzziness be taken to a new level, an optimal fuzzy probabilistic filter which requires no clustering may be specified and designed.
 
 \section{Evaluating SAR Speckle Filters using the consistent measures of distance}
+\label{sec:sar_filters_evaluation}
 
 The nature of SAR speckle is that
 	it is stochastic even if the underlying radiometry is constant. 

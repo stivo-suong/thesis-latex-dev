@@ -27,11 +27,11 @@ and
 After different scalar statistical models, together with many different data processing techniques, are reviewed for both SAR and POLSAR data,
   Chapter \ref{chap:lit_survey} highlights the needs for scalar, representative and homoskedastic statistical models for the multi-dimensional, complex and heteroskedastic data.
 
-  Chapter \ref{chap:sar} then presents homoskedastic models that are derived for heteroskedastic SAR data. 
+ Chapter \ref{chap:sar} then presents homoskedastic models that are derived for heteroskedastic SAR data. 
 In Chapter \ref{chap:polsar}, scalar and representative statistical models are proposed for the multi-dimensional and inter-correlated POLSAR data.
 These two seemingly disconnected results are unified, when the statistical models for POLSAR are shown to be the generic multi-dimensional extension of the commonly used statistical models for SAR intensity.
 This combination leads to the main result: the proposal of scalar, representative and homoskedastic models for both SAR and POLSAR data.
-These theoretical results are applied in chapter \ref{chap:applications} where a new clustering algorithm and a new SAR speckle filter are proposed together with our proposal of using MSE to evaluate both SAR and POLSAR speckle filters.
+These theoretical results are applied in Chapter \ref{chap:applications} where a new clustering algorithm and a new SAR speckle filter are proposed together with our proposal of using MSE to evaluate both SAR and POLSAR speckle filters.
 
 %What are the results?
 Generally speaking, this thesis contributes solutions for the problem of how to interpret and process the multidimensional and stochastic (POL)SAR data.
@@ -44,7 +44,7 @@ Generally speaking, this thesis contributes solutions for the problem of how to 
 %  in addition to several novel (POL)SAR data processing techniques
 %  which are also proposed as beneficial applications of these models.
 Specifically, the
-                main theoretical results obtained in this thesis are novel statistical
+                main theoretical contributions obtained in this thesis are novel statistical
                 models, which subsequently lead to derivation of
                 consistent and homoskedastic measures of distance, for
                 both SAR and POLSAR data.
@@ -71,7 +71,7 @@ This
                 derived consistent measures of distance for SAR and
                 especially for POLSAR are also a novelty.
 With regards to other existing discrimination measures for SAR and POLSAR,
-                this thesis unite them, together with the new ones
+                this thesis unites them, together with the new ones
                 proposed herein, all into a consistent theory.
 %More
 %                over the homoskedastic models and their derived
@@ -85,6 +85,48 @@ With regards to other existing discrimination measures for SAR and POLSAR,
 %The scalar models for POLSAR are also shown to be the generic multi-dimensional models 
 %which also encompass the traditional one-dimensional SAR intensity models under its natural coverage.
 %Thus the additive and homoskedastic models initially developed for SAR are shown extensible to the generic multi-dimensional, multiplicative and heteroskedastic case of POLSAR.
+
+Corresponding to the objectives outlined in Chapter 1,
+  the following results have been obtained:
+\begin{enumerate}
+\item           Several scalar and highly representative statistical models
+                for the multi-dimensional and inter-correlated POLSAR
+                data have been proposed:
+                \begin{enumerate}
+                \item The determinant statistical model is established for the determinant of POLSAR covariance matrices (Section \ref{sec:polsar_heterosked_model_and_log_transform}),
+                \item Several statistical models for different discrimination measures (namely: determinant-ratio, log-distance, dispersion and contrast) are derived together with its consistent property (Section \ref{sec:consistent_measures_distance_polsar}). %being modelled 
+                \item The proposed models for POLSAR are also shown to include the traditional SAR statistical models (Section \ref{sec:sar_special_case_of_polsar}).
+                \item \label{itm:polsar_validation} The proposed models are validated against practical real-life
+                captured POLSAR data in Section \ref{sec:polsar_models_validation}.
+                \end{enumerate}
+\item                Homoskedastic statistical models for the
+                heteroskedastic (POL)SAR data are derived. Specifically 
+                \begin{enumerate}
+                \item \label{itm:log_transform} The statistical model for POLSAR data are shown to be heteroskedastic in
+                the original domain and logarithmic transformation
+                converts this into a homoskedastic model (Sections \ref{sec:heteroskedastic_sar}, \ref{sec:homoskedastic_sar}, \ref{sec:polsar_heterosked_model_and_log_transform}).
+                \item \label{itm:sar_measures_distance} Homoskedastic measures of distance for
+                the multi dimensional POLSAR as well as for the one
+                dimensional SAR data are derived (Sections \ref{sec:consistent_measures_distance_sar}, \ref{sec:consistent_measures_distance_polsar})
+                \item \label{itm:sar_validation} These statistical models are validated against both
+                practical SAR and POLSAR data (Sections: \ref{sec:sar_special_case_of_polsar}, \ref{sec:polsar_models_validation})
+                \end{enumerate}
+\item The beneficial applications of these
+                statistical models have also been demonstrated. Specifically:
+                \begin{enumerate}
+                \item \label{itm:filter_vicious_circle} The consistent sense of variance
+                is shown to help breaking the vicious cycle in the problem of SAR
+                speckle filtering: with new statistical test for
+                homogeneity and new speckle filters proposed (Section \ref{sec:k_mle}, \ref{sec:f_mle}).
+                \item \label{itm:log_mse} Tconsistent sense of subtractive
+                distance also helps in the problem of evaluating SAR
+                speckle filters. Section \ref{sec:sar_filters_evaluation} proposes the use of the log-MSE to combine the
+                evaluation of radiometric preservation and speckle
+                suppression power in evaluating SAR speckle filters.
+                \item \label{itm:extend_sar_to_polsar} Section \ref{sec:polsar_models_validation} demonstrates an example where the existing SAR
+                processing technique of ENL estimation is extended towards POLSAR data.
+                \end{enumerate}
+\end{enumerate}
 
 In summary, to address the dual-problem stated earlier, this thesis proposes several
 scalar, additive and homoskedastic models for the multi-dimensional, multiplicative
@@ -100,7 +142,7 @@ Consequently, these measures of dis-similarity may be employed in a wide range o
 The proposed theoretical models are also versatile in practice
   as they cope well with imperfect conditions evident in real-life captured data.
 
-The work in this research results in the following list of articles that has been prepared for public communication: 
+The work in this research results in the following list of articles that have been prepared for public communication: 
 
 \begin{enumerate}
 \item \textbf{Neural network-assisted reconstruction of full polarimetric SAR information.}
@@ -115,6 +157,7 @@ The work in this research results in the following list of articles that has bee
 \item \textbf{Scalar and Representative Models for Polarimetric SAR Data.}
   T. H. Le, I. V. McLoughlin, and C. H. Vun,
   under revision for resubmission to \textit{IEEE Journal on Selected Topic in Applied Earth Observation and Remote Sensing.}
+  
 \item \textbf{Using MSE to evaluate SAR speckle filters.}
   T. H. Le, I. V. McLoughlin, and C. H. Vun.
   submitted to \textit{IET Radar, Sonar \& Navigation}
