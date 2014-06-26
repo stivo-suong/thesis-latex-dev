@@ -4,7 +4,7 @@
 In this chapter, some beneficial applications of the proposed models are presented,
   which demonstrate how the models' consistent sense of variance capability can help to break the vicious circle encountered in SAR speckle
 filtering.
-This chapter also shows how the MSE can then be 
+This chapter also shows how the Mean Squared Error (MSE) can then be 
 applied in the additive and homoskedastic domain to evaluate SAR speckle filters, and further extends the concept to also evaluate
  POLSAR speckle filters. 
 
@@ -30,10 +30,10 @@ Thus an image can be segmented into homogeneous areas by applying the process re
 \subsubsection{Homogeneous Maximum Likelihood Estimation}
 
 In a window of analysis, intensity dataset $X^I=\{x^I_1,...,x^I_n\}$ follows the exponential distribution given in Eqn. \ref{eqn:SAR Intensity PDF}. 
-Assuming prior knowledge of it being homogeneous, thus having a single $\sigma$, the objective then is to estimate $\sigma$. 
+Assuming prior knowledge of it being homogeneous, thus having a single $\sigma$, the objective is to estimate $\sigma$. 
 This section shows how $\sigma$ can be estimated in the log-transformed domain.
 
-It has already been proven that the log-transformed dataset $X^l=\log_2 \sigma$ follows a Fisher-Tippet distribution $pdf(x)= \ln 2 \frac{ 2^d }{ e^{2^d} }$, with $d=x-\mu$, and $\mu=2 \log_2 \sigma$. 
+It has already been proven (see Eqn. \ref{eqn:SAR Log Intensity PDF}) that the log-transformed dataset $X^l=\log_2 \sigma$ follows a Fisher-Tippet distribution $pdf(x)= \ln 2 \frac{ 2^d }{ e^{2^d} }$, with $d=x-\mu$, and $\mu=2 \log_2 \sigma$. 
 %***IVM: Hai can you clarify the \ln 2 \frac{ 2^d }{ e^{2^d} }, is that a base 2 in there? Maybe some brackets would help....
 Thus the problem of estimating $\sigma$, casting into the log-transformed domain, equals to the problem of estimating $\mu$. 
 The PDF given in Eqn. \ref{eqn:conditional_prob} can then be interpreted as
@@ -757,7 +757,7 @@ $MSE = \frac{1}{(ENL - 0.5)ln^2(2)}$.
 %An experiment is carried out to 
 Fig. \ref{fig:verify_MSE_as_perf_index} demonstrates the relationship.
 The use of iterative Fuzzy MLE estimations allows further suppression of speckle.
-This is illustrated with ``tighter'' distance histograms and reducing MSE, as plotted in Fig. \ref{fig:Homogeneous_Area}
+This is illustrated with ``tighter'' distance histograms and reducing Mean Squared Error (MSE), as plotted in Fig. \ref{fig:Homogeneous_Area}
 
 
 \begin{figure}
@@ -1196,7 +1196,7 @@ probably insignificant in comparison to the other components, namely, variance e
 The next section will give a theoretical justification for our methodology where variance 
 methods of evaluation are shown to be mathematically related to the ENL index.
 %The final subsection details how variance evaluation in the log-transformed domain to evaluate the levels of speckle 
-over homogeneous areas.
+%over homogeneous areas.
 
 \subsubsection{Estimating ENL from the log-variance index in homogeneous areas}
 \label{sec:homogeneous_theoretical}
@@ -1263,6 +1263,8 @@ They also shows that
 
 \begin{table}[h]
 \centering
+\caption{ Speckle Suppression Power: ENL and Variance }
+\label{tab:enl_in_log_domain}
 \begin{tabular}{r|c|c|c|c}
 ENL & Var (Theory) & Var (Analysis) & Var (Observed) & $\hat{L}_{est} $ \\
 \hline
@@ -1291,8 +1293,6 @@ ENL & Var (Theory) & Var (Analysis) & Var (Observed) & $\hat{L}_{est} $ \\
 24 & 0.0886 & 0.0886 & 0.0887 (0.0002) & 23.957 (0.0507)\\
 25 & 0.0849 & 0.0849 & 0.0846 (0.0007) & 25.094 (0.1934)
 \end{tabular}
-\caption{ Speckle Suppression Power: ENL and Variance }
-\label{tab:enl_in_log_domain}
 \end{table}
 
 The relationship proposed here may also help to unite other seemingly unrelated results.
@@ -1400,6 +1400,8 @@ The consistent log-variance also leads to consistent and thus reliable ENL evalu
 
 \begin{table}[h!]
 \centering
+\caption{Performance of various filters over homogeneous areas}
+\label{tab:homogeneous_performance_filters}
 \begin{tabular}{c|c|r|c|r}
 Filter & Set & Log-Variance & $\hat{L}_{est}$ & Avg Intensity \\
 \hline
@@ -1427,8 +1429,6 @@ kuan & 3 & 0.2964 (0.0010) & 7.5225 (0.0244) & 25.6112 (0.0226)\\
 frost & 3 & 0.2862 (0.0008) & 7.7714 (0.0202) & 25.6263 (0.0409)\\
 boxcar & 3 & 0.2529 (0.0005) & 8.7296 (0.0178) & 25.6261 (0.0407)
 \end{tabular}
-\caption{Performance of various filters over homogeneous areas}
-\label{tab:homogeneous_performance_filters}
 \end{table}
 
 Table \ref{tab:homogeneous_performance_filters} provides a quantitative comparison among the filters.
@@ -1564,10 +1564,10 @@ Using this method, the separability of the two stochastic populations are judged
 
 Fig. \ref{fig:hetero_patterns_roc_auc} shows that feature preservation can be 
 evaluated by examining the separability of the two background and target populations.
-Figs. \ref{fig:hetero_patterns_roc_auc:hist_unfiltered} and \ref{fig:hetero_patterns_roc_auc:hist_kuan_filtered} 
+Figs. \subref*{fig:hetero_patterns_roc_auc:hist_unfiltered} and \subref*{fig:hetero_patterns_roc_auc:hist_kuan_filtered} 
 	allows visual evaluation of target and clutter histograms and their separability.
 Quantitative evaluation of these separability is carried out by plotting the Receiver Operating Curve (ROC), 
-in Figs. \ref{fig:hetero_patterns_roc_auc:roc_unfiltered} and \ref{fig:hetero_patterns_roc_auc:roc_kuan_filtered} 
+in Figs. \subref*{fig:hetero_patterns_roc_auc:roc_unfiltered} and \subref*{fig:hetero_patterns_roc_auc:roc_kuan_filtered} 
 respectively, and is measured by computing the Area Under these Curves (AUC).
 
 %\afterpage{\clearpage}
@@ -1607,17 +1607,17 @@ respectively, and is measured by computing the Area Under these Curves (AUC).
 
 Detailed examination of Figs. \ref{fig:hetero_patterns_roc_auc} and \ref{fig:hetero_patterns_mse} 
 	can help to explain how the MSE is related to the histograms' separation capability.
-In pre-filtered images, shown in Figs. \ref{fig:hetero_patterns_roc_auc:hist_unfiltered} and 
-\ref{fig:hetero_patterns_mse:unfiltered}, there is no bias error visible.
+In pre-filtered images, shown in Figs. \subref*{fig:hetero_patterns_roc_auc:hist_unfiltered} and 
+\subref*{fig:hetero_patterns_mse:unfiltered}, there is no bias error visible.
 Then the separability of background and target populations depends only on the variance of the additive noise. 
 This variance is visualized as the horizontal spread of the histograms.
 Naturally, given a fixed location (i.e. expectation) of the two populations, the smaller the spread (i.e. variance) of these sample histograms, 
 the better the separation capability.
 
-In post-filtered images, shown in Figs. \ref{fig:hetero_patterns_roc_auc:hist_kuan_filtered} and 
-\ref{fig:hetero_patterns_mse:kuan_filtered}, the situation is more complicated.
+In post-filtered images, shown in Figs. \subref*{fig:hetero_patterns_roc_auc:hist_kuan_filtered} and 
+\subref*{fig:hetero_patterns_mse:kuan_filtered}, the situation is more complicated.
 Here, besides the effect of the histogram spread, one also needs to take into account the bias error.
-A closer examination of Fig. \ref{fig:hetero_patterns_mse:kuan_filtered} indicates that the output of the 
+A closer examination of Fig. \subref*{fig:hetero_patterns_mse:kuan_filtered} indicates that the output of the 
 Kuan filter, and in fact the outputs of all other filters (which are not reproduced here due to space constraints), 
 also introduce bias errors.
 Specifically, the target (brighter) populations are always under-estimated and the clutter (darker) population are 
@@ -1626,7 +1626,7 @@ Apparently, assuming that the variances are fixed, the lower these bias errors, 
 
 In SAR domain terminology, the general requirements of feature preservation for SAR speckle filters can be broken 
 down into the requirements of radiometric preservation and speckle suppression.
-In the log-transformed domain, these smaller requirements are equivalent to the bias and variance evaluation of 
+In the log-transformed domain, these requirements are equivalent to the bias and variance evaluation of 
 statistical estimators respectively.
 Overall, while the MSE index combines the measurements of bias and variance evaluation, 
 	the feature preservation requirement, in the context of simple target and clutter scenes, can be measured by 
@@ -1644,6 +1644,9 @@ The results suggest that the lower MSE achievable by a SAR speckle filter would,
 
 \begin{table}[h!]
 \centering
+\caption{Lower MSE suggest better feature detection, measured by the AUC index}
+\label{tab:mse_auc_in_log_domain}
+
 \begin{tabular}{c|r|c|c|r}
 Pattern  & Filter  & AUC & $MSE_{true}$   & $MSE_{noise}$      \\% &85\%             &90\%\\
 \hline
@@ -1681,12 +1684,12 @@ Pattern  & Filter  & AUC & $MSE_{true}$   & $MSE_{noise}$      \\% &85\%        
 \hline
 \end{tabular}
 
-\caption{Lower MSE suggest better feature detection, measured by the AUC index}
-\label{tab:mse_auc_in_log_domain}
 \end{table}
 
 \begin{table}[h!]
 \centering
+\caption{The correlation between MSE and AUC evaluation criteria (inside the brackets are corresponding p-values)}
+\label{tab:mse_auc_corr_coeff}
 \begin{tabular}{c|c|c}
 Pattern  & AUC - $MSE_{true}$  & AUC - $MSE_{benchmark}$  \\
 \hline
@@ -1696,9 +1699,6 @@ checker &   -0.9077     (7.3e-06)  &  -0.9829       (3.5e-10) \\
 line &      -0.8223     (3.1e-04)  &   -0.9421       (4.8e-07) \\
 \hline
 \end{tabular}
-
-\caption{The correlation between MSE and AUC evaluation criteria (inside the brackets are corresponding p-values)}
-\label{tab:mse_auc_corr_coeff}
 \end{table}
 
 Thus in this section, the MSE criteria in the log-transformed domain is validated through experiments and analysis.
@@ -1787,6 +1787,8 @@ The conjecture is also validated using visual evaluation, an example of
 
 \begin{table}[h!]
 \centering
+\caption{If the best filters are the ones with smallest true MSE, then their observable noise-MSE are also the ones closest to the MSE of inherent noise}
+\label{tab:mse_true_noise_log_domain}
 \begin{tabular}{r|r|c|c}
 Pattern  & Filter  & $MSE_{true}$   & $MSE_{noise}$      \\% &85\%             &90\%\\
 %\hline
@@ -1819,14 +1821,13 @@ Hanoi suburb	& kuan		& 0.3619	& 3.7270\\
 Hanoi suburb	& boxcar	& 0.3395	& 4.2882\\
 \hline
 \end{tabular}
-
-\caption{If the best filters are the ones with smallest true MSE, then their observable noise-MSE are also the ones closest to the MSE of inherent noise}
-\label{tab:mse_true_noise_log_domain}
 \end{table}
 
 %\afterpage{\clearpage}
 \begin{table}[h!]
 \centering
+\caption{Our Conjecture: Most Suitable Speckle Filter For The Scene Can Be Chosen Using The Residual MSE.}
+\label{tab:mse_in_real_image}
 \begin{tabular}{c|r|r}
 Filter & $MSE_{residual}$ & $MSE_{benchmark}$\\
 \hline
@@ -1839,8 +1840,6 @@ frost & 4.1191 & 0.0024 \\
 \hline
 none & $MSE_{base}$ & 4.1167 
 \end{tabular}
-\caption{Our Conjecture: Most Suitable Speckle Filter For The Scene Can Be Chosen Using The Residual MSE.}
-\label{tab:mse_in_real_image}
 \end{table}
 
 \afterpage{\clearpage}

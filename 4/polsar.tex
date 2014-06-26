@@ -11,7 +11,7 @@ It
                  as well as several homoskedastic measures of
                 distance for the data.
 Subsequently the statistical models for SAR are shown to be a special case of
-                the proposed models for POLSAR
+                the proposed models for POLSAR. 
 And finally these proposed models are validated against real-life practical data.
 Mathematical derivations of the proposed models are presented in the Appendix. %***IVM: should say "Appendix A" or whatever it is?
 %The last section of this chapter details the mathematical derivations of these proposed models,
@@ -107,6 +107,8 @@ In log-transformed domain, the case for a homoskedastic model,
 To keep the section flowing, the mathematical derivation is only presented here in major sketches.
 For more detailed derivation, please refer to Appendix \ref{chap:appendix_a}.
 
+\subsection{The Determinant and Log-Determinant Models}
+
 From Eqn. \ref{eqn:prod_chi_squared_rv} and Eqn. \ref{eqn:sum_log_chi_squared_rv}
 we have:
 \begin{equation}
@@ -126,6 +128,8 @@ Thus Eqn. \ref{eqn:determinant_distribution} gives the theoretical explanation t
 At the same time, Eqn. \ref{eqn:log_determinant_distribution} shows that
   the logarithmic transformation converts this into a more familiar additive noise.  
 
+\subsection{The Statistical Properties of the Proposed Models}  
+  
 Since chi-squared random variables $X\ \sim\ \chi^2(k)\ $ follows the PDF:
 \begin{equation}
 pdf(x;k) =
@@ -212,9 +216,12 @@ At the same time, in the log-transformed domain, Eqn. \ref{eqn:var_log_det_is_ho
 \label{sec:consistent_measures_distance_polsar}
 
 This section introduces the consistent sense of distance from a few different perspectives.
+
+\subsection{The Determinant-Ratio and Log-Distance Models}
+
 First assuming that the true value of the underlying signal $\Sigma_v$ is known \textit{a priori},
 the following random variables,
-  namely ratio ($\mathbb{R}$) and log-distance ($\mathbb{L}$),
+  namely determinat-ratio ($\mathbb{R}$) and log-distance ($\mathbb{L}$),
   are observables according to their definitions:
 
 \begin{equation}
@@ -228,7 +235,9 @@ the following random variables,
  \mathbb{L} = \ln|C_v| - \ln|\Sigma_v|  
 \end{equation}
 
-From another perspective where the POLSAR is known as having come from an homogeneous area, but the true value of the underlying signal $\Sigma_v$ is \textit{unknown}, consider the dispersion ($\mathbb{D}$) and contrast ($\mathbb{C}$) random variables being defined as:
+\subsection{The Dispersion and Contrast Models}
+
+From another perspective where the POLSAR is known as having come from a homogeneous area, but the true value of the underlying signal $\Sigma_v$ is \textit{unknown}, consider the dispersion ($\mathbb{D}$) and contrast ($\mathbb{C}$) random variables being defined as:
 %\begin{eqnarray}
 %\end{eqnarray}
 \begin{equation}
@@ -241,6 +250,8 @@ From another perspective where the POLSAR is known as having come from an homoge
   \caption{eqn:POLSAR Contrast Observable}
   \mathbb{C} = \ln(|C_{v1}|) - \ln(|C_{v2}|)
 \end{equation}
+
+\subsection{The Statistical Properties of the Proposed Models}
 
 Applying Eqns. \ref{eqn:determinant_distribution}, \ref{eqn:log_determinant_distribution} and \ref{eqn:avg_log_det}, Eqns \ref{eqn:determinant_ratio_observables} to \ref{eqn:contrast_observable} becomes:
 \begin{equation}
@@ -349,7 +360,7 @@ the POLSAR results can also be derived and shown to be as follows:
 
 This newly derived model for multi-look SAR data can also be validated against real-life data.
 Fig. \ref{fig:verify_multi_look_SAR_dispersion_contrast_models} presents the the results of an experiment carried out for the stated purpose.
-In the experiment, the intensity of a single-channel of SAR data (HH) for an homogeneous area in the AIRSAR Flevoland dataset is extracted.%***IVM do you need to give a ref to the dataset?
+In the experiment, the intensity of a single-channel of SAR data (HH) for a homogeneous area in the AIRSAR Flevoland dataset is extracted.%***IVM do you need to give a ref to the dataset?
 Then the histograms for the log-distance and and contrast are plotted against the theoretical PDF given above.
 The ENL is set to the nominal number of 4.
 A good visual match is apparent in the final plotted results.
@@ -382,11 +393,11 @@ A good visual match is apparent in the final plotted results.
 
 This section describes the test to validate the proposed models  against real-life captured data. The validation procedure is as follows. Using the stochastic
 models  derived in the previous sections, 
-histogram plots of its simulated data are generated graphically. This is then compared against  the histogram plots of the  real-life captured data samples extracted from an homogeneous area.   
+histogram plots of its simulated data are generated graphically. This is then compared against  the histogram plots of the  real-life captured data samples extracted from a homogeneous area.   
 
 As such,  the theoretical models can be validated if, for the
 same parameters, the two plots match each other reasonably well.
-For this verification, an homogeneous area was chosen from the AIRSAR Flevoland POLSAR data. Theoretical models are then verified against the  real life data. The validations include the following models: the determinant and
+For this verification, a homogeneous area was chosen from the AIRSAR Flevoland POLSAR data. Theoretical models are then verified against the  real life data. The validations include the following models: the determinant and
 its log-transformed models, together with the various dissimilarity measures, namely: the determinant ratio, the log-distance, the dispersion and the contrast measures of distance.
   
 These models are also closely related.
@@ -449,7 +460,7 @@ Each histogram plots the signal(s) under investigation against its probabilistic
 
 Apart from dispersion and contrast,
 the other four models to be investigated require an estimation of the ``true'' underlying signal $|\Sigma_v|$. 
-There are two ways to estimate this quantity over an homogeneous area.
+There are two ways to estimate this quantity over a homogeneous area.
 The traditional way is to simply assume that the true signal is equal to the average of the POLSAR covariance matrix in its original domain, i.e. $\Sigma_v = avg(C_v$).
 Another approach is to estimate the true signal from the average of the log-determinant of the POLSAR covariance matrix (i.e. $avg[ln|C_v|]$) using Eqn. \ref{eqn:avg_log_det}.
 Both approaches will be explored in this section.
@@ -602,7 +613,7 @@ While for RadarSat2, the pixel resolution and range--azimuth resolutions for SLC
 
 The proposed model in this thesis can handle this imperfection that is found in practical data through the use of an ENL estimation procedure, as will be described in the next section.
   
-\subsection{Estimating the Effect Number-of-Looks (ENL)}
+\subsection{Estimating the Effective Number-of-Looks (ENL)}
 
 A number of techniques are available to estimate the Effective Number of Looks (ENL) for a given POLSAR dataset.
 The common approach is by investigating the summary statistics of a known homogeneous area in the given data
@@ -668,7 +679,7 @@ In the next section, the estimated ENL will hence be used to demonstrate the acc
 For this test a sample RADARSAT2 dataset is used. 
 The dataset is in its Fine-Quad mode Single-Look format,
   and nine-look processing is applied.
-The dispersion histogram in the log-transformed domain is computed over an homogeneous area.
+The dispersion histogram in the log-transformed domain is computed over a homogeneous area.
 The histograms generated by the theoretical models for  nominal ENL value
   of 9 are then plotted %for both one-dimensional SAR and two-dimensional partial POLSAR data are plotted
 in Fig. \ref{fig:handling_radarsat2_oversampling_practice}. The nine-look histogram is the narrower and higher curve.
@@ -697,7 +708,7 @@ This procedure can always be carried out for any given dataset,
 		 \label{part_pol}
 	}   
 \end{tabular}
-\caption{9-look processed Radarsat2 data does not exactly exhibit 9-look data characteristics. An homoskedastic model in the log-transformed domain can be used to successfully estimate the effective ENL and thus offer a better model of the data.}
+\caption{9-look processed Radarsat2 data does not exactly exhibit 9-look data characteristics. A homoskedastic model in the log-transformed domain can be used to successfully estimate the effective ENL and thus offer a better model of the data.}
 \label{fig:handling_radarsat2_oversampling_practice}
 \end{figure}
 

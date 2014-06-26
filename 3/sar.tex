@@ -51,6 +51,8 @@ in the original domain, estimating variance is equal to estimating the mean, but
 \begin{table}[!h]
 \normalsize
 \centering
+\caption{ Mean and Variance of Original SAR data }
+\label{tbl:orginal_sar_avg_var}
 \begin{tabular}{|l|l|}
 \hline
 Mean & Variance \\
@@ -61,8 +63,6 @@ $avg(A) = \frac{\sqrt{\pi}}{2} \cdot \sigma $ & $var(A) = \frac{(4-\pi)}{4} \cdo
 $avg(I) = \sigma^2 $ & $ var(I) = \sigma^4$ \\
 \hline 
 \end{tabular}
-\caption{ Mean and Variance of Original SAR data }
-\label{tbl:orginal_sar_avg_var}
 \end{table}
 
 The formulas above are extremely well known in this research field. 
@@ -79,7 +79,9 @@ In this thesis, a different perspective will be proposed which avoids the negati
 
 %\subsection{Statistical Heteroskedasticity of SAR data}
 
-The nature of SAR speckle is stochastic over homogeneous areas and heteroskedastic heterogeneously. 
+%The nature of SAR speckle is stochastic over homogeneous areas and heteroskedastic heterogeneously.
+As shown in the previous section,
+  over heterogeneous area, the stochastic SAR speckle is heteroskedastic in nature.
 Statistical models are used to describe how the underlying back-scattering coefficient ($\sigma$) affects the distribution of the observable SAR data. 
 While the statistical model within individual resolution cells is well established,
   it is only applicable to homogeneous areas.
@@ -119,7 +121,7 @@ It is interesting to note that the MMSE estimator used to estimate the mean in \
 Heteroskedasticity also poses numerous challenges in designing an efficient estimator. Heteroskedasticity directly violates Gauss-Markov theorem's homoskedastic assumption. 
 Thus it renders the efficiency of any naive Ordinary Least Square estimator in serious doubt. 
 If the variance is known \textit{a priori}, it has been proven \cite{Aitken_1934_ProcsRoyalSocEdinburg}, that a weighted mean estimator is the best linear unbiased estimator. 
-Interestingly, as noted by Lopes \cite{Lopes_TGRS_1990}, most known common successful adaptive filters \cite{Lee_PAMI_1980, Kuan_1985_PAMI, Frost_PAMI_1982} do make use of weighted mean estimations. 
+Interestingly, as noted by Lopes \cite{Lopes_TGRS_1990}, most commonly known successful adaptive filters \cite{Lee_PAMI_1980, Kuan_1985_PAMI, Frost_PAMI_1982} do make use of weighted mean estimations. 
 The problem, however, is that in SAR speckle filtering, variance is not known \textit{a priori}. 
 And even though variance can be estimated from observable values, as the ambiguity circle goes, estimating the variance is as hard as estimating the underlying coefficient $\sigma$ itself.
 
@@ -190,14 +192,14 @@ pdf(L_{1}^{A}) = 2 \cdot 2^{\left( 2 L_{1}^{A} \right)}e^{-2^{\left( 2 L_{1}^{A}
 pdf(L_A) = 2 \cdot 2^{\left( 2 L_A - 2 \log_2 \sigma \right)}e^{-2^{\left( 2 L_A - 2 \log_2 \sigma \right)}} 
 \end{equation}
 \begin{equation}
-  \label{eqn:SAR Unit Log Intensity PDF}
-  \caption{eqn:SAR Unit Log Intensity PDF}
 pdf(L_{1}^{I}) = 2^{L_1^I} e^{-2^{L_1^I}}  
+  \caption{eqn:SAR Unit Log Intensity PDF}
+  \label{eqn:SAR Unit Log Intensity PDF}
 \end{equation}
 \begin{equation}
-  \label{eqn:SAR Log Intensity PDF}
-  \caption{eqn:SAR Log Intensity PDF}
 pdf(L_I) = 2^{\left( L_I - 2 \log_2 \sigma \right)} e^{-2^{\left( L_I - 2 \log_2 \sigma \right)} }  
+  \caption{eqn:SAR Log Intensity PDF}
+  \label{eqn:SAR Log Intensity PDF}
 \end{equation}
 
 Noting that these distributions belong to the Fisher-Tippet family, the population expected mean and variances 
@@ -207,8 +209,8 @@ Most importantly, it can be seen that the means are biased and the variances are
 \begin{table}[h]
 \normalsize
 \centering
-%\begin{center}
-
+\caption{ Mean and Variance of Log Transformed values: here the variance is no longer dependent on $\sigma$ }
+\label{tbl:sar_log_domain_avg_var}
 \begin{tabular}{|l|l|}
 \hline
 Mean & Variance \\
@@ -219,10 +221,6 @@ $avg(L_A) = \frac{ - \gamma }{2} \cdot \frac{1}{\ln2} + \log_2{\sigma}$ & $var(L
 $avg(L_I) = - \gamma \cdot \frac{1}{\ln2} + 2 \log_2{\sigma}  $ & $ var(L_I) = \frac{ \pi ^2}{6} \cdot \frac{1}{(\ln2)^2}$ \\
 \hline
 \end{tabular}
-
-\caption{ Mean and Variance of Log Transformed values: here the variance is no longer dependent on $\sigma$ }
-\label{tbl:sar_log_domain_avg_var}
-%\end{center}
 \end{table}
 
 Table \ref{tbl:sar_log_domain_avg_var} confirms the condition of homoskedasticity,  
@@ -239,6 +237,9 @@ multi-look processing, the log-transformed domain with its homoskedastic distrib
 %\footnotesize -2
 \scriptsize
 \centering
+
+\caption{ The properties of observable SAR random variables }
+\label{tbl:sar_variables_properties}
 
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -262,9 +263,6 @@ $L_I$
 	& Biased $avg(L_I) = - \gamma \cdot \frac{1}{\ln2} + 2 \log_2{\sigma}  $ \\
 \hline
 \end{tabular}
-
-\caption{ The properties of observable SAR random variables }
-\label{tbl:sar_variables_properties}
 
 \end{table*}
 
@@ -521,6 +519,9 @@ The table is useful in cases when an area is to be tested for homogeneity,
 
 \begin{table}[H]
 \centering
+\caption{Cut off values}
+\label{tab:var_cut_off_values}
+
 \small
 %awk -F"&" '{print $4}' tmp.0.txt | awk -F"(" '{print $1}'
 \begin{tabular}{c|c|c|c|c|c}
@@ -552,8 +553,6 @@ No  & 70\%            &75\%             &80\%             &85\%             &90\
 25  &3.8541 (0.0054)  &4.0931 (0.0052)  &4.3803 (0.0032)  &4.7416 (0.0024)  &5.2453 (0.0045)
 \end{tabular}
 
-\caption{Cut off values}
-\label{tab:var_cut_off_values}
 \end{table}
 
 In summary, a few measurements of distance, being dispersion and contrast, are shown to agree with the consistent sense of variance and homoskedasticity.

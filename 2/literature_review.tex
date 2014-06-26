@@ -12,9 +12,9 @@ The second section then illustrates the different approaches that have been publ
 
 %\subsubsection{ Traditional Single-Channel SAR and the Speckle phenomena} 
 
-The stochastic nature of SAR data arises due to the process of SAR image formation. Specifically, since one SAR resolution cell is very big in comparison to the radar wavelength, it normally consists of many elementary scatterers. The data point of each SAR pixel then arises from the combined interference effect of the backscattered waves from these different scatterers. This effect causes natural variation in SAR intensity image even when the underlying scene is highly homogeneous.
+The stochastic nature of SAR data arises due to the process of SAR image formation. Specifically, since one SAR resolution cell is very big in comparison to the radar wavelength, it normally consists of many elementary scatterers. The data point of each SAR pixel then arises from the combined interference effect of the back-scattered waves from these different scatterers. This effect causes natural variation in SAR intensity image even when the underlying scene is highly homogeneous.
 
-SAR speckle phenomena are explained as the interference of many coherent but dephased backscattering components;
+SAR speckle phenomena are explained as the interference of many coherent but dephased back-scattering components;
   each reflecting from different and distributed elementary scatterers \cite{Oliver_ProcIEEE_1963, Leith_ProcIEEE_1971}. 
 The random nature of the SAR data arises
   due to the unknown and varying location, height and thus distance of each elementary scatterer;
@@ -573,7 +573,7 @@ Early works from the radar community had focused on the theoretical introduction
 %(Sinclair, 1950), (TODO) 
 These works were continued by Boerner, and the first polarimetric images were captured by NASA JPL at Caltech in 1991 \cite{Zebker_1991_ProcsIEEE}.
 
-Systems were then engineered and commercial POLSAR satellites, e.g. RadarSat, TerraSAR, Alos-PalSAR were launched.
+Systems were then engineered and commercial POLSAR satellites, e.g. RadarSat-2, TerraSAR, Alos-PalSAR were launched.
 However due to operational restrictions on payload, power and data-downlink, the satellites also offer dual-channel polarimetric SAR modes as a compromise between theoretical polarimetric requirements and practical limitations.
 Initially, to the end user, while dual-channel partial polarimetry may not provide the complete polarimetric signature of the target, the loss is compensated for by either better resolutions or higher coverage and lower cost.  
 
@@ -737,7 +737,7 @@ J_r = \left(
 \end{equation}
 In \cite{Raney_2007_IGARSS}, Raney shows that hybrid circular modes bring many conveniences to hardware calibration.
 Also in a follow up study \cite{Raney_2007_TGRS}, he demonstrated the classification power of hybrid polarimetry.
-Furthermore, Lardeux \cite{Lardeux_2007_ESASP} found that for target classification using SVM techniques, compact polarimetry mode shows comparable results to full polarimetric data.
+Furthermore, Lardeux \cite{Lardeux_2007_ESASP} found that for target classification using Support Vector Machine (SVM) techniques, compact polarimetry mode shows comparable results to full polarimetric data.
 Notably, the hybrid architectural concept has been adopted and brought towards implementation by NASA's upcoming Desdynl satellite \cite{Raney_2009_RadarConf}.
 
 The research into partial polarimetry is convenient as its data can be simulated using polarisation basis transformations such as those described above.
@@ -1331,10 +1331,10 @@ and
 %Some of them being: Gaussian PDF, Gamma PDF, chi square, Rayleigh, beta, log-normal ... 
 
 %Clearly should such PDF being estimatable from the data it-self, that would potentially presents an good opportunity for this class of speckle filters.
-Other distributions that have been proposed include the heavy tailed Rayleigh distribution \cite{Sun_2006_ICVES}, Weibull distribution \cite{Nezry_1997_IGARSS}, beta distribution \cite{Nezry_1997_IGARSS}, Rician distribution \cite{Lewinski_1983_TAntennaPropagation} \dots 
+Other distributions that have been proposed include the heavy tailed Rayleigh distribution \cite{Sun_2006_ICVES}, Weibull distribution \cite{Nezry_1997_IGARSS}, beta distribution \cite{Nezry_1997_IGARSS}, Rician distribution \cite{Lewinski_1983_TAntennaPropagation}. 
 Evidently, the performance of these filters are dependent on the underlying distribution of the back-scattering coefficient on the particular surface being imaged. 
 In this context, the community appears to focus on using Bayesian inference to choose the most suitable distributions \cite{Walessa_2000_TGRS}.
-One of the additive and homoskedastic SAR model's benefits is the possible hypothesis that the underlying distribution of the back scattering coefficient is estimable discussed in subsequent chapters.
+One of the additive and homoskedastic SAR model's benefits is the possible hypothesis that the underlying distribution of the back-scattering coefficient is estimable discussed in subsequent chapters.
 %In our approach, we hypothesize that the underlying distribution of the back scattering coefficient is estimable, at least in the log-transformed domain, as will be described later.
 
 Other approaches that have recently been actively pursued in the research community and in published literature include: 
@@ -1382,7 +1382,7 @@ Not only is statistical analysis important in speckle filtering, the technique i
 \subsection{Current Methods for POLSAR speckle filtering }
 
 Compared to SAR technologies, most POLSAR techniques are relatively recent. 
-Published literatured on POLSAR speckle filtering indicate that filtering the covariance matrix off-diagonal elements is still an open problem.
+Published literature on POLSAR speckle filtering indicates that filtering the covariance matrix off-diagonal elements is still an open problem.
 The problem can be traced back to the lack of a statistical model for the covariance matrix in polarimetry.
 %This has the consequences that very few methodologies to statistically simulate POLSAR is porposed in literature and validations for such proposals are pretty primatives.
 %is the application of such framework is shown to be beneficial academically. 
@@ -1430,10 +1430,9 @@ where
 	$F_{1,2} ( a,b,c,d )$ is the Gauss hyper-geometric function,
 	$n_m$ is the first speckle noise component that is multiplicative with $E(n_m)=1$ and $var(n_m)=1$,
 	$n_{ar} + i n_{ai}$ is the second additive speckle noise component with $E(n_{ar}) = E(n_{ai}) = 0$ and $var(n_{ar}) = var(n_{ai}) = \frac{1}{2} (1-|\rho|^2)^{1.32}$.
-
 The model is overly complicated and to do speckle filtering, various approximations have to be used.
 
-Another different approach is proposed bu Lee \cite{Lee_CRCPress_2009}  to model $S_hS_v^*$.
+Another different approach is proposed by Lee \cite{Lee_CRCPress_2009}  to model $S_hS_v^*$.
 In this method, the phase difference is defined as:
 \begin{equation}
 \phi = \arg{ \left( S_pS_q^* \right) }
@@ -1483,7 +1482,7 @@ In summary, while off-diagonal elements, which carry phase information, are know
 
 Because of the variaties of  speckle filtering available, it is hence crucial to have a framework for 
 	(a) modelling and simulation, which provide the ground-truth data in different scenarios of underlying distribution, and
-	(b) analysing the interdependency between noise and the underlying signal, as well as the dependence of each filter's performance on the different underlying distribution scenarios and
+	(b) analysing the inter-dependency between noise and the underlying signal, as well as the dependency of each filter's performance on the different underlying distribution scenarios and
 	(c) establishing consistent criteria to evaluate speckle suppression power as well as the adaptive capabilities in reconstructing the underlying signal.
 
 This section reviews the published literature for the different techniques used to evaluate SAR speckle filters.
