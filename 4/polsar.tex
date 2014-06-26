@@ -23,23 +23,23 @@ In this section, the POLSAR scattering vector is denoted as $s$.
 In the case of partial polarimetric SAR (single polarization in transmit and dual polarization in receive),
   the vector is two-dimensional ($d=2$) and is normally written as: 
 %\begin{equation}
-\begin{align*}  
+\begin{align}  
 s_{part}=\begin{bmatrix}
 S_h\\ 
 S_v
 \end{bmatrix}
 %\end{equation}
-\end{align*}
+\end{align}
 
 In the case of full and monostatic POLSAR data,
   the vector is three-dimensional ($d=3$) and is presented as:
-\begin{align*}
+\begin{align}
 s_{full}=\begin{bmatrix}
 S_{hh}\\
 \sqrt{2}S_{hv}\\
 S_{vv}
 \end{bmatrix}
-\end{align*}
+\end{align}
 
 Let $\Sigma=E [ss^{*T}]$ denotes the population expected value of the POLSAR covariance matrix,
   where $s^{*T}$ denotes the complex conjugate transpose of $s$. 
@@ -56,9 +56,9 @@ where $|M|$ denotes the determinant of the matrix $M$.
 As the covariance matrix is only defined on multiple data points,
   the sample covariance matrix of POLSAR data is commonly presented in ``ensemble'' format.
 These are formed as the mean Hermitian outer product of single-look scattering vectors
-\begin{align*}
+\begin{align}
   C_v = \langle ss^{*T} \rangle = \frac{1}{L} \sum^L_{i=1}s_is_i^{*T}
-\end{align*}
+\end{align}
 with $s_i$ denotes the single-look scattering vector,
   which equals $s_{part}$ in the case of partial POLSAR and
   $s_{full}$ in the case of full polarimetry,
@@ -154,24 +154,24 @@ Given the probability distribution function, the characteristic function of both
     \caption{eqn:Log-Chi-Squared Distribution: Characteristic Function}
   \end{equation}
 Subsequently their means and variances can be computed from the given characteristic functions as:
-  \begin{align*}
+  \begin{align}
     avg \left[ \chi(2L) \right]&= 2L \\
 var \left[ \chi(2L) \right]&= 4L \\
 avg \left[ \Lambda(2L) \right] &= \psi^0(L) + \ln2 \\
 var \left[ \Lambda(2L) \right] &= \psi^1(L)
-  \end{align*}
+  \end{align}
   where $\psi^0()$ and $\psi^1()$ stands for digamma and trigamma functions respectively.
 
 Since the average and variance of both chi-squared distribution and log-chi-squared distribution are constant,
   the product and summation of these random variables also has fixed summary statistics.
 Specifically:
 
-\begin{eqnarray*}
+\begin{eqnarray}
   avg \left[ \prod^{d-1}_{i=0} \chi^2(2L-2i) \right] &=& 2^d \cdot \prod^{d-1}_{i=0} (L-i), \\
   var \left[ \prod^{d-1}_{i=0} \chi^2(2L-2i) \right] &=& \prod^{d-1}_{i=0} 4(L-i)(L-i+1) - \prod^{d-1}_{i=0} 4(L-i)^2, \\
   avg \left[ \sum^{d-1}_{i=0} \Lambda(2L-2i) \right] &=& d \cdot \ln{2} + \sum^{d-1}_{i=0} \psi^0(L-i), \\
   var \left[ \sum^{d-1}_{i=0} \Lambda(2L-2i) \right] &=& \sum^{d-1}_{i=0} \psi^1(L-i)
-\end{eqnarray*}
+\end{eqnarray}
 
 Combining these results with Eqns. \ref{eqn:determinant_distribution} and \ref{eqn:log_determinant_distribution}, we have:
 %\begin{eqnarray}
@@ -229,8 +229,8 @@ the following random variables,
 \end{equation}
 
 From another perspective where the POLSAR is known as having come from an homogeneous area, but the true value of the underlying signal $\Sigma_v$ is \textit{unknown}, consider the dispersion ($\mathbb{D}$) and contrast ($\mathbb{C}$) random variables being defined as:
-\begin{eqnarray}
-\end{eqnarray}
+%\begin{eqnarray}
+%\end{eqnarray}
 \begin{equation}
  \label{eqn:dispersion_observable}
  \caption{eqn:POLSAR Dispersion Observable}
@@ -269,13 +269,13 @@ and $k_D=\sum^{d-1}_{i=0} \psi^0(L-i)$
 Also given the characteristic functions (CF) for the elementary components $\Lambda(2L)$ written in Eqn. \ref{eqn:log_chi_squared_characteristic_function}, 
   %Section \ref{sec:appendix_b} derives
   the characteristic functions for the summative random variables can be derived as:
-\begin{align*}
+\begin{align}
   CF_{\Lambda^d_L}(t) &= \frac{2^{idt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
   CF_{\mathbb{L}}(t) &= \frac{1}{L^{idt} \Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
   CF_{\mathbb{D}}(t) &= \frac{e^{ikt}}{\Gamma(L)^d} \prod^{d-1}_{j=0} \Gamma(L-j+it) \\
   CF_{\Delta(2L)} &= \frac{\Gamma(2L) B(L-it,L+it)}{\Gamma(L)^2} \\
   CF_{\mathbb{C}}(t) &=  \prod^{d-1}_{j=0} \frac{\Gamma(2L-2j) B(L-j-it,L-j+it)}{\Gamma(L-j)^2}
-\end{align*}
+\end{align}
 
 Since each elementary simulation component follows fixed distributions (i.e. $\chi^2(2L), \Lambda(2L), ... $),
   it is natural that these variables also follow fixed distributions.
@@ -300,7 +300,7 @@ as the special case of POLSAR.
 
 The results so far for our models can be summarized as:
 {\footnotesize
-\begin{align*}
+\begin{align}
   \mathbb{R} &= \frac{|C_v|}{|\Sigma_v|} \sim \frac{1}{(2L)^d} \prod^{d-1}_{i=0} \chi^2(2L-2i) \\% \label{eqn:polsar_ratio_det_cov_dist} \\
   \mathbb{L} &= \ln{|C_v|} - \ln{|\Sigma_v|} \sim \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \cdot \ln{2L} \\ %\label{eqn:polsar_dispersion_log_det_cov_dist} \\
   \mathbb{D} &= \ln{|C_v|} - avg(\ln{|C_v|}) \sim \sum^{d-1}_{i=0} \Lambda(2L-2i) - d \ln{2} + k\\
@@ -308,7 +308,7 @@ The results so far for our models can be summarized as:
   \mathbb{A} &= avg(\mathbb{L}) = \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \\ %\label{eqn:polsar_dispersion_averages} \\
   \mathbb{V} &= var(\mathbb{L}) = \sum^{d-1}_{i=0} \psi^1(L-i) \\ %\label{eqn:polsar_dispersion_variance} \\
   \mathbb{E} &= mse(\mathbb{L}) =\left[ \sum^{d-1}_{i=0} \psi^0(L-i) - d \cdot \ln{L} \right]^2 +  \sum^{d-1}_{i=0} \psi^1(L-i) %\label{eqn:polsar_dispersion_mse} 
-\end{align*}
+\end{align}
 }%
 
 Upon setting d = 1 into the above models,
@@ -316,7 +316,7 @@ Upon setting d = 1 into the above models,
 are consistent with not only the following results for single-look SAR derived earlier, i.e. $d =1,  L = 1$,
 
 {\footnotesize
-\begin{align*}  
+\begin{align}  
   I &\sim \bar{I} \cdot pdf \left[ e^{-R} \right] \\
   \log_2{I} &\sim \log_2{\bar{I}} + pdf \left[ 2^xe^{-2^x}\ln2 \right] \\
   \mathbb{R} &= \frac{I}{\bar{I}} \sim pdf \left[ e^{-x} \right]  \\
@@ -326,18 +326,18 @@ are consistent with not only the following results for single-look SAR derived e
   \mathbb{A} &= avg(\mathbb{L}) = -\gamma / \ln{2} \\
   \mathbb{V} &= var(\mathbb{L}) = \frac{\pi^2}{6} \frac{1}{ \ln^2{2}} \\
   \mathbb{E} &= mse(\mathbb{L}) = \frac{1}{\ln^2{2}}( \gamma^2 + \pi^2/6 ) = 4.1161 
-\end{align*}
+\end{align}
 }%
 but also the following well-known results for multi-look SAR, i.e. $d=1,L>1$:
-  \begin{align*}
+  \begin{align}
 I &\sim pdf \left[ \frac{L^L x^{L-1} e^{-Lx/\bar{I}}}{\Gamma(L) \bar{I}^L} \right] \\
 N = \ln{I} &\sim pdf \left[ \frac{L^L}{\Gamma(L)} e^{L(x-\bar{N})-Le^{x-\bar{N}}} \right]
-  \end{align*}
+  \end{align}
 Furthermore, the following results for multi-look SAR data, which can be thought of
 either as extensions of the corresponding single-look SAR results or as simple cases of
 the POLSAR results can also be derived and shown to be as follows:
 
-  \begin{align*}
+  \begin{align}
     \mathbb{R} &= \frac{I}{\bar{I}} \sim pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \label{eqn:multi_look_SAR_ratio_dist} \right]\\
     \mathbb{L} &= \ln{I} - \ln{\bar{I}} \sim pdf \left[ \frac{L^Le^{Lt-Le^t}}{ \Gamma(L)}  \right] \\
     \mathbb{D} &= \ln{I} - avg(\ln{I}) \sim pdf \left[ \frac{e^{L[x-\psi^0(L)]-e^{[x-\psi^0(L)]}}}{\Gamma(L)} \right] \\
@@ -345,7 +345,7 @@ the POLSAR results can also be derived and shown to be as follows:
     \mathbb{A} &= avg(\mathbb{L}) = \psi^0(L) - \ln{L} \\
     \mathbb{V} &= var(\mathbb{L}) = \psi^1(L) \\
     \mathbb{E} &= mse(\mathbb{L}) = \left[ \psi^0(L) - \ln{L} \right]^2 + \psi^1(L)
-  \end{align*}
+  \end{align}
 
 This newly derived model for multi-look SAR data can also be validated against real-life data.
 Fig. \ref{fig:verify_multi_look_SAR_dispersion_contrast_models} presents the the results of an experiment carried out for the stated purpose.
@@ -409,10 +409,11 @@ the theoretical models for the dispersion and contrast measures of distance.
 This qualitative observation is further supported by high significance level (or p-value) in the standard Kolmogorov-Smirnov goodness-of-fit test between curves \cite{Kolmogoroff_1941_AMS_461}, noted under each graph.
 While a good p-value may not lead to automatic acceptance of the model, high p-values lend a high level of confidence to the proposal.
 
+%TODO: add p-value here for 
 \begin{figure}[bth!]
 \centering
 \begin{tabular}{c}
-	\subfloat[part-pol (2x2) dispersion (p-value HH-HV=0.????)]{
+	\subfloat[part-pol (2x2) dispersion]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
                  \epsffile{images/verify_polsar_2x2_dispersion_distribution.eps} 
@@ -425,7 +426,7 @@ While a good p-value may not lead to automatic acceptance of the model, high p-v
 		 \epsffile{images/verify_polsar_2x2_contrast_distribution.eps} 	
 		 \label{contrast_2x2}
 	} \\
-	\subfloat[full-pol (3x3) dispersion (p-value=0.????)]{
+	\subfloat[full-pol (3x3) dispersion]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
                  \epsffile{images/verify_polsar_3x3_dispersion_distribution.eps} 

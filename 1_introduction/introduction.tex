@@ -37,7 +37,7 @@ The
 Under this condition, it is very important to understand the statistical models for its
 data. It is these models that form the foundation for different (POL)SAR data processing
 techniques, for example speckle filtering, target detection, image segmentation, and
-other clustering, classification techniques.
+other clustering, classification techniques \cite{Lopez-Martinez_2003_TGRS_2232, Argenti_GRSM_2013, Conradsen_2003_TGRS_4}.
 In fact, due to the random nature of speckle, all of these techniques are essentially based on statistical estimation theory,
 which comprises statistical modelling and validation, estimator design and development
 as well as evaluation of different estimators' accuracy. And central to this statistical
@@ -56,7 +56,7 @@ be naturally representative of the high dimensional POLSAR data.
 %Solving these dual-problem is both important and interesting.
 %The statistical models are undoubtedly important in understanding the stochastic nature of the data. 
 %At the same time, the statistical properties of the input data set greatly affect the choice and the performance of information extraction and statistical estimation techniques.
-In addition, most of these data processing techniques are traditionally designed for additive and homoskedastic data.
+In addition, most of these data processing techniques are traditionally designed for additive and homoskedastic data \cite{Dutch_LNCS_2004}.
 In fact, unless proven otherwise, it is both convenient and acceptable to assume that the additive white noise model is appropriate for any given set of data samples.
 This is due to a number of reasons, for example the prevalence of the normal distribution which results from the central limit theorem, or the prevalence of the additive noise model which probably arises due to the linear and additive nature of digital data. % dear Ian I changed this back 
 %of the Additive White Gaussian Noise (AWGN) model in natural processes.
@@ -72,12 +72,12 @@ Both SAR and POLSAR data however are multiplicative and heteroskedastic by natur
 While there is no doubt that a number of data processing techniques have been proposed to handle certain aspects of the data, the breadth and depth of these studies trails in comparison to that of the more familiar additive and homoskedastic model.
 This leads to the fact that a lot of times, existing statistical or computational techniques initially designed for additive and homoskedastic models are applied on multiplicative and heteroskedastic data, in ignorance of the incompatibility. 
 An example is the use of mean, variance and squared error criteria, which are linear by nature and work excellently on additive and homoskedastic models, being applied on multiplicative and heteroskedastic distribution such as the gamma distribution.
-Such use, however, is known to be not very robust for these so-called heavy tailed distributions.
+Such use, however, is known to be not very robust for these so-called heavy tailed distributions \cite{McElroy_Econometric_2002}.
 
 Similarly, heteroskedasticity poses numerous negative impacts on the usual framework of statistical estimation, which most of the time makes use of various different techniques and criteria known to work very well on the usual models.
-For example, in modelling, it is very common to use subtractive differences to discriminate and to make decisional inferences. However, for heteroskedastic SAR, it is known that such use should be avoided in preference to a ratio-based discrimination measure.
-Another example is in the normal performance evaluation stage of statistical estimators, where the Ordinary Least Square (OLS) is widely used as the best evaluation criterion which is probably due to the Gauss Markov theorem.
-For SAR data, however, its heteroskedasticity directly violates the homoskedastic assumption of the theorem and thus many different ways to evaluate SAR speckle filters were proposed.
+For example, in modelling, it is very common to use subtractive differences to discriminate and to make decisional inferences. However, for heteroskedastic SAR, it is known that such use should be avoided in preference to a ratio-based discrimination measure \cite{Rignot_1993_TGRS_896}.
+Another example is in the normal performance evaluation stage of statistical estimators, where the Ordinary Least Square (OLS) is widely used as the best evaluation criterion which is probably due to the Gauss Markov theorem \cite{Furno_1991_JStatCompSimul}.
+For SAR data, however, its heteroskedasticity directly violates the homoskedastic assumption of the theorem and thus many different ways to evaluate SAR speckle filters were proposed \cite{Gagnon_SPIEProc_1997, Argenti_GRSM_2013}.
 
 Furthermore, since POLSAR can be considered as the multi-dimensional extension of
 traditional SAR, a common problem exists for both SAR and POLSAR data. That

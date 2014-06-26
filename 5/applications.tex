@@ -8,12 +8,20 @@ This chapter also shows how the MSE can then be
 applied in the additive and homoskedastic domain to evaluate SAR speckle filters, and further extends the concept to also evaluate
  POLSAR speckle filters. 
 
-\section{Clustering SAR images using the consistent measures}
+\section{
+  Clustering and filtering SAR images 
+  \footnote{
+During the revision of this thesis, Nielsen's work \cite{Nielsen_2012_ICASSP} is brought forward to the author's attention.
+This work is quite similar and is published after the publication for the work presented in this thesis \cite{Le_2010_ACRS}.
+It excels by providing a theoretical proof for its k-MLE procedure in the case of exponential mixtures.
+Its drawback: it focuses only on the exponential distribution, which is just one special case of the work presented here.
+  }
+}
 \label{sec:k_mle}
 
 Given an area to be analyzed, 
   the question of whether it is homogeneous or not can be investigated using
-the statistical hypothesis test described in chapter \ref{chap:sar}. 
+the statistical hypothesis test described in Chapter \ref{chap:sar}. 
 If that is found to be the case, a clustering algorithm can then be applied to partition the area into smaller regions. 
 Thus an image can be segmented into homogeneous areas by applying the process repeatedly.
 
@@ -48,15 +56,15 @@ Assuming the values of $x^l_i$ are independent, the statistical product rule ind
 %$P(x^l_i | \mu ) = \ln 2 \frac{ 2^{x^l_i - \mu} }{ e^{2^{ x^l_i -\mu }} }$. 
 Maximizing $P(X^e | \mu )$ also maximizes $\ln[P(X^l | \mu )]$, which can be written as:
 
-\begin{eqnarray*}
+\begin{eqnarray}
 \ln[P(X^l | \mu )] 
 	= \displaystyle{\sum^n_{i=1}{ \ln(P(x^l_i | \mu )) }} 
 	= \displaystyle{\sum^n_{i=1}{ \ln \left[ \ln 2 \frac{ 2^{x^l_i - \mu} }{ e^{2^{ x^l_i -\mu }} } \right] }} 
 %	&=& n \ln \ln 2 +  \displaystyle{\sum^n_{i=1}{ \ln \left( 2^{x^l_i - \mu} \right) - \ln \left( e^{2^{ x^l_i -\mu }} \right) }} 
-\end{eqnarray*}
+\end{eqnarray}
 
 The parameter $\mu$ which maximizes the likelihood is found by setting its derivatives to zero:
-\begin{eqnarray*}
+\begin{eqnarray}
 \displaystyle{ \frac{ \partial{ \ln[P( X^l | \mu )] }  }{\partial{ \mu }} }
 	&=& 0 \\
 \displaystyle{ \frac{ \partial }{\partial{ \mu }} \sum^n_{i=1}{ \ln( 2^{x^l_i - \mu}) - \ln( e^{2^{ x^l_i -\mu }} ) } }
@@ -66,7 +74,7 @@ The parameter $\mu$ which maximizes the likelihood is found by setting its deriv
 %\displaystyle{ \frac{ \partial }{\partial{ \mu }} \sum^n_{i=1}{ \ln( e^{2^{ x^l_i -\mu }} )i } }
 %	&=& - \ln2 \cdot \sum^n_{i=1}{ 2^{ x^l_i -\mu } } \\
 %	&=& - \ln2 \cdot \frac{ \sum^n_{i=1}{ 2^{ x^l_i } }}{2^\mu}  
-\end{eqnarray*}
+\end{eqnarray}
 
 Thus $\mu$ can be found by:
 \begin{equation}
@@ -415,10 +423,6 @@ It is obvious that the k-MLE speckle filter delivers a significantly ``better'' 
 \label{fig:k_mle_on_RADARSAT2_data}
 \end{figure}
 
-PS: During the revision of this thesis, this work \cite{Nielsen_2012_ICASSP} is brough forward to the author's attention.
-This work is quite similar and is published after the publication for the work presented in this thesis \cite{Le_2010_ACRS}.
-It excels by providing a theoretical proof for its k-MLE procedure in the case of exponential mixtures.
-Its drawback: it focuses only on the exponential distribution, which is just one special case of the work presented here.
 
 \section{SAR Speckle filtering using the consistent measures}
 \label{sec:f_mle}
@@ -533,13 +537,13 @@ And it is apparent that
         
 \begin{figure}[h!]
 \centering
-\subfloat[Intensity histogram]{
+%\subfloat[Intensity histogram]{
   \epsfxsize=6cm
   \epsfysize=6cm
   \epsffile{images/consistent_contrast_log_domain.made.eps}
-\label{fig:consistent_contrast_log_domain}
-  }
+%  }
 \caption{Consistent Distance Property and the f-MLE Estimations}
+\label{fig:consistent_contrast_log_domain}
 \end{figure}
 
 \begin{figure}[h!]
@@ -1208,17 +1212,17 @@ Let us consider the multi-look processing effect in the log-transformed domain.
 %Since multi-look processing is unbiased, we will take the variance of log-transformed multi-look processing output as the MSE performance index. 
 Hoekmen \cite{Hoekman_1991_TGRS} and Xie et. al. \cite{Xie_2002_TGRS} have given the variance for L-look log-transformed random 
 variables as: 
-\begin{equation*}
+\begin{equation}
 var(\hat{X}^L)= \frac{1}{\ln^2(2)} \left( \frac{\pi^2}{6} - \sum^{L-1}_{i=1}{\frac{1}{i^2}} \right).
 \label{eqn:perf_index_theoretical}
-\end{equation*}
+\end{equation}
 
 %Next we will be showing that the ENL, i.e. L, can be estimated from a given $var(Y^L)$. 
 Based on the Euler proof for the Basel problem, we have
 %$\frac{\pi^2}{6} = \sum^{\infty}_{i=1}{ \frac{1}{i^2} } $, then $var(Y^L)= \frac{1}{\ln^2(2)} \left( \sum^{\infty}_{i=L}{ \frac{1}{i^2} } \right) $.
 %Noting that $ \frac{1}{i} - \frac{1}{i+1} = \frac{1}{i(i+1)} < \frac{1}{i^2} < \frac{1}{i(i-1)} = \frac{1}{i-1} - \frac{1}{i}$, then $ \frac{1}{L} - \frac{1}{\infty} < \sum^{\infty}_{i=L}{ \frac{1}{i^2} }  < \frac{1}{L-1} - \frac{1}{\infty} $.
 %\setlength{\mathindent}{1cm}  
-\begin{align*}
+\begin{align}
 &\frac{\pi^2}{6} = \sum^{\infty}_{i=1}{ \frac{1}{i^2} } &\\
 \noindent \text{then: } \\ 
 &var(Y^L) = \frac{1}{\ln^2(2)} \left( \sum^{\infty}_{i=L}{ \frac{1}{i^2} } \right) &\\
@@ -1226,7 +1230,7 @@ Based on the Euler proof for the Basel problem, we have
 &\frac{1}{i} - \frac{1}{i+1} = \frac{1}{i(i+1)} < \frac{1}{i^2} < \frac{1}{i(i-1)} = \frac{1}{i-1} - \frac{1}{i} &\\
 \noindent \text{then: } \\
 &\frac{1}{L} - \frac{1}{\infty} < \sum^{\infty}_{i=L}{ \frac{1}{i^2} }  < \frac{1}{L-1} - \frac{1}{\infty} &
-\end{align*}
+\end{align}
 
 In fact, we could estimate:
 \begin{equation}
@@ -2066,6 +2070,7 @@ Thus future work may explore the applicability of MSE approaches to POLSAR data 
 %\afterpage{\clearpage}
 
 \section{Evaluating POLSAR Speckle Filters using the consistent measures of distance}
+\label{sec:polsar_speckle_filters_evaluation}
 
 This section describes how POLSAR filters can be evaluated
   using the consistent measures of distance found in the homoskedastic log-transformed domain.
@@ -2100,7 +2105,7 @@ This relationship forms the special case of Eqn. \ref{eqn:Estimate ENL from log-
 
 In the case of partial POLSAR, d=2, then
 {\small
-\begin{align*}
+\begin{align}
 &  var_2 \left[ ln|C_v| \right] = \psi^1(L) + \psi^1(L-1)     = \sum^{\infty}_{i=L}1/i^2 + \sum^{\infty}_{i=L-1}1/i^2 &\\
 \noindent \text{Similar to the SAR case: } \\
 &  1/L + 1/(L-1) < var_2 \left[ \ln |C_v| \right] < 1/(L-1) + 1/(L-2) & \\
@@ -2108,7 +2113,7 @@ In the case of partial POLSAR, d=2, then
 & var_2 \left[ \ln |C_v| \right] = 2/(L-1) & \\
 \noindent \text{Equivalently: } \\
 & L = 2/var_2 \left[ \ln |C_v| \right] + 1 & \\
-\end{align*}
+\end{align}
 }%
 %Similar to the SAR case, $var[ln|Cv|]$ is bounded: $1/L + 1/(L-1) < var_d \left[ \ln |C_v| \right] < 1/(L-1) + 1/(L-2)$.
 %Thus an approximation can be made: $var_d \left[ \ln |C_v| \right] = 2/(L-1)$.
@@ -2116,7 +2121,7 @@ In the case of partial POLSAR, d=2, then
 
 In the case of full POLSAR, d=3, then
 {\small
-\begin{align*}
+\begin{align}
 &  var_3 \left[ ln|C_v| \right] = \psi^1(L) + \psi^1(L-1) + \psi^1(L-2)    = \sum^{\infty}_{i=L}1/i^2 + \sum^{\infty}_{i=L-1}1/i^2  + \sum^{\infty}_{i=L-2}1/i^2 & \\
 \noindent \text{Again: }  \\
 & 1/L + 1/(L-1) + 1/(L-2) < var_3 \left[ \ln |C_v| \right] < 1/(L-1) + 1/(L-2) + 1/(L-3) &\\
@@ -2124,7 +2129,7 @@ In the case of full POLSAR, d=3, then
 & var_3 \left[ \ln |C_v| \right] = 3/(L-1.5) &\\
 \noindent \text{Or: }\\
 & L = 3/var_3 \left[ \ln |C_v| \right] + 1.5 &
-\end{align*}
+\end{align}
 }%
 
 %Again, $var[ln|Cv|]$ is bounded: $1/L + 1/(L-1) + 1/(L-2) < var_d \left[ \ln |C_v| \right] < 1/(L-1) + 1/(L-2) + 1/(L-3)$.

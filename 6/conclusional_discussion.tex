@@ -104,10 +104,10 @@ Corresponding to the objectives outlined in Chapter 1,
                 \begin{enumerate}
                 \item \label{itm:log_transform} The statistical model for POLSAR data are shown to be heteroskedastic in
                 the original domain and logarithmic transformation
-                converts this into a homoskedastic model (Sections \ref{sec:heteroskedastic_sar}, \ref{sec:homoskedastic_sar}, \ref{sec:polsar_heterosked_model_and_log_transform}).
+                converts this into a homoskedastic model (Sections: \ref{sec:heteroskedastic_sar}, \ref{sec:homoskedastic_sar}, \ref{sec:polsar_heterosked_model_and_log_transform}).
                 \item \label{itm:sar_measures_distance} Homoskedastic measures of distance for
                 the multi dimensional POLSAR as well as for the one
-                dimensional SAR data are derived (Sections \ref{sec:consistent_measures_distance_sar}, \ref{sec:consistent_measures_distance_polsar})
+                dimensional SAR data are derived (Sections: \ref{sec:consistent_measures_distance_sar}, \ref{sec:consistent_measures_distance_polsar})
                 \item \label{itm:sar_validation} These statistical models are validated against both
                 practical SAR and POLSAR data (Sections: \ref{sec:sar_special_case_of_polsar}, \ref{sec:polsar_models_validation})
                 \end{enumerate}
@@ -117,14 +117,14 @@ Corresponding to the objectives outlined in Chapter 1,
                 \item \label{itm:filter_vicious_circle} The consistent sense of variance
                 is shown to help breaking the vicious cycle in the problem of SAR
                 speckle filtering: with new statistical test for
-                homogeneity and new speckle filters proposed (Section \ref{sec:k_mle}, \ref{sec:f_mle}).
-                \item \label{itm:log_mse} Tconsistent sense of subtractive
+                homogeneity and new speckle filters proposed (Sections: \ref{sec:k_mle}, \ref{sec:f_mle}).
+                \item \label{itm:log_mse} The consistent sense of subtractive
                 distance also helps in the problem of evaluating SAR
                 speckle filters. Section \ref{sec:sar_filters_evaluation} proposes the use of the log-MSE to combine the
                 evaluation of radiometric preservation and speckle
                 suppression power in evaluating SAR speckle filters.
-                \item \label{itm:extend_sar_to_polsar} Section \ref{sec:polsar_models_validation} demonstrates an example where the existing SAR
-                processing technique of ENL estimation is extended towards POLSAR data.
+                \item \label{itm:extend_sar_to_polsar} Sections \ref{sec:polsar_models_validation} and \ref{sec:polsar_speckle_filters_evaluation} demonstrate several instances where existing SAR
+                processing techniques are extended towards POLSAR data.
                 \end{enumerate}
 \end{enumerate}
 
@@ -253,7 +253,7 @@ In
                 improvements based on existing techniques.
 
 The
-                proposed models for POLSAR also bring forward an
+                proposed models for POLSAR also bring forward several
                 important benefits.
 Since
                 the models, especially those for discrimination
@@ -272,10 +272,10 @@ The theoretical models may also provide an alternative derivation for the widely
 In view of the models given in Eqns \ref{eqn:determinant_distribution} \& \ref{eqn:log_determinant_distribution},
   the likelihood test statistics exposed in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:Complex Wishart Distribution Likelihood Test Statistics} \& \ref{eqn:Complex Wishart Distribution Likelihood Test Statistics (Log Domain)}
 can be simulated as:
-\begin{align*}
+\begin{align}
   \ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
   Q &\sim e^k \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}   
-\end{align*}
+\end{align}
 where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
 As a by-product of this exact derivation, the current paper also proposed several simpler discrimination measures for the common case of $L_x=L_y$.
 

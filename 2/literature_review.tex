@@ -65,10 +65,10 @@ Speckle noise on SAR images are hence routinely reduced through a speckle filter
 
 The propagation of Electro-Magnetic (EM) wave in space is governed by Maxell’s equations. 
 The general solution to these equations is a linear superposition of waves, each having the form of:
-\begin{eqnarray*}
+\begin{eqnarray}
  \vec{E}(\vec{r},t) &=& g(\phi(\vec{r},t)) = g(\omega t - \vec{k} \cdot \vec{r}) \\
  \vec{B}(\vec{r},t) &=& g(\phi(\vec{r},t)) = g(\omega t - \vec{k} \cdot \vec{r})
-\end{eqnarray*}
+\end{eqnarray}
 where
 	$g$ is any well-behaved function of a dimensionless argument $\phi$,
 	%for virtually any well-behaved function g of dimensionless argument φ, where
@@ -81,7 +81,7 @@ Thus if we define the z direction as the travelling direction of the EM wave,
 Furthermore, when considering wave propagation, it is conventional that only the electric field vector is described and the magnetic field is ignored since it is perpendicular to the E field and is proportional to it.
 Projecting this vector into x,y directions, we have:
 
-\begin{equation*}
+\begin{equation}
 \vec{E}(z,t) 
 = 
 \left(
@@ -99,36 +99,36 @@ Projecting this vector into x,y directions, we have:
 		0
 	\end{array}
 \right)
-\end{equation*}
+\end{equation}
 where $\phi_0$ is the initial phase angle, that is dependent on the choice of space-time origin.
 
 In other words, the EM vector can oscillate in more than one orientation, and this denote the polarization property of EM wave.
 The exact shape traced out in a fixed projective plane by the tip of the electric vector as the plane propagate is a description of the polarization state.
 This shape is characterized by the formula: 
-\begin{equation*}
+\begin{equation}
  \frac{\xi_x^2(t)}{|E_x^0|^2} + \frac{\xi_y^2(t)}{|E_y^0|^2} - 2 \frac{\xi_x \xi_y}{E_x^0 E_y^0} \cos (\Delta \phi) = \sin^2(\Delta \phi)
-\end{equation*}
+\end{equation}
 where
 	$\Delta \phi = \phi_y^0 - \phi_x^0$
 The formula characterizes what is termed as the polarization ellipse.
 
 The parameters that describe the polarization ellipse are: 
-\begin{equation*}
+\begin{equation}
 \tan (\theta ) = \frac{E_y^0}{E_x^0}
-\end{equation*}
+\end{equation}
 with
 	$0 \leq \theta \leq \pi/2$. 
 The orientation angle, which is the angle between the major semi-axis of the ellipse and the x-axis, is given by:
-\begin{equation*}
+\begin{equation}
 \tan (\Psi) = \tan (2 \theta) \cos(\Delta \phi)
-\end{equation*}
+\end{equation}
 with
 	$0 \leq \Psi < \pi$. 
 The ellipticity, $\epsilon$ is the major-to-minor-axis ratio.
 The ellipticity angle which is defined as $\chi = \arctan (1/\epsilon)$ can be calculated as:
-\begin{equation*}
+\begin{equation}
 \sin (2 \chi) = \sin(2 \theta) \sin( \Delta \phi)
-\end{equation*}
+\end{equation}
 with
 	$0 \leq \chi \leq \pi/2$, and $0 \leq \epsilon \leq \infty$
 
@@ -243,7 +243,7 @@ By definitions, the horizontal linear polarized wave is defined as: $J_h = \left
 
 Another way to look at polarization is through the coherency matrix, and equivalently the Stokes matrix.
 The wave coherency matrix is defined as:
-\begin{equation*}
+\begin{equation}
 W_c = \left<
 \left(
 \begin{array}{c}
@@ -274,10 +274,10 @@ W_c = \left<
 \end{array}
 \right)
 \right>
-\end{equation*}
+\end{equation}
 
 The Stokes vector is then defined as:
-\begin{equation*}
+\begin{equation}
 S_t = 
 \left(
 \begin{array}{c}
@@ -296,10 +296,10 @@ S_t =
  2\Im(\xi_x \xi_y^*)
 \end{array}
 \right)
-\end{equation*}
+\end{equation}
 
 In the case of elementary (or fully polarized) waves, the Stokes vector can be written as:
-\begin{equation*}
+\begin{equation}
 S_t = 
 \left(
 \begin{array}{c}
@@ -309,7 +309,7 @@ S_t =
  S_0 \sin(2\chi)
 \end{array}
 \right)
-\end{equation*}
+\end{equation}
 
 %It should be noted that: the factor of two before the polarization ellipse's angles indicate the fact that
 %	any polarization ellipse is practical indistinguishable from on rotated by $180^o$ 
@@ -344,22 +344,22 @@ If there is partial correlation among the ``elementary'' sources, the light is p
 One may then describe the received EM wave polarization in terms of the degree of polarization and the parameters of the polarization ellipse.
 
 In fully polarized wave, the following equation holds:
-\begin{equation*}
+\begin{equation}
 S_0^2 = S_1^2 + S_2^2 + S_3^2
-\end{equation*}
+\end{equation}
 
 In depolarized wave, it becomes an in-equation
-\begin{equation*}
+\begin{equation}
 S_0^2 > S_1^2 + S_2^2 + S_3^2
-\end{equation*}
+\end{equation}
 
 Then the degree of polarization is defined as
-\begin{equation*}
+\begin{equation}
 p = \frac{\sqrt{ S_1^2 + S_2^2 + S_3^2 }}{S_0}
-\end{equation*}
+\end{equation}
 
 In such general case, the Stokes Vector is written as:
-\begin{align*}
+\begin{align}
 S_t &= 
 \left(
 \begin{array}{c}
@@ -368,7 +368,7 @@ S_t &=
  I p \sin(2\Psi) \cos(2\chi) \\
  I p \sin(2\chi)
 \end{array}
-\right) \\
+\right) \notag \\
  &= I (1 - p)
 \left(
 \begin{array}{c}
@@ -387,7 +387,7 @@ S_t &=
  \sin(2\chi)
 \end{array}
 \right)
-\end{align*}
+\end{align}
 
 Alternatively, if the Stokes vector is measured and known, then the polarization characteristics of a wave are given as:
 $I$, the total power of the measured beam is $I=S_0$,
@@ -401,13 +401,13 @@ This section describes the core concept of POLSAR, i.e. the target's polarimetri
 
 POLSAR radar measures the back-scattered echo received as the result of transmitting a signal.
 The scattering matrix relates the received signal $E^{Rx}$ with the transmitted $E^{Tx}$ signal as:
-\begin{equation*}
+\begin{equation}
  E^{Rx} = \frac{e^{ikr}}{r} S E^{Tx}
-\end{equation*}
+\end{equation}
 %***IVM: Hai, do you need to explain the k & r terms?
 
 Normally, horizontal and vertical linear polarization are used for transmission, and thus the scattering matrix, i.e. $S$, would normally have the following expanded form:
-\begin{equation*}
+\begin{equation}
  \left( 
 \begin{array}{c}
  E_h^{Rx} \\
@@ -426,7 +426,7 @@ Normally, horizontal and vertical linear polarization are used for transmission,
  E_v^{Tx}
 \end{array}
  \right) 
-\end{equation*}
+\end{equation}
 
 The scattering matrix can be called the Jones matrix (relating to the Jones vector) in the forward scattering alignment.
 The matrix is normally called the Sinclair matrix in SAR literature, as backward scattering alignment is normally adopted for SAR \cite{Sinclair_1950_ProcsIRE}.
@@ -492,9 +492,9 @@ C_h = \left< T_{ch} T_{ch}^{*T} \right> = \frac{1}{2}
 
 
 Evidently the two matrices are related:
-\begin{equation*}
+\begin{equation}
 C_h = N C_v N^T
-\end{equation*}
+\end{equation}
 where
 	$N = \frac{1}{\sqrt{2}}
 \left( 
@@ -508,14 +508,14 @@ where
 The off-diagonal values in both covariance and coherence matrices are normally complex numbers. 
 Equivalent matrices with all real value entries which carry the same information are called the Mueller and the Kennaugh matrix, which are to be used in forward and backward scattering alignment respectively\cite{Guissard_1994_TGRS}. 
 They are defined as the matrix that relates the Stokes matrix of sent and received signals.
-\begin{equation*}
+\begin{equation}
 S_t^{Rx} = K S_t^{Tx}
-\end{equation*}
+\end{equation}
 
 Since the Stokes and Jones matrices are related, the Kennaugh and Sinclair matrices are also related, and this relationship is given by:
-\begin{equation*}
+\begin{equation}
 K = 1/2 Q^* S \otimes S^* Q^{T*}
-\end{equation*}
+\end{equation}
 where
 	$\otimes$ denotes the Kronecker product, and
 	$Q = 
@@ -586,7 +586,7 @@ In comparison,
 	partial polarimetry measures dual-polarized response from incoming pulses of a single polarization channel,
 	while full polarimetry measures the same response from two (generally orthogonal) polarisation channels.
 Mathematically, the process is modelled as:
-\begin{equation*}
+\begin{equation}
  \left( 
 \begin{array}{c}
  E_h^{Rx} \\
@@ -599,7 +599,7 @@ Mathematically, the process is modelled as:
  S_{V}
 \end{array}
  \right) E^{Tx}
-\end{equation*}
+\end{equation}
 
 \cite{Souyris_2005_TGRS} pioneered the field with a paper on compact polarimetry.
 This essentially describes a partial polarimetry mode in which the incoming pulse is of linear polarization, 
@@ -634,7 +634,7 @@ The partial polarimetric covariance matrix is then given as
 %\right)
 %\end{equation}
 
-\begin{equation*}
+\begin{equation}
 J = 
 \left(	
 \begin{array}{c c}
@@ -645,7 +645,7 @@ J =
 	{+ s_{HV}s_{HH}^* + s_{VV}s_{HV}^*} 	& { + 2 \Re{(s_{VV}s_{HV}^*)}}
 \end{array}
 \right)
-\end{equation*}
+\end{equation}
 
 
 %*** IVM, I changed the following reference to a \citet
@@ -655,7 +655,7 @@ Thus the polarisation choice of the receiving antenna is trivial (as long as the
 The important parameter is the choice of the polarisation to be used for the incoming pulse.
 His hybrid architecture is again a kind of partial polarimetry in which the incoming pulse is of circular polarisation, instead of the normally encountered linear polarisation.
 The partial covariance matrix then becomes:
-\begin{equation*}
+\begin{equation}
 J = \frac{1}{2} \left(	
 \begin{array}{c c}
 	|s_{HH}|^2 + |s_{HV}|^2 
@@ -669,20 +669,20 @@ J = \frac{1}{2} \left(
 &       + i (s_{HV}s_{VV}^* - s_{VV}s_{HV}^*)  
 \end{array}
 \right)
-\end{equation*}
+\end{equation}
 
 The benefits of this hybrid architecture, according to Raney are that it can measure certain physical polarimetric phenomena such as the odd and even bounce phenomena.
 The suggestion is evidenced by calculating the response of known odd-bounce trihedral and even-bounce dihedral when the incident wave is right circular polarized.
-\begin{equation*}
+\begin{equation}
 \Gamma_{tri} = \left(
 \begin{array}{c c}
 1 & 0 \\
 0 & -1
 \end{array}
 \right)
-\end{equation*}
+\end{equation}
 Then the response will be reversed as it can be calculated as:
-\begin{equation*}
+\begin{equation}
 J_r = \left(
 \begin{array}{c c}
 1 & 0 \\
@@ -700,13 +700,13 @@ J_r = \left(
 i
 \end{array}
 \right) 
-\end{equation*}
+\end{equation}
 with
 	$ \left( \begin{array}{c} 1 \\ -i \end{array} \right) $ indicating right circular polarization transmitted, and
 	$ \left( \begin{array}{c} 1 \\ i \end{array} \right) $ indicating left circular polarization received.
 
 For a dihedral target, whose main axis is at an angle $\theta$ with respect to the horizontal direction, the Sinclair matrix is given as:
-\begin{equation*}
+\begin{equation}
 \Gamma_{dih} = 
 \left(
 \begin{array}{c c}
@@ -714,9 +714,9 @@ For a dihedral target, whose main axis is at an angle $\theta$ with respect to t
 \sin(2\theta) & \cos(2\theta)
 \end{array}
 \right)
-\end{equation*}
+\end{equation}
 The even bounce phenomena is detectable as its polarimetric response, which is then:
-\begin{equation*}
+\begin{equation}
 J_r = \left(
 \begin{array}{c c}
 \cos(2\theta) & \sin(2\theta) \\
@@ -734,7 +734,7 @@ J_r = \left(
 -i
 \end{array}
 \right) 
-\end{equation*}
+\end{equation}
 In \cite{Raney_2007_IGARSS}, Raney shows that hybrid circular modes bring many conveniences to hardware calibration.
 Also in a follow up study \cite{Raney_2007_TGRS}, he demonstrated the classification power of hybrid polarimetry.
 Furthermore, Lardeux \cite{Lardeux_2007_ESASP} found that for target classification using SVM techniques, compact polarimetry mode shows comparable results to full polarimetric data.
@@ -1025,16 +1025,16 @@ Thus the strategy of the pioneering works tend to be to tackle simpler versions 
 
 In the literature, POLSAR data is commonly represented by its covariance matrix.
 For full polarimetric SAR data (full-pol) the covariance matrix has the form of
-\begin{equation*}
+\begin{equation}
 C_3 = 
 \begin{bmatrix}
 S_{hh}^2 & \sqrt{2}S_{hh}S_{hv}^* & S_{hh}S_{vv}^* \\ 
 \sqrt{2}S_{hh}^*S_{hv} &2S_{hv}^2  & \sqrt{2}S_{hv}S_{vv}^*\\ 
 S_{hh}^*S_{vv} & \sqrt{2}S_{hv}^*S_{vv} & S_{vv}^2
 \end{bmatrix}
-\end{equation*}
+\end{equation}
 For partial polarimetric SAR data (part-pol), it reduces to either of the two following equations:
-\begin{equation*}
+\begin{equation}
   C_{2,h} =
   \begin{bmatrix}
     S_{hh}^2 & S_{hh}S_{hv}^* \\
@@ -1045,24 +1045,24 @@ For partial polarimetric SAR data (part-pol), it reduces to either of the two fo
     S_{hv}^2 & S_{hv}S_{vv}^* \\
     S_{hv}^*S_{vv} & S_{vv}^2
   \end{bmatrix}
-\end{equation*}
+\end{equation}
 Obviously, the statistical behaviour of $C_3$ can be understood by understanding the behaviour of $C_{2h},C_{2v}$ and
-\begin{equation*}
+\begin{equation}
   C_{2,c} = 
 \begin{bmatrix}
     S_{hh}^2 & S_{hh}S_{vv}^* \\
     S_{hh}^*S_{vv} & S_{vv}^2
 \end{bmatrix}
-\end{equation*}
+\end{equation}
 
 While $C_{2v}, C_{2h}$ are physically related to the Stokes parameters of EM waves,
   $C_{2c}$ is %a totally made-up mathematical term from the full-pol covariance matrix.%***IVM changed it to:
   an artificial term derived from the ful-pol covariance matrix.
 In fact, in the field of polarimetric SAR, $C_{2v}, C_{2h}$ are called cross-pol and $C_{2c}$ is called the co-pol covariance matrice.
 Their main difference lies in investigating the so-called complex correlation coefficient, defined as:
-\begin{equation*}
+\begin{equation}
   \rho = \frac{E \left( S_{pq}S_{rs}^* \right) }{\sqrt{E \left( S^2_{pq} \right) E \left( S^2_{rs} \right) }} = |\rho| e^{j \phi}
-\end{equation*}
+\end{equation}
 with $\phi=arg(\rho)$ is the phase difference angle.
 In $C_{2v}$ and $C_{2h}$ that are commonly used in optical physics, $|\rho_v|,|\rho_h|$ are insignificant,
   and $\phi_v,\phi_h$ are very random, due to little correlation existing between orthogonal polarizations in monochromatic EM waves.
@@ -1120,10 +1120,10 @@ While these models undoubtedly help in understanding SAR data,
 \subsection{Existing Discrimination Measures for (POL)SAR data}
 
 The commonly used measure of distance for matrices are either the Euclidean or Manhattan distances, defined as:
-\begin{align*}
+\begin{align}
   d(C_x,C_y) &= \sum_{i,j} |\mathbb{R} (C_x - C_y)_{i,j}| + \sum_{i,j} |\mathbb{I} (C_x - C_y)_{i,j}| \\
   d(C_x,C_y) &= \sqrt{\sum_{i,j} |C_x - C_y|_{i,j}^2 }
-\end{align*}
+\end{align}
 where $C_{i,j}$ denotes the (i,j) elements of the POLSAR covariance matrix C,
  $||$ denotes absolute values
 and $\mathbb{R},\mathbb{I}$ denote the real and imaginary parts respectively.
@@ -1133,29 +1133,29 @@ However, in the context of POLSAR% covariance matrix
 
 In the field of POLSAR, the Wishart distance is probably the most widely used, as part of the well-known Wishart classifier \cite{Lee_1999_TGRS}.
 It is defined \cite{Lee_1994_IJRS_2299} as:
-\begin{equation*}
+\begin{equation}
   d(C_x,C_y) = \ln|C_y| + tr(C_xC_y^{-1})
-\end{equation*}
+\end{equation}
 where $tr(C)$ denotes the trace of the matrix C. 
 As a measure of distance, its main disadvantage is that $d(C_y,C_y) = \ln|C_y| \neq 0$.
 
 Recent works have suggested alternative dissimilarity measures including the symmetric and asymmetric refined Wishart distance \cite{Anfinsen_2007_ESA_POLINSAR},
-\begin{align*}
+\begin{align}
   d(C_x,C_y) &= \frac{1}{2} tr(C_x^{-1}C_y + C_y^{-1}C_x) - d \\
     d(C_x,C_y) &= \ln|C_x| - \ln|C_y| + tr(C_xC_y^{-1}) - d
-\end{align*}
+\end{align}
 the Bartlett distance \cite{Kersten_2005_TGRS_519},
-  \begin{align*}
+  \begin{align}
   d(C_x,C_y) &= 2 \ln |C_{x+y}| - \ln |C_x| - \ln |C_y| - 2d\ln2
-  \end{align*}
+  \end{align}
 the Bhattacharyya distance \cite{Lee_2011_IGARSS_3740},
-\begin{equation*}
+\begin{equation}
   r(C_x,C_y) = \frac{|C_x|^{1/2} |C_y|^{1/2}}{|(C_x+C_y)/2|}
-\end{equation*}
+\end{equation}
 and the Wishart Statistical test distance \cite{Cao_2007_TGRS_3454}
-\begin{equation*}
+\begin{equation}
   d(C_x,C_y) = (L_x + L_y) \ln|C| - L_x \ln|C_x| - L_y\ln|C_y|
-\end{equation*}
+\end{equation}
 
 
 Closer investigation of these dis-similarity measures reveals that most are related in some ways. %to each other.
@@ -1168,9 +1168,9 @@ In \cite{Conradsen_2003_TGRS_4}, to determine if the two scaled multi-look POLSA
   which have $L_x$ and $L_y$ as the corresponding number of looks,
   come from the same underlying stochastic process,
 the likelihood ratio statistics for POLSAR covariance matrix is considered:  
-\begin{equation*}
+\begin{equation}
   Q = \frac{(L_x+L_y)^{d \cdot (L_x+L_y)}}{L_x^{d \cdot L_x} L_y^{d \cdot L_y}} \frac{|Z_x|^{L_x} |Z_y|^{L_y} }{|Z_x+Z_y|^{(L_x+L_y)}}
-\end{equation*}
+\end{equation}
 
 Taking the log-transformation of the above equation, and note that $C_{vx} = Z_x / L_x$, $C_{vy} = Z_y / L_y$ and $C_{vxy} = (Z_x + Z_y)/(L_x + L_y)$ then:
 \begin{equation}
@@ -1222,18 +1222,18 @@ where
 	$W(t)$ is a weight function,
 
 For the Lee filter \cite{Lee_PAMI_1980}, the weight function is proposed to be:
-\begin{equation*}
+\begin{equation}
 W(t) = 1 - \frac{C_u^2}{C_I^2} 
-\end{equation*}
+\end{equation}
 where
 	$C_u$ is the variational coefficient of noise, i.e. $C_u=std(u)/avg(u)$, and
 	$C_I$ is the variational coefficient of the true image, i.e. $C_I=std(I)/avg(I)$.
 
 In the approach of the Kuan filter \cite{Kuan_1985_PAMI}, the multiplicative speckle model is first transformed into a single-dependent additive noise model, and then the MMSE criterion is applied. 
 The speckle filter thus has the same form as the Lee filter but with a different weighting function 
-\begin{equation*}
+\begin{equation}
 W(t) = \frac{1 - \frac{C_u^2}{C_I^2} }{1+ C_u^2} 
-\end{equation*} 
+\end{equation} 
 The Kuan filter takes into account the dependency of noise on the signal. 
 In the special case of noise being independent of the underlying signal, the Kuan filter would be exactly the same as the Lee filter.
 From this point of view, it can be considered to be superior to the Lee filter.
@@ -1241,9 +1241,9 @@ From this point of view, it can be considered to be superior to the Lee filter.
 The Frost filter \cite{Frost_PAMI_1982} is different from the Lee and Kuan filters, where the scene reflectivity is estimated by convolving the observed image with the impulse response of the SAR system. 
 The impulse response of the SAR system is obtained by minimizing the mean square error between the observed image and the scene reflectivity model which is assumed to be an autoregressive process. 
 The filter impulse response can, after some simplification, be written as:
-\begin{equation*}
+\begin{equation}
 H(t) = K_1 e^{-K_2 C_I^2(t)}
-\end{equation*}
+\end{equation}
 where
 	$K_1$ is some normalizing coefficient to allow preservation of signal mean values, and
 	$K_2$ is a user-selected filter parameter.
@@ -1268,66 +1268,66 @@ Since heteroskedasticity means that this variance is dependent on the under-lyin
 %***IVM: Hai, to be clear, when you mention "the second approach" below, do you mean "In our second approach"??? In which case, please say so!!
 In the MAP approach, the filters assume that speckle is not stationary globally but is only stationary locally within the moving processing window.
 Such filters operate based on the MAP principle, which is given as:
-\begin{equation*}
+\begin{equation}
 f(x|z) = \frac{f(z|x) f(x)}{f(z)}
-\end{equation*}
+\end{equation}
 where
 	$x$ is the underlying signal that needs to be estimated, and
 	$z$ is the observed signal.
 The underlying signal is found by
-\begin{equation*}
+\begin{equation}
 x = argmax \{ \log(f(z|x)) + \log(f(x))  \} 
-\end{equation*}
+\end{equation}
 
 As evidenced, these classes of filter require the knowledge of the \textit{a-priori} PDF $f(x)$. 
 As such, various PDFs for the underlying back-scattering coefficient have been assumed. 
 
-If a normal distribution is assumed \cite{Medeiros_1998_IAI}, then:
-\begin{equation*}
+If a normal distribution is assumed, then \cite{Medeiros_1998_IAI}:
+\begin{equation}
 f(x) = \frac{1}{\sigma_x \sqrt{2 \pi} } e^{\frac{1}{2} \left( \frac{x-\mu}{\sigma_x} \right)^2 }
-\end{equation*}
+\end{equation}
 and the underlying signal is found by solving the equation
-\begin{equation*}
+\begin{equation}
 x^4 \Gamma^2(N) - x^3 \Gamma^2(N) \mu_x + x^2 \Gamma^2(N) 2N \sigma^2_x - 2 \sigma^2_x z^2 \Gamma^2(N+1/2) = 0
-\end{equation*}
+\end{equation}
 
-If a Gamma distribution is assumed \cite{Lopes_1990_IGARSS}, then: 
-\begin{equation*}
+If a Gamma distribution is assumed, then \cite{Lopes_1990_IGARSS}: 
+\begin{equation}
 f(x) = \frac{\sigma_x}{\Gamma(\lambda)} (x \sigma_x )^{\lambda-1} e^{-x \sigma_x}
-\end{equation*}
+\end{equation}
 For $\lambda=1$, the Gamma distribution is identical to the exponential distribution. 
 For $\lambda=n/2$ and $\sigma=1/2$ the Gamma distribution is equivalent to the chi-square distribution.
 The underlying signal is found by solving the equation:
-\begin{equation*}
+\begin{equation}
 x^3 \Gamma^2(N) \sigma_x + x^2 \Gamma^2(N) (2N - \lambda + 1) - 2 z^2 \Gamma^2(N+1/2) = 0
-\end{equation*}
+\end{equation}
 
-If an exponential distribution is assumed, then:
-\begin{equation*}
+If an exponential distribution is assumed, then \cite{Lopes_1990_IGARSS}:
+\begin{equation}
  f(x) = \sigma_x e^{-x \sigma_x}
-\end{equation*}
+\end{equation}
 and the underlying signal is found by solving the equations
-\begin{equation*}
+\begin{equation}
  x^3 \Gamma^2(N) \sigma_x + x^2 \Gamma^2(N) 2N - 2 z^2 \Gamma^2(N+1/2) = 0
-\end{equation*}
+\end{equation}
 
-If a Chi squared distribution is assumed, then:
-\begin{equation*}
+If a Chi squared distribution is assumed, then \cite{Lopes_1990_IGARSS}:
+\begin{equation}
  f(x)=\frac{1}{2^{n/2} \Gamma(n/2)} x^{n/2-1} e^{(-x/2)}
-\end{equation*}
+\end{equation}
 and the true signal is found by solving the equation
-\begin{equation*}
+\begin{equation}
  x^3 \Gamma^2(N) + x^2 \Gamma^2(N) (4N-n+2) - 4 z^2 \Gamma^2(N+1/2) = 0
-\end{equation*}
+\end{equation}
 
-If a log-normal distribution is assumed \cite{Medeiros_2003_IJRS}, then:
-\begin{equation*}
+If a log-normal distribution is assumed, then \cite{Medeiros_2003_IJRS}:
+\begin{equation}
  f(x) = \frac{1}{\sigma_x \sqrt{2 \pi}} x^{-1} e^{\frac{-1}{2 \sigma_x} (\ln(x) - \mu_x)^2}
-\end{equation*}
+\end{equation}
 and
-\begin{equation*}
+\begin{equation}
  x^2 \Gamma^2(N) (-2N \sigma^2_x - \sigma^2_x -\log(x) + \mu_x) + 2 z^2 \Gamma^2(N+1/2)=0
-\end{equation*}
+\end{equation}
 %Some of them being: Gaussian PDF, Gamma PDF, chi square, Rayleigh, beta, log-normal ... 
 
 %Clearly should such PDF being estimatable from the data it-self, that would potentially presents an good opportunity for this class of speckle filters.
@@ -1402,17 +1402,17 @@ Later, Touzi et. al. \cite{Touzi_1994_TGRS} drew out the principles of speckle f
 
 In 1999, Lee \cite{Lee_1999_TGRS} extended his refined-Lee filters to POLSAR data, and argued that all covariance matrix elements should be filtered by the same amount to preserve polarimetric properties. 
 He then proposed to apply the weighted averaging on the full covariance matrix instead of single-channel intensities values:
-\begin{equation*}
+\begin{equation}
 C_{out} = C_{avg} + w (C_{curr} - C_{avg})
-\end{equation*}
+\end{equation}
 where
 	$C_{out}$ is the filtered covariance matrix output,
 	$C_{avg}$ is the average covariance matrix using an edge-aligned window, and
 	$C_{curr}$ is the covariance matrix of the current processing pixel.
 The weight $w$ is computed within the edge aligned window from the total power image $y$ as:
-\begin{equation*}
+\begin{equation}
 w = \frac{\sigma^2_y - \mu^2_y \sigma^2_v}{\sigma^2_y - \sigma^2_y \sigma^2_n}
-\end{equation*}
+\end{equation}
 where 
 	$\sigma^2_y$ and $\mu_y$ are the variance and mean computed within the edge aligned window, respectively,
 	$\sigma^2_n$ is the user specified noise variance. 
@@ -1420,9 +1420,9 @@ where
 Further attempts have been made towards statistically modelling the off-diagonal elements but the application of these results for speckle suppression of off-diagonal element have not been conclusive.
 For instance Martinez et. al.\cite{Lopez_2008_TGRS} proposed a model based polarimetric filter.
 They first proposed to model $S_hS_v^*$ as having both additive and multiplicative components:
-\begin{equation*}
+\begin{equation}
 S_pS_q^* = \psi |\rho | e^{i \theta} + \psi \bar{z}_n N_c (1-n_m) e^{i \theta} + \psi (n_{ar} + i n_{ai}) 
-\end{equation*}
+\end{equation}
 where
 	$\psi = \sqrt{ E \left( |S_p|^2 \right) E \left( |S_q|^2 \right) }$ represents the average joint power in the two channels, 
 	$\rho = |\rho| e^{i \theta} = \frac{E \left( S_pS_q^* \right)}{ \sqrt{ E \left( |S_p|^2 \right) E \left( |S_q|^2 \right) } }$ is the complex correlation coefficient that characterises the correlation among the channels,
@@ -1435,25 +1435,25 @@ The model is overly complicated and to do speckle filtering, various approximati
 
 Another different approach is proposed bu Lee \cite{Lee_CRCPress_2009}  to model $S_hS_v^*$.
 In this method, the phase difference is defined as:
-\begin{equation*}
+\begin{equation}
 \phi = \arg{ \left( S_pS_q^* \right) }
-\end{equation*}
+\end{equation}
 and the PDF for the phase difference as:
-\begin{equation*}
+\begin{equation}
 pdf(\phi) = \frac{\Gamma(3/2) (1-|\rho|^2) \beta}{2 \sqrt{\pi} \Gamma(1) (1-\beta^2)} + \frac{(1-|\rho|^2)}{2 \pi} F_{1,2}(1,1,1/2,\beta^2)
-\end{equation*}
+\end{equation}
 where
 	$\beta = |\rho| cos(\phi-\theta)$ and
 	$F_{1,2} ( a,b,c,d )$ is the Gauss hyper-geometric function.
 
 The normalized magnitude, is defined as:
-\begin{equation*}
+\begin{equation}
 \xi = \frac{E \left( S_pS_q^* \right)}{\sqrt{ E \left( |S_p|^2 \right) E \left( |S_q|^2 \right) }}
-\end{equation*}
+\end{equation}
 and the PDF is found to be:
-\begin{equation*}
+\begin{equation}
 pdf(\xi) = \frac{4\xi}{\Gamma(1)(1-|\rho|^2)} I_0 \left( \frac{2 |\rho| \xi}{1-|\rho|^2} \right) K_0 \left(  \frac{2 \xi}{1-|\rho|^2} \right)
-\end{equation*}
+\end{equation}
 	$I_0$ and $K_0$ are modified Bessel functions.
 
 Again the equations looks overwhelmingly complex, and as admitted by the authors themselves:
