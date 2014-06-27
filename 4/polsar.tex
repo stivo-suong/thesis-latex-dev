@@ -126,7 +126,13 @@ Over a given homogeneous POLSAR area, the parameters $\Sigma_v$, $d$ and $L$ can
 Thus Eqn. \ref{eqn:determinant_distribution} gives the theoretical explanation that, 
   in the original POLSAR domain, a multiplicative speckle noise pattern is present.
 At the same time, Eqn. \ref{eqn:log_determinant_distribution} shows that
-  the logarithmic transformation converts this into a more familiar additive noise.  
+  the logarithmic transformation converts this into a more familiar additive noise.
+\footnote{
+  As replied to the thesis' Examiners: Since the original domain is multiplicative, the range of small value is quite limited ($|C_v|$ ranges from 0 to 1).
+  The log transformed domain not only changes the nature of the noise from multiplicative to addtive,
+    it also gives this ``small'' range a much wider space ($\ln{|C_v|}$ ranges from $-\infty$ to 0).
+  In other words, it helps to expand the ``narrow'' distribution depicted in Eqn. \ref{eqn:determinant_distribution} to become another distribution whose shape does not depend on $\Sigma$, as depicted in Eqn. \ref{eqn:log_determinant_distribution}
+}  
 
 \subsection{The Statistical Properties of the Proposed Models}  
   
@@ -424,7 +430,7 @@ While a good p-value may not lead to automatic acceptance of the model, high p-v
 \begin{figure}[bth!]
 \centering
 \begin{tabular}{c}
-	\subfloat[part-pol (2x2) dispersion]{
+	\subfloat[part-pol (2x2) dispersion (p-value HH-HV=0.8942)]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
                  \epsffile{images/verify_polsar_2x2_dispersion_distribution.eps} 
@@ -437,7 +443,7 @@ While a good p-value may not lead to automatic acceptance of the model, high p-v
 		 \epsffile{images/verify_polsar_2x2_contrast_distribution.eps} 	
 		 \label{contrast_2x2}
 	} \\
-	\subfloat[full-pol (3x3) dispersion]{
+	\subfloat[full-pol (3x3) dispersion (p-value=0.8806)]{
 		 \epsfxsize=2.5in
 		 \epsfysize=2.5in
                  \epsffile{images/verify_polsar_3x3_dispersion_distribution.eps} 
