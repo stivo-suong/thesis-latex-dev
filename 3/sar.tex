@@ -43,7 +43,9 @@ If spatial homogeneity is defined as an imaging area having the same back-scatte
 However, over heterogeneous areas where $\sigma$ varies significantly,
   it is then evidently clear that: the amplitude  as well as the intensity of SAR data suffer from hetoroskedastic phenomena. 
 %  which is defined as the dependence of conditional expected variance of SAR data on the conditional expectation of mean.
-This means that  the conditional expected variance of SAR data is dependent on the conditional expectation of the mean.   
+%This means that  the conditional expected variance of SAR data is dependent on the conditional expectation of the mean.
+In statistical context, heteroskedasticity and homoskedasticity are terms defined to denote the fact that different sub-populations of a given set of samples can have different or similar variability respectively.
+In the context of SAR (and POLSAR) imagery, they respectively denote the fact that different areas in a given image can have different different or similar sample variance, depending on the underlying signal $\sigma$.
 In the context of speckle filtering which aims to estimate the unknown parameter $\sigma$,
   Table \ref{tbl:orginal_sar_avg_var} also clearly indicates an ambiguous circle:
 in the original domain, estimating variance is equal to estimating the mean, but this is as hard to estimation as the variance.
@@ -311,7 +313,10 @@ The excellent agreement observable between the real world and modelled data tend
 \section{Consistent Measures of Distance in the Log-Transformed Domain}
 \label{sec:consistent_measures_distance_sar}
 
-The consistent feature is explored and illustrated in this section from two different perspectives. 
+The consistent feature is explored and illustrated in this section from two different perspectives.
+
+\subsection{The Distance and Log-Distance Models}
+
 First, the back-scattering coefficient $\sigma$ is assumed to be \textit{known a priori}.
 With that, let us consider the dispersion random 
 variable which is defined as the distance between an observable sample and its expected value:
@@ -361,6 +366,8 @@ pdf(D_{L^I}) = 2^{\left( D_{L^I} + \frac{\gamma}{\ln2} \right)} e^{-2^{\left( D_
 \end{equation}
 
 It is clear that these distributions are dependent on $\sigma$ in the original domain (the upper two equations), are now independent of it when processed in the log-domain (the lower two equations).
+
+\subsection{The Dispersion and Contrast Models}
 
 Let us now investigate SAR data from the second perspective,
   where two adjacent resolution cells are known to have \textit{an identical but unknown} back-scattering coefficient $\sigma$.

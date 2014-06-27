@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a ext=('tex' 'bib');
+declare -a ext=('tex' 'bib' 'pdf');
 #f_name2='chap2'
 
 function e {

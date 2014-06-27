@@ -294,17 +294,27 @@ Similar to the way that other measures of distance can be used to derive POLSAR 
 %What are their limitations? What problems this appears
 %                to solve, but actually is not?
 
-The
-                proposed scalar models for POLSAR also have limitations.
-It
-                calls for a dimensional reduction operation, which is
-                probably not lossless.
+Since the full POLSAR data is multi-dimensional and the proposed models are scalar,
+  by their own definition, they are not perfect.
+They inherently suffer from a loss of dimension.  
+%The
+%                proposed scalar models for POLSAR also have limitations.
+%It
+%                calls for a dimensional reduction operation, which is
+%                probably not lossless.
 Thus
                 while the determinant of POLSAR covariance matrix is
                 said to be "highly representative", it is definitely not
                 fully representative of the data.
+This restricts the use of the models to a class of porblem where a single scalar decision, ranking, sorting or classification answer is required from the complex dataset.
+They however, are hopefully the most practical way to answer some common types of commonly asked questions such as:
+  ``what is the best speckle filter for the given data set?'' or
+  ``what type of surface does a region of interest belong to?''.
+On the other hand, the proposed models might not be very useful in applications,
+  where the relationship among each dimensional component is used to make further inferences.
+
 Intuitively,
-                this is similar to the use of magnitude as being
+                their use is similar to the use of magnitude as being
                 representative of a complex number, which also is not
                 fully representative of the two-dimensional number.
 But it is important to emphasize that,
@@ -340,9 +350,10 @@ While averaging is also the MLE operator in the SAR's original domain,
 %                the future work to extend this theory? What can be done
 %                next?
 
-Although
-                the proposed models may have certain limitations, its
-                potentials still mostly stays undiscovered.
+%Although
+%                the proposed models may have certain limitations, its
+%                potentials still mostly stays undiscovered.
+Building up from the proposed models, several possible future work has been identified.
 Since
                 the assumptions of partial and full monostatic POLSAR
                 models are quite minimal, they are probably also
