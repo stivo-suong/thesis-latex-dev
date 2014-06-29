@@ -172,7 +172,7 @@ The pseudo code for such a procedure is given in Listing \ref{lst:k_mle_algo_par
 \definecolor{darkgray}{rgb}{0.95,0.95,0.95}
 \lstset{backgroundcolor=\color{darkgray}}
 \begin{lstlisting}[frame=tb]
-function centers = partition_into_homogenous_groups(l, threshold)
+function centers = partition_into_homogeneous_groups(l, threshold)
   c_init = maximum_likelihood_of(l);
   [further_partition_needed, c_new] = 
           check_homogeneity_status(l, c_init, threshold);
@@ -183,7 +183,7 @@ function centers = partition_into_homogenous_groups(l, threshold)
     [further_partition_needed, c_new] = 
             check_homogeneity_status(l, c_prev, threshold);    
   end while
-  %after this: all paritions are homogenous
+  %after this: all paritions are homogeneous
 
   return centers = c_new; 
 end function
@@ -192,23 +192,23 @@ function [further_partition_needed, c_new]
               = check_homogeneity_status(l, c, threshold_vector);    
 
   m[i,j] = get_membership_assigments(l, c);
-  all_partitions_homogenous = true;
+  all_partitions_homogeneous = true;
   c_new = c;
   for (j = 1 to size_of(c)) 
     g = {L[i] with m[i,j]==1};
-    this_partition_homogenous = 
+    this_partition_homogeneous = 
       (variance(g) < threshold_vector[size_of(g)]);
 
-    if (NOT this_partition_homogenous) then
-      % split non-homogenous partition
+    if (NOT this_partition_homogeneous) then
+      % split non-homogeneous partition
       c_new[j] = min(g);
       c_new[size_of(c_new) + 1] = max(g);
 
-      all_partitions_homogenous = false;
+      all_partitions_homogeneous = false;
     end if
   end for
 
-  further_partition_needed = NOT all_partitions_homogenous;
+  further_partition_needed = NOT all_partitions_homogeneous;
 end function
 \end{lstlisting}
 
@@ -818,31 +818,35 @@ We note that the ROC curve for the histograms in original domain matches perfect
 
 %\afterpage{\clearpage}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-      \begin{tabular}[h]{c}
- 	\subfloat[SLC Intensity]{
-		 \epsfxsize=6cm
-		 \epsfysize=6cm
-		 \epsffile{images/illustrate_ROC_curve.pdf.s.made.eps} 
+      \begin{tabular}{c}
+ 	\subfloat[][SLC Intensity]{
+%		 \epsfxsize=6cm
+%		 \epsfysize=6cm
+%		 \epsffile{images/illustrate_ROC_curve.pdf.s.made.eps} 
+                 \plotWithLegend{images/illustrate_ROC_curve.pdf.s.made.eps}{SLC log-intensity} 
 		 \label{fig:illustrate_ROC_curve.pdf.s.made.eps}
 	} \hfill
-	\subfloat[9-Look Intensity]{
-		 \epsfxsize=6cm
-		 \epsfysize=6cm
-		 \epsffile{images/illustrate_ROC_curve.pdf.m.made.eps} 
+	\subfloat[][9-Look Intensity]{
+%		 \epsfxsize=6cm
+%		 \epsfysize=6cm
+%		 \epsffile{images/illustrate_ROC_curve.pdf.m.made.eps} 
+                 \plotWithLegend{images/illustrate_ROC_curve.pdf.m.made.eps}{SLC log-intensity} 
 		 \label{fig:illustrate_ROC_curve.pdf.m.made.eps}
 	} \\
- 	\subfloat[SLC log-intensity]{
-		 \epsfxsize=6cm
-		 \epsfysize=6cm
-		 \epsffile{images/log_illustrate_ROC_curve.pdf.s.made.eps} 
+ 	\subfloat[][SLC log-intensity]{
+%		 \epsfxsize=6cm
+%		 \epsfysize=6cm
+%		 \epsffile{images/log_illustrate_ROC_curve.pdf.s.made.eps} 
+                 \plotWithLegend{images/log_illustrate_ROC_curve.pdf.s.made.eps}{SLC log-intensity} 
 		 \label{fig:log_illustrate_ROC_curve.pdf.s.made.eps}
 	} \hfill
-	\subfloat[9-Look log-intensity]{
-		 \epsfxsize=6cm
-		 \epsfysize=6cm
-		 \epsffile{images/log_illustrate_ROC_curve.pdf.m.made.eps} 
+	\subfloat[][9-Look log-intensity]{
+%		 \epsfxsize=6cm
+%		 \epsfysize=6cm
+%		 \epsffile{images/log_illustrate_ROC_curve.pdf.m.made.eps} 
+                 \plotWithLegend{images/log_illustrate_ROC_curve.pdf.m.made.eps}{9-Look log-intensity} 
 		 \label{fig:log_illustrate_ROC_curve.pdf.m.made.eps}
 	}
    \end{tabular}
@@ -863,7 +867,7 @@ We note that the ROC curve for the histograms in original domain matches perfect
 
 The most common types of target to be detected in image processing are point targets, line targets, and edge targets.
 The detectability of these targets are measured using the AUC index which is tabulated against the MSE.
-Fig. \ref{fig:Heterogeneous_Patterns} illustrates the evaluation result in benchmarking the performance of f-MLE filters for artificially-generated heterogenous test regions.
+Fig. \ref{fig:Heterogeneous_Patterns} illustrates the evaluation result in benchmarking the performance of f-MLE filters for artificially-generated heterogeneous test regions.
 Apparently the f-MLE filters have better performance than boxcar filters.
 Also noticeable is the correlation between MSE and the Area Under the ROC curve criteria, 
   which is an interesting phenomena that will be investigated further in the next section.

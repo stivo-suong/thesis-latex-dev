@@ -45,7 +45,39 @@
 %\usepackage{caption,subcaption} 
 \usepackage[caption=false,font=footnotesize,subrefformat=parens,labelformat=parens]{subfig} %for subfigures
 
-%\usepackage{showframe} %to mark the margins 
+%\usepackage{showframe} %to mark the margins
+
+%%%%%%%
+\usepackage{graphicx}
+\usepackage{pstricks}
+
+\def\row{10}
+\def\column{10}
+
+\usepackage{xcolor}
+\definecolor{blue}{rgb}{0,0.0964,1.00}
+\definecolor{redd}{rgb}{1.0,0.0,0.0}
+
+\newsavebox\IBox
+\savebox\IBox{\includegraphics[width=6cm,height=6cm]{../images/verify_change_ratio_model_on_RADARSAT2_3d.eps}}
+
+\psset
+{
+  xunit=\dimexpr\wd\IBox/\column,
+  yunit=\dimexpr\ht\IBox/\row,
+}
+
+\newcommand{\plotWithLegend}[2]{          
+          \begin{pspicture}[showgrid=false](\column,\row)% set showgrid=false for the final
+	    \rput[bl](0,0){\includegraphics[width=6cm,height=6cm]{#1}}% \usebox\IBoxCRThreeR
+	    %\rput(5,1.5){\footnotesize{#2}}
+	    %\rput{90}(1.5,5){\footnotesize{pdf / histogram}}
+	    \psline[linecolor=blue](2,8)(3,8)
+	    \psline[linecolor=redd](2,9)(3,9)%another line style: dotted
+	    \rput(3.5,8){\scriptsize{+3db}}
+	    \rput(3.5,9){\scriptsize{+0db}}            
+          \end{pspicture}
+}
 
 %: ----------------------------------------------------------------------
 %:                 List of Equations 
