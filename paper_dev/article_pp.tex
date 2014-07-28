@@ -122,7 +122,7 @@ POLSAR exploits the natural polarization property of Electro-Magnetic (EM) waves
 %Moreover, it is multi-dimensional, making it even harder to interpret.
 %Under this context, it is therefore important to establish a simple and intuitive understanding of the data.
 %Statistical models are undoubtedly crucial in understanding its stochastic nature.
-While several models have been proposed for POLSAR data, they tend to be complex and unintuitive due to the multidimensional and stochastic nature of the data.
+While several models have been proposed for POLSAR data, they tend to be complex and unintuitive due to the multidimensional and stochastic nature of the data \cite{Lee_1994_TGRS_1017, Lopez-Martinez_2003_TGRS_2232}.
 It is therefore necessary to establish a simple and intuitive model for the 
 understanding of the data, and statistical models are undoubtedly suitable due to its stochastic nature.
 Furthermore, practical POLSAR data processing also makes heavy use of scalar discrimination measures,
@@ -268,6 +268,8 @@ While these models undoubtedly help to further our understanding of POLSAR data,
   none of the underlying observables have been shown to meet the dual criteria of
   (i) resulting in statistically consistent discrimination measures and thus 
   (ii) being representative of the complex POLSAR data.
+This will be self-evident in the next section 
+  which reviews existing scalar POLSAR discrimination measures.
 
 \subsection{POLSAR Discrimination Measures}
 \label{sec:lit_measures}
@@ -327,8 +329,10 @@ the likelihood ratio statistics for POLSAR covariance matrix is considered:
 Taking the log-transformation of the above equation, and denoting $C_{vx} = Z_x / L_x$, $C_{vy} = Z_y / L_y$ and $C_{vxy} = (Z_x + Z_y)/(L_x + L_y)$ then:
 {\small
 \begin{align}
-  Q &= \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} \\
-  \ln Q &= L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
+  Q &= \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} % \\
+  % \ln Q &= L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
+%  Q &= \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} \\
+%  \ln Q &= L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
 \end{align}
 }
 
@@ -539,7 +543,7 @@ Upon setting $d=1$ into the above equations,
 \begin{align*}
   |C_v| &\sim  \frac{|\Sigma_v|}{(2L)} \cdot \chi (2L) \\ %\label{eqn:determinant_distribution} %\\
   \mathbb{R}_{\Sigma} = \frac{|C_v|}{|\Sigma_v|} &\sim \frac{1}{(2L)} \cdot \chi(2L) \\ %\label{eqn:polsar_ratio_det_cov_dist} \\
-\mathbb{R}_{C} = \frac{C_1}{C_2} &\sim \prod_{i=0}^{d-1} \frac{\chi(2L-2i)}{\chi(2L-2i)}
+\mathbb{R}_{C} = \frac{C_1}{C_2} &\sim \frac{\chi(2L)}{\chi(2L)}
 \end{align*}
 
 Since the PDF of chi-squared distribution can be written as:
@@ -581,10 +585,10 @@ As for the first matter, in view of the models given in Eqn \ref{eqn:determinant
   the likelihood test statistics presented in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:ori_likelyhood_stats} \& \ref{eqn:log_likelyhood_stats}
 can be expressed as:
 \begin{align*}
-  \ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
+%  \ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
   Q &\sim e^k \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}   
 \end{align*}
-where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
+%where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
 This, in essence, derives an exact statistical distribution for the likelihood test statistics (as opposed to an asymptotic distribution \cite{{Conradsen_2003_TGRS_4}}).
 
 As a by-product of this exact derivation,
@@ -625,7 +629,7 @@ The look-number $L$ can be taken either as nominally stated by the data provider
 To show the robustness of the proposed models, 
   their validations are also put to test on different types of POLSAR sensors.
 Specifically in this paper, the air-borne four-look ($L=4$) AIRSAR image of Flevoland and
-  a fine-quad single-look complex RADARSAT2 image ($L=1$) are used.
+  a fine-quad single-look complex RADARSAT2 image ($L=1$) of Murda Merbok (Malaysia) are used.
 Since the determinant of the covariance matrix is only significant on multi-look data,
   nine-look processing is first applied on the single-look RADARSAT2 data ($L=9$).
 
@@ -639,6 +643,7 @@ The histograms for both the intensity and intensity ratio %the log-distance and 
   are then plotted against the theoretical PDF given above.
 %Also presented are the plots of the same test applied on a homogeneous patch inside the nine-look processed RADARSAT2 image.
 The plots are obtained having set ENL to an estimated value obtained using the technique presented in \cite{Anfinsen_2009_TGRS_3795}.
+The values of $L$ are $L=3.2752$ and $L=3.4241$ for the AIRSAR and RadarSat2 images respectively.   
 In all cases, the good match between the actual data and model distribution lends support to the proposed model. %providing us a simple validation of the result.
 
 %ifdef FINAL
