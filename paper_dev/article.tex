@@ -77,7 +77,7 @@ Specifically, the statistical behaviour of the POLSAR covariance matrix determin
   to derive a scalar and generic statistical model for multi-dimensional POLSAR data,
   which is shown applicable to the two and three dimensional versions of partial and full monostatic polarimetric SAR data.
 In addition, the proposed model is also able to subsume the traditional SAR intensity model under the umbrella of a unified model,
-  where the SAR intensity is shown to be a one dimension version of the multi-dimensional data.
+  where the SAR intensity is shown to have similar behaviour to the one dimension version of the proposed multi-dimensional models.
 %As the POLSAR covariance matrix determinant generalizes the SAR intensity towards multiple dimensions,
 %  the proposed model is able to subsume the traditional SAR intensity model under the umbrella of a unified model. 
 %What are the larger implications of the findings presented in this paper?
@@ -326,6 +326,8 @@ Taking the log-transformation of the above equation, and denoting $C_{vx} = Z_x 
 \begin{align}
   Q &= \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} % \\
   % \ln Q &= L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
+%  Q &= \frac{|C_{vx}|^{L_x} \cdot |C_{vy}|^{L_y} }{|C_{vxy}|^{L_x + L_y}} \label{eqn:ori_likelyhood_stats} \\
+%  \ln Q &= L_x \ln |C_{vx}| + L_y \ln |C_{vy}| - (L_x + L_y) \ln |C_{vxy}| \label{eqn:log_likelyhood_stats}
 \end{align}
 }
 
@@ -344,7 +346,7 @@ In this section, after the basic foundations of POLSAR statistical analysis are 
 %  this section presents the theoretical model for multi-dimensional POLSAR data. 
 
 Note that the POLSAR scattering vector is denoted as $s$ in this paper.
-For partial polarimetric SAR (single polarization in transmit and dual polarization in receive),
+For partial polarimetric SAR (single polarization in transmit and dual polarization in receive), e.g. \cite{Souyris_2005_TGRS, Raney_2006_IGARSS}, 
   the vector is two-dimensional ($d=2$) and is normally written as: 
 \begin{equation}
 s_{part}=\begin{bmatrix}
@@ -389,7 +391,10 @@ $Z=LC_v$, whose PDF is given as:
 with $\Gamma_d(L) = \pi^{d(d-1)/2} \prod^{d-1}_{i=0}\Gamma(L-i)$
 and $d$ is the dimensional number of the POLSAR covariance matrix.
 
-The approach taken in this paper differs by applying the homoskedastic log transformation  on a less-than-well-known result for the determinant of the covariance matrix.
+The approach taken in this paper differs 
+  in that it make use of 
+  %by applying the homoskedastic log transformation on 
+  a less-than-well-known result for the determinant of the covariance matrix.
 Goodman \cite{Goodman_1963_AMS_178} proved
 that the ratio between the observable and expected values of the sample covariance matrix determinants
   behaves like a product of $d$ chi-squared random variables with different degrees of freedom: 
@@ -448,7 +453,7 @@ in this paper, the determinant-ratio and the change-ratio are also proposed as a
 %  this section introduces the consistent sense of distance for POLSAR.
 
 %Assuming, on the one hand,
-For cases where the true value of the underlying signal $\Sigma_v$ is known \textit{a priori},
+Assuming the true value of the underlying signal $\Sigma_v$ is \textit{available},
 then the determinant-ratio of the signal random variable ($\mathbb{R}_{\Sigma}$) %and log-distance ($\mathbb{L}$)
 %  are observable according to the following definitions:
   is defined as:
@@ -532,7 +537,7 @@ The results for our models can be summarized using the following equations:
 \end{align*}
 
 Upon setting $d=1$ into the above equations,
-  the equations become:
+  they become:
 \begin{align*}
   |C_v| &\sim  \frac{|\Sigma_v|}{(2L)} \cdot \chi (2L) \\ %\label{eqn:determinant_distribution} %\\
   \mathbb{R}_{\Sigma} = \frac{|C_v|}{|\Sigma_v|} &\sim \frac{1}{(2L)} \cdot \chi(2L) \\ %\label{eqn:polsar_ratio_det_cov_dist} \\
@@ -555,7 +560,7 @@ I &\sim& pdf \left[ \frac{L^L x^{L-1} e^{-Lx/\bar{I}}}{\Gamma(L) \bar{I}^L} \rig
 \mathbb{R}_{\bar{I}} = \frac{I}{\bar{I}} &\sim& pdf \left[ \frac{ L^{L} x^{L-1} e^{-Lx}}{ \Gamma(L)} \label{eqn:multi_look_SAR_ratio_dist} \right] \\
   \mathbb{R}_{I} = \frac{I_1}{I_2} &\sim& pdf \left[ \frac{\Gamma(2L-1) x^{L-1}}{\Gamma^2(L-1) (1+x)^{2L}} \right]
   \end{eqnarray}
-considering that $|C_v| \mapsto I$ and $|\Sigma_v| \mapsto \bar{I}$ when multi-dimensional POLSAR collapses into single-dimensional SAR.
+considering that $|C_v| \mapsto I$ and $|\Sigma_v| \mapsto \bar{I}$ when the proposed multi-dimensional POLSAR statistical models is applied towards the case of single-dimensional SAR.
 
 \section{Unifying the different discrimination measures proposals for both SAR and POLSAR}
 \label{sec:link_sar_polsar}
@@ -575,10 +580,10 @@ First, similar to the way that the statistical model for SAR intensity has been 
 And second, new discrimination measures for POLSAR may be derived by learning from the existing SAR discrimination measures.
 
 As for the first matter, in view of the models given in Eqn \ref{eqn:determinant_distribution},
-  the likelihood test statistics presented in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqns \ref{eqn:ori_likelyhood_stats} \& \ref{eqn:log_likelyhood_stats}
+  the likelihood test statistics presented in \cite{Conradsen_2003_TGRS_4} and rewritten in Eqn. \ref{eqn:ori_likelyhood_stats} %\& \ref{eqn:log_likelyhood_stats}
 can be expressed as:
 \begin{align*}
-  %\ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
+%  \ln{Q} &\sim  k + L_x \Lambda^d_{L_x} + L_y \Lambda^d_{L_y} - (L_x + L_y) \Lambda^d_{(L_x + L_y)} \\
   Q &\sim e^k \frac{(\chi^d_{L_x})^{L_x} \cdot (\chi^d_{L_y})^{L_y}}{(\chi^d_{L_x + L_y})^{L_x + L_y}}   
 \end{align*}
 %where $k = d \left[ (L_x + L_y) \ln(L_x + L_y) - L_x \ln{L_x} - L_y \ln{L_y} \right]$.
@@ -632,6 +637,7 @@ Since it has been shown in Section \ref{sec:sar_special_case_of_polsar} that the
   the validation of the proposed $d=1$ model is quite straightforward. %only a simple validation is presented for this case.  
 Fig. \ref{fig:verify_POLSAR_model_1D} presents the results of a test performed for the stated purpose.
 In the test, the intensity of single-channel SAR data (HH) for sample homogeneous areas in both datasets is extracted.
+The sizes are 300x300 and 50x50 for Radarsat2 and AIRSAR patches respectively. 
 The histograms for both the intensity and intensity ratio %the log-distance and contrast
   are then plotted against the theoretical PDF given above.
 %Also presented are the plots of the same test applied on a homogeneous patch inside the nine-look processed RADARSAT2 image.
@@ -704,7 +710,10 @@ Similar tests %like the one described for SAR data
   for both types of polarimetric SAR
   on both AIRSAR and RADARSAT2 datasets.
 The look-number is estimated for each type of data and for each image~\cite{Anfinsen_2009_TGRS_3795}. %and is also noted in the plots.
-The practical and predicted distributions are again plotted to determine whether their visual match is close in each case. Fig. \ref{fig:verify_det_ratio_model_2D} shows the $d=2$ plots for determinant, determinant ratio and change ratio for both datasets. It is very clear that the model histogram matches the data well, in fact appearing similar to a smoothed data response. Evidently the match is good for $d=2$.
+The practical and predicted distributions are again plotted to determine whether their visual match is close in each case. Fig. \ref{fig:verify_det_ratio_model_2D} shows the $d=2$ plots for determinant, determinant ratio and change ratio for both datasets. 
+It is clear that the model histogram matches the data well
+  %, in fact appearing similar to a smoothed data response. 
+Evidently the match is good for $d=2$.
 
 Similarly, Fig. \ref{fig:verify_det_ratio_model_3D} explores the $d=3$ case for the same data, same model parameters.
 Again, although the histogram is much tighter, the match is visually obvious in all cases.
@@ -1012,7 +1021,7 @@ From a visual examination of Fig \ref{fig:visual_eval_part_pol_boxcar_speckle_fi
 %It does not, technically speaking, focuses on proposing new discrimination measures.
 
 %conclude the section
-Many similar SAR data processing techniques may be adaptable to POLSAR in this way, however they are not explored here due to space constraints.
+Many similar SAR data processing techniques may be adaptable to POLSAR in this way, however they are not explored exhaustively here due to space constraints.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -1021,7 +1030,7 @@ Many similar SAR data processing techniques may be adaptable to POLSAR in this w
 This paper has proposed a generic statistical model  for the POLSAR covariance matrix determinant based on the complex Wishart POLSAR target vector distribution.
 The model has been validated for specific $d=2$ and $d=3$ cases using real-life partial and full POLSAR data.
 The paper also establishes two new POLSAR discrimination measures: the determinant-ratio and the change-ratio,  which essentially are the generic versions of the SAR intensity-ratio.
-We have also shown an excellent match between the specific $d=1$ model and that for traditional SAR intensity,
+We have also shown an excellent match between the specific $d=1$ model and that of the traditional SAR intensity,
 which effectively brings the existing SAR theories under the umbrella of this new model.
 
 %What are the results? What are their advantages over others' results?
