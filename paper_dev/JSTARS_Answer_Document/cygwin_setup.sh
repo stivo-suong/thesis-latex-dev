@@ -25,7 +25,8 @@ fi
   #latex 'thesis.tex'
   #latex 'thesis.tex'
   #yap answer_document.dvi
-  #dvipdf thesis.dvi
-  #cygstart.exe thesis.pdf
+  dvips answer_document.dvi
+  ps2pdf answer_document.ps
+  cygstart.exe answer_document.pdf
 
 

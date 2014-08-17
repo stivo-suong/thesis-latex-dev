@@ -44,6 +44,8 @@
 \usepackage{longtable}
 \usepackage[table]{xcolor}
 
+\usepackage{amsmath}
+
 \title{Reply To JSTARS Reviewers' Comments}
 \date{\today}
 \author{Thanh-Hai Le}
@@ -69,6 +71,21 @@
 \replyToComment
     {blah}
     {blah}
+
+\begin{align}
+  |C_v| &\sim |\Sigma_v| \cdot \frac{1}{(2L)^d} \cdot \prod_{i=0}^{d-1} \chi^2 (2L-2i) \\
+  var \left[ |C_v| \right]  &=   \frac{|\Sigma_v|^2 \left[ \prod^{d-1}_{i=0} (L-i)(L-i+1) - \prod^{d-1}_{i=0} (L-i)^2 \right] }{L^{2d}} 
+%  var \left[ \prod^{d-1}_{i=0} \chi^2(2L-2i) \right] &=& \prod^{d-1}_{i=0} 4(L-i)(L-i+1) - \prod^{d-1}_{i=0} 4(L-i)^2
+\end{align}
+
+\begin{align}
+I &\sim \sigma^2 \frac{\chi^2(2L)}{2L} \\
+var(I) &= \frac{\sigma^4}{L}
+\end{align}
+
+\begin{align}
+var \left[ \chi^2 (2L) \right] = 4L
+\end{align}
 
 %\include{chap1}
 
